@@ -1,0 +1,158 @@
+---
+
+const { baseUrl } = Astro.props;
+
+interface NavLink {
+  label: string;
+  href: string;
+}
+
+const links: NavLink[] = [
+  { label: 'Projects', href: `${baseUrl}projects` },
+  { label: 'Resume', href: `${baseUrl}resume` },
+  { label: 'About', href: `${baseUrl}about` },
+];
+
+const currentPath =
+  typeof window !== 'undefined' ? window.location.pathname : '';
+---
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggleBtn = document.querySelector<HTMLElement>('.navbarToggle');
+    const items = document.querySelectorAll<HTMLElement>('.item');
+
+    toggleBtn?.addEventListener('click', () => {
+      items.forEach((item) => {
+        item.classList.toggle('show');
+      });
+      toggleBtn.classList.toggle('hide');
+    });
+  });
+</script>
+
+<nav id="mynav">
+  <ul id="navbar">
+    <li class="logo">
+      <a href=`${baseUrl}`></a>
+    </li>
+    <li class="navbarToggle">
+      <button aria-label="Toggle menu">
+        <i class="material-symbols-outlined menu-icon">menu</i>
+        <i class="material-symbols-outlined close-icon hidden">close</i>
+      </button>
+    </li>
+    
+
+    {
+      links.map((link) => {
+        // Normalize for trailing slash
+        const linkPath = link.href.endsWith('/')
+          ? link.href.slice(0, -1)
+          : link.href;
+        const normalizedPath = currentPath.endsWith('/')
+          ? currentPath.slice(0, -1)
+          : currentPath;
+
+        const isActive = normalizedPath === linkPath;
+
+        return (
+          <li class={`item ${isActive ? 'active' : ''}`}>
+            <a href={link.href}>{link.label}</a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</nav>
+
+<style>
+  @reference "@/styles/global.css";
+
+  /* ===========================
+   Base (mobile first)
+   =========================== */
+
+  nav {
+    @apply w-full px-4 bg-[#2C2C2C] fixed top-0 left-0 z-[-99] opacity-90;
+  }
+
+  ul {
+    @apply list-none flex flex-col items-start m-0 p-0;
+  }
+
+  .logo {
+    @apply flex-1;
+  }
+
+  .item {
+    @apply hidden w-full text-center py-[0.5rem];
+  }
+
+  /* .item {
+    @apply hover:border-[1.5px] hover:border-[var(--color-text-secondary)] hover:rounded-md;
+  } */
+
+  .item a {
+    @apply text-white hover:text-[var(--color-text-hover)] hover:text-shadow-[0.05rem_0.05rem_var(--color-text-primary)];
+  }
+
+  .item.show {
+    @apply block;
+  }
+
+  .navbarToggle {
+    @apply self-end;
+  }
+
+  .navbarToggle button {
+    @apply border-none text-white text-2xl cursor-pointer;
+  }
+
+  /* --- Icon toggle logic --- */
+  .navbarToggle .close-icon {
+    @apply hidden;
+  }
+
+  .navbarToggle.hide .menu-icon {
+    @apply hidden;
+  }
+
+  .navbarToggle.hide .close-icon {
+    @apply block;
+  }
+
+  /* ===========================
+   Larger screens (>=900px)
+   =========================== */
+
+  @media (min-width: 900px) {
+    nav {
+      @apply max-w-[80rem] mx-auto px-10 z-[99] bg-transparent static;
+    }
+
+    ul {
+      @apply flex-row items-center justify-end;
+    }
+
+    li {
+      @apply px-4 py-0;
+    }
+
+    .item {
+      @apply block w-auto;
+    }
+
+    .item a {
+      @apply text-white hover:text-[var(--color-text-hover)] hover:text-shadow-[0.05rem_0.05rem_var(--color-text-primary)];
+    }
+
+    .navbarToggle {
+      @apply hidden;
+    }
+    .footer_container,
+    .item {
+      @apply text-white;
+    }
+  }
+</style>

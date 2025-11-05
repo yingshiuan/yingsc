@@ -1,0 +1,32 @@
+---
+// src/layouts/Layout.astro
+import Layout from '@/layouts/Layout.astro';
+import MetaCard from '@/components/content/MetaCard.astro';
+
+import type { ProjectMeta } from '@/ts/project';
+
+interface Props {
+  projectMeta: ProjectMeta;
+}
+
+const { projectMeta } = Astro.props as Props;
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  url?: string;
+  keywords?: string;
+}
+
+const { title, description, image, url, keywords } = Astro.props;
+---
+
+<Layout
+  title="Projects"
+  description="Ying-Shiuan Chen loves creating functional yet fun interactions to humanize technology!"
+  image="/images/og-home.png"
+  keywords="Ying-Shiuan Chen, software engineer, product designer, developer, interaction">
+  <slot />
+</Layout>
+

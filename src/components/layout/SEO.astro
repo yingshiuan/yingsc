@@ -1,0 +1,16 @@
+---
+import type { SeoData } from '@/ts/type.ts';
+
+const { title, description, image, url, keywords } = Astro.props as SeoData;
+const fullTitle = `${title} | Ying-Shiuan Chen`;
+const ogUrl = url ?? 'https://yingshiuan.github.io/yingsc/';
+const ogImage = image ?? './yinz.svg';
+---
+
+<title>{fullTitle}</title>
+{description && <meta name="description" content={description} />}
+<meta property="og:title" content={fullTitle} />
+{description && <meta property="og:description" content={description} />}
+<meta property="og:image" content={ogImage} />
+<meta property="og:url" content={ogUrl} />
+<meta property="og:type" content="website" />

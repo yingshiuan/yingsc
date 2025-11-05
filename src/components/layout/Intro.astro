@@ -1,0 +1,64 @@
+---
+import Tag from '@/components/UI/Tag.astro';
+const {
+  description = 'I believe that different perspectives lead to the best idea and help bring a viable product to life. By boosting the knowledge overlaps, I can understand issues and communicate with collaborators to find out the best solution.',
+} = Astro.props;
+
+const tags = [
+  'Interaction Design',
+  'UX/UI & Product Design',
+  'Human-Robot Collaboration',
+  'Digital Fabrication',
+  'Architecture',
+];
+
+const skills = [
+  'Full-Stack Development',
+  'AI/ML Integration & Data Visualization',
+  'UI/UX & Product Design',
+  'AR/VR Development',
+];
+---
+
+<script></script>
+
+<div class="intro">
+  <p class="intro_item">Hi there!</p><br /><p class="intro_item">I am</p>
+  <h3 class="intro_item">Ying-Shiuan Chen</h3>
+  <br />
+  <p class="intro_item">An</p>
+  <h4 class="intro_item">Interaction Designer and Developer</h4>
+  <p class="intro_item">
+    who loves creating functional yet fun interactions to humanize technology!
+  </p>
+  <div class="mt-[2rem]">
+    <Tag tags={skills} />
+  </div>
+
+</div>
+
+<div class="intro">
+  <p>
+    {description}
+  </p>
+  <div class="flex justify-end items-end"><p class="intro_item"><span class="material-symbols-outlined">location_on</span>Based in Zürich</p></div>
+</div>
+
+
+
+<style>
+  @reference "@/styles/global.css";
+  .intro {
+    @apply px-[2.5rem] my-[12rem] mx-auto;
+  }
+
+  .intro_item {
+    @apply pt-[0.1rem] m-0;
+  }
+
+  @media (min-width: 900px) {
+    .intro {
+      @apply my-[4rem] max-w-[80rem];
+    }
+  }
+</style>

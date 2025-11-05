@@ -1,0 +1,110 @@
+---
+// import NavBar from './NavBar.astro';
+
+const baseUrl = import.meta.env.BASE_URL;
+const year = new Date().getFullYear();
+---
+
+<footer>
+  <div class="footer_container">
+    <!-- Main -->
+    <div class="footer_main">
+      <div class="group relative inline-block">
+        <h4><a href="mailto:ohis.yingshiuan@gmail.com">Ying-Shiuan Chen</a></h4>
+        <span class="item_link_hover">Email me</span>
+      </div>
+    </div>
+
+    <!-- Navbar -->
+    <!-- <NavBar baseUrl={baseUrl}/> -->
+
+    <!-- Social media -->
+    <div class="media">
+      <div class="media_icon">
+        <a href="https://www.linkedin.com/in/chenyingshiuan/" target="_blank">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://github.com/yingshiuan" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://yingsc.medium.com" target="_blank">
+          <i class="fab fa-medium-m"></i>
+        </a>
+        <a href="https://vimeo.com/yshiuanc" target="_blank">
+          <i class="fab fa-vimeo-v"></i>
+        </a>
+
+        <!-- <a
+          href="https://www.youtube.com/channel/UCFpat39kIqYmYTbbfdoBNfA"
+          target="_blank">
+          <i class="fab fa-youtube"></i>
+        </a> -->
+      </div>
+    </div>
+
+    <hr />
+    <!-- Resources -->
+    <div class="resource">
+      <!-- <ul class="sitemap">
+        <li><a href=`${baseUrl}sitemap`>Site Map</a></li>
+      </ul> -->
+    </div>
+
+    <!-- Copyright -->
+    <div class="footer_copyright">
+      <p>
+        Copyright &copy; {year}
+        <a href="#">Ying-Shiuan Chen</a>. All rights reserved.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  @reference "@/styles/global.css";
+  footer {
+    @apply bg-[#2C2C2C] text-white;
+  }
+
+  a {
+    @apply  text-white hover:text-[var(--color-text-hover)] hover:text-shadow-[0.05rem_0.05rem_var(--color-text-primary)];
+  }
+
+  .item_link_hover{
+    @apply absolute top-full left-1/2 transform mt-1 hidden px-2 py-1 text-xs text-white bg-[var(--color-text-hover)] rounded group-hover:block whitespace-nowrap;
+  }
+
+  .footer_container {
+    @apply px-[2.5rem] py-[1rem];
+  }
+
+  .footer_main {
+    @apply mt-[0.5rem];
+  }
+
+  .footer_copyright {
+    @apply flex justify-center text-white;
+  }
+
+  .media_icon {
+    @apply text-[1.5rem];
+  }
+
+  .media_icon a {
+    @apply px-[0.5rem] text-white hover:text-[var(--color-text-hover)] hover:text-shadow-[0.05rem_0.05rem_var(--color-text-primary)];
+  }
+
+  .media {
+    @apply flex my-[1rem];
+  }
+
+  .resource {
+    @apply mt-[1rem];
+  }
+
+  @media (min-width: 900px) {
+    .footer_container {
+      @apply mx-auto max-w-[80rem];
+    }
+  }
+</style>

@@ -1,0 +1,65 @@
+---
+// import SEO from '@/components/layout/SEO.astro';
+// import Analytics from '@/components/layout/Analytics.astro';
+
+import type { SeoData } from '@/ts/type.ts';
+
+const { title, description, image, url, keywords } = Astro.props as SeoData;
+---
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const pref = localStorage.getItem('mode') || 'tonality';
+    const applied =
+      pref === 'light_mode'
+        ? 'light_mode'
+        : pref === 'dark_mode'
+          ? 'dark_mode'
+          : window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark_mode'
+            : 'light_mode';
+
+    document.body.className = applied;
+    const meta = document.querySelector('meta[name="color-scheme"]');
+    if (meta) meta.content = applied;
+  });
+</script>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="author" content="Ying-Shiuan Chen" />
+  <meta name="copyright" content="Ying-Shiuan Chen" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" type="image/svg+xml" href="./yinz.svg" />
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap"
+    rel="stylesheet"
+  />
+  <!--icon -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+  />
+  <!-- GA -->
+  <!-- <Analytics measurementId="G-XXXXXXXXXX" requireConsent={false}/> -->
+
+  <!-- <meta name="generator" content={Astro.generator} /> -->
+  <!-- <SEO
+    title={title}
+    description={description}
+    image={image}
+    url={url}
+    keywords={keywords}
+  /> -->
+</head>

@@ -1,0 +1,90 @@
+---
+import Button from '@/components/UI/Button.astro';
+
+interface Props {
+  profileImage?: string;
+  gifImage?: string;
+}
+
+const {
+  profileImage = 'images/about/ying.jpg',
+  gifImage = 'images/about/hihi.webp',
+} = Astro.props;
+
+const base = import.meta.env.BASE_URL;
+
+const profileImagePath = `${base}${profileImage}`;
+const gifImagePath = `${base}${gifImage}`;
+---
+
+<section class="aboutMe">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+    <!-- Text section -->
+    <div class="lg:col-span-9 space-y-6">
+      <p class="uppercase text-sm tracking-widest text-gray-500">
+        SINCE I’VE GOT YOUR ATTENTION
+      </p>
+      <h3>Let’s talk about my background</h3>
+      <p>
+        I'm an interaction designer and developer based in Zürich, building <strong>interactive applications, AR/VR prototypes, and design systems</strong> by implementing <strong>software-driven, scalable solutions</strong> that translate user needs into robust, high-performance systems.
+      </p>
+    
+      <p>
+        My journey began as a human-centered architectural designer, creating spatial systems that connect people and places. 
+        Fueled by a passion for technology, I transitioned into <strong>computational design and robotic programming</strong>, 
+        developing prototypes that bridge digital and physical worlds through <strong>software, automation, and code-driven systems</strong>.
+      </p>
+    </div>
+
+    <!-- Images section -->
+    <div class="lg:col-span-3 flex flex-col items-center gap-4">
+      <div class="static_image group">
+        <!-- static profile image -->
+        <img
+          src={profileImagePath}
+          alt="Profile Picture"
+          class="profile_image group-hover:opacity-0"
+        />
+
+        <!-- GIF image -->
+        <img
+          src={gifImagePath}
+          alt="Animated GIF"
+          class="profile_image absolute top-0 left-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        />
+      </div>
+    </div>
+
+    <!-- Additional text -->
+    <div class="lg:col-span-12 space-y-4">
+      <div class="flex justify-end">
+        <!-- <Button
+          href={`${base}about`}
+          label="More about me"
+          color="primary"
+          variant="outline"
+          size="md"
+        />
+      </div> -->
+    </div>
+  </div>
+</section>
+
+<style>
+  @reference "@/styles/global.css";
+  .aboutMe {
+    @apply px-[2.5rem] my-[4rem] mx-auto max-w-[80rem];
+  }
+
+  .static_image {
+    @apply relative w-72 h-72;
+  }
+
+  .profile_image {
+    @apply w-full h-full rounded-full transition-opacity duration-500;
+  }
+
+  .showgif {
+    @apply hidden;
+  }
+</style>

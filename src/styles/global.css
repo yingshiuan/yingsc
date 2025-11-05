@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+/* customize styles */
+@theme {
+   
+      --color-test: #F7D9BC;
+
+}
+
+
+:root {
+      --background-color: #ffffff;
+      --color-text-primary: #707070;
+      --color-text-secondary: #C2C2C2;
+      --color-text-caption: #2C2C2C;
+      --color-text-hover: #000000;
+      --color-text-link: #0C77DD;
+
+      --color-caption-primary: #e6e6e6;
+      --color-caption-secondary: #3c3c3c;
+
+      --color-border: #ffffff;
+      --color-work-background: rgba(242, 242, 242, 0.4);
+      --font-mono:'DM Mono', monospace;
+      
+}
+
+/* system color */
+body.dark_mode {
+      /* Text colors */
+      --color-text-primary: #C2C2C2;
+      --color-text-secondary: #707070;
+      --color-text-caption: #3C3C3C;
+      --color-text-hover: #707070;
+      --color-text-link: #4DA3FF;
+      /* Captions */
+      --color-caption-primary: #3C3C3C;
+      --color-caption-secondary: #E6E6E6;
+      --color-border: #000000;
+      /* Borders and backgrounds */
+      --color-work-background: rgba(242, 242, 242, 0.1);
+      --background-color: #000000;
+}
+
+
+@media (prefers-color-scheme: dark) {
+      body:not(.light_mode) {
+            --background-color: #000000;
+            --color-text-primary: #C2C2C2;
+            --color-text-secondary: #707070;
+            --color-text-caption: #3C3C3C;
+            --color-text-hover: #707070;
+            --color-text-link: #0C77DD;
+
+            /* Captions */
+            --color-caption-primary: #3C3C3C;
+            --color-caption-secondary: #E6E6E6;
+
+            /* Borders and backgrounds */
+            --color-border: #000000;
+            --color-work-background: rgba(242, 242, 242, 0.1);
+      }
+}
+
+
+
+@layer base {
+      body {
+            /* Fonts */
+            font-family: var(--font-mono);
+            color: var(--color-text-primary);
+            background-color: var(--background-color);
+      }
+
+      h1 {
+            @apply text-5xl font-bold leading-tight mb-6;
+      }
+      h2 {
+            @apply text-4xl font-bold leading-snug mb-5;
+      }
+      h3 {
+            @apply text-3xl font-semibold leading-snug mb-4;
+      }
+      h4 {
+            @apply text-2xl font-semibold leading-snug mb-3;
+      }
+      h5 {
+            @apply text-xl font-medium leading-snug mb-2;
+      }
+      h6 {
+            @apply text-lg font-medium leading-snug mb-2;
+      }
+
+      p {
+            @apply text-base leading-relaxed mb-4;
+      }
+
+      /* Optional: small text */
+      small {
+            @apply text-sm leading-snug;
+      }
+
+      a {
+            color: var(--color-text-primary);
+            text-decoration: none;
+      }
+
+      a:hover {
+            /* color: var(--background-color); */
+            transition: 0.4s;
+      }
+}
+
+
+#scroll {
+      top: 2rem;
+      position: fixed;
+      left: 0;
+      right: 0;
+      transition: top 0.3s ease;
+}
+
+.material-symbols-outlined{
+      padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+      vertical-align: middle;
+}
+
+.material-symbols-outlined:hover{
+      color: var(--color-text-hover);
+      text-shadow: 0.05rem 0.05rem var(--color-text-primary);
+}
+
+hr {
+    color: #C2C2C2;
+    height: 1px;
+}
