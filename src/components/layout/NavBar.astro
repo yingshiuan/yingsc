@@ -8,6 +8,7 @@ interface NavLink {
 }
 
 const links: NavLink[] = [
+  { label: 'Home', href: `${baseUrl}` },
   { label: 'Projects', href: `${baseUrl}projects` },
   { label: 'Resume', href: `${baseUrl}resume` },
   { label: 'About', href: `${baseUrl}about` },
@@ -29,40 +30,39 @@ const currentPath =
       toggleBtn.classList.toggle('hide');
     });
   });
+
+  document.addEventListener('DOMContentLoaded', () => {
+  const currentPath = window.location.pathname.replace(/\/$/, '');
+  const items = document.querySelectorAll<HTMLLIElement>('#navbar .item');
+
+  items.forEach(item => {
+    const link = item.querySelector('a')!;
+    const linkPath = new URL(link.href, window.location.origin).pathname.replace(/\/$/, '');
+    if (linkPath === currentPath) {
+      item.classList.add('active-link'); // add to li instead of a
+    }
+  });
+});
 </script>
 
 <nav id="mynav">
   <ul id="navbar">
-    <li class="logo">
+    <!-- <li class="logo">
       <a href=`${baseUrl}`></a>
-    </li>
+    </li> -->
     <li class="navbarToggle">
       <button aria-label="Toggle menu">
         <i class="material-symbols-outlined menu-icon">menu</i>
         <i class="material-symbols-outlined close-icon hidden">close</i>
       </button>
     </li>
-    
 
-    {
-      links.map((link) => {
-        // Normalize for trailing slash
-        const linkPath = link.href.endsWith('/')
-          ? link.href.slice(0, -1)
-          : link.href;
-        const normalizedPath = currentPath.endsWith('/')
-          ? currentPath.slice(0, -1)
-          : currentPath;
-
-        const isActive = normalizedPath === linkPath;
-
-        return (
-          <li class={`item ${isActive ? 'active' : ''}`}>
-            <a href={link.href}>{link.label}</a>
-          </li>
-        );
-      })
-    }
+    {links.map((link) => (
+      <li class="item">
+        <a href={link.href}>{link.label}</a>
+      </li>
+    ))}
+   
   </ul>
 </nav>
 
@@ -89,12 +89,13 @@ const currentPath =
     @apply hidden w-full text-center py-[0.5rem];
   }
 
-  /* .item {
-    @apply hover:border-[1.5px] hover:border-[var(--color-text-secondary)] hover:rounded-md;
-  } */
+  .item:hover {
+    @apply rounded-[1rem] bg-gradient-to-t from-white/20 via-white/10 to-white/5
+      backdrop-blur-md border border-white/25;
+  }
 
   .item a {
-    @apply text-white hover:text-[var(--color-text-hover)] hover:text-shadow-[0.05rem_0.05rem_var(--color-text-primary)];
+    @apply text-white ;
   }
 
   .item.show {
@@ -122,17 +123,24 @@ const currentPath =
     @apply block;
   }
 
+  /* Active border */
+  .active-link {
+    @apply rounded-[1rem] bg-gradient-to-t from-white/20 via-white/10 to-white/5
+    backdrop-blur-md border border-white/25;
+  }
+
   /* ===========================
    Larger screens (>=900px)
    =========================== */
 
   @media (min-width: 900px) {
     nav {
-      @apply max-w-[80rem] mx-auto px-10 z-[99] bg-transparent static;
+      @apply max-w-[80rem] mx-auto px-10 z-[99] bg-transparent static flex justify-center items-center;
     }
 
     ul {
-      @apply flex-row items-center justify-end;
+      @apply flex-row p-[0.5rem];
+      /* rounded-[1rem] bg-[#2C2C2C] border border-white/25  */
     }
 
     li {
@@ -143,9 +151,9 @@ const currentPath =
       @apply block w-auto;
     }
 
-    .item a {
+    /* .item a {
       @apply text-white hover:text-[var(--color-text-hover)] hover:text-shadow-[0.05rem_0.05rem_var(--color-text-primary)];
-    }
+    } */
 
     .navbarToggle {
       @apply hidden;

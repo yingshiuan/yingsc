@@ -1,6 +1,7 @@
 ---
-// import NavBar from '@/components/layout/NavBar.astro';
+import NavBar from '@/components/layout/NavBar.astro';
 import '@/styles/global.css';
+
 const { siteTitle = 'Yinz' } = Astro.props;
 
 const baseUrl = import.meta.env.BASE_URL;
@@ -151,8 +152,8 @@ const baseUrl = import.meta.env.BASE_URL;
               <span class="tooltip">"Nice to meet you!"</span>
             </div>
           </div>
-          <!-- <NavBar baseUrl={baseUrl}/> -->
-          <div class="relative group items-center">
+          <NavBar baseUrl={baseUrl}/>
+          <div class="relative items-center group">
             <button
               id="mode-button"
               class="mode-button"
@@ -179,7 +180,7 @@ const baseUrl = import.meta.env.BASE_URL;
   @reference "@/styles/global.css";
 
   .header-container {
-    @apply bg-[#2C2C2C] top-0 left-0 right-0 fixed z-[100] opacity-90;
+    @apply top-0 left-0 right-0 fixed z-[100] bg-[#2C2C2C] opacity-90;
   }
 
   .theme-bar {
@@ -190,12 +191,13 @@ const baseUrl = import.meta.env.BASE_URL;
     @apply text-white hover:text-[var(--color-text-hover)] hover:text-shadow-[0.05rem_0.05rem_var(--color-text-primary)];
   }
 
+
   .mode-button {
-    @apply bg-transparent border-0 cursor-pointer text-[1.5rem] text-white relative hover:text-[var(--color-text-secondary)] items-center;
+    @apply text-white bg-transparent border-0 cursor-pointer text-[1.5rem] relative hover:text-[var(--color-text-secondary)] items-center;
   }
 
   .scroll-bar {
-    @apply block text-center mt-[0.5rem] py-[0.5rem] bg-[var(--color-caption-primary)] text-[var(--color-caption-secondary)];
+    @apply block text-center mt-[2rem] py-[0.5rem] bg-[var(--color-caption-primary)] text-[var(--color-caption-secondary)];
   }
 
   .scroll-bar p {
