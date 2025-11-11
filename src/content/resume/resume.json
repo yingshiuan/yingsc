@@ -1,0 +1,191 @@
+{
+  "experience": [
+    {
+      "title": "Research Intern",
+      "company": "DisneyResearch|Studios",
+      "location": "Zürich, Switzerland",
+      "link": "https://studios.disneyresearch.com",
+      "linkInfo":"A lab advancing visual computing, AI, and filmmaking technologies.",
+      "tech": ["TypeScript", "Vue.js", "Python", "Node.js", "ChromaDB"],
+      "date": "Feb 2025 – Present",
+      "role" :""
+    },
+    {
+      "title": "Development Intern",
+      "company": "Sensoryx",
+      "location": "Zürich, Switzerland",
+      "link": "https://sensoryx.tech",
+      "linkInfo":"A Swiss startup specializing in motion tracking for VR/AR.",
+      "tech":["C#", "Unity 3D", "AR/VR"],
+      "date": "Feb 2025 – Present",
+      "role" :""
+    },
+    {
+      "title": "Interaction Developer & Designer",
+      "company": "insdash",
+      "location": "Remote",
+      "linkInfo":"Independent web development and interaction design practice.",
+      "tech": ["TypeScript", "JavaScript", "Vue.js", "React.js","HTML5/CSS3", "Tailwind CSS", "Node.js", "Figma"],
+      "date": "Jan 2022 - July 2024",
+      "role" :""
+    },
+    {
+      "title": "3D Artist & Animator",
+      "company": "Thömus",
+      "link": "https://thoemus.ch/",
+      "location": "Switzerland",
+      "links": [
+        {
+          "href": "https://www.youtube.com/watch?v=OredYyH_3tQ",
+          "label": "Swissrider E-bike Animation"
+        }
+      ],
+      "linkInfo":"A Swiss manufacturer of customizable high-quality bikes and e-bikes.",
+      "tech": ["Blender 3D", "Figma"],
+      "date": "Jan 2022 - July 2024",
+      "role": "I created 3D product animations from concept to completion, achieving 10k views (5x above average) and driving customer traffic to product pages."
+    },
+    {
+      "title": "Product Design Manager",
+      "company": "yun.official - Fashion startup",
+      "location": "Remote",
+      "linkInfo":"Fashion startup transitioning from handcrafted to digital e-commerce.",
+      "tech": ["Figma", "HTML5/CSS3", "UI/UX"],
+      "date": "Mar 2021- Aug 2021",
+      "role" :"Optimized e-commerce UX to secure manufacturing partnerships and drive a 35% order increase in the first season post-launch."
+    },
+    {
+      "title": "Web Developer & 3D Generalist",
+      "company": "Freelance",
+      "location": "Remote",
+       "tech": ["Figma", "HTML5/CSS3", "UI/UX", "Adobe After Effects"],
+      "date": "Mar 2020 - Aug 2021"
+    },
+    {
+      "title": "Research and Teaching Assistant",
+      "company": "Dept. Architecture of Tamkang University",
+      "location": "Taiwan",
+      "tech": ["Rhinoceros 3D & Grasshopper", "Unity 3D", "C#", "JavaScript", "Python", "CAD/CAM"],
+      "date": "Sep 2017 - Sep 2018"
+    },
+    {
+      "title": "Research Assistant Laboratory Manager",
+      "company": "CCC Lab",
+      "location": "Taiwan",
+      "date": "Sep 2017 - Sep 2018"
+    }
+  ],
+  "initiatives": [
+    {
+      "title": "Invited Guest on Podcast",
+      "company": "瑞士的small talk",
+      "topics": "Applying for and studying a Master’s degree in Switzerland",
+      "location": "Zürich, Switzerland",
+      "link": "https://swisstwica.firstory.io/episodes/cl4x1fvy2028v01xjal2m8u75",
+      "links": [
+        {
+          "href": "https://twica.ch/",
+          "label": "TWICA - Taiwan-Switzerland Cultural Association"
+        }
+      ],
+      "date": "Jun 2022"
+    },
+    {
+      "title": "Invited Lecturer",
+      "company": "Department of Civil Engineering",
+      "topics": "Technologies for Future Design",
+      "location": "Tamkang University, Taiwan",
+      "date": "May 2018"
+    },
+    {
+      "title": "Workshop Lecturer",
+      "company": "Department of Architecture",
+      "topics": "Computational Design - Rhinoceros 3D & Grasshopper 3D",
+      "location": "Tamkang University, Taiwan",
+      "date": "June 2017"
+    },
+    {
+      "title": "Workshop Lecturer",
+      "company": "Department of Architecture",
+      "topics": "Robotic Clay 3D-Printing",
+      "location": "Tamkang University, Taiwan",
+      "date": "June 2016"
+    }
+  ],
+  "education": [
+    {
+      "title": "Master of Advanced Studies",
+      "company": "ETH Zürich",
+      "location": "Zürich, Switzerland",
+      "link": "https://masdfab.arch.ethz.ch/",
+      "links": [
+        {
+          "href": "https://dfab.ch/",
+          "label": "MAS ETH DFAB - Architecture and Digital Fabrication"
+        }
+      ],
+      "date": "2018 - 2019"
+    },
+    {
+      "title": "Bachelor of Architecture",
+      "company": "Tamkang University",
+      "location": "Taiwan",
+      "date": "2012 - 2017"
+    }
+  ],
+  "certification": [
+    {
+      "title": "Google UX Design Certificate",
+      "company": "Coursera Google UX Design",
+      "location": "Coursera",
+      "link": "https://www.coursera.org/professional-certificates/google-ux-design",
+      "links": [
+        {
+          "href": "https://www.coursera.org/account/accomplishments/professional-cert/RRFEWLNH8ZFR?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=prof",
+          "label": "Certificate Link"
+        }
+      ],
+      "date": "June - Aug 2021"
+    }
+  ],
+   "skills": [
+    {
+      "title": "Frontend & Web Development",
+      "skills": ["JavaScript", "TypeScript", "Vue.js", "HTML5/CSS3", "Bootstrap", "jQuery", "Tailwind CSS", "Cytoscape.js", "Interactive Data Visualization"]
+    },
+    {
+      "title": "Backend & Tools",
+      "skills": ["Python", "C#", "Node.js", "SQL", "RAG Systems", "ChromaDB", "Large Language Models (LLMs)", "Git/GitHub/GitLab"]
+    },
+    {
+      "title": "UI/UX & Prototyping",
+      "skills": ["Figma", "Miro", "Adobe Creative Suite"]
+    },
+    {
+      "title": "AR/VR & 3D Development",
+      "skills": ["Unity 3D", "XR Interaction Toolkit", "Oculus XR Plugin", "Blender 3D", "Cinema 4D", "Rhinoceros 3D & Grasshopper"]
+    },
+    {
+      "title": "Digital & Robotic Fabrication",
+      "skills": ["3D-Printing", "Laser Cutting", "CNC Milling", "Digital Cutter", "Plasma Cutting", "Vacuum Forming", "KUKA", "ABB", "UR10/UR5"]
+    }
+  ],
+   "languages": [
+    {
+      "title": "Taiwanese Mandarin",
+      "level":"Native"
+    },
+    {
+      "title": "English",
+      "level":"Full Professional proficiency"
+    },
+    {
+      "title": "German",
+      "level":"Limited working proficiency"
+    },
+    {
+      "title": "Japanese",
+      "level":"Basic"
+    }
+  ]
+}
