@@ -1,0 +1,124 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '@/layouts/Layout.astro';
+import type { ProjectMeta } from '@/ts/project';
+
+const baseUrl = import.meta.env.BASE_URL;
+
+const projects = (await getCollection('projects')).sort((a, b) =>
+  a.data.title.localeCompare(b.data.title)
+);
+
+type ProjectsByCategory = {
+  [category: string]: ProjectMeta[];
+};
+
+const projectsByCategory: ProjectsByCategory = projects.reduce(
+  (acc: ProjectsByCategory, project) => {
+    const category = project.data.category || 'Other';
+
+    if (!acc[category]) acc[category] = [];
+
+    acc[category].push({
+      ...project.data,
+      slug: project.data.slug || project.slug
+      // || project.data.title.toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w-]/g, '')
+    });
+
+    return acc;
+  },
+  {}
+);
+
+interface TreeNode {
+  label: string;
+  href: string;
+  children?: TreeNode[];
+}
+
+const siteTree: TreeNode[] = [
+  { label: 'Home', href: `${baseUrl}` },
+  { label: 'About', href: `${baseUrl}about` },
+  { label: 'Resume', href: `${baseUrl}resume` },
+  {
+    label: 'Projects',
+    href: `${baseUrl}projects`,
+    children: Object.entries(projectsByCategory).map(([category, items]): TreeNode => ({
+      label: category,
+      href: `${baseUrl}projects/${category}`, // Add href for the category itself, Currently points to a non-existent page
+      children: items.map(project => ({
+        label: project.title,
+        href: `${baseUrl}projects/${project.slug}`
+      }))
+    }))
+  }
+];
+---
+
+<html lang="en">
+  <head>
+    <title>Site Sitemap</title>
+    <meta name="robots" content="noindex" />
+  </head>
+
+  <Layout
+      title="Sitemap | Ying-Shiuan Chen"
+      description="Ying-Shiuan Chen loves creating functional yet fun interactions to humanize technology!"
+      image="/images/og-home.png"
+      keywords="Ying-Shiuan Chen, software engineer, product designer, developer, interaction">
+
+   <div class="sitemap my-[12rem]">
+      <h2>Site Sitemap</h2>
+      <hr>
+      <br>
+      <!-- Render tree inline recursively -->
+      <ul class="ml-0">
+        {siteTree.map(node => (
+          <li class="mt-1">
+            <h3><a href={node.href}>{node.label}</a></h3>
+            {node.children && (
+              <ul class="ml-4 list-disc">
+                {node.children.map(child => (
+                  <li class="mt-1">
+                  <h4>{child.label}</h4>
+                        {/* <a href={child.href}></a>  */}
+                    {child.children && (
+                      <ul class="ml-4 list-disc">
+                        {child.children.map(grandchild => (
+                          <li class="mt-1">
+                            <a href={grandchild.href}>{grandchild.label}</a>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+ </Layout>
+
+</html>
+
+
+<style>
+      @reference "@/styles/global.css";
+
+      .sitemap{
+         @apply px-[2.5rem] mx-auto;
+      }
+
+      .sitemap a{
+            @apply hover:underline;
+      }
+
+      @media (min-width: 900px) {
+      .sitemap {
+            @apply max-w-[80rem];
+      }
+      }
+
+</style>

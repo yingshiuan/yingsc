@@ -1,0 +1,205 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import TitleTag from '@/components/UI/TitleTag.astro';
+
+interface Props {
+  profileImage?: string;
+  gifImage?: string;
+}
+
+const base = import.meta.env.BASE_URL;
+
+const {
+  profileImage = 'images/about/ying.jpg',
+  gifImage = 'images/about/hihi.webp',
+} = Astro.props;
+
+const profileImagePath = `${base}${profileImage}`;
+const gifImagePath = `${base}${gifImage}`;
+
+---
+
+<Layout
+  title="About Me"
+  description="Ying-Shiuan Chen loves creating functional yet fun interactions to humanize technology!"
+  image={profileImagePath}
+  keywords="Ying-Shiuan Chen, software engineer, product designer, developer, interaction">
+  <!-- Content -->
+  <section class="aboutMe">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <!-- Text section -->
+      <div class="lg:col-span-8 space-y-6">
+        <h5>Hi Hi<span class="material-symbols-outlined">pets</span></h5>
+        <h5>I'm Ying.</h5>
+        <p>
+          I am an <b>Interaction Designer and Designer</b>, coding <span
+            class="material-symbols-outlined">
+            code
+          </span>
+          to build intuitive, interactive systems that bridge digital and physical
+          experiences.<span class="material-symbols-outlined">star</span>
+          <br />
+          <br />
+        </p>
+      </div>
+
+      <!-- Images section -->
+      <div class="lg:col-span-4 flex flex-col items-center gap-4">
+        <div class="static_image group">
+          <!-- static profile image -->
+          <img
+            src={profileImagePath}
+            alt="Profile Picture"
+            class="profile_image group-hover:opacity-0"
+          />
+
+          <!-- GIF image -->
+          <img
+            src={gifImagePath}
+            alt="Animated GIF"
+            class="profile_image absolute top-0 left-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="lg:col-span-12 space-y-6">
+      <div class="aboutMeContainer">
+        <TitleTag tags={['Tell you more about me!']} />
+
+        <p>
+          All my actions come from my curiosity.<span
+            class="material-symbols-outlined">
+            auto_awesome
+          </span> I like to explore new things and be creative.<span
+            class="material-symbols-outlined">
+            near_me
+          </span>
+        </p>
+
+        <p>
+          As a tech-savvy person <span class="material-symbols-outlined">
+            devices_other
+          </span> who loves food <span class="material-symbols-outlined">
+            dinner_dining
+          </span> and goes workout regularly.<span
+            class="material-symbols-outlined">
+            directions_run
+          </span>
+        </p>
+
+        <p>
+          In addition to design, I also study human-robots collaboration <span
+            class="material-symbols-outlined">
+            precision_manufacturing
+          </span> and baking science. <span class="material-symbols-outlined">
+            cookie
+          </span>
+        </p>
+      </div>
+    </div>
+
+    <div class="lg:col-span-12 space-y-6">
+      <div class="aboutMeContainer">
+        <TitleTag tags={['My daily essential products']} />
+
+        <p>
+          Computer<span class="material-symbols-outlined">computer</span>,
+          Coffee<span class="material-symbols-outlined">coffee_maker</span> or Tea<span
+            class="material-symbols-outlined">
+            emoji_food_beverage
+          </span> both with Milk<span class="material-symbols-outlined">
+            local_drink
+          </span>, Egg<span class="material-symbols-outlined">egg_alt</span>,
+          Sweets<span class="material-symbols-outlined">icecream</span><span
+            class="material-symbols-outlined">
+            bakery_dining
+          </span>, Headphones<span class="material-symbols-outlined">
+            headphones
+          </span>, Keyboard<span class="material-symbols-outlined">
+            keyboard
+          </span>, GoPro<span class="material-symbols-outlined">videocam</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="lg:col-span-12 space-y-6">
+      <div class="aboutMeContainer">
+        <TitleTag tags={['Hobbies']} />
+
+        <p>
+          Travel<span class="material-symbols-outlined">flight_takeoff</span>,
+          Foodies<span class="material-symbols-outlined">local_dining</span>, Go
+          outdoors<span class="material-symbols-outlined">landscape</span><span
+            class="material-symbols-outlined">
+            wb_sunny
+          </span>, Watch series and movies<span
+            class="material-symbols-outlined">
+            movie
+          </span>, Reading<span class="material-symbols-outlined">
+            auto_stories
+          </span>
+        </p>
+        <p>
+          Be Creator<span class="material-symbols-outlined">camera_roll</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="lg:col-span-12 space-y-6">
+      <div class="aboutMeContainer">
+        <TitleTag tags={['Pets']} />
+        <p>
+          Cat<span class="material-symbols-outlined">pets</span>, Plants<span
+            class="material-symbols-outlined">
+            potted_plant
+          </span>
+        </p>
+      </div>
+    </div>
+
+    <div class="lg:col-span-12 space-y-6">
+      <div class="aboutMeContainer">
+        <TitleTag tags={['Special skills']} />
+        <p>
+          Attract cats <span class="material-symbols-outlined">pets</span>or
+          animals automatically.
+        </p>
+      </div>
+    </div>
+
+    <TitleTag
+      tags={['Nice to meet you, contact me to tell me more about you!']}
+    />
+  </section>
+</Layout>
+
+<style>
+  @reference "@/styles/global.css";
+
+  .aboutMe {
+    @apply px-[2.5rem] my-[12rem] mx-auto;
+  }
+
+  .static_image {
+    @apply relative w-72 h-72;
+  }
+
+  .profile_image {
+    @apply w-full h-full rounded-full transition-opacity duration-500;
+  }
+
+  .showgif {
+    @apply hidden;
+  }
+
+  .aboutMeContainer {
+    @apply my-[2.5rem];
+  }
+
+  @media (min-width: 900px) {
+    .aboutMe {
+      @apply max-w-[80rem];
+    }
+  }
+</style>

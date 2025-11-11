@@ -1,0 +1,20 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Intro from '@/components/layout/Intro.astro';
+import ProjectLayout from '@/layouts/ProjectLayout.astro';
+import AsySplitGrid from '@/components/grids/AsySplitGrid.astro';
+---
+
+<Layout
+  title="Projects | Ying-Shiuan Chen"
+  description="Ying-Shiuan Chen loves creating functional yet fun interactions to humanize technology!"
+  image="/images/og-home.png"
+  keywords="Ying-Shiuan Chen, software engineer, product designer, developer, interaction">
+  <div class="my-[12rem]">
+    <Intro />
+  </div>
+  <!-- Portfolio Section -->
+   
+  <AsySplitGrid />
+
+</Layout>
