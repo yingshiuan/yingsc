@@ -35,9 +35,14 @@ const { projectMeta } = Astro.props as Props;
     @apply rounded-[1rem] bg-[var(--color-work-background)] p-[1rem] relative h-full w-full overflow-hidden;
   }
 
-  .project_card.group:hover {
+  body.light_mode .project_card.group:hover {
+    @apply bg-gradient-to-t from-black/5 via-black/2 to-transparent
+    border border-black/10;
+  }
+
+  body.dark_mode .project_card.group:hover {
     @apply bg-gradient-to-t from-white/20 via-white/10 to-white/5
-    backdrop-blur-md border border-white/25;
+    border border-white/25;
   }
 
   .square_item {

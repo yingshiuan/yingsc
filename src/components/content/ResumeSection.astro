@@ -37,7 +37,7 @@ const { title, items, showDivider = true } = Astro.props;
                       {item.company}
                     </a>
                   ) : (
-                    <span class=" cursor-default">
+                    <span class="cursor-default">
                       {item.company}
                     </span>
                   )}
@@ -55,9 +55,9 @@ const { title, items, showDivider = true } = Astro.props;
               {item.location && <p class="item_caption">| {item.location}</p>}
 
               {item.tech?.length && (
-                <div class="mt-[0.5rem]">
+                <div class="mt-[0.5rem] pl-4">
                   {item.tech.map((t, index) => (
-                    <span class="item_caption">
+                    <span class="item_emphasis">
                       {t}{index < item.tech!.length - 1 ? ',' : ''}
                     </span>
                   ))}
@@ -65,7 +65,7 @@ const { title, items, showDivider = true } = Astro.props;
               )}
 
               {item.links && (
-                <div class="mt-[1rem] flex gap-2">
+                <div class="mt-[1rem] flex gap-2 pl-4">
                   {item.links.map((l) => (
                     <Button
                       href={l.href}
@@ -79,13 +79,13 @@ const { title, items, showDivider = true } = Astro.props;
               )}
             
               {item.description && (
-                <div class="mt-[0.5rem]">
+                <div class="mt-[0.5rem] pl-4">
                   <p class="item_caption">{item.description}</p>
                 </div>
               )}
 
               {item.topics && (
-                <div class="mt-[0.5rem]">
+                <div class="mt-[0.5rem] pl-4">
                   <p class="item_caption">{item.topics}</p>
                 </div>
               )}
@@ -100,7 +100,7 @@ const { title, items, showDivider = true } = Astro.props;
             {item.skills?.length && (
               <div class="lg:col-span-12 mt-[0.5rem]">
                 {item.skills.map((t, index) => (
-                  <span class="item_caption">
+                  <span class="item_emphasis">
                     {t}{index < item.skills!.length - 1 ? ', ' : ''}
                   </span>
                 ))}
@@ -167,6 +167,10 @@ const { title, items, showDivider = true } = Astro.props;
 
   .item_caption {
     @apply text-[var(--color-text-secondary)] inline;
+  }
+
+  .item_emphasis {
+    @apply text-[var(--color-text-primary)] inline;
   }
 
   .item_link {

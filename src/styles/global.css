@@ -17,17 +17,18 @@
       --color-text-hover: #000000;
       --color-text-link: #0C77DD;
 
-      --color-caption-primary: #e6e6e6;
-      --color-caption-secondary: #3c3c3c;
+      --color-caption-primary: #707070;
+      --color-caption-secondary: #E6E6E6;
 
       --color-border: #ffffff;
-      --color-work-background: rgba(242, 242, 242, 0.4);
+      --color-work-background: rgba(242, 242, 242, 0.5);
       --font-mono:'DM Mono', monospace;
       
 }
 
 /* system color */
 body.dark_mode {
+      --background-color: #000000;
       /* Text colors */
       --color-text-primary: #C2C2C2;
       --color-text-secondary: #707070;
@@ -40,7 +41,7 @@ body.dark_mode {
       --color-border: #000000;
       /* Borders and backgrounds */
       --color-work-background: rgba(242, 242, 242, 0.1);
-      --background-color: #000000;
+      
 }
 
 
