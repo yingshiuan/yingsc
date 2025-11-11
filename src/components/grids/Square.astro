@@ -1,0 +1,71 @@
+---
+import { getCollection } from 'astro:content';
+import ProjectCard from './ProjectCard.astro';
+import Button from '@/components/UI/Button.astro';
+
+const projects = await getCollection('projects');
+const baseUrl = import.meta.env.BASE_URL;
+projects.sort((a, b) => a.data.order - b.data.order);
+
+---
+
+<div class="gridLayout">
+  {
+    projects.length > 0 ? (
+      projects.slice(0, 3).map((project) => (
+        <ProjectCard
+          projectMeta={{
+            title: project.data.title,
+            image: project.data.image,
+            hoverImage: project.data.hoverImage,
+            href: `${baseUrl}projects/${project.slug}`,
+            info: project.data.info,
+            description: project.data.description,
+            tags: project.data.tags,
+          }}
+        />
+      ))
+    ) : (
+      <p>No projects found.</p>
+    )
+  }
+
+  {
+    projects.length > 0 ? (
+      projects.map((project) => (
+        <p>{project.data.category}: <a href={`${baseUrl}projects/${project.slug}`}>{project.data.title}</a></p>
+ 
+      ))
+    ) : (
+      <p>No projects found.</p>
+    )
+  }
+
+
+  
+
+  
+</div>
+
+<div class="moreButton">
+    <div class="flex justify-end">
+        <Button
+        href={`${baseUrl}projects`}
+        label="Check more projects..."
+        color="primary"
+        variant="outline"
+        size="md"
+        />
+  </div>
+</div>
+
+
+<style>
+  @reference "@/styles/global.css";
+  .gridLayout {
+    @apply p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4;
+  }
+  .moreButton {
+    @apply px-[2.5rem] my-[2rem] mx-auto max-w-[80rem];
+  }
+</style>

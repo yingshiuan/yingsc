@@ -1,0 +1,37 @@
+---
+interface Props {
+  tags: string[];
+}
+
+const { tags } = Astro.props;
+---
+
+{
+  tags.length > 0 && (
+    <span class="tags_container">
+      {tags.map((t) => (
+        <span class="tags">{t}</span>
+      ))}
+    </span>
+  )
+}
+
+<style>
+  @reference "@/styles/global.css";
+  .tags_container {
+    @apply inline-flex;
+  }
+  .tags {
+    @apply text-sm font-medium border-[1.5px] border-[var(--color-text-primary)] rounded-[0.5rem] p-[0.2rem];
+  }
+
+  .tags:hover {
+    @apply border-[var(--color-caption-primary)] bg-[var(--color-text-hover)] text-[var(--color-border)] shadow-[0.1rem_0.1rem_var(--color-caption-secondary)] transition duration-300;
+  }
+
+  @media (min-width: 900px) {
+    .tags_container {
+      @apply max-w-[60rem] mx-auto;
+    }
+  }
+</style>

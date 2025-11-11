@@ -1,0 +1,123 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import MetaCard from '@/components/content/MetaCard.astro';
+import ProjectThumbnail from '@/components/content/ProjectThumbnail.astro';
+import Button from '@/components/UI/Button.astro';
+import ContentFooter from '@/components/content/ContentFooter.astro'
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+  baseUrl?: string;
+}
+
+// load the data
+const { project, baseUrl } = Astro.props;
+const Content = (await project.render()).Content;
+const imageBase = baseUrl
+  ? `${baseUrl}images/projects/${project.slug}/${project.slug}`
+  : `/images/projects/${project.slug}/${project.slug}`;
+---
+
+<div class="project-content">
+      <!-- Project Meta -->
+      <div class="mt-[12rem] mb-[4rem]">
+            <MetaCard projectMeta={project.data} />
+      </div>
+      <div class="projectThumbnail">
+            <ProjectThumbnail project={project} imageBase={imageBase} />
+      </div>
+
+      <!-- Markdown content -->
+      <article class="content custom-markdown ">
+            <Content />
+      </article>
+
+    
+      <ContentFooter project={project} baseUrl={baseUrl}>
+
+      <!-- <img src=`${baseUrl}images/projects/multi-multi/prototype.gif` alt="" loading="lazy" decoding="async" class="w-full object-cover" /> -->
+</div>
+
+
+<style>
+      @reference "@/styles/global.css";
+
+
+      :global(.content, .contentFooter)
+      {
+            @apply px-[2.5rem] my-[12rem] mx-auto;
+      }
+
+      :global(.content .contentSection) {
+            @apply mb-[12rem];
+      }
+
+      :global(.content h1, h2, h3, h4) {
+            @apply mt-[3rem];
+      }
+
+      :global(.content h5, h6) {
+            @apply mt-[3rem];
+      }
+     
+
+      :global(.content .projectGoal) {
+            @apply grid grid-cols-1 md:grid-cols-3 gap-6;
+      }
+
+      :global(.content .projectGoal img) {
+            @apply h-full object-cover;
+      }
+
+      :global(.content li p) {
+            @apply before:content-['-'] before:mr-2;
+      }
+
+    
+
+      :global(.content li ul li) {
+            @apply before:content-['-'] before:mr-2;
+      }
+
+
+      :global(.content a) {
+            @apply underline;
+      }
+
+      :global(.content .colsLayout) {
+            @apply grid grid-cols-12 gap-4 items-center;
+      }
+
+      :global(.content img) {
+            @apply mx-auto;
+      }
+
+
+       :global(.content .embedFrame) {
+            @apply mx-auto w-full max-w-screen-lg aspect-[16/9];
+      }
+
+      
+
+      @media (min-width: 900px) {
+            :global(.content, .contentFooter) {
+            @apply my-[4rem] max-w-[80rem];
+            }
+
+      }
+
+      
+
+/*      
+      :global(.custom-markdown p) {
+      @apply text-gray-700;
+      }
+      :global(.custom-markdown a) {
+      @apply text-blue-500 underline;
+      } */
+
+      /* :global(.content img) {
+      @apply w-full max-w-full;
+      } */
+
+</style>

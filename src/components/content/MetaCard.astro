@@ -1,0 +1,85 @@
+---
+import type { ProjectMeta } from '@/ts/project';
+import Tag from '@/components/UI/Tag.astro';
+
+interface Props {
+  projectMeta: ProjectMeta;
+}
+
+const { projectMeta } = Astro.props as Props;
+
+---
+<section class="meta space-y-16">
+  <div class="space-y-16">
+    <h2 class="projectTitle">{projectMeta.title}</h2>
+    <p class="projectDescription">{projectMeta.description}</p>
+    <div class="my-[2rem]">
+      {projectMeta.tags && <Tag tags={projectMeta.tags} />}
+    </div>
+  </div>
+    
+  <ul class="projectDetail grid grid-cols-1 md:grid-cols-4 gap-6 list-none">
+    {projectMeta.role && (
+      <li>
+        <ol>Role:</ol>
+        <ol>{projectMeta.role}</ol>
+      </li>
+    )}
+    {projectMeta.timeline && (
+      <li>
+        <ol>Timeline:</ol>
+        <ol>{projectMeta.timeline}</ol>
+      </li>
+    )}
+    {projectMeta.completed && (
+      <li>
+        <ol>Completed:</ol>
+        <ol>{projectMeta.completed}</ol>
+      </li>
+    )}
+    {projectMeta.credit && (
+      <li>
+        <ol>Credit:</ol>
+        <ol>{projectMeta.credit}</ol>
+      </li>
+    )}
+
+    <!-- Tools full width -->
+    {projectMeta.tools && (
+      <li class="col-span-1 md:col-span-4">
+        <ol>Tools:</ol>
+        <ol>{projectMeta.tools.join(', ')}</ol>
+      </li>
+    )}
+
+    <!-- Activities full width -->
+    {projectMeta.activities && (
+      <li class="col-span-1 md:col-span-4">
+        <ol>Activities:</ol>
+        <ol>
+          {projectMeta.activities}
+        </ol>
+      </li>
+    )}
+  </ul>
+
+</section>
+
+
+<style>
+  @reference "@/styles/global.css";
+
+  .meta{
+    @apply max-w-[80rem] mx-auto my-8 px-[2.5rem]; 
+  }
+
+
+  .projectDetail{
+    @apply border rounded-sm p-[0.5rem];
+  }
+
+  .projectDetail ol{
+    @apply pb-[0.25rem];
+  }
+
+</style>

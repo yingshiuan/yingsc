@@ -1,0 +1,44 @@
+---
+import Button from '@/components/UI/Button.astro';
+
+const { project, baseUrl } = Astro.props;
+
+---
+
+<section>
+      <div class="contentFooter"> 
+            <div class="mb-[2rem]">
+                  {project.data.completed}
+            </div>
+            <div class="group relative inline-block">
+                  <a href={project.data.creditLink} class="item_link">Project Credit: {project.data.credit}</a>
+                  <span class="item_link_hover">Go to the Website...</span>
+            </div>
+
+            <div class="flex justify-end">
+                  <Button
+                  href={`${baseUrl}projects`}
+                  label="Check more projects..."
+                  color="primary"
+                  variant="outline"
+                  size="md"
+                  />
+            </div>
+      </div>
+
+</section>
+
+
+<style>
+      @reference "@/styles/global.css";
+
+      .item_link {
+            @apply text-[var(--color-text-primary)] hover:text-[var(--color-text-hover)] hover:text-shadow-[0.05rem_0.05rem_var(--color-text-primary)];
+      }
+
+      .item_link_hover{
+            @apply absolute top-full left-1/2 transform mt-2 hidden px-2 py-1 text-xs text-white bg-[var(--color-text-hover)] rounded group-hover:block whitespace-nowrap;
+      }
+
+      
+</style>

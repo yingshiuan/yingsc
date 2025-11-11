@@ -1,0 +1,83 @@
+---
+import { getCollection } from 'astro:content';
+import ProjectCardText from '@/components/grids/ProjectCardText.astro';
+const projects = await getCollection('projects');
+projects.sort((a, b) => a.data.order - b.data.order);
+
+---
+
+<div class="asy-split-grid">
+  <!-- Left Column: Big Square -->
+  <div class="leftColumn order-1 md:order-1">
+    {projects[0] && <ProjectCardText projectMeta={projects[0].data} />}
+  </div>
+
+  <!-- Right Column -->
+  <div class="rightColumn order-2 md:order-2">
+    <div class="smallUnit order-1 md:order-1">
+      {projects[3] && <ProjectCardText projectMeta={projects[3].data} />}
+    </div>
+
+    <div class="smallUnit order-2 md:order-2">
+      {projects[2] && <ProjectCardText projectMeta={projects[2].data} />}
+    </div>
+
+    <div class="rectUnit order-3 md:order-3">
+      {projects[1] && <ProjectCardText projectMeta={projects[1].data} />}
+    </div>
+
+    <div class="smallUnit order-4 md:order-5">
+      {projects[4] && <ProjectCardText projectMeta={projects[4].data} />}
+    </div>
+
+    <div class="squareUnit order-5 md:order-4">
+      {projects[5] && <ProjectCardText projectMeta={projects[5].data} />}
+    </div>
+  </div>
+</div>
+
+
+
+<style>
+  @reference "@/styles/global.css";
+
+  .asy-split-grid{
+      @apply w-full p-2 grid grid-cols-1 md:grid-cols-2 gap-2 my-[4rem];
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto auto;
+  }
+
+  .leftColumn{
+      @apply w-full aspect-square relative overflow-hidden rounded-lg;
+  }
+
+  .rightColumn{
+      @apply grid grid-rows-2 grid-cols-2 gap-2;
+  }
+  
+  .smallUnit{
+      @apply aspect-square relative overflow-hidden rounded-lg;
+  }
+  .rectUnit{
+      @apply relative overflow-hidden rounded-lg;
+  }
+  .squareUnit{
+      @apply col-span-2 row-span-2 relative overflow-hidden rounded-lg;
+  }
+
+  @media (min-width: 900px) {
+  .asy-split-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+  .rightColumn {
+    @apply grid-rows-2 grid-cols-3;
+  }
+  .rectUnit{
+      @apply col-span-1 row-span-2;
+  }
+
+}
+  
+
+</style>

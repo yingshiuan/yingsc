@@ -1,0 +1,193 @@
+---
+// src/components/ResumeSection.astro
+import Button from '@/components/UI/Button.astro';
+import BreakLine from '@/components/UI/BreakLine.astro';
+import type { ResumeItem } from '@/ts/resume';
+
+interface Props {
+  title: string;
+  items: ResumeItem[];
+  showDivider?: boolean;
+}
+
+const { title, items, showDivider = true } = Astro.props;
+---
+
+<section class="resume">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+    <div class="item_title">
+      <h5>{title}</h5>
+    </div>
+    
+    <div class="item_content">
+      {
+        items.map((item) => (
+          <li class="item_section">
+            <div class="section_left">
+              <h5>{item.title}</h5>
+
+              {item.company && (
+                <span class="relative group">
+                  {item.link ? (
+                    <a
+                      class="item_link cursor-pointer"
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer">
+                      {item.company}
+                    </a>
+                  ) : (
+                    <span class=" cursor-default">
+                      {item.company}
+                    </span>
+                  )}
+
+                  {item.link && (
+                    <span class="item_link_hover">
+                      {item.linkInfo
+                        ? `${item.linkInfo} - Go to ${item.company} website`
+                        : `${item.linkInfo}`}
+                    </span>
+                  )}
+                </span>
+              )}
+
+              {item.location && <p class="item_caption">| {item.location}</p>}
+
+              {item.tech?.length && (
+                <div class="mt-[0.5rem]">
+                  {item.tech.map((t, index) => (
+                    <span class="item_caption">
+                      {t}{index < item.tech!.length - 1 ? ',' : ''}
+                    </span>
+                  ))}
+                </div>
+              )}
+
+              {item.links && (
+                <div class="mt-[1rem] flex gap-2">
+                  {item.links.map((l) => (
+                    <Button
+                      href={l.href}
+                      label={l.label}
+                      color="primary"
+                      variant="outline"
+                      size="sm"
+                    />
+                  ))}
+                </div>
+              )}
+            
+              {item.description && (
+                <div class="mt-[0.5rem]">
+                  <p class="item_caption">{item.description}</p>
+                </div>
+              )}
+
+              {item.topics && (
+                <div class="mt-[0.5rem]">
+                  <p class="item_caption">{item.topics}</p>
+                </div>
+              )}
+
+              {item.level && (
+                <div class="mt-[0.5rem]">
+                  <p class="item_caption">{item.level}</p>
+                </div>
+              )}
+            </div>
+
+            {item.skills?.length && (
+              <div class="lg:col-span-12 mt-[0.5rem]">
+                {item.skills.map((t, index) => (
+                  <span class="item_caption">
+                    {t}{index < item.skills!.length - 1 ? ', ' : ''}
+                  </span>
+                ))}
+              </div>
+            )}
+            
+      
+            {item.date && (
+              <div class="section_right">
+                <p>{item.date}</p>
+              </div>
+            )}
+
+            <!-- View role details -->
+            {/* {item.role?.length && (
+              <details class="group lg:col-span-12 mt-[0.5rem]">
+                <summary class="cursor-pointer flex ">
+                  <span class="transition-transform group-open:rotate-90">▶</span>
+                  <span class="transition-transform px-[1rem] item_caption">View role details</span>
+                </summary>
+                <div class="lg:col-span-12 mt-[0.5rem]">
+                  <p class="item_caption">{item.role}</p>
+                </div>
+              </details>
+            )}
+             */}
+          </li>
+        ))
+      }
+    </div>
+  </div>
+
+  {showDivider && ( 
+    <BreakLine />
+  )}
+</section>
+
+<style>
+  @reference "@/styles/global.css";
+
+  .resume {
+    @apply max-w-[80rem] mx-auto my-8 px-[2.5rem];
+  }
+
+  .item_title {
+    @apply lg:col-span-2 mt-0;
+  }
+
+  .item_content {
+    @apply lg:col-span-10 space-y-6;
+  }
+
+  .item_section {
+    @apply grid grid-cols-1 lg:grid-cols-12 mb-[2rem];
+  }
+
+  .section_left {
+    @apply lg:col-span-9;
+  }
+
+  .section_right {
+    @apply lg:col-span-3 text-[var(--color-text-secondary)] text-right inline;
+  }
+
+  .item_caption {
+    @apply text-[var(--color-text-secondary)] inline;
+  }
+
+  .item_link {
+    @apply text-[var(--color-text-primary)] hover:text-[var(--color-text-hover)] hover:text-shadow-[0.05rem_0.05rem_var(--color-text-primary)];
+  }
+
+  .item_link_hover{
+    @apply absolute top-full left-1/2 transform mt-2 hidden px-2 py-1 text-xs text-white bg-[var(--color-text-hover)] rounded group-hover:block whitespace-normal break-words;
+  }
+
+  .breakline {
+    @apply max-w-[80rem] mx-auto my-[2rem];
+  }
+
+  @media (min-width: 900px) {
+    .resume {
+      @apply max-w-[80rem] px-0;
+    }
+
+    .item_link_hover{
+      @apply whitespace-nowrap;
+    }
+  }
+</style>
