@@ -4,6 +4,7 @@
 @theme {
    
       --color-test: #F7D9BC;
+      --breakpoint-md: 900px;
 
 }
 

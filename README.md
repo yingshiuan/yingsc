@@ -1,6 +1,6 @@
 # My Portfolio Website
 
-A personal portfolio website built with [Astro](https://astro.build/) for scalability and performance. Its component-based architecture allows integration of frameworks like [Vue](https://vuejs.org/) or [React](https://reactjs.org/) for interactive components, while showcasing **my projects** and **skills**.
+A personal portfolio website built with [Astro](https://astro.build/) for scalability and performance. Its component-based architecture allows integration of frameworks like [Vue](https://vuejs.org/) ornpm [React](https://reactjs.org/) for interactive components, while showcasing **my projects** and **skills**.
 
 
 Key advantages of using Astro:

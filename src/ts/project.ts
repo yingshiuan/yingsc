@@ -1,12 +1,14 @@
 
 export interface ProjectMeta {
   title: string;
+  order?: number;
+  category?: string;
   tags: string[];
   image: string;
   hoverImage?: string;
+  info: string;
   description: string;
   href?: string;
-  order?: number;
   slug?: string;
   type?: 'demo' | 'case-study' | 'personal' | string;
   role?: string;
