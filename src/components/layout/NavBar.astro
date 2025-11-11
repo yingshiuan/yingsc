@@ -74,11 +74,11 @@ const currentPath =
    =========================== */
 
   nav {
-    @apply w-full px-4 bg-[#2C2C2C] fixed top-0 left-0 z-[-99] opacity-90;
+    @apply w-full px-6 bg-[#2C2C2C] fixed top-0 left-0 z-[-99] opacity-90;
   }
 
   ul {
-    @apply list-none flex flex-col items-start m-0 p-0;
+    @apply list-none flex flex-col items-start m-0 py-[0.5rem];
   }
 
   .logo {
@@ -90,7 +90,7 @@ const currentPath =
   }
 
   .item:hover {
-    @apply rounded-[1rem] bg-gradient-to-t from-white/20 via-white/10 to-white/5
+    @apply rounded-full bg-gradient-to-t from-white/20 via-white/10 to-white/5
       backdrop-blur-md border border-white/25;
   }
 
@@ -125,7 +125,7 @@ const currentPath =
 
   /* Active border */
   .active-link {
-    @apply rounded-[1rem] bg-gradient-to-t from-white/20 via-white/10 to-white/5
+    @apply rounded-full bg-gradient-to-t from-white/20 via-white/10 to-white/5
     backdrop-blur-md border border-white/25;
   }
 
@@ -135,7 +135,7 @@ const currentPath =
 
   @media (min-width: 900px) {
     nav {
-      @apply max-w-[80rem] mx-auto px-10 z-[99] bg-transparent static flex justify-center items-center;
+      @apply max-w-[80rem] mx-auto z-[99] bg-transparent static flex justify-center items-center;
     }
 
     ul {

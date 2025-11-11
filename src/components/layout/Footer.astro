@@ -1,5 +1,5 @@
 ---
-// import NavBar from './NavBar.astro';
+import NavBar from './NavBar.astro';
 
 const baseUrl = import.meta.env.BASE_URL;
 const year = new Date().getFullYear();
@@ -17,6 +17,7 @@ const year = new Date().getFullYear();
 
     <!-- Navbar -->
     <!-- <NavBar baseUrl={baseUrl}/> -->
+    <br>
 
     <!-- Social media -->
     <div class="media">
@@ -45,9 +46,9 @@ const year = new Date().getFullYear();
     <hr />
     <!-- Resources -->
     <div class="resource">
-      <!-- <ul class="sitemap">
+      <ul class="sitemap">
         <li><a href=`${baseUrl}sitemap`>Site Map</a></li>
-      </ul> -->
+      </ul>
     </div>
 
     <!-- Copyright -->
@@ -63,7 +64,7 @@ const year = new Date().getFullYear();
 <style>
   @reference "@/styles/global.css";
   footer {
-    @apply bg-[#2C2C2C] text-white;
+    @apply bg-[#2C2C2C] text-white opacity-90;
   }
 
   a {

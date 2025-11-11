@@ -144,13 +144,11 @@ const baseUrl = import.meta.env.BASE_URL;
         </div>
 
         <div class="theme-bar">
-          <div class="flex items-center py-[0.5rem]">
-            <div class="relative group">
+          <div class="flex relative group items-center py-[0.5rem]">
               <a href=`${baseUrl}` class="theme-link">
                 {siteTitle}
               </a>
               <span class="tooltip">"Nice to meet you!"</span>
-            </div>
           </div>
           <NavBar baseUrl={baseUrl}/>
           <div class="relative items-center group">
@@ -197,7 +195,7 @@ const baseUrl = import.meta.env.BASE_URL;
   }
 
   .scroll-bar {
-    @apply block text-center mt-[2rem] py-[0.5rem] bg-[var(--color-caption-primary)] text-[var(--color-caption-secondary)];
+    @apply block text-center mt-[1.5rem] py-[0.5rem] bg-[var(--color-caption-primary)] text-[var(--color-caption-secondary)];
   }
 
   .scroll-bar p {
@@ -226,7 +224,7 @@ const baseUrl = import.meta.env.BASE_URL;
     }
 
     .theme-bar {
-      @apply px-[2rem];
+      @apply px-[2rem] py-[0.5rem];
     }
 
     .infoBar {
