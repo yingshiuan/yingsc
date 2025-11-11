@@ -8,8 +8,7 @@ export interface ProjectMeta {
   hoverImage?: string;
   info: string;
   description: string;
-  href?: string;
-  slug?: string;
+  slug: string;
   type?: 'demo' | 'case-study' | 'personal' | string;
   role?: string;
   timeline?: string;
