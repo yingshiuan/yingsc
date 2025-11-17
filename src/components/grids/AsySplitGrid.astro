@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import ProjectCardText from '@/components/grids/ProjectCardText.astro';
+
 const projects = await getCollection('projects');
 projects.sort((a, b) => a.data.order - b.data.order);
 ---

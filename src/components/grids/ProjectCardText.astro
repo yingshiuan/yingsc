@@ -56,7 +56,7 @@ const href = `${baseUrl}projects/${projectMeta.slug}`;
     @apply text-[var(--color-text-primary)] text-center mt-2 mb-2 font-semibold;
   }
   .square_description {
-    @apply text-[var(--color-text-primary)] text-center text-sm;
+    @apply text-[var(--color-text-primary)] overflow-hidden text-center text-sm truncate group-hover:overflow-visible group-hover:whitespace-normal;
   }
 
   .img-default {
