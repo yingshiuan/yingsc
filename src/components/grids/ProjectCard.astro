@@ -22,7 +22,7 @@ const href = `${baseUrl}projects/${projectMeta.slug}`;
         <img src={projectMeta.hoverImage} alt={projectMeta.title + ' hover'} class="w-full h-full object-cover" />
       </picture> -->
     </div>
-    <div class="w-full text-center p-2">
+    <div class="w-full text-center p-2 flex-1">
       <h5 class="square_title">{projectMeta.title}</h5>
       {projectMeta.info && <p class="square_description">{projectMeta.info}</p>}
       <div class="flex justify-center items-center">
@@ -50,7 +50,7 @@ const href = `${baseUrl}projects/${projectMeta.slug}`;
   }
 
   .square_item {
-    @apply aspect-square overflow-hidden rounded-[1rem];
+    @apply w-full overflow-hidden rounded-[1rem];
   }
   .square_title {
     @apply text-[var(--color-text-primary)] text-center mt-2 font-semibold;

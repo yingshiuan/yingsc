@@ -3,12 +3,13 @@ interface Props {
   label: string;
   id?: string;
   href?: string; // optional link
-  target?: '_blank' | '_self' | '_parent' | '_top'; 
+  target?: '_blank' | '_self' | '_parent' | '_top';
   type?: 'button' | 'submit'; // for <button>
   variant?: 'solid' | 'outline'; // style variants
   color?: 'primary' | 'blue' | 'red' | 'green' | 'gray'; // color theme
   size?: 'sm' | 'md' | 'lg'; // button size
   rounded?: boolean; // rounded corners
+  onclick?: string | (() => void);// JavaScript code to run on click
 }
 
 const {
@@ -21,6 +22,7 @@ const {
   color = 'blue',
   size = 'md',
   rounded = true,
+  onclick,
 } = Astro.props;
 
 // Tailwind styles
@@ -58,11 +60,21 @@ const buttonClasses = `${baseStyles} ${colorClasses[variant][color]} ${sizeClass
 
 {
   href ? (
-    <a href={href} target={target} rel={target === '_blank' ? 'noopener noreferrer' : undefined} class={buttonClasses}>
+    <a
+      href={href}
+      target={target}
+      rel={target === '_blank' ? 'noopener noreferrer' : undefined}
+      class={buttonClasses}>
       {label}
     </a>
   ) : (
-    <button id={id} type={type} class={buttonClasses}>
+    <button
+      id={id}
+      type={type}
+      class={buttonClasses}
+      {...(typeof onclick === 'function' ? { onClick: onclick } : {})}
+      {...(typeof onclick === 'string' ? { onclick } : {})}
+    >
       {label}
     </button>
   )

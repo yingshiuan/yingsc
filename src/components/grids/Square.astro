@@ -1,18 +1,30 @@
 ---
 import { getCollection } from 'astro:content';
-import ProjectCard from './ProjectCard.astro';
+import ProjectCard from '@/components/grids/ProjectCard.astro';
 import Button from '@/components/UI/Button.astro';
 
 const projects = await getCollection('projects');
 const baseUrl = import.meta.env.BASE_URL;
 projects.sort((a, b) => a.data.order - b.data.order);
-// console.log('href', project.data.slug);
+
 ---
 
-<div class="gridLayout">
-  {
+<div class="gridLayout" id="projects-grid">
+  {projects.map((project, index) => (
+    <div class={`project-item ${index < 3 ? '' : 'hidden'}`} id={`project-${index}`}>
+      <ProjectCard
+        projectMeta={{
+          ...project.data,
+          slug: project.slug,
+        }}
+      />
+    </div>
+  ))}
+
+
+  <!-- {
     projects.length > 0 ? (
-      projects.slice(0, 3).map((project) => (
+      projects.map((project) => (
         <ProjectCard
           projectMeta={{
             ...project.data,
@@ -23,36 +35,50 @@ projects.sort((a, b) => a.data.order - b.data.order);
     ) : (
       <p>No projects found.</p>
     )
-  }
+  } -->
 
-  {
+  <!-- {
     projects.length > 0 ? (
       projects.map((project) => (
-        <p>{project.data.category}: <a href={`${baseUrl}projects/${project.slug}`}>{project.data.title}</a></p>
+        <p>{project.data.order} {project.data.category}: <a href={`${baseUrl}projects/${project.slug}`}>{project.data.title}</a></p>
  
       ))
     ) : (
       <p>No projects found.</p>
     )
-  }
+  } -->
 
-
-  
-
-  
 </div>
 
 <div class="moreButton">
-    <div class="flex justify-end">
-        <Button
-        href={`${baseUrl}projects`}
-        label="Check more projects..."
-        color="primary"
+  <div class="flex justify-end">
+    {projects.length > 3 && (
+      <Button
+        id="load-more-button"
+        label="Load more projects..."
         variant="outline"
+        color="primary"
         size="md"
-        />
+      />
+    )}
   </div>
 </div>
+
+<script is:inline>
+  const btn = document.getElementById('load-more-button');
+  if (btn) {
+    btn.addEventListener('click', () => {
+      const items = document.querySelectorAll('.project-item.hidden');
+      const toShow = Array.from(items).slice(0, 3); // show 3 more
+      toShow.forEach(item => item.classList.remove('hidden'));
+
+      // hide button if all items are now visible
+      if (document.querySelectorAll('.project-item.hidden').length === 0) {
+        btn.style.display = 'none';
+      }
+    });
+  }
+</script>
 
 
 <style>
@@ -63,4 +89,13 @@ projects.sort((a, b) => a.data.order - b.data.order);
   .moreButton {
     @apply px-[2.5rem] my-[2rem] mx-auto max-w-[80rem];
   }
+
+  .project-item {
+    @apply grid flex-col;
+  }
+
+  .project-item.hidden {
+    display: none;
+  }
+
 </style>
