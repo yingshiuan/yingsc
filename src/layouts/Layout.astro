@@ -6,7 +6,10 @@ import type { SeoData } from '@/ts/type.ts';
 import '@/styles/global.css';
 
 const { title, description, image, url, keywords } = Astro.props as SeoData;
-const baseUrl = import.meta.env.BASE_URL;
+
+const siteUrl = import.meta.env.SITE || 'https://yingshiuan.github.io';
+const canonicalUrl = `${siteUrl}${url || ''}`;
+
 ---
 
 <!doctype html>
@@ -28,13 +31,13 @@ const baseUrl = import.meta.env.BASE_URL;
         "@type": "CreativeWork",
         "name": title,
         "description": description || "",
-        "url": url,
+        "url": canonicalUrl,
         "image": image || "",
         "keywords": keywords || "",
         "author": {
           "@type": "Person",
           "name": "Ying-Shiuan Chen",
-          "url": baseUrl
+          "url": siteUrl
         }
       })}></script>
     )}
