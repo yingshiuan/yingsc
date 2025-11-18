@@ -4,7 +4,6 @@ import Layout from '@/layouts/Layout.astro';
 import type { ProjectMeta } from '@/ts/project';
 
 const baseUrl = import.meta.env.BASE_URL;
-const pageUrl = '/sitemap';
 
 const projects = (await getCollection('projects')).sort((a, b) =>
   a.data.title.localeCompare(b.data.title)
@@ -68,8 +67,8 @@ const siteTree: TreeNode[] = [
     title="Sitemap | Ying-Shiuan Chen"
     description="Ying-Shiuan Chen loves creating functional yet fun interactions to humanize technology!"
     image="./yinz.png"
-    url={pageUrl}
-    keywords="Ying-Shiuan Chen, software engineer, product designer, developer, interaction">
+    keywords="Ying-Shiuan Chen, software engineer, product designer, developer, interaction"
+    >
     <div class="sitemap my-[12rem]">
       <h2>Site Sitemap</h2>
       <hr />
