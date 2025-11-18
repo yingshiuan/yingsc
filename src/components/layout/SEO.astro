@@ -10,6 +10,20 @@ const canonicalUrl = `${siteUrl}${url}`;
 
 const keywordString = Array.isArray(keywords) ? keywords.join(', ') : keywords ?? '';
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": title ?? 'Ying-Shiuan Chen Portfolio',
+  "description": description ?? '',
+  "url": canonicalUrl,
+  "image": ogImage,
+  "keywords": keywordString,
+  "author": {
+    "@type": "Person",
+    "name": "Ying-Shiuan Chen",
+    "url": siteUrl
+  }
+};
 ---
 
 <title>{fullTitle}</title>
@@ -31,3 +45,5 @@ const keywordString = Array.isArray(keywords) ? keywords.join(', ') : keywords ?
 <meta name="twitter:title" content={fullTitle} />
 {description && <meta name="twitter:description" content={description} />}
 {image && <meta name="twitter:image" content={image} />}
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
