@@ -22,23 +22,6 @@ const { title, description, image, url, keywords } = Astro.props as SeoData;
   
   <Header />
   <body>
-    <!-- JSON-LD structured data for SEO + AEO -->
-    <!-- {url && (
-      <script type="application/ld+json" set:html={JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "CreativeWork",
-        "name": title,
-        "description": description || "",
-        "url": canonicalUrl,
-        "image": image || "",
-        "keywords": keywords || "",
-        "author": {
-          "@type": "Person",
-          "name": "Ying-Shiuan Chen",
-          "url": siteUrl
-        }
-      })}></script>
-    )} -->
 
     <slot />
     <main class="min-h-[30vh]"></main>
