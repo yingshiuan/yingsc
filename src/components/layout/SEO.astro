@@ -19,14 +19,13 @@ const keywordString = Array.isArray(keywords) ? keywords.join(', ') : keywords ?
 
 <!-- Open Graph / Social Preview -->
 <meta property="og:title" content={fullTitle} />
-{url && <meta property="og:url" content={url} />}
+{url && <meta property="og:url" content={baseUrl} />}
 <meta property="og:type" content="website" />
-<meta property="og:title" content={title} />
 {description && <meta property="og:description" content={description} />}
 {image && <meta property="og:image" content={image} />}
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content={title} />
+<meta name="twitter:title" content={fullTitle} />
 {description && <meta name="twitter:description" content={description} />}
 {image && <meta name="twitter:image" content={image} />}
