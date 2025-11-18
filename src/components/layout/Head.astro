@@ -7,7 +7,7 @@ import type { SeoData } from '@/ts/type.ts';
 const { title, description, image, url, keywords } = Astro.props as SeoData;
 
 const baseUrl = import.meta.env.SITE || 'https://yingshiuan.github.io';
-const pageUrl = url ?? '/';
+const pageUrl = url ?? Astro.url.pathname;
 const canonicalUrl = `${baseUrl}${pageUrl.startsWith('/') ? pageUrl : `/${pageUrl}`}`;
 
 const jsonLd = {
@@ -58,7 +58,7 @@ const jsonLd = {
     title={title}
     description={description}
     image={image}
-    url={url}
+    url={canonicalUrl}
     keywords={keywords}
   />
   <!-- Fonts -->

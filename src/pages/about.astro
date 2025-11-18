@@ -8,7 +8,6 @@ interface Props {
 }
 
 const base = import.meta.env.BASE_URL;
-const pageUrl = '/about';
 
 const {
   profileImage = 'images/about/ying.jpg',
@@ -25,7 +24,7 @@ const gifImagePath = `${base}${gifImage}`;
   description="Ying-Shiuan Chen loves creating functional yet fun interactions to humanize technology!"
   image={profileImagePath}
   keywords="Ying-Shiuan Chen, software engineer, product designer, developer, interaction"
-  url={pageUrl}>
+  >
   <!-- Content -->
   <section class="aboutMe">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
