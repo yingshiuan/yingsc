@@ -5,6 +5,9 @@ import Analytics from '@/components/layout/Analytics.astro';
 import type { SeoData } from '@/ts/type.ts';
 
 const { title, description, image, url, keywords } = Astro.props as SeoData;
+
+const siteUrl = import.meta.env.SITE || 'https://yingshiuan.github.io';
+const canonicalUrl = `${siteUrl}${url || ''}`;
 ---
 
 <script is:inline>
@@ -65,4 +68,22 @@ const { title, description, image, url, keywords } = Astro.props as SeoData;
   <Analytics measurementId="G-XXXXXXXXXX" requireConsent={false}/>
 
   <!-- <meta name="generator" content={Astro.generator} /> -->
+
+   <!-- JSON-LD structured data for SEO + AEO -->
+    {url && (
+      <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "CreativeWork",
+        "name": title,
+        "description": description || "",
+        "url": canonicalUrl,
+        "image": image || "",
+        "keywords": keywords || "",
+        "author": {
+          "@type": "Person",
+          "name": "Ying-Shiuan Chen",
+          "url": siteUrl
+        }
+      })}></script>
+    )}
 </head>
