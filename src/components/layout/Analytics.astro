@@ -37,18 +37,17 @@ const {
 </div>
 
 <script is:inline>
-document.addEventListener('DOMContentLoaded', function() {
-  const overlay = document.getElementById('cookie-banner');
+document.addEventListener("DOMContentLoaded", function () {
+  const overlay = document.getElementById("cookie-banner");
   if (!overlay) return;
 
-  const requireConsent = overlay.dataset.requireConsent === 'true';
-  const consent = localStorage.getItem('analytics_consent');
+  const requireConsent = overlay.dataset.requireConsent === "true";
+  const consent = localStorage.getItem("analytics_consent");
   const measurementId = overlay.dataset.gaId;
-  
 
   function showOverlay() {
-    overlay.classList.remove('hidden');
-    requestAnimationFrame(() => overlay.classList.add('opacity-100'));
+    overlay.classList.remove("hidden");
+    requestAnimationFrame(() => overlay.classList.add("opacity-100"));
   }
 
   function loadGoogleAnalytics() {
@@ -57,33 +56,39 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!measurementId) return;
     if (window.gtag) return;
 
-    const script = document.createElement('script');
+    const script = document.createElement("script");
     script.async = true;
-    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + measurementId;
+    script.src = "https://www.googletagmanager.com/gtag/js?id=" + measurementId;
     document.head.appendChild(script);
 
     window.dataLayer = window.dataLayer || [];
-    function gtag() { window.dataLayer.push(arguments); }
+    function gtag(...args) {
+      window.dataLayer.push(...args);
+    }
     window.gtag = window.gtag || gtag;
 
-    gtag('js', new Date());
-    gtag('config', measurementId, { anonymize_ip: true });
+    gtag("js", new Date());
+    gtag("config", measurementId, { anonymize_ip: true });
   }
 
   if (requireConsent) {
     if (!consent) showOverlay();
-    else if (consent === 'accepted') loadGoogleAnalytics();
+    else if (consent === "accepted") loadGoogleAnalytics();
 
-    document.getElementById('acceptCookies')?.addEventListener('click', function() {
-      localStorage.setItem('analytics_consent', 'accepted');
-      overlay.remove();
-      loadGoogleAnalytics();
-    });
+    document
+      .getElementById("acceptCookies")
+      ?.addEventListener("click", function () {
+        localStorage.setItem("analytics_consent", "accepted");
+        overlay.remove();
+        loadGoogleAnalytics();
+      });
 
-    document.getElementById('rejectCookies')?.addEventListener('click', function() {
-      localStorage.setItem('analytics_consent', 'rejected');
-      overlay.remove();
-    });
+    document
+      .getElementById("rejectCookies")
+      ?.addEventListener("click", function () {
+        localStorage.setItem("analytics_consent", "rejected");
+        overlay.remove();
+      });
   } else {
     loadGoogleAnalytics();
     overlay.remove();

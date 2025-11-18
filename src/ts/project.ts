@@ -1,4 +1,3 @@
-
 export interface ProjectMeta {
   title: string;
   order?: number;
@@ -9,7 +8,7 @@ export interface ProjectMeta {
   info: string;
   description: string;
   slug: string;
-  type?: 'demo' | 'case-study' | 'personal' | string;
+  type?: "demo" | "case-study" | "personal" | string;
   role?: string;
   timeline?: string;
   completed?: string;

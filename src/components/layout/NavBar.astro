@@ -1,5 +1,4 @@
 ---
-
 const { baseUrl } = Astro.props;
 
 interface NavLink {
@@ -13,9 +12,6 @@ const links: NavLink[] = [
   { label: 'Resume', href: `${baseUrl}resume` },
   { label: 'About', href: `${baseUrl}about` },
 ];
-
-const currentPath =
-  typeof window !== 'undefined' ? window.location.pathname : '';
 ---
 
 <script>

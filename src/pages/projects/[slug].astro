@@ -18,13 +18,20 @@ if (!project)
 
 const baseUrl = import.meta.env.BASE_URL;
 
-const imageSrc = `${baseUrl}${project.data.image}`;
+// const imageSrc = `${baseUrl}${project.data.image}`;
+// const Content = (await project.render()).Content;
 
-const Content = (await project.render()).Content;
+const url = `${baseUrl}projects/${project.slug}`;
 
 ---
 
-<Layout title={project.data.title}>
+<Layout 
+  title={project.data.title}
+  description={project.data.info}
+  image={project.data.image}
+  url={url}
+
+  >
   <!-- <h1>{project.data.title}</h1>
   <img
     src={imageSrc}

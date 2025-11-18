@@ -8,15 +8,16 @@ interface Props {
 
 const { project, imageBase } = Astro.props;
 
+const imageId = `project-image-${project.slug}`;
 ---
 
 <div class="relative group thumbnail overflow-hidden">
   <!-- Image -->
   <img
+    id={imageId}
     src={`${imageBase}.png`}
     alt={project.data.title}
     class="transition-transform duration-300 ease-in-out group-hover:scale-101 items-center"
-    onerror={`this.onerror=null; this.src='${imageBase}.jpg';`}
   />
 
   <!-- Overlay with text -->
@@ -26,6 +27,16 @@ const { project, imageBase } = Astro.props;
     </h3>
   </div>
 </div>
+
+
+<script is:inline>
+  const img = document.getElementById('{imageId}');
+  if (img) {
+    img.addEventListener('error', () => {
+      img.src = '{imageBase}.jpg';
+    });
+  }
+</script>
 
 
 <style>
