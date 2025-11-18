@@ -21,15 +21,12 @@ const baseUrl = import.meta.env.BASE_URL;
 // const imageSrc = `${baseUrl}${project.data.image}`;
 // const Content = (await project.render()).Content;
 
-const url = `${baseUrl}projects/${project.slug}`;
-
 ---
 
 <Layout 
   title={project.data.title}
   description={project.data.info}
   image={project.data.image}
-  url={url}
   keywords={project.data.tags}
 
   >
