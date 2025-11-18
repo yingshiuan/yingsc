@@ -1,6 +1,6 @@
 # My Portfolio Website
 
-A personal portfolio website built with [Astro](https://astro.build/) for scalability and performance. Its component-based architecture allows integration of frameworks like [Vue](https://vuejs.org/) ornpm [React](https://reactjs.org/) for interactive components, while showcasing **my projects** and **skills**.
+A personal portfolio website built with [Astro](https://astro.build/) for scalability and performance. Its component-based architecture allows integration of frameworks like [Vue](https://vuejs.org/) or npm [React](https://reactjs.org/) for interactive components, while showcasing **my projects** and **skills**.
 
 Key advantages of using Astro:
 
@@ -35,6 +35,21 @@ To add a new package, run:
 
 ```bash
 npm install <package-name>
+```
+
+## Linting
+
+This project uses [ESLint](https://eslint.org/) to maintain code quality and accessibility rules.
+
+To check for linting errors:
+
+```bash
+npx eslint .
+```
+
+To automatically fix fixable issues, run:
+```bash
+npx eslint . --fix
 ```
 
 ## Deployment

@@ -3,7 +3,7 @@ title: 'Outfits You'
 order: 1
 category: 'UI/UX'
 slug: 'outfits-you'
-tags: ['Augmented Reality ', 'UI/UX', 'Application']
+tags: ['Augmented Reality', 'UI/UX', 'Application']
 image: 'images/projects/outfits-you/impact.png'
 hoverImage: 'images/projects/outfits-you/prototype.webp'
 info: 'An interactive application allowing users to virtually try on outfits and curate their fashion collections.'
