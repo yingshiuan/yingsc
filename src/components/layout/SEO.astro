@@ -5,26 +5,12 @@ const { title, description, image, url, keywords} = Astro.props as SeoData;
 const fullTitle = `${title} | Ying-Shiuan Chen | Zürich`;
 const ogImage = image ?? './yinz.svg';
 
-const siteUrl = import.meta.env.SITE || 'https://yingshiuan.github.io';
-const pageUrl = url ?? '/';
-const canonicalUrl = `${siteUrl}${pageUrl.startsWith('/') ? pageUrl : `/${pageUrl}`}`;
-
 const keywordString = Array.isArray(keywords) ? keywords.join(', ') : keywords ?? '';
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "CreativeWork",
-  "name": title ?? 'Ying-Shiuan Chen Portfolio',
-  "description": description ?? '',
-  "url": canonicalUrl,
-  "image": ogImage,
-  "keywords": keywordString,
-  "author": {
-    "@type": "Person",
-    "name": "Ying-Shiuan Chen",
-    "url": siteUrl
-  }
-};
+const baseUrl = import.meta.env.SITE || 'https://yingshiuan.github.io';
+const pageUrl = url ?? '/';
+const canonicalUrl = `${baseUrl}${pageUrl.startsWith('/') ? pageUrl : `/${pageUrl}`}`;
+
 ---
 
 <title>{fullTitle}</title>
@@ -36,7 +22,7 @@ const jsonLd = {
 
 <!-- Open Graph / Social Preview -->
 <meta property="og:title" content={fullTitle} />
-{url && <meta property="og:url" content={canonicalUrl} />}
+{url && <meta property="og:url" content={url} />}
 <meta property="og:type" content="website" />
 {description && <meta property="og:description" content={description} />}
 {image && <meta property="og:image" content={image} />}
@@ -47,4 +33,3 @@ const jsonLd = {
 {description && <meta name="twitter:description" content={description} />}
 {image && <meta name="twitter:image" content={image} />}
 
-<script type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
