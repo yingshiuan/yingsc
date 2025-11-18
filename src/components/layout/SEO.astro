@@ -6,7 +6,8 @@ const fullTitle = `${title} | Ying-Shiuan Chen | Zürich`;
 const ogImage = image ?? './yinz.svg';
 
 const siteUrl = import.meta.env.SITE || 'https://yingshiuan.github.io';
-const canonicalUrl = `${siteUrl}${url}`;
+const pageUrl = url ?? '/';
+const canonicalUrl = `${siteUrl}${pageUrl.startsWith('/') ? pageUrl : `/${pageUrl}`}`;
 
 const keywordString = Array.isArray(keywords) ? keywords.join(', ') : keywords ?? '';
 
