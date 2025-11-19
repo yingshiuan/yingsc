@@ -4,8 +4,8 @@ order: 0
 category: 'UI/UX'
 slug: 'multi-multi'
 tags: ['Augmented Reality', 'UI/UX', 'Application']
-image: 'images/projects/multi-multi/multi.png'
-hoverImage: 'images/projects/multi-multi/multi.webp'
+image: './multi-multi/multi.png'
+hoverImage: './multi-multi/multi.webp'
 info: 'Learn languages with augmented reality and help you memorize everyday phrases.'
 description: 'Multi-Multi is an immersive app that helps users to build their language skills in real-world observations. Users can associate language with their everyday phrases and use the map mode to practice with scenarios, places, and attractions around the world.'
 type: 'demo'
