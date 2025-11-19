@@ -3,19 +3,35 @@ import type { CollectionEntry } from 'astro:content';
 
 interface Props {
   project: CollectionEntry<'projects'>;
-  imageBase: string; // image URL
 }
 
-const { project, imageBase } = Astro.props;
+const { project } = Astro.props;
 
-const imageId = `project-image-${project.slug}`;
+const images = import.meta.glob<{ default: ImageMetadata}>(
+  '/src/content/projects/**/*.{png,jpg}',
+  { eager: true }
+);
+
+const getProjectImage = (slug: string) => {
+  let entry = Object.entries(images).find(([path]) =>
+    path.includes(`/src/content/projects/${slug}/${slug}.png`)
+  );
+  if (!entry) {
+    entry = Object.entries(images).find(([path]) =>
+      path.includes(`/src/content/projects/${slug}/${slug}.jpg`)
+    );
+  }
+  return entry ? entry[1].default : null;
+};
+
+const mainImage = getProjectImage(project.slug);
+
 ---
 
 <div class="relative group thumbnail overflow-hidden">
   <!-- Image -->
   <img
-    id={imageId}
-    src={`${imageBase}.png`}
+    src={mainImage?.src}
     alt={project.data.title}
     class="transition-transform duration-300 ease-in-out group-hover:scale-101 items-center"
   />
@@ -27,16 +43,6 @@ const imageId = `project-image-${project.slug}`;
     </h3>
   </div>
 </div>
-
-
-<script is:inline>
-  const img = document.getElementById('{imageId}');
-  if (img) {
-    img.addEventListener('error', () => {
-      img.src = '{imageBase}.jpg';
-    });
-  }
-</script>
 
 
 <style>

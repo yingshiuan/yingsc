@@ -9,6 +9,8 @@ const keywordString = Array.isArray(keywords) ? keywords.join(', ') : keywords ?
 
 const baseUrl = import.meta.env.SITE || 'https://yingshiuan.github.io';
 const pageUrl = url ?? Astro.url.pathname;
+
+// Check if pageUrl already starts with http
 const canonicalUrl = pageUrl.startsWith('http')
   ? pageUrl
   : `${baseUrl}${pageUrl.startsWith('/') ? pageUrl : `/${pageUrl}`}`;
@@ -34,3 +36,7 @@ const canonicalUrl = pageUrl.startsWith('http')
 <meta name="twitter:title" content={fullTitle} />
 {description && <meta name="twitter:description" content={description} />}
 {image && <meta name="twitter:image" content={image} />}
+
+
+
+<p style="margin-top:12rem; color: red;">Canonical URL: {canonicalUrl}</p>

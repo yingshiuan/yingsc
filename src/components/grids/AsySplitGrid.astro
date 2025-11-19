@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import type { ProjectMeta } from '@/ts/project';
 import ProjectCardText from '@/components/grids/ProjectCardText.astro';
 
 const projects = await getCollection('projects');
@@ -15,7 +16,7 @@ projects.sort((a, b) => a.data.order - b.data.order);
           projectMeta={{
             ...projects[0].data,
             slug: projects[0].slug,
-          }}
+          } as ProjectMeta}
         />
       )
     }
@@ -30,7 +31,7 @@ projects.sort((a, b) => a.data.order - b.data.order);
             projectMeta={{
               ...projects[3].data,
               slug: projects[3].slug,
-            }}
+            } as ProjectMeta}
           />
         )
       }
@@ -43,7 +44,7 @@ projects.sort((a, b) => a.data.order - b.data.order);
             projectMeta={{
               ...projects[2].data,
               slug: projects[2].slug,
-            }}
+            } as ProjectMeta}
           />
         )
       }
@@ -56,7 +57,7 @@ projects.sort((a, b) => a.data.order - b.data.order);
             projectMeta={{
               ...projects[1].data,
               slug: projects[1].slug,
-            }}
+            } as ProjectMeta}
           />
         )
       }
@@ -69,7 +70,7 @@ projects.sort((a, b) => a.data.order - b.data.order);
             projectMeta={{
               ...projects[4].data,
               slug: projects[4].slug,
-            }}
+            } as ProjectMeta}
           />
         )
       }
@@ -82,7 +83,7 @@ projects.sort((a, b) => a.data.order - b.data.order);
             projectMeta={{
               ...projects[5].data,
               slug: projects[5].slug,
-            }}
+            } as ProjectMeta}
           />
         )
       }

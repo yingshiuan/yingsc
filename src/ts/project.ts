@@ -4,7 +4,7 @@ export interface ProjectMeta {
   category?: string;
   tags: string[];
   image: string;
-  hoverImage?: string;
+  hoverImage: string;
   info: string;
   description: string;
   slug: string;

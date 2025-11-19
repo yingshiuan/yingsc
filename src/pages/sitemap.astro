@@ -23,7 +23,7 @@ const projectsByCategory: ProjectsByCategory = projects.reduce(
       ...project.data,
       slug: project.data.slug || project.slug,
       // || project.data.title.toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w-]/g, '')
-    });
+    } as ProjectMeta);
 
     return acc;
   },

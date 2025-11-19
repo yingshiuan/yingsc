@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import MetaCard from '@/components/content/MetaCard.astro';
+import type { ProjectMeta } from '@/ts/project';
 import ProjectThumbnail from '@/components/content/ProjectThumbnail.astro';
 import ContentFooter from '@/components/content/ContentFooter.astro';
 
@@ -12,18 +13,18 @@ interface Props {
 // load the data
 const { project, baseUrl } = Astro.props;
 const Content = (await project.render()).Content;
-const imageBase = baseUrl
-  ? `${baseUrl}images/projects/${project.slug}/${project.slug}`
-  : `/images/projects/${project.slug}/${project.slug}`;
+
 ---
 
 <div class="project-content">
   <!-- Project Meta -->
   <div class="mt-[12rem] mb-[4rem]">
-    <MetaCard projectMeta={{ ...project.data, slug: project.slug }} />
+    <MetaCard 
+      projectMeta={{ ...project.data, slug: project.slug } as ProjectMeta} 
+    />
   </div>
   <div class="projectThumbnail">
-    <ProjectThumbnail project={project} imageBase={imageBase} />
+    <ProjectThumbnail project={project} />
   </div>
 
   <!-- Markdown content -->
