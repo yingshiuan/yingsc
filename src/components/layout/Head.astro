@@ -10,10 +10,11 @@ const baseUrl = import.meta.env.SITE || 'https://yingshiuan.github.io';
 const pageUrl = url ?? Astro.url.pathname;
 const canonicalUrl = `${baseUrl}${pageUrl.startsWith('/') ? pageUrl : `/${pageUrl}`}`;
 
+//@type: SoftwareSourceCode - further can define in each project.
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "CreativeWork",
-  "name": title ?? 'Ying-Shiuan Chen Portfolio',
+  "name": title ?? 'Ying-Shiuan Chen',
   "description": description ?? '',
   "url": canonicalUrl,
   "image": image,
