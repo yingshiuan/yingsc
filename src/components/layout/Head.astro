@@ -22,9 +22,44 @@ const jsonLd = {
   "author": {
     "@type": "Person",
     "name": "Ying-Shiuan Chen",
-    "url": baseUrl
+    "url": baseUrl,
+    "sameAs": [
+      "https://www.linkedin.com/in/chenyingshiuan/",
+      "https://github.com/yingshiuan",
+      "https://yingshiuan.github.io/yshiuanc/"
+    ],
+    "jobTitle": "Frontend Developer & Interaction Designer",
+    "knowsAbout": [
+      "Frontend Development",
+      "Interaction Design",
+      "UI/UX Design",
+      "Responsive Web Design",
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "TypeScript",
+      "React",
+      "Vue.js",
+      "Node.js",
+      "Accessibility (a11y)",
+      "User Experience",
+      "Prototyping",
+      "Web Performance Optimization",
+      "Cross-Browser Compatibility",
+      "Design Systems"
+    ], 
+    alumniOf: 
+    {
+      '@type': 'EducationalOrganization',
+      name: 'ETH Zürich',
+      sameAs: 'https://masdfab.arch.ethz.ch/',
+      startDate: '2018',
+      endDate: '2019'
+    },
   }
 };
+
+console.log(jsonLd);
 ---
 
 <script is:inline>
@@ -82,7 +117,7 @@ const jsonLd = {
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
   />
   <!-- GA -->
-  <Analytics measurementId="G-XXXXXXXXXX" requireConsent={false}/>
+  <!-- <Analytics measurementId="G-XXXXXXXXXX" requireConsent={false}/> -->
 
   <!-- <meta name="generator" content={Astro.generator} /> -->
   
