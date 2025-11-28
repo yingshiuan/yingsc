@@ -6,8 +6,8 @@ slug: 'multi-multi'
 tags: ['Augmented Reality', 'UI/UX', 'Application']
 image: './multi-multi/multi.png'
 hoverImage: './multi-multi/multi.webp'
-info: 'Learn languages with augmented reality and help you memorize everyday phrases.'
-description: 'Multi-Multi is an immersive app that helps users to build their language skills in real-world observations. Users can associate language with their everyday phrases and use the map mode to practice with scenarios, places, and attractions around the world.'
+info: 'Learn languages with augmented reality and memorize everyday phrases in immersive, real-world contexts.'
+description: 'Multi-Multi is an AR-driven language learning app that helps users practice vocabulary and phrases in everyday scenarios. The app integrates map-based exploration, object recognition, and memory-associative techniques to create an immersive learning experience.'
 type: 'demo'
 role: 'UX Designer'
 timeline: '6 Week'
@@ -15,22 +15,22 @@ completed: '10/2021'
 credit: 'Personal Project'
 creditLink: '#'
 tools: [Figma, Adobe XD, Adobe Illustrator, Adobe Photoshop, Adobe After Effects]
-activities: "As a second language learner, I've found that a great way to memorize language is to get my brain into my everyday environment. We know the best way to improve a language is to use it. I chose Augmented Reality to connect our real world with learning patterns. I researched open-source APIs and discussed technical possibilities with my software engineer friend. This process helped me expand my perspective on designing applications and reshape my user research plan."
+activities: "I designed an immersive AR-based language learning app, combining UX research, interface design, and technical feasibility studies. By exploring object recognition APIs and discussing implementation strategies with engineers, I aligned the design with practical engineering considerations, ensuring the project was both user-friendly and technically feasible solution."
 ---
 
 <div class="contentSection">
 
 ## Background
 
-Our brain stores information in a way that is easy to recall, such as visual images, body memories, or a scenario. There have more things that we instantly associate with our memories. Hence, that connection makes the information more memorable and easy to recollect. In this age, people have increasingly relied on the internet and personal devices for self-directed learning, such as smartphones, tablets, and laptops. Duolingo, Mondly, and Busuu have made tremendous in language learning. They provide easy-to-understand lessons about foods, people, objects, and conversations that most users are familiar with. The learning experiences help users associate them with foreign language words. Even though they make the language learning process much easier than it used to be, we still agree that learning a language effectively is all about placing yourself in the environment. We recognized this gap and used augmented reality to engage and motivate users to build their knowledge on real-world observations. Users can practice and learn languages via an understanding of different cultures and exploration of attractions around the world.
+Learning is most effective when knowledge is tied to real-world experiences. Traditional language apps like Duolingo, Mondly, and Busuu simplify vocabulary acquisition but lack immersion in daily contexts. Multi-Multi bridges this gap by using **augmented reality (AR)** to connect vocabulary and conversations to real-life environments. Users can practice language in context—while exploring cities, visiting attractions, or interacting with everyday objects—enhancing memory retention through experience and context.
 
 #### Challenge
 
-How do we engage with the individual learning pattern and help learners to practice everyday phrases?
+How can we engage individual learning patterns and help learners practice everyday phrases naturally?
 
 #### Solution
 
-Make connections to learn basic vocabulary from observations and use full sentences in our everyday environment.
+Use AR to label and contextualize real-world objects and scenarios, enabling learners to acquire vocabulary and sentences directly from their environment.
 
 #### A glimpse at behind the scene
 
@@ -45,7 +45,7 @@ Competitive Audit, User Research, Prototype, UI Design, Usability Testing
 
 #### The Product's Goal
 
-Focus on learning the necessary vocabulary in complete sentences by observing your context using augmented reality. For listening, reading, writing, and speaking, the map mode provides users with daily phrases and memory links. Create fun and immersive learning environment that keeps motivation high.
+Create an immersive environment that helps users learn essential vocabulary and complete sentences through observation and interaction. The map mode supports listening, reading, writing, and speaking exercises while linking phrases to real-world locations.
 
 <div class="projectGoal">
   <div class="space-y-4">
@@ -53,7 +53,7 @@ Focus on learning the necessary vocabulary in complete sentences by observing yo
 ![learn_pratice](./learn_pratice.jpg)
 
 <div class="font-bold text-lg">Learn and Practice</div>
-<div>Learn languages and practice immersively.</div>
+<div>Immersive learning that reinforces vocabulary.</div>
 </div>
 
 <div class="space-y-4">
@@ -61,7 +61,7 @@ Focus on learning the necessary vocabulary in complete sentences by observing yo
 ![travel_explore](./travel_explore.jpg)
 
 <div class="font-bold text-lg">Travel and Explore</div>
-<div>Enrich your life and explore the world.</div>
+<div>Connect language learning to real-world exploration.</div>
 </div>
 
 <div class="space-y-4">
@@ -69,7 +69,7 @@ Focus on learning the necessary vocabulary in complete sentences by observing yo
 ![languages_cultures](./languages_cultures.jpg)
 
 <div class="font-bold text-lg">Languages and Cultures</div>
-<div>Associate memory through cultures.</div>
+<div>Strengthen memory by associating phrases with cultural contexts.</div>
 </div>
 </div>
 
@@ -83,15 +83,13 @@ Focus on learning the necessary vocabulary in complete sentences by observing yo
 
 ## Technology Research
 
-Given the technical challenges we face, we need to study current computer vision techniques and the feasibility of implementing this application.
+To address technical challenges, we explored current computer vision methods and the feasibility of implementing this app.
 
 #### We summarize the following requirements:
 
-- The app should be able to recognize real world objects using camera and create labels in different languages.
-
-- The object recognition and label generating should be in real time as the user scans their surroundings by camera.
-
-- The location should connect to the real world map and display a corresponding introduction and simple dialogue.
+- Real-time object recognition using the device camera.
+- Multi-language label generation for detected objects.
+- Integration with maps to display locations, dialogues, and relevant content.
 
 #### Open source object recognition API
 [YOLO](!https://github.com/WongKinYiu/yolov7), [TensorFlow](!https://www.tensorflow.org/),[ML Kit](!https://developers.google.com/ml-kit), [Google Map Platform](!https://developers.google.com/maps)
@@ -105,15 +103,13 @@ Given the technical challenges we face, we need to study current computer vision
 
 ## Competitor Analysis
 
-Based on a brief analysis of competitors. Duolingo, Mondly, and Tripadvisor became our references for competitors and products. I'm focused on enhancing the learning patterns of everyday phrases using augmented reality and creating a product that helps users learn in their surroundings.
+Multi-Multi draws inspiration from Duolingo, Mondly, and Tripadvisor. Its differentiation lies in:
 
 ![competitor_anaylsis](./competitor_anaylsis.jpg)
 
-- Enhance learning pattern with daily phrases.
-
-- Observation using augmented reality.
-
-- Connect our memories with travel experiences.
+- Daily phrases tied to real-life scenarios.
+- Immersive observation using AR.
+- Memory-linked learning experiences through travel and cultural exploration.
 
 
 
@@ -125,17 +121,14 @@ Based on a brief analysis of competitors. Duolingo, Mondly, and Tripadvisor beca
 
 ## User
 
-There has three main users groups, namely language learners, mobile users and travelers.
+**Target Users:** Language learners, travelers, mobile-first users.
 
 #### Persona
-
-Understanding multilingual learners and users who are the first time learning a foreign language.
-
 
 <div class="colsLayout">
 
 <div class="col-span-4">
-Alex is a busy IT consultant who speaks multilingual languages. He needs to practice the language and experience different cultures because he can travel and communicate without the language barrier.
+  A multilingual IT consultant who travels frequently. Needs to practice language in context to communicate naturally abroad.
 </div>
 <div class="col-span-8">
 
@@ -155,31 +148,25 @@ Alex is a busy IT consultant who speaks multilingual languages. He needs to prac
 </div>
 
 <div class="col-span-4">
-      Joan is a tidy housewife who learning her first foreign language. She needs to practice the language and explore something new at her odd moment because she can travel to different countries and visit her children abroad.
+  A housewife learning her first foreign language. Uses small pockets of free time to explore culture and practice language for trips.
 </div>
 </div>
 
 
 
-#### Takeaway
+#### Insights
 
 ##### Motivation
-- Need to learn a new language when they move to a place where most people speak in a different language.
 
-- Already in a main languages course and wants more resource to memorize daily phrase.
+- Learn new languages for relocation, travel, or personal growth.
 
 ##### Techniques
-- Want to find more chances to practice in daily life.
 
-##### Thoughts
-- Want to communicate when they are traveling.
-
-- Set goals and improve myself step by step.
+- Seek opportunities to practice in daily life.
 
 ##### Frustration
-- There is no one to practice the language with.
 
-- Learning is not restricted by location.
+- Limited access to practice partners; location-independent learning needed.
 
 
 
@@ -191,9 +178,11 @@ Alex is a busy IT consultant who speaks multilingual languages. He needs to prac
 
 ## Design
 
-Before designing, we decided to start with a storyboard and diagram what the Multi-Multi experience for our users. People are motivated to learn a new language based on work-related goals, migrate to a new environment, want to learn more about a culture or a new language.
+We started by creating storyboards to visualize user experiences. Multi-Multi supports both goal-driven and curiosity-driven learning.
 
 #### Storyboard
+
+The app supports goal-driven and curiosity-driven learning. Users:
 
 ![storyboard](./storyboard.jpg)
 
@@ -205,7 +194,7 @@ Before designing, we decided to start with a storyboard and diagram what the Mul
 
 3. Users open the “Multi-Multi” application.
 
-4. Search the place they want to visit on the map mode. The user finds a "Zurich ice cream shop". There is a dialogue on the screen showing how to order ice cream in German.tg
+4. Search the place they want to visit on the map mode. The user finds a "Zurich ice cream shop". There is a dialogue on the screen showing how to order ice cream in German.
 
 5. The user turns on the camera using augmented reality and learns the vocabulary of the objects around them.
 
@@ -217,6 +206,13 @@ Before designing, we decided to start with a storyboard and diagram what the Mul
 
 </div>
 
+#### Insight
+
+1. Plan a trip or set a learning goal.
+2. Search destinations via map mode for daily phrases.
+3. Observe surroundings through AR to acquire vocabulary.
+4. Practice and reinforce memory by linking phrases with locations.
+
 </div>
 
 
@@ -227,13 +223,19 @@ Before designing, we decided to start with a storyboard and diagram what the Mul
 
 #### User Flow
 
-We wireframe the following task flows: registration, observing mode, exploring map mode, dashboard, collection, and set language preferences.
+Tasks: Registration → Observation Mode → Map Exploration → Dashboard → Collection → Language Preferences.
+
+Multi-Multi sitemap ensures a coherent cross-platform experience while connecting memory with language learning.
 
 ![user-flow](./task_flow.png)
 
 #### Information Architecture
 
-Here I work on designing a responsive website and mobile app. I use a Multi-Multi sitemap to guide the organization of each screen design to ensure a coherent experience across devices. The purpose of the user flow is to provide the user with appropriate additional material, link the user's memory with the language, and be motivated by more local cultures. To ensure learning goals, we annotated endpoints in the information architecture for users to learn vocabulary, dialogue, reading and listening in observation patterns and exploration maps. Next, we will wireframe several layouts for users to test which kind of layout provides a better learning experience.
+I designed the information architecture to support both the responsive website and the mobile app. The Multi-Multi sitemap guided how each screen was organized to ensure a consistent and intuitive experience across devices.
+
+The goal was to structure content in a way that provides learners with relevant materials at the right time—connecting vocabulary, dialogues, reading, and listening tasks with real-world observations and map-based exploration. We annotated key learning endpoints throughout the IA to highlight where users build memory links, discover new content, and reinforce skills.
+
+With the IA defined, we moved into wireframing to explore layout options and test which structures supported the strongest learning experience.
 
 ![Information Architecture](./ia.png)
 
@@ -252,9 +254,12 @@ Paper wireframes help organize the main layout, interactions, user flow, and UI 
 
 ![wireframe](./wireframe.jpg)
 
-#### Low Fidelity Prototype
+#### Low and mid Fidelity Prototype
 
-In the low-fidelity prototype, I start with the user flow, the goal is to make sure the user can smoothly switch between each feature. In mid-fidelity prototypes, I focus on details of functionality and interaction behavior. Then go for the first usability study.
+In the low-fidelity prototype, I start with the user flow, the goal is to establish main layout, interaction, and flow. 
+
+In mid-fidelity prototypes, I focus on smooth navigation, feature discovery, and interaction behaviors.
+
 
 
 <div class="relative group my-4">
@@ -282,7 +287,7 @@ In the low-fidelity prototype, I start with the user flow, the goal is to make s
 
 ## Usability Study
 
-I conducted two rounds of usability studies. Findings from the first study helped guide the designs from wireframes to mockups. The second study used a high-fidelity prototype and revealed what aspects of the mockups needed refining.
+Two rounds of usability studies guided design evolution:
 
 1. Sign in and onborading
 
@@ -297,7 +302,7 @@ I conducted two rounds of usability studies. Findings from the first study helpe
 6. Learning pattern
 
 
-#### Round 1 - Medium Fidelity Prototype
+#### Round 1 - Medium-fidelity prototype
 
 ##### Insight
 
@@ -326,7 +331,7 @@ I conducted two rounds of usability studies. Findings from the first study helpe
 - Whether Offer more tips of organize notes and learning.
 
 
-#### Round 2 - High Fidelity Prototype
+#### Round 2 - High-fidelity prototype refined language switching, content presentation, and memory-linked learning patterns.
 
 The second round will focus on future product trends
 
@@ -371,7 +376,7 @@ Here is the multi-multi prototype on Figma.
 
 <div class="col-span-6">
 
-Users explore environments around and practice relative vocabulary. Make connections between the environment and your remembering.
+AR Vocabulary: Scan surroundings to learn object names and phrases, connecting environment with memory.
 
 </div>
 
@@ -390,7 +395,7 @@ Users explore environments around and practice relative vocabulary. Make connect
 
 <div class="col-span-6">
 
-Search places around you or all over the world to get more daily phrases and practice conversation.
+Map Mode: Explore global locations to practice daily phrases and dialogues.
 
 </div>
 
@@ -409,7 +414,7 @@ Search places around you or all over the world to get more daily phrases and pra
 
 <div class="col-span-6">
 
-Read the introduction of the attraction, an overview of cities, and the origin of events
+Attraction Introductions: Read cultural and historical context, then practice dialogues.
 
 </div>
 
@@ -428,7 +433,7 @@ Read the introduction of the attraction, an overview of cities, and the origin o
 
 <div class="col-span-6">
 
-Take notes about vocabulary, conversations, and introductions by saving sights to your list. Create personal memos for you to use during the trip
+Personal Notes: Create memos that connect vocabulary, conversations, and phrases to real-life experiences for easy reference during your travels.
 
 </div>
 
@@ -446,6 +451,8 @@ Take notes about vocabulary, conversations, and introductions by saving sights t
 <div class="contentSection">
 
 ## Cross Platform
+
+Supports mobile and web, maintaining consistent experience and learning pathways.
 
 ![multi-multi-final](./final.png)
 
@@ -472,7 +479,7 @@ Take notes about vocabulary, conversations, and introductions by saving sights t
 
 #### Impact
 
-Users said that the application maintained their motivation and brought them new explorations. They learn and practice the language step by step, and the app encourages them to explore all over the world.
+The app keeps users motivated by tying language learning to exploration. Learners practice step-by-step in immersive contexts, reinforcing retention.
 
 </div>
 
@@ -497,7 +504,7 @@ Users said that the application maintained their motivation and brought them new
 
 #### What I learned
 
-I learned that even though the problem I'm trying to solve is big. Diligently complete each step of the design process and align it consistently with specific user needs. It helped me come up with solutions that are both feasible and useful.
+Designing Multi-Multi reinforced the importance of integrating UX design with technical feasibility. AR and object recognition research taught me how to make designs practical while preserving user engagement. Aligning learning experiences with real-world context maximizes motivation and memory retention.
 
 </div>
 
@@ -514,17 +521,15 @@ I learned that even though the problem I'm trying to solve is big. Diligently co
 
 #### Function and official event
 
-- Friend mode, social mode or hold an event for users to find and search using the camera.
+- Introduce friend/social mode and collaborative events.
 
 #### Usability testing
 
-- Follow-up usability testing of new websites and applications.
+- Conduct usability tests for multilingual users to refine pain points
 
-- Conduct another round of usability studies for users who speak different languages to validate whether pain points experienced by users have been effectively addressed.
+#### Content Updates
 
-#### Update content
-
-- Update the application according to user needs and add more user learning materials, such as basic conversations, vocabulary cards, event articles or introductions to sights, etc.  
+- Expand library: basic conversations, vocabulary cards, articles, attraction introductions.
 
 ![multi-multi_ipad](./multi-multi_ipad.jpg)
 
@@ -544,6 +549,9 @@ I learned that even though the problem I'm trying to solve is big. Diligently co
 
 ## Reflection
 
-I have always been a self-taught person, learning different skills from coding and robotics to languages. When studying in Switzerland, the first step in learning German was to go to the supermarket to learn food names. Learn from the little thing I do twice a week. These learning experiences inspired the idea of designing this language application. Establishing connections with good experiences in life is a great help in practicing a language. Most people like to travel the world. I took advantage of traveling to design a learning environment that allows users to practice vocabulary and dialogue when planning a trip. When users are on a trip, they can have small conversations easily and naturally. I hope I can launch this application as one of my side projects and use this product to help more people learn.
+
+I’ve always been a self-taught learner, exploring skills from coding and robotics to languages. When I studied in Switzerland, I discovered that the simplest experiences—like learning food names at the supermarket—could make language learning tangible and memorable. This inspired Multi-Multi: an app that connects vocabulary and dialogues to real-world observations and travel experiences, allowing users to practice naturally and build confidence.
+
+By tying vocabulary and dialogues to daily life and travel experiences, Multi-Multi demonstrates how UX design, technical research, and immersive AR can combine to create meaningful, memory-linked learning experiences. It reinforced the importance of breaking big problems into manageable steps, aligning design decisions with user needs, and creating solutions that are both practical and engaging.
 
 </div>
