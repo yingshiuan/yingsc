@@ -108,11 +108,11 @@ To understand the feasibility of AR virtual try-on, I explored existing computer
 
 
 #### Open source Pose, Face Detection API
-[YOLO](!https://github.com/WongKinYiu/yolov7), [TensorFlow](!https://www.tensorflow.org/),[ML Kit](!https://developers.google.com/ml-kit)
+[YOLO](!https://github.com/WongKinYiu/yolov7), [TensorFlow](!https://www.tensorflow.org/), [ML Kit](!https://developers.google.com/ml-kit)
 
 
 #### Augmented Reality API
-[ARKit (LiDAR)](!https://developer.apple.com/augmented-reality), [Augmented Reality(iOS)](!https://developer.apple.com/design/human-interface-guidelines/technologies/augmented-reality/),[ARCore](!https://developers.google.com/ar)
+[ARKit (LiDAR)](!https://developer.apple.com/augmented-reality), [Augmented Reality(iOS)](!https://developer.apple.com/design/human-interface-guidelines/technologies/augmented-reality/), [ARCore](!https://developers.google.com/ar)
 
 #### Visual-Inertial Odometry(VIO)
 [Apple World Tracking documentation](!https://developer.apple.com/documentation/arkit/configuration_objects/understanding_world_tracking)
@@ -286,6 +286,8 @@ Two rounds of user testing shaped the design.
 
 #### Round 1 - Findings
 
+**What users struggled with:**
+
 1. Creating outfits intuitively
 
 2. Finding precise inspiration
@@ -297,6 +299,8 @@ Two rounds of user testing shaped the design.
 2. Add search + sorting (outfits, tags, occasions, item types)
 
 #### Round 2 - Findings
+
+**What users needed:**
 
 1. Users want tips for adding items and creating outfits
 
