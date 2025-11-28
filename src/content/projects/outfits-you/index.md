@@ -6,7 +6,7 @@ slug: 'outfits-you'
 tags: ['Augmented Reality', 'UI/UX', 'Application']
 image: './outfits-you/impact.png'
 hoverImage: './outfits-you/prototype.webp'
-info: 'An interactive application allowing users to virtually try on outfits and curate their fashion collections.'
+info: 'An interactive AR application that lets users virtually try on outfits and curate their fashion collections.'
 description: 'OUTFITS YOU is an interactive try-on application where users can create their outfits and build their fashion collections. Through the creative process, help people find suitable styles and clothing. The goal is to encourage people to try different fashion items and find types of clothing that suit the user on a specific occasion.'
 type: 'demo'
 role: 'UX researcher, Interaction Designer'
@@ -15,26 +15,35 @@ completed: '06/2021'
 credit: 'Personal Project'
 creditLink: '#'
 tools: ['Figma', 'Adobe XD', 'Adobe Illustrator', 'Adobe Photoshop', 'Adobe After Effects']
-activities: "When I was working as a UI/UX consultant for an artisanal fashion brand that was just starting and running an online e-commerce business. I think about how virtual fittings can help people learn more about the textures, types, and colors of fashion items. Help people find their clothes before they buy fashion items. That is how the idea for the project started. Train brainstorming with an understanding of different fields and specialties. I enjoy the process as I conduct research in various fields. It always brings me some new ideas and knowledge. Here I want to research the industry that is using augmented reality on a virtual try-on."
+activities: "This project began while I was consulting for a small artisanal fashion brand transitioning into e-commerce. I noticed how difficult it was for customers to understand textures, colors, and fit through digital screens. That sparked the idea: how might AR help shoppers make more confident fashion decisions? This project became an exploration of virtual try-on technology, user behavior, fashion retail, and AR feasibility—combining research, UX design, and interdisciplinary experimentation."
 ---
 
 <div class="contentSection">
 
 ## Background
 
-Thanks to the booming Internet, many shopping habits have shifted from brick-and-mortar stores to online shopping. Start-up brands start with small e-commerce businesses to save on rent retail. They want to provide a better shopping experience and maximize revenue with limited resources. Customers consider the texture, color, type, size, material, and price when shopping for fashion items, and they also want to know how clothes look on them. We want to connect brands and customers through virtual fitting room experiences and showrooms to address sizing and increase overall retail loyalty and customer fit confidence.
+As e-commerce continues to grow, especially for small fashion startups, customers increasingly rely on digital channels to understand clothing. Yet many users still struggle with evaluating **texture, fit, color accuracy, body type compatibility, and styling** online.
+
+Brands want to offer richer experiences without the cost of physical retail, while users want more confidence before purchasing.
+
+**Outfits You** aims to bridge this gap by creating an **AR-driven virtual fitting room** and **digital fashion showroom** where users can try on pieces, explore material details, and experiment with creating outfits.
 
 #### Challenge
 
-How can we help people understand the texture, color, type, size, and material of clothes through virtual fitting and showrooms?
+How might we help users understand the **texture, color, size, fit, and material** of clothing through a virtual fitting and showroom experience?
 
 #### Solution
 
-Design an augmented reality app, OUTFITS YOU, where people can find their style by creating and trying on clothes. Users can also get weather- and occasion-specific clothing inspiration through the brand's virtual showrooms.
+An AR-powered app where users can:
+
+- Virtually try on clothing
+- Create and customize outfits
+- Explore digital showrooms for material details
+- Receive outfit inspiration based on **weather, occasion, and personal style**
 
 #### A glimpse at behind the scene
 
-Competitive Audit, User Research, Prototype, UI Design, Usability Testing
+Competitive Audit · User Research · UX Design · Prototyping · AR Feasibility Study · Usability Testing
 
 </div>
 
@@ -45,7 +54,12 @@ Competitive Audit, User Research, Prototype, UI Design, Usability Testing
 
 #### The Product's Goal
 
-Help people explore different styles of clothing through virtual fittings and find out what suits them. Create showrooms of material details to enhance the fitting experience.
+Enable users to confidently explore clothing styles through:
+
+- AR try-on
+- Custom outfit creation
+- Material exploration
+- Occasion-based or weather-based inspiration
 
 <div class="projectGoal">
   <div class="space-y-4">
@@ -53,7 +67,7 @@ Help people explore different styles of clothing through virtual fittings and fi
 ![learn_pratice](./look_find.png)
 
 <div class="font-bold text-lg">Look and Find</div>
-<div>Get inspired by the weather or the occasion to find outfits you want to make.</div>
+<div>Get outfit ideas based on weather, seasons, and activities.</div>
 </div>
 
 <div class="space-y-4">
@@ -61,7 +75,7 @@ Help people explore different styles of clothing through virtual fittings and fi
 ![travel_explore](./create_explore.png)
 
 <div class="font-bold text-lg">Create and Explore</div>
-<div>Create your own outfits and explore the Fashion Virtual Showrooms.</div>
+<div>Build your own outfits and browse interactive digital showrooms.</div>
 </div>
 
 <div class="space-y-4">
@@ -69,7 +83,7 @@ Help people explore different styles of clothing through virtual fittings and fi
 ![languages_cultures](./try_collect.png)
 
 <div class="font-bold text-lg">Try and Collect</div>
-<div>Try them on in the virtual fitting room and learn more about fashion details.</div>
+<div>Try items on via AR and learn about their materials and details.</div>
 </div>
 </div>
 
@@ -82,19 +96,16 @@ Help people explore different styles of clothing through virtual fittings and fi
 
 ## Technology Research
 
-Given the technical challenges we face, we need to study current computer vision techniques and the feasibility of implementing this application.
+To understand the feasibility of AR virtual try-on, I explored existing computer vision and AR tools.
 
 #### We summarize the following requirements:
 
-- The app should be able to use the camera to recognize body shapes, poses, and faces.
+- Detect body shape, pose, and face using the device camera
+- Match clothing items to the user’s proportions
+- Use LiDAR + IMU for accurate measurement (SLAM)
+- Build a material preference database (texture, color, type, size)
+- Generate outfit suggestions depending on weather and context
 
-- Match clothes according to the user's body type in the virtual fitting room.
-
-- Use on-device Camera, LiDAR, and Inertial Measurement Unit to measure the dimensions of items. (Simultaneous localization and mapping)
-
-- Build a material preference database for digital showroom display materials, including textures, colors, types, sizes and materials, etc. 1. Automatically build when the user takes a photo of items. 2. Brands provide materials and assist them in building.
-
-- Generate clothing suggestions based on weather, occasion, etc.
 
 #### Open source Pose, Face Detection API
 [YOLO](!https://github.com/WongKinYiu/yolov7), [TensorFlow](!https://www.tensorflow.org/),[ML Kit](!https://developers.google.com/ml-kit)
@@ -104,7 +115,7 @@ Given the technical challenges we face, we need to study current computer vision
 [ARKit (LiDAR)](!https://developer.apple.com/augmented-reality), [Augmented Reality(iOS)](!https://developer.apple.com/design/human-interface-guidelines/technologies/augmented-reality/),[ARCore](!https://developers.google.com/ar)
 
 #### Visual-Inertial Odometry(VIO)
-[Understanding World Tracking](!https://developer.apple.com/documentation/arkit/configuration_objects/understanding_world_tracking)
+[Apple World Tracking documentation](!https://developer.apple.com/documentation/arkit/configuration_objects/understanding_world_tracking)
 
 </div>
 
@@ -114,16 +125,14 @@ Given the technical challenges we face, we need to study current computer vision
 
 ## User
 
-We focus on people who are interested in fashion design, targeting the younger and older generations.
+Target audience spans ages **15 to 60+**, focusing on anyone exploring personal style or looking for a more confident online shopping experience.
 
 #### Persona
-
-Understanding Persona and Scenario was crucial to finding out users' needs (15 to 60+).
 
 <div class="colsLayout">
 
 <div class="col-span-4">
-Millie is a passionate scientific researcher and she wants to know what style suits her. When she sees new fashion items, she needs to try different clothes.
+Millie, a researcher, wants to experiment with new styles and understand what suits her before purchasing.
 </div>
 <div class="col-span-8">
 
@@ -143,7 +152,7 @@ Millie is a passionate scientific researcher and she wants to know what style su
 </div>
 
 <div class="col-span-4">
-Chris is a retired stylish professor who wants to keep up with trends. He needs to understand fashion because he can try new items and share his clothes on social media.
+Chris, a retired professor, enjoys staying stylish and wants a simple way to explore fashion and share looks online.
 </div>
 </div>
 
@@ -152,20 +161,16 @@ Chris is a retired stylish professor who wants to keep up with trends. He needs 
 #### Takeaway
 
 ##### User needs
-- Want to learn more details about clothes and trying on when shopping online or looking for a specific item.
-
-- Easily get clothing inspiration for weather, occasion, and more.
+- Understand clothing materials, texture, and fit digitally
+- Get inspiration based on weather, events, or style preferences
 
 ##### Accessibility
-- Intuition way and easy to access. The interface and interaction should be suitable for people of different ages.
+- The interface must be intuitive for users across a wide age range
+- Cross-platform accessibility is highly valuable
 
-- Whether to design the application cross-platform.
-
-##### Identify
-- Provide a way for brands to showcase virtually their products in more detail.
-
-- A way to interact with customers and make them identify with the brand.
-
+##### Brand–User Connection
+- Brands need more interactive ways to showcase items
+- Users want to feel confident and informed before buyin
 
 </div>
 
@@ -175,7 +180,7 @@ Chris is a retired stylish professor who wants to keep up with trends. He needs 
 
 ## Design
 
-We start with a storyboard depicting how the user wants to dress on a specific occasion. Here we want to help brands showcase their products to customers and offer virtual try-on and digital showrooms.
+The design process began with a storyboard illustrating how a user might plan an outfit for a specific occasion using Outfits You.
 
 #### Storyboard
 
@@ -183,21 +188,21 @@ We start with a storyboard depicting how the user wants to dress on a specific o
 
 <div class="storyboard">
 
-1. The user is going to go hiking on a sunny day, what clothes is he thinking about?
+1. The user plans a sunny-day hiking trip and wants to choose the right outfit.
 
-2. He decides to buy something new for his excursion and searches the Internet.
+2. He decides to buy something new for his excursion and browses online for ideas.
 
-3. He wants some inspiration and chooses the outfit you apply.
+3. He opens Outfits You for more inspiration.
 
-4. He uses weather and activity as references to get ideas. The app provided a costume at his request.
+4. The app suggests outfits based on activity and weather.
 
-5. He wants to buy a new product and know more details. He took a photo online and used creative patterns to combine it with clothes he already owned.
+5. He selects an item, photographs similar clothing, and mixes it with pieces he already owns.
 
-6. In the fitting room mode, he can see what the clothes look like on him. Each item can be edited.
+6. In AR fitting mode, he sees how the outfit looks on his body.
 
-7. He discovered that there was a digital showroom to get more detailed information about each item.
+7. He visits the digital showroom for material details.
 
-8. The user is satisfied with the outfits and wants to use the application next time.
+8. Satisfied, he saves the outfit and continues using the app.
 
 </div>
 
@@ -211,13 +216,25 @@ We start with a storyboard depicting how the user wants to dress on a specific o
 
 #### User Flow
 
-In the user flow, we know that there are three main actions, creating outfits, browsing items, and getting ideas. Users can edit and save their favorites to collection at the end of each function. Here, we built a generative preference system to help users and brands figure out what's right for each other. To create clothing features, we use detection and measurement systems to understand the dimensions of body and items.
+Users navigate through three core actions:
+
+1. Create outfits
+2. Browse fashion items
+3. Get personalized inspiration
+
+A generative preference system helps match user style with brand offerings. Body and item measurements support more accurate outfit creation.
 
 ![user-flow](./task_flow.png)
 
 #### Information Architecture
 
-Starting from technical research, we have organized three main functions, virtual fitting room, showroom and clothing inspiration. In information architecture, we elicit the goals, processes, and actions of each function. In the user flow, we'll dive into that user's interaction with each feature.
+The IA organizes the app around:
+
+1. Virtual Fitting Room
+2. Digital Showroom
+3. Inspiration Hub
+
+Each function includes clear goals, user actions, and content types. This structure informed UI decisions and guided feature prioritization.
 
 ![Information Architecture](./ia.png)
 
@@ -233,14 +250,13 @@ Starting from technical research, we have organized three main functions, virtua
 
 #### Paper Wireframes
 
-Paper wireframes help organize the main layout, interactions, user flow, and UI design. I can quickly iterate to find a suitable layout, then think about the main user flow.
+These helped quickly explore layouts, interaction patterns, and core flows.
 
 ![wireframe](./wireframe.jpg)
 
 #### Low Fidelity Prototype
 
-In the low-fidelity prototype, I start with the user flow, the goal is to make sure the user can smoothly switch between each feature. In mid-fidelity prototypes, I focus on details of functionality and interaction behavior. Then go for the first usability study.
-
+The early prototypes ensured the core interactions—switching between features, adding items, creating outfits—were intuitive. Mid-fidelity iterations refined details before usability testing.
 
 <div class="relative group my-4">
 <!-- * Default image -->
@@ -266,32 +282,31 @@ In the low-fidelity prototype, I start with the user flow, the goal is to make s
 
 ## Usability Study
 
-I conducted two rounds of usability studies. Findings from the first study helped guide the designs from wireframes to mockups. The second study used a high-fidelity prototype and revealed what aspects of the mockups needed refining.
-
+Two rounds of user testing shaped the design.
 
 #### Round 1 - Findings
 
-1. Users want to create outfits intuitively
+1. Creating outfits intuitively
 
-2. Users want to find inspiration precisely for daily outfits
+2. Finding precise inspiration
 
 ##### Insight
 
-1. Design the frame as a reference to help users take photos of items to scale.
+1. Add a frame reference to help capture item photos to scale
 
-2. Add search functions and sort by a few main categories, such as outfits, items, tags, and occasions.
+2. Add search + sorting (outfits, tags, occasions, item types)
 
 #### Round 2 - Findings
 
-1. Users want tips to help create outfits and add items
+1. Users want tips for adding items and creating outfits
 
-2. Users are not sure about details they should add for outfits or items to build a collection.
+2. Clear guidance on how to build collections for users
 
 ##### Insight
 
-1. Add tips and tutorials to guide users.
+1. Add onboarding tips and mini tutorials
 
-2. Setup default categories for users to add details and a function for users can add more categories by themselves.
+2. Use default clothing categories, allowing users to add custom ones
 
 
 </div>
@@ -333,7 +348,7 @@ Here is the multi-multi prototype on Figma.
 
 #### Impact
 
-The application gives users an intriguing way to find out what suits them. They explore styles of outfits and clothes through Augmented Reality. It also inspires people to dress according to the occasion and weather.
+Outfits You gives users an engaging way to understand what suits them—visually, realistically, and interactively. AR try-on encourages experimentation, while contextual suggestions help users dress with confidence.
 
 </div>
 
@@ -358,7 +373,7 @@ The application gives users an intriguing way to find out what suits them. They 
 
 #### What I learned
 
-While designing the OUTFITS YOU app, I learned that the first ideas of the application were just the beginning of the process. Usability studies and peer feedback influenced each iteration of the app’s designs. I can aim at the users' need to design and make the application more accessible.
+This project taught me how initial concepts evolve significantly through usability testing. Repeated feedback cycles sharpened the interaction design, made features more accessible, and ensured the experience aligned with user needs.
 
 </div>
 
@@ -373,14 +388,14 @@ While designing the OUTFITS YOU app, I learned that the first ideas of the appli
 
 ## Next Steps
 
-#### Function
+#### Functionality
 
-- Create a searchable database for users to find other people's clothing in the app.
+- Build a searchable community outfit database
 
 #### Usability testing
 
-- Follow-up usability testing of new applications.
-- Identify the gap between digital and physical connectivity
+- Conduct follow-up testing on new features
+- Study the relationship between physical garments and their digital representations
 
 #### Looking forward to next insight...
 
@@ -398,6 +413,8 @@ While designing the OUTFITS YOU app, I learned that the first ideas of the appli
 
 ## Reflection
 
-I have always been interested in emerging technologies and their applications in the industry. In this project, I researched to design a good AR application for users. After in-depth research, I transformed the similar design criteria and methods in my robotic arm project into this AR project. Such as environment, movement, interaction, initialization, and from digital prototype to physical experience. Continuous acquisition of knowledge, allows me to understand the problem and motivates me to integrate the knowledge I have learned into different fields. I look forward to the next challenge.
+I’ve always been drawn to emerging technologies and how they can reshape everyday experiences. In this project, I explored AR through the lens of fashion retail and applied principles I previously developed in my robotic arm project—such as environmental awareness, interaction flow, motion behavior, and bridging digital systems with physical experiences.
+
+This project strengthened my ability to combine technical understanding with user-centered design. Each iteration reinforced how cross-disciplinary thinking leads to more meaningful and innovative solutions. I look forward to continuing this learning journey and taking on the next challenge.
 
 </div>
