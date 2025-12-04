@@ -9,6 +9,16 @@ const {
   measurementId,
   requireConsent = false
 } = Astro.props;
+
+
+
+// Add Google Analytics types for TS
+// declare global {
+//   interface Window {
+//     dataLayer: any[];
+//     gtag: (...args: any[]) => void;
+//   }
+// }
 ---
 <div
   id="cookie-banner"
@@ -27,61 +37,62 @@ const {
 </div>
 
 <script is:inline>
-(function(){
-  const measurementId = document.getElementById('cookie-banner')?.dataset.gaId;
+document.addEventListener("DOMContentLoaded", function () {
+  const overlay = document.getElementById("cookie-banner");
+  if (!overlay) return;
 
-  if (!measurementId) return;
-
-  const script = document.createElement('script');
-  script.async = true;
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
-  document.head.appendChild(script);
-
-  window.dataLayer = window.dataLayer || [];
-  function gtag(...args) {
-    window.dataLayer.push(args);
-  }
-  window.gtag = window.gtag || gtag;
-
-  gtag('js', new Date());
-  gtag('config', measurementId, { anonymize_ip: true });
-
-  const overlay = document.getElementById('cookie-banner');
-  const requireConsent = overlay?.dataset.requireConsent === 'true';
-  const consent = localStorage.getItem('analytics_consent');
+  const requireConsent = overlay.dataset.requireConsent === "true";
+  const consent = localStorage.getItem("analytics_consent");
+  const measurementId = overlay.dataset.gaId;
 
   function showOverlay() {
-    overlay.classList.remove('hidden');
-    requestAnimationFrame(() => overlay.classList.add('opacity-100'));
+    overlay.classList.remove("hidden");
+    requestAnimationFrame(() => overlay.classList.add("opacity-100"));
   }
 
-  function enableGA() {
-    gtag('event', 'manual_test');
-  }
+  function loadGoogleAnalytics() {
+    // console.log('[Analytics] measurementId:', measurementId);
+    // console.log('[Analytics is loading...]');
+    if (!measurementId) return;
+    if (window.gtag) return;
 
-  if(requireConsent){
-    if(consent === 'accepted'){
-      enableGA();
-    } else if(consent === 'rejected'){
-    } else {
-      showOverlay();
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = "https://www.googletagmanager.com/gtag/js?id=" + measurementId;
+    document.head.appendChild(script);
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag(...args) {
+      window.dataLayer.push(...args);
     }
+    window.gtag = window.gtag || gtag;
 
-    document.getElementById('acceptCookies')?.addEventListener('click', ()=>{
-      localStorage.setItem('analytics_consent','accepted');
-      overlay?.remove();
-      enableGA();
-    });
-
-    document.getElementById('rejectCookies')?.addEventListener('click', ()=>{
-      localStorage.setItem('analytics_consent','rejected');
-      overlay?.remove();
-    });
-
-  } else {
-    enableGA();
-    overlay?.remove();
+    gtag("js", new Date());
+    gtag("config", measurementId, { anonymize_ip: true });
+    gtag("event", "manual_test");
   }
 
-})();
+  if (requireConsent) {
+    if (!consent) showOverlay();
+    else if (consent === "accepted") loadGoogleAnalytics();
+
+    document
+      .getElementById("acceptCookies")
+      ?.addEventListener("click", function () {
+        localStorage.setItem("analytics_consent", "accepted");
+        overlay.remove();
+        loadGoogleAnalytics();
+      });
+
+    document
+      .getElementById("rejectCookies")
+      ?.addEventListener("click", function () {
+        localStorage.setItem("analytics_consent", "rejected");
+        overlay.remove();
+      });
+  } else {
+    loadGoogleAnalytics();
+    overlay.remove();
+  }
+});
 </script>
