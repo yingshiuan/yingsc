@@ -1,0 +1,65 @@
+---
+import type { ResumeData, ResumeItem } from '@/ts/resume';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalUrl: string;
+  image?: string;
+  keywords?: string[];
+  resumeData: ResumeData;
+}
+
+const { title, description, canonicalUrl, image, keywords, resumeData } = Astro.props;
+
+// Generate JSON-LD dynamically
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": title ?? "Ying-Shiuan Chen",
+  "url": canonicalUrl,
+  "image": image,
+  "jobTitle": "Frontend Developer & Interaction Designer",
+  "worksFor": resumeData.experience?.length
+    ? { "@type": "Organization", "name": resumeData.experience[0].company, "url": resumeData.experience[0].link }
+    : undefined,
+  "knowsAbout": resumeData.skills?.flatMap((s: ResumeItem) => s.skills ?? []) ?? [],
+  "sameAs": [
+    "https://www.linkedin.com/in/chenyingshiuan/",
+    "https://github.com/yingshiuan",
+    "https://yingshiuan.github.io/yshiuanc/"
+  ],
+  "hasOccupation": resumeData.experience?.map((item: ResumeItem) => ({
+    "@type": "Occupation",
+    "name": item.title,
+    "description": item.linkInfo ?? "",
+    "startDate": item.date?.split('–')[0]?.trim(),
+    "endDate": item.date?.split('–')[1]?.trim(),
+    "jobLocation": item.location ?? undefined,
+    "skills": item.tech ?? undefined,
+    "employer": item.company ? { "@type": "Organization", "name": item.company, "url": item.link ?? undefined } : undefined
+  })),
+  "alumniOf": resumeData.education?.map((edu: ResumeItem) => ({
+    "@type": "EducationalOrganization",
+    "name": edu.company,
+    "sameAs": edu.link ?? undefined,
+    "startDate": edu.date?.split('-')[0]?.trim(),
+    "endDate": edu.date?.split('-')[1]?.trim()
+  })),
+  "hasCredential": resumeData.certification?.map((cert: ResumeItem) => ({
+  "@type": "EducationalOccupationalCredential",
+  "name": cert.title,
+  "credentialCategory": "Certificate",
+//   "awardedBy": cert.company ? { "@type": "Organization", "name": cert.company, "sameAs": cert.link ?? undefined } : undefined,
+  "startDate": cert.date?.split('-')[0]?.trim(),
+  "endDate": cert.date?.split('-')[1]?.trim(),
+  "url": cert.link ?? undefined
+}))
+};
+
+// console.log(jsonLd);
+
+// console.log(JSON.stringify(jsonLd, null, 2));
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
