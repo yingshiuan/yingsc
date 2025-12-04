@@ -1,6 +1,4 @@
 ---
-import NavBar from './NavBar.astro';
-
 const baseUrl = import.meta.env.BASE_URL;
 const year = new Date().getFullYear();
 ---
@@ -14,9 +12,6 @@ const year = new Date().getFullYear();
         <span class="item_link_hover">Email me</span>
       </div>
     </div>
-
-    <!-- Navbar -->
-    <!-- <NavBar baseUrl={baseUrl}/> -->
     <br>
 
     <!-- Social media -->
@@ -45,17 +40,17 @@ const year = new Date().getFullYear();
 
     <hr />
     <!-- Resources -->
-    <!-- <div class="resource">
+    <div class="resource">
       <ul class="sitemap">
-        <li><a href=`${baseUrl}sitemap`>Site Map</a></li>
+        <li><a href={`${baseUrl}sitemap`}>Site Map</a></li>
       </ul>
-    </div> -->
+    </div>
 
     <!-- Copyright -->
     <div class="footer_copyright">
       <p>
         Copyright &copy; {year}
-        <a href="#">Ying-Shiuan Chen</a>. All rights reserved.
+        <a href="/">Ying-Shiuan Chen</a>. All rights reserved.
       </p>
     </div>
   </div>
@@ -63,8 +58,9 @@ const year = new Date().getFullYear();
 
 <style>
   @reference "@/styles/global.css";
+
   footer {
-    @apply bg-[#2C2C2C] text-white opacity-90;
+    @apply bg-[var(--color-header)]  text-white opacity-90;
   }
 
   a {

@@ -5,7 +5,6 @@ import '@/styles/global.css';
 const { siteTitle = 'Yinz' } = Astro.props;
 
 const baseUrl = import.meta.env.BASE_URL;
-
 ---
 
 <script>
@@ -145,12 +144,12 @@ const baseUrl = import.meta.env.BASE_URL;
 
         <div class="theme-bar">
           <div class="flex relative group items-center py-[0.5rem]">
-              <a href=`${baseUrl}` class="theme-link">
-                {siteTitle}
-              </a>
-              <span class="tooltip">"Nice to meet you!"</span>
+            <a href=`${baseUrl}` class="theme-link">
+              {siteTitle}
+            </a>
+            <span class="tooltip">"Nice to meet you!"</span>
           </div>
-          <!-- <NavBar baseUrl={baseUrl}/> -->
+          <NavBar baseUrl={baseUrl} />
           <div class="relative items-center group">
             <button
               id="mode-button"
@@ -178,7 +177,7 @@ const baseUrl = import.meta.env.BASE_URL;
   @reference "@/styles/global.css";
 
   .header-container {
-    @apply top-0 left-0 right-0 fixed z-[100] bg-[#2C2C2C] opacity-90;
+    @apply top-0 left-0 right-0 fixed z-[100] bg-[var(--color-header)] opacity-90;
   }
 
   .theme-bar {
@@ -189,20 +188,20 @@ const baseUrl = import.meta.env.BASE_URL;
     @apply text-white hover:text-[var(--color-text-hover)] hover:text-shadow-[0.05rem_0.05rem_var(--color-text-primary)];
   }
 
-
   .mode-button {
     @apply text-white bg-transparent border-0 cursor-pointer text-[1.5rem] relative hover:text-[var(--color-text-secondary)] items-center;
   }
 
   .scroll-bar {
-    @apply block text-center mt-[1.5rem] py-[0.5rem] bg-[var(--color-caption-primary)] text-[var(--color-caption-secondary)] z-[98];
+    @apply block text-center mt-[1.5rem] py-[0.5rem] bg-[var(--color-work-background)] text-[var(--color-text-primary)] z-[98] shadow-[0_0.5px_6px_var(--color-text-secondary)] backdrop-blur-md;
   }
 
   .scroll-bar p {
     @apply m-0;
   }
+  
   .tooltip {
-    @apply invisible absolute text-white w-max bottom-[-3rem] -translate-x-1/3 bg-[#2C2C2C] p-[0.2rem] z-10 rounded-sm group-hover:visible;
+    @apply invisible absolute w-max bottom-[-3rem] -translate-x-1/3 bg-[var(--color-header)] p-[0.2rem] z-10 rounded-sm group-hover:visible;
   }
 
   /* Arrow */
@@ -221,6 +220,7 @@ const baseUrl = import.meta.env.BASE_URL;
     .header-container {
       background: none;
       width: 90%;
+      opacity: 100%;
     }
 
     .theme-bar {

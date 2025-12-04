@@ -3,8 +3,6 @@ import Layout from '@/layouts/Layout.astro';
 import Intro from '@/components/layout/Intro.astro';
 import Square from '@/components/grids/Square.astro';
 import About from '@/components/layout/About.astro';
-
-const baseUrl = import.meta.env.SITE;
 ---
 
 <Layout
@@ -16,11 +14,6 @@ const baseUrl = import.meta.env.SITE;
     <Intro />
   </div>
 
-    <div class="text-center">
-    <h3>Currently the website is upgrading...</h3>
-        <h3>In the meantime, you can view the <a href="https://yingshiuan.github.io/yshiuanc/" class="underline">previous website</a>!</h3>
-      </div>
-
-  <!-- <Square /> -->
+  <Square />
   <div class="my-[12rem]"><About /></div>
 </Layout>
