@@ -4,6 +4,7 @@ import LinkTag from '@/components/UI/LinkTag.astro';
 import Button from '@/components/UI/Button.astro';
 import BreakLine from '@/components/UI/BreakLine.astro';
 import ResumeSection from '@/components/content/ResumeSection.astro';
+import AEO from '@/components/layout/AEO.astro'
 
 import type { ResumeData } from '@/ts/resume';
 import resumeDataJson from '@/content/resume/resume.json';
@@ -34,6 +35,12 @@ const gifImagePath = `${base}${gifImage}`;
   image={profileImagePath}
   keywords="Ying-Shiuan Chen, software engineer, product designer, developer, interaction"
   >
+
+  <AEO
+      title="Ying-Shiuan Chen"
+      canonicalUrl="https://yingshiuan.github.io/"
+      resumeData={resumeData}
+  />
   
   <section class="aboutMe">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -58,7 +65,7 @@ const gifImagePath = `${base}${gifImage}`;
 
       <!-- Text section -->
       <div class="lg:col-span-8 space-y-6 text-center">
-        <h3>Hi! I'm Ying.</h3>
+        <h1>Hi! I'm Ying.</h1>
         <p>
           As an <LinkTag tags={['Interaction Developer and Designer']} />, who
           builds tools that make experiences intuitive and enjoyable.

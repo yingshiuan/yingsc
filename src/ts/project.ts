@@ -1,7 +1,7 @@
 export interface ProjectMeta {
   title: string;
   order?: number;
-  category?: string;
+  category: string | string[];
   tags: string[];
   image: string;
   hoverImage: string;

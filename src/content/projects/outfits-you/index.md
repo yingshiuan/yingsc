@@ -1,6 +1,6 @@
 ---
 title: 'Outfits You'
-order: 1
+order: 2
 category: 'UI/UX'
 slug: 'outfits-you'
 tags: ['Augmented Reality', 'UI/UX', 'Application']

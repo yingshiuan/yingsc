@@ -6,8 +6,8 @@
       "location": "Zürich, Switzerland",
       "link": "https://studios.disneyresearch.com",
       "linkInfo":"A lab advancing visual computing, AI, and filmmaking technologies.",
-      "tech": ["TypeScript", "Vue.js", "Python", "Node.js", "ChromaDB"],
-      "date": "Feb 2025 – Present",
+      "tech": ["TypeScript", "Vue.js", "Python", "Node.js", "ChromaDB", "Figma"],
+      "date": "Feb 2025 – Aug 2025",
       "role" :""
     },
     {
@@ -16,8 +16,8 @@
       "location": "Zürich, Switzerland",
       "link": "https://sensoryx.tech",
       "linkInfo":"A Swiss startup specializing in motion tracking for VR/AR.",
-      "tech":["C#", "Unity 3D", "AR/VR"],
-      "date": "Feb 2025 – Present",
+      "tech":["C#", "Unity 3D", "AR/VR", "Figma"],
+      "date": "Aug 2024 – Dec 2024",
       "role" :""
     },
     {
@@ -26,7 +26,7 @@
       "location": "Remote",
       "linkInfo":"Independent web development and interaction design practice.",
       "tech": ["TypeScript", "JavaScript", "Vue.js", "React.js","HTML5/CSS3", "Tailwind CSS", "Node.js", "Figma"],
-      "date": "Jan 2022 - July 2024",
+      "date": "Jan 2022 – July 2024",
       "role" :""
     },
     {
@@ -42,7 +42,7 @@
       ],
       "linkInfo":"A Swiss manufacturer of customizable high-quality bikes and e-bikes.",
       "tech": ["Blender 3D", "Figma"],
-      "date": "Jan 2022 - July 2024",
+      "date": "Jan 2022 – July 2024",
       "role": "I created 3D product animations from concept to completion, achieving 10k views (5x above average) and driving customer traffic to product pages."
     },
     {
@@ -51,7 +51,7 @@
       "location": "Remote",
       "linkInfo":"Fashion startup transitioning from handcrafted to digital e-commerce.",
       "tech": ["Figma", "HTML5/CSS3", "UI/UX"],
-      "date": "Mar 2021- Aug 2021",
+      "date": "Mar 2021 – Aug 2021",
       "role" :"Optimized e-commerce UX to secure manufacturing partnerships and drive a 35% order increase in the first season post-launch."
     },
     {
@@ -59,20 +59,20 @@
       "company": "Freelance",
       "location": "Remote",
        "tech": ["Figma", "HTML5/CSS3", "UI/UX", "Adobe After Effects"],
-      "date": "Mar 2020 - Aug 2021"
+      "date": "Mar 2020 – Aug 2021"
     },
     {
       "title": "Research and Teaching Assistant",
       "company": "Dept. Architecture of Tamkang University",
       "location": "Taiwan",
       "tech": ["Rhinoceros 3D & Grasshopper", "Unity 3D", "C#", "JavaScript", "Python", "CAD/CAM"],
-      "date": "Sep 2017 - Sep 2018"
+      "date": "Sep 2017 – Sep 2018"
     },
     {
       "title": "Research Assistant Laboratory Manager",
       "company": "CCC Lab",
       "location": "Taiwan",
-      "date": "Sep 2017 - Sep 2018"
+      "date": "Sep 2017 – Sep 2018"
     }
   ],
   "initiatives": [
@@ -145,7 +145,7 @@
           "label": "Certificate Link"
         }
       ],
-      "date": "June - Aug 2021"
+      "date": "June 2021 - Aug 2021"
     }
   ],
    "skills": [

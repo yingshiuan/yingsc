@@ -1,25 +1,26 @@
 ---
 interface Props {
-  tags: string[];
+  tags: string | string[];
 }
 
 const { tags } = Astro.props;
 ---
 
-{
-  tags.length > 0 && (
-    <ul class="tags_container">
-      {tags.map((t) => (
-        <li class="tags">{t}</li>
-      ))}
-    </ul>
-  )
-}
+{tags && (
+  <ul class="tags_container">
+    {Array.isArray(tags)
+      ? tags.map((t) => <li class="tags">{t}</li>)
+      : <li class="tags">{tags}</li>
+    }
+  </ul>
+)}
+
+
 
 <style>
   @reference "@/styles/global.css";
   .tags_container {
-    @apply flex mt-[2rem] gap-2 flex-wrap;
+    @apply flex mt-[1rem] gap-2 flex-wrap;
   }
   .tags {
     @apply text-lg font-medium border-[1.5px] border-[var(--color-text-primary)] rounded-[6px] p-[0.2rem];

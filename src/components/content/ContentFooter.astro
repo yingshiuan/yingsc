@@ -11,7 +11,7 @@ const { project, baseUrl } = Astro.props;
                   {project.data.completed}
             </div>
             <div class="group relative inline-block">
-                  <a href={project.data.creditLink} class="item_link">Project Credit: {project.data.credit}</a>
+                  <a href={project.data.creditLink} class="item_link" target="_blank" rel="noopener noreferrer">Project Credit: {project.data.credit}</a>
                   <span class="item_link_hover">Go to the Website...</span>
             </div>
 

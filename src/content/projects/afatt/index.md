@@ -1,22 +1,55 @@
 ---
 title: 'A Fatt Restaurant Menu'
-order: 4
-category: 'Design System'
+order: 0
+category: 'Web App'
 slug: 'afatt'
-tags: ['UI/UX', 'Design System', 'Branding', 'Service Design']
+tags: ['Full Stack', 'UI/UX', 'Web App', 'Design System']
 image: './afatt/afatt_c.png'
 hoverImage: './afatt/afatt-menu.webp'
 info: 'Inclusive, dietary-friendly, multilingual menu with intuitive layout for customers to enjoy Malaysian Chinese Home Favourites.'
-description: 'I designed a scalable, flexible menu system for A Fatt, integrating multilingual content, dietary tagging, and a modular layout that allows the restaurant team to update dishes without redesigning from scratch. The system bridges UX design, operational efficiency, and brand experience, ensuring a cohesive dining experience for customers while empowering staff to maintain and evolve the menu independently.'
+description: 'I designed a scalable, flexible menu system for A Fatt, integrating multilingual content, dietary tagging, and a modular layout. Alongside UX design in Figma and Canva, I also built a web app that allows the restaurant team to update menu items dynamically, manage translations, and export menus as PDF—bridging UX design and software functionality in a single solution.'
 type: 'demo'
 role: 'UX & System Designer'
 timeline: '1 month'
 completed: '08/2024'
 credit: 'A Fatt'
 creditLink: 'https://afatt.ch/'
-tools: ['Figma', 'Canva']
-activities: 'I love designing food experiences—probably because I love eating just as much. For this project, I engineered a scalable menu system in Figma and Canva, defining reusable layout modules, typographic hierarchies, and multilingual components. By structuring the menu as a living system, the restaurant team can update dishes, translations, or dietary labels without recreating layouts. This reduces repetitive work, maintains brand consistency, and creates a workflow that supports long-term adaptability. The collaborative, iterative process resulted in a menu that is both operationally efficient and delightfully user-friendly.'
+tools: ['Figma', 'Canva', 'vue']
+activities: 'I love designing food experiences—probably because I love eating just as much. For this project, I engineered a scalable menu system in Figma and Canva, defining reusable layout modules, typographic hierarchies, and multilingual components. By structuring the menu as a living system, the restaurant team can update dishes, translations, or dietary labels without recreating layouts. Inspired by this workflow, I created a full-stack web app as a side project that translates the system into a dynamic, independently managed digital menu, supporting live updates, CSV uploads, and PDF exports—showcasing both my design and development skills.'
 ---
+
+
+<div class="contentSection border rounded-sm p-[0.5rem]">
+
+## Explore the Interactive Menu Generator
+
+After completing the **Figma** and **Canva** designs, I brought the menu system to life by developing a **web app** that allows the restaurant team to dynamically create, update, and manage the menu. The app translates the design system into a fully interactive tool, supporting multilingual content, dietary tagging, modular layouts, and PDF exports for printing.
+
+<div>
+  You can explore my side project on GitHub:
+
+  <a href="https://github.com/yingshiuan/menuGen" target="_blank" rel="noopener noreferrer">
+    <img src="https://img.shields.io/badge/View%20on-GitHub-181717?logo=github&logoColor=white" alt="GitHub Repo - menuGen"
+    style="height: 1.5rem; display: inline;">
+  </a>
+</div>
+
+#### Highlights:
+
+- Upload menu data via CSV and export as PDF for printing
+- Live menu creation and editing
+- Modular layout components
+- Multi-language support (English, German, Traditional Chinese)
+- Dietary tagging for vegan, vegetarian, gluten-free, and spicy options
+- Designed for operational efficiency and ease of use
+
+<br>
+
+This tool complements the Figma and Canva designs, creating a **living, scalable menu system** that the restaurant staff can manage independently.
+
+</div>
+
+
 
 <div class="contentSection">
 

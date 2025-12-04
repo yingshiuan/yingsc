@@ -11,7 +11,7 @@ const { projectMeta } = Astro.props as Props;
 ---
 <section class="meta space-y-16">
   <div class="space-y-16">
-    <h2 class="projectTitle">{projectMeta.title}</h2>
+    <h1 class="projectTitle">{projectMeta.title}</h1>
     <p class="projectDescription">{projectMeta.description}</p>
     <div class="my-[2rem]">
       {projectMeta.tags && <Tag tags={projectMeta.tags} />}
@@ -72,7 +72,6 @@ const { projectMeta } = Astro.props as Props;
   .meta{
     @apply max-w-[80rem] mx-auto my-8 px-[2.5rem]; 
   }
-
 
   .projectDetail{
     @apply border rounded-sm p-[0.5rem];
