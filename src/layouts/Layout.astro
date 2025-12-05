@@ -8,7 +8,6 @@ import '@/styles/global.css';
 
 const { title, description, image, url, keywords } = Astro.props as SeoData;
 
-
 ---
 
 <!doctype html>
@@ -23,6 +22,9 @@ const { title, description, image, url, keywords } = Astro.props as SeoData;
   
   <Header />
   <body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-ABCDEFGH"
+    height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+
     <Analytics measurementId="G-XPJ7PBRN07" requireConsent={false} />
     <slot />
     <main class="min-h-[30vh]"></main>
