@@ -116,9 +116,12 @@ console.log(jsonLd);
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
   />
   <!-- <meta name="generator" content={Astro.generator} /> -->
-   <script is:inline>
+  <script is:inline type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-XPJ7PBRN07"></script>
+  <script is:inline type="text/partytown">
     window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-XPJ7PBRN07', { anonymize_ip: true });
   </script>
-
-
 </head>
