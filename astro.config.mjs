@@ -3,6 +3,7 @@ import { defineConfig } from "astro/config";
 import path from "path";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
+import partytown from '@astrojs/partytown'
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,6 +14,11 @@ export default defineConfig({
     sitemap({
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       filter: (page) => true,
+    }),
+    partytown({
+        config: {
+          forward: ["dataLayer.push"],
+        },
     }),
   ],
   vite: {
