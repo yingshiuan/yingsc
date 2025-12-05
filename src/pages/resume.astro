@@ -16,7 +16,7 @@ interface Props {
   gifImage?: string;
 }
 
-const base = import.meta.env.BASE_URL;
+const baseUrl = import.meta.env.BASE_URL;
 
 const {
   profileImage = 'images/about/ying.jpg',
@@ -24,8 +24,8 @@ const {
 } = Astro.props;
 
 
-const profileImagePath = `${base}${profileImage}`;
-const gifImagePath = `${base}${gifImage}`;
+const profileImagePath = `${baseUrl}${profileImage}`;
+const gifImagePath = `${baseUrl}${gifImage}`;
 
 ---
 
@@ -75,7 +75,7 @@ const gifImagePath = `${base}${gifImage}`;
         </p>
         <div class="flex justify-end">
           <Button
-            href={`${base}content/resume/Ying-Shiuan Chen_Resume.pdf`}
+            href={`${baseUrl}content/resume/Ying-Shiuan Chen_Resume.pdf`}
             target="_blank"
             label="PDF Resume"
             color="primary"
