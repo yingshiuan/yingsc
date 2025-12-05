@@ -6,29 +6,8 @@ interface Props {
   requireConsent?: boolean;
 }
 
-const {
-  measurementId,
-  requireConsent = false
-} = Astro.props;
+const { measurementId, requireConsent = true } = Astro.props;
 ---
-
-<!-- Consent Mode Stub (required by Google) in the Head-->
-<!-- <script is:inline>
-  window.dataLayer = window.dataLayer || [];
-
-  // Use rest parameters instead of "arguments"
-  window.gtag = function (...args) {
-    window.dataLayer.push(args);
-  };
-
-  // Default denied until the user chooses
-  gtag('consent', 'default', {
-    ad_storage: 'denied',
-    analytics_storage: 'denied',
-    ad_user_data: 'denied',
-    ad_personalization: 'denied'
-  });
-</script> -->
 
 <div
   id="cookie-banner"
@@ -59,43 +38,31 @@ const {
     if (!measurementId || window.gtagLoaded) return;
     window.gtagLoaded = true;
 
+    // Load GA via Partytown
     const script = document.createElement("script");
-    script.async = true;
     script.type = "text/partytown";
+    script.async = true;
     script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
-
     script.onload = () => {
       window.dataLayer = window.dataLayer || [];
       window.gtag = function(...args) { window.dataLayer.push(args); };
 
+      // Initialize GA after loading
       gtag('js', new Date());
       gtag('config', measurementId, { anonymize_ip: true });
     };
-
     document.head.appendChild(script);
   }
 
   function accept() {
     localStorage.setItem("analytics_consent", "accepted");
-
-    if (typeof gtag === "function") {
-      gtag("consent", "update", {
-        ad_storage: "granted",
-        analytics_storage: "granted",
-        ad_user_data: "granted",
-        ad_personalization: "granted"
-      });
-      loadGA();
-    } else {
-      // Retry in 50ms until gtag exists
-      setTimeout(accept, 50);
-    }
-
+    loadGA();
     banner?.remove();
   }
+
   function reject() {
     localStorage.setItem("analytics_consent", "rejected");
-    banner.remove();
+    banner?.remove();
   }
 
   if (requireConsent) {
@@ -103,15 +70,13 @@ const {
       banner.classList.remove("hidden");
       requestAnimationFrame(() => banner.classList.add("opacity-100"));
     } else if (savedConsent === "accepted") {
-      accept();
+      loadGA();
     }
-
     document.getElementById("acceptCookies")?.addEventListener("click", accept);
     document.getElementById("rejectCookies")?.addEventListener("click", reject);
-
   } else {
-    // Auto-accept when consent not required
-    accept();
+    // Auto-load GA if consent is not required
+    loadGA();
   }
 })();
 </script>
