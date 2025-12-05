@@ -32,6 +32,11 @@ const { measurementId, gtmId, requireConsent = true } = Astro.props;
   const banner = document.getElementById("cookie-banner");
   if (!banner) return;
 
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function () {
+    window.dataLayer.push(arguments);
+  };
+
   const requireConsent = banner.dataset.requireConsent === "true";
   const measurementId = banner.dataset.gaId;
   const gtmId = banner.dataset.gtmId;
@@ -47,9 +52,6 @@ const { measurementId, gtmId, requireConsent = true } = Astro.props;
     script.async = true;
     script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
     script.onload = () => {
-      window.dataLayer = window.dataLayer || [];
-      window.gtag = (...args) => window.dataLayer.push(args);
-
       gtag('js', new Date());
       gtag('config', measurementId, { anonymize_ip: true });
     };
