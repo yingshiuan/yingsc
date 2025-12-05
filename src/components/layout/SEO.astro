@@ -3,12 +3,13 @@ import type { SeoData } from '@/ts/type.ts';
 
 const { title, description, image, url, keywords} = Astro.props as SeoData;
 const fullTitle = `${title} | Ying-Shiuan Chen | Zürich`;
-const ogImage = image ?? './yinz.svg';
 
 const keywordString = Array.isArray(keywords) ? keywords.join(', ') : keywords ?? '';
 
 const baseUrl = import.meta.env.SITE || 'https://yingshiuan.github.io';
 const pageUrl = url ?? Astro.url.pathname;
+
+const ogImage = image ?? `${baseUrl}/yinz.svg`;
 
 // Check if pageUrl already starts with http
 const canonicalUrl = pageUrl.startsWith('http')
