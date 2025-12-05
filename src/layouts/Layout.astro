@@ -23,7 +23,7 @@ const { title, description, image, url, keywords } = Astro.props as SeoData;
   
   <Header />
   <body>
-    <Analytics measurementId="G-XPJ7PBRN07" requireConsent={false} client:load />
+    <Analytics measurementId="G-XPJ7PBRN07" requireConsent={false} />
     <slot />
     <main class="min-h-[30vh]"></main>
     
