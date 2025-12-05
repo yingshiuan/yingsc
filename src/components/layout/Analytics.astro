@@ -11,6 +11,25 @@ const {
   requireConsent = false
 } = Astro.props;
 ---
+
+<!-- Consent Mode Stub (required by Google) in the Head-->
+<!-- <script is:inline>
+  window.dataLayer = window.dataLayer || [];
+
+  // Use rest parameters instead of "arguments"
+  window.gtag = function (...args) {
+    window.dataLayer.push(args);
+  };
+
+  // Default denied until the user chooses
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    analytics_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied'
+  });
+</script> -->
+
 <div
   id="cookie-banner"
   data-ga-id={measurementId}
@@ -43,10 +62,14 @@ const {
     const script = document.createElement("script");
     script.async = true;
     script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
-    document.head.appendChild(script);
 
-    gtag("js", new Date());
-    gtag("config", measurementId, { anonymize_ip: true });
+    script.onload = () => {
+      // Only call gtag after the GA library is loaded
+      gtag("js", new Date());
+      gtag("config", measurementId, { anonymize_ip: true });
+    };
+
+    document.head.appendChild(script);
   }
 
   function accept() {
