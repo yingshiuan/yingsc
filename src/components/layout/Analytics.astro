@@ -61,12 +61,15 @@ const {
 
     const script = document.createElement("script");
     script.async = true;
+    script.type = "text/partytown";
     script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
 
     script.onload = () => {
-      // Only call gtag after the GA library is loaded
-      gtag("js", new Date());
-      gtag("config", measurementId, { anonymize_ip: true });
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function(...args) { window.dataLayer.push(args); };
+
+      gtag('js', new Date());
+      gtag('config', measurementId, { anonymize_ip: true });
     };
 
     document.head.appendChild(script);

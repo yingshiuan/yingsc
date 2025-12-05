@@ -1,5 +1,6 @@
 ---
 import SEO from '@/components/layout/SEO.astro';
+import AnalyticsStub from '@/components/layout/AnalyticsStub.astro';
 
 
 import type { SeoData } from '@/ts/type.ts';
@@ -118,21 +119,4 @@ console.log(jsonLd);
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
   />
   <!-- <meta name="generator" content={Astro.generator} /> -->
-  <script>
-    window.dataLayer = window.dataLayer || [];
-
-    // Use rest parameters instead of "arguments"
-    window.gtag = function (...args) {
-      window.dataLayer.push(args);
-    };
-
-    // Default denied until the user chooses
-    gtag('consent', 'default', {
-      ad_storage: 'denied',
-      analytics_storage: 'denied',
-      ad_user_data: 'denied',
-      ad_personalization: 'denied'
-    });
-  </script>
-
 </head>
