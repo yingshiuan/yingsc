@@ -37,6 +37,7 @@ const { measurementId, gtmId, requireConsent = true } = Astro.props;
   const gtmId = banner.dataset.gtmId;
   const savedConsent = localStorage.getItem("analytics_consent");
 
+  // Load GA (Partytown)
   function loadGA() {
     if (!measurementId || window.gtagLoaded) return;
     window.gtagLoaded = true;
@@ -47,7 +48,7 @@ const { measurementId, gtmId, requireConsent = true } = Astro.props;
     script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
     script.onload = () => {
       window.dataLayer = window.dataLayer || [];
-      window.gtag = function(...args) { window.dataLayer.push(args); };
+      window.gtag = (...args) => window.dataLayer.push(args);
 
       gtag('js', new Date());
       gtag('config', measurementId, { anonymize_ip: true });
@@ -55,24 +56,41 @@ const { measurementId, gtmId, requireConsent = true } = Astro.props;
     document.head.appendChild(script);
   }
 
-  // GTM in main thread
+  // Load GTM (main thread)
   function loadGTM() {
     if (!gtmId || window.gtmLoaded) return;
     window.gtmLoaded = true;
 
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+    (function (w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
 
-    const script = document.createElement('script');
-    script.async = true;
-    script.src = `https://www.googletagmanager.com/gtm.js?id=${gtmId}`;
-    document.head.appendChild(script);
+      const f = d.getElementsByTagName(s)[0];
+      const j = d.createElement(s);
+      const dl = l !== "dataLayer" ? "&l=" + l : "";
+      j.async = true;
+      j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, "script", "dataLayer", gtmId);
+  }
+
+  // Consent update AFTER GA + GTM load
+  function updateConsents() {
+    gtag("consent", "update", {
+      ad_storage: "granted",
+      analytics_storage: "granted",
+      ad_user_data: "granted",
+      ad_personalization: "granted"
+    });
   }
 
   function accept() {
     localStorage.setItem("analytics_consent", "accepted");
+
     loadGA();
     loadGTM();
+    updateConsents();   // ← REQUIRED
+
     banner?.remove();
   }
 
@@ -88,13 +106,17 @@ const { measurementId, gtmId, requireConsent = true } = Astro.props;
     } else if (savedConsent === "accepted") {
       loadGA();
       loadGTM();
+      updateConsents(); // ← REQUIRED
     }
+
     document.getElementById("acceptCookies")?.addEventListener("click", accept);
     document.getElementById("rejectCookies")?.addEventListener("click", reject);
+
   } else {
-    // Auto-load GA and GTM if consent is not required
     loadGA();
     loadGTM();
+    updateConsents();
   }
 })();
 </script>
+
