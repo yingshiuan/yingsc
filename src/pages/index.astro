@@ -3,12 +3,15 @@ import Layout from '@/layouts/Layout.astro';
 import Intro from '@/components/layout/Intro.astro';
 import Square from '@/components/grids/Square.astro';
 import About from '@/components/layout/About.astro';
+
+const baseUrl = import.meta.env.SITE || 'https://yingshiuan.github.io';
+
 ---
 
 <Layout
   title="Homepage"
   description="Ying-Shiuan Chen loves creating functional yet fun interactions to humanize technology!"
-  image="./yinz.png"
+  image={`${baseUrl}/yinz.png`}
   keywords="Ying-Shiuan Chen, software engineer, product designer, developer, interaction">
   <div class="my-[12rem]">
     <Intro />
