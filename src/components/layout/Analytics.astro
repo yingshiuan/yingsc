@@ -2,21 +2,23 @@
 import Button from '@/components/UI/Button.astro';
 
 interface Props {
-  measurementId: string;
+  measurementId?: string; // GA4 measurement ID (optional if using GTM only)
+  gtmId?: string;         // GTM container ID
   requireConsent?: boolean;
 }
 
-const { measurementId, requireConsent = true } = Astro.props;
+const { measurementId, gtmId, requireConsent = true } = Astro.props;
 ---
 
 <div
   id="cookie-banner"
   data-ga-id={measurementId}
+  data-gtm-id={gtmId}
   data-require-consent={requireConsent}
   class="flex flex-col justify-center items-center fixed inset-0 bg-[var(--color-caption-primary)]/80 text-[var(--color-caption-secondary)] p-4 rounded shadow-lg z-50 hidden opacity-0 transition-opacity"
 >
   <p class="text-sm text-center">
-    This site uses Google Analytics to understand usage. You can choose whether to allow analytics cookies.
+    This site uses Google Analytics and Google Tag Manager to understand usage. You can choose whether to allow analytics cookies.
   </p>
   <br />
   <div class="flex justify-center items-center gap-4">
@@ -32,13 +34,13 @@ const { measurementId, requireConsent = true } = Astro.props;
 
   const requireConsent = banner.dataset.requireConsent === "true";
   const measurementId = banner.dataset.gaId;
+  const gtmId = banner.dataset.gtmId;
   const savedConsent = localStorage.getItem("analytics_consent");
 
   function loadGA() {
     if (!measurementId || window.gtagLoaded) return;
     window.gtagLoaded = true;
 
-    // Load GA via Partytown
     const script = document.createElement("script");
     script.type = "text/partytown";
     script.async = true;
@@ -47,16 +49,30 @@ const { measurementId, requireConsent = true } = Astro.props;
       window.dataLayer = window.dataLayer || [];
       window.gtag = function(...args) { window.dataLayer.push(args); };
 
-      // Initialize GA after loading
       gtag('js', new Date());
       gtag('config', measurementId, { anonymize_ip: true });
     };
     document.head.appendChild(script);
   }
 
+  function loadGTM() {
+    if (!gtmId || window.gtmLoaded) return;
+    window.gtmLoaded = true;
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+
+    const script = document.createElement('script');
+    script.type = 'text/partytown';
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtm.js?id=${gtmId}`;
+    document.head.appendChild(script);
+  }
+
   function accept() {
     localStorage.setItem("analytics_consent", "accepted");
     loadGA();
+    loadGTM();
     banner?.remove();
   }
 
@@ -71,12 +87,14 @@ const { measurementId, requireConsent = true } = Astro.props;
       requestAnimationFrame(() => banner.classList.add("opacity-100"));
     } else if (savedConsent === "accepted") {
       loadGA();
+      loadGTM();
     }
     document.getElementById("acceptCookies")?.addEventListener("click", accept);
     document.getElementById("rejectCookies")?.addEventListener("click", reject);
   } else {
-    // Auto-load GA if consent is not required
+    // Auto-load GA and GTM if consent is not required
     loadGA();
+    loadGTM();
   }
 })();
 </script>
