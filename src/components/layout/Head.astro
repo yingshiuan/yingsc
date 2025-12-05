@@ -121,6 +121,15 @@ console.log(jsonLd);
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+
+    // Set all storage to denied by default
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      analytics_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied'
+    });
+
     gtag('config', 'G-XPJ7PBRN07', { anonymize_ip: true });
   </script>
 </head>
