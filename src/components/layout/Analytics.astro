@@ -12,7 +12,7 @@ const {
 } = Astro.props;
 ---
 
-<!-- Consent Mode Stub (required by Google) -->
+<!-- Consent Mode Stub (required by Google) in the Head-->
 <!-- <script is:inline>
   window.dataLayer = window.dataLayer || [];
 
@@ -47,7 +47,7 @@ const {
 </div>
 
 <script is:inline>
-document.addEventListener("DOMContentLoaded", () => {
+(() => {
   const banner = document.getElementById("cookie-banner");
   if (!banner) return;
 
@@ -55,7 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const measurementId = banner.dataset.gaId;
   const savedConsent = localStorage.getItem("analytics_consent");
 
-  /** Load GA only after consent */
   function loadGA() {
     if (!measurementId || window.gtagLoaded) return;
     window.gtagLoaded = true;
@@ -65,48 +64,43 @@ document.addEventListener("DOMContentLoaded", () => {
     script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
     document.head.appendChild(script);
 
-    gtag('js', new Date());
-    gtag('config', measurementId, { anonymize_ip: true });
+    gtag("js", new Date());
+    gtag("config", measurementId, { anonymize_ip: true });
   }
 
-  /** Smooth fade-in */
-  function showBanner() {
-    banner.classList.remove("hidden");
-    requestAnimationFrame(() => banner.classList.add("opacity-100"));
-  }
-
-  /** Accept analytics */
-  function acceptConsent() {
+  function accept() {
     localStorage.setItem("analytics_consent", "accepted");
 
-    gtag('consent', 'update', {
-      ad_storage: 'granted',
-      analytics_storage: 'granted',
-      ad_user_data: 'granted',
-      ad_personalization: 'granted'
+    gtag("consent", "update", {
+      ad_storage: "granted",
+      analytics_storage: "granted",
+      ad_user_data: "granted",
+      ad_personalization: "granted"
     });
 
     banner.remove();
     loadGA();
   }
 
-  /** Reject analytics */
-  function rejectConsent() {
+  function reject() {
     localStorage.setItem("analytics_consent", "rejected");
     banner.remove();
   }
 
-  /** Logic */
   if (requireConsent) {
-    if (!savedConsent) showBanner();
-    else if (savedConsent === "accepted") acceptConsent();
+    if (!savedConsent) {
+      banner.classList.remove("hidden");
+      requestAnimationFrame(() => banner.classList.add("opacity-100"));
+    } else if (savedConsent === "accepted") {
+      accept();
+    }
 
-    document.getElementById("acceptCookies")?.addEventListener("click", acceptConsent);
-    document.getElementById("rejectCookies")?.addEventListener("click", rejectConsent);
+    document.getElementById("acceptCookies")?.addEventListener("click", accept);
+    document.getElementById("rejectCookies")?.addEventListener("click", reject);
 
   } else {
-    // Consent not required → auto-enable analytics
-    acceptConsent();
+    // Auto-accept when consent not required
+    accept();
   }
-});
+})();
 </script>
