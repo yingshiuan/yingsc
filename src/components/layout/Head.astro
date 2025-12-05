@@ -1,6 +1,6 @@
 ---
 import SEO from '@/components/layout/SEO.astro';
-import Analytics from '@/components/layout/Analytics.astro';
+
 
 import type { SeoData } from '@/ts/type.ts';
 
@@ -117,17 +117,22 @@ console.log(jsonLd);
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
   />
-  <!-- GA -->
-  <Analytics measurementId="G-XPJ7PBRN07" requireConsent={false}/>
   <!-- <meta name="generator" content={Astro.generator} /> -->
-
-   <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XPJ7PBRN07"></script>
-   <script>
+  <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XPJ7PBRN07', {anonymize_ip: true});
-    gtag('event', 'manual_test');
-  </script> -->
-  
+
+    // Use rest parameters instead of "arguments"
+    window.gtag = function (...args) {
+      window.dataLayer.push(args);
+    };
+
+    // Default denied until the user chooses
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      analytics_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied'
+    });
+  </script>
+
 </head>
