@@ -119,8 +119,8 @@ const jsonLd = {
   <!-- <meta name="generator" content={Astro.generator} /> -->
   {import.meta.env.PROD && (
     <>
-      <script is:inline type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-XPJ7PBRN07"></script>
-      <script is:inline type="text/partytown">
+      <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-XPJ7PBRN07"></script>
+      <script is:inline>
         window.dataLayer = window.dataLayer || [];
         function gtag(...args) { dataLayer.push(args); }
         gtag('js', new Date());
