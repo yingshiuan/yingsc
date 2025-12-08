@@ -25,4 +25,15 @@ const projects = defineCollection({
   }),
 });
 
-export const collections = { projects };
+
+const about = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    profileImage: z.string().optional(),
+    gifImage: z.string().optional(),
+  }),
+});
+
+
+export const collections = { projects, about };

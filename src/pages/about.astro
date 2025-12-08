@@ -1,37 +1,39 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import TitleTag from '@/components/UI/TitleTag.astro';
+import { getCollection } from 'astro:content';
 
 interface Props {
   profileImage?: string;
   gifImage?: string;
 }
 
-const base = import.meta.env.BASE_URL;
+const baseUrl = import.meta.env.BASE_URL;
 
 const {
   profileImage = 'images/about/ying.jpg',
   gifImage = 'images/about/hihi.webp',
 } = Astro.props;
 
-const profileImagePath = `${base}${profileImage}`;
-const gifImagePath = `${base}${gifImage}`;
+const profileImagePath = `${baseUrl}${profileImage}`;
+const gifImagePath = `${baseUrl}${gifImage}`;
 
+const aboutMeCollection = await getCollection('about');
+const aboutMe = aboutMeCollection[0];
+const Content = (await aboutMe.render()).Content;
 ---
-
 <Layout
   title="About Me"
   description="Ying-Shiuan Chen loves creating functional yet fun interactions to humanize technology!"
   image={profileImagePath}
   keywords="Ying-Shiuan Chen, software engineer, product designer, developer, interaction"
   >
+  
   <!-- Content -->
   <section class="aboutMe">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
       <!-- Text section -->
       <div class="lg:col-span-8 space-y-6">
-        <h5>Hi Hi<span class="material-symbols-outlined">pets</span></h5>
-        <h5>I'm Ying.</h5>
+        <h5>Hi Hi! I'm Ying.<span class="material-symbols-outlined">pets</span></h5>
         <p>
           I am an <b>Interaction Designer and Designer</b>, coding <span
             class="material-symbols-outlined">
@@ -39,9 +41,19 @@ const gifImagePath = `${base}${gifImage}`;
           </span>
           to build intuitive, interactive systems that bridge digital and physical
           experiences.<span class="material-symbols-outlined">star</span>
-          <br />
-          <br />
         </p>
+        <p>I'm wrapping up a research internship at
+          <a href="https://studios.disneyresearch.com" target="_blank" rel="noopener noreferrer">DisneyResearch|Studios</a>
+          in Zürich, where I've been creating AI-powered data platforms and interactive web applications.
+        </p>
+        <div>
+          <p>
+            Check out my
+            <a href={`${baseUrl}projects`} target="_blank" rel="noopener noreferrer">projects</a>,
+            or <a href={`${baseUrl}content/resume/Ying-Shiuan Chen_Resume.pdf`} target="_blank" rel="noopener noreferrer">PDF Resume</a>,
+            connect with me on <a href="https://www.linkedin.com/in/chenyingshiuan/" target="_blank" rel="noopener noreferrer">LinkedIn</a>,
+          </p>
+        </div>
       </div>
 
       <!-- Images section -->
@@ -65,118 +77,19 @@ const gifImagePath = `${base}${gifImage}`;
     </div>
 
     <div class="lg:col-span-12 space-y-6">
-      <div class="aboutMeContainer">
-        <TitleTag tags={['Tell you more about me!']} />
-
-        <p>
-          All my actions come from my curiosity.<span
-            class="material-symbols-outlined">
-            auto_awesome
-          </span> I like to explore new things and be creative.<span
-            class="material-symbols-outlined">
-            near_me
-          </span>
-        </p>
-
-        <p>
-          As a tech-savvy person <span class="material-symbols-outlined">
-            devices_other
-          </span> who loves food <span class="material-symbols-outlined">
-            dinner_dining
-          </span> and goes workout regularly.<span
-            class="material-symbols-outlined">
-            directions_run
-          </span>
-        </p>
-
-        <p>
-          In addition to design, I also study human-robots collaboration <span
-            class="material-symbols-outlined">
-            precision_manufacturing
-          </span> and baking science. <span class="material-symbols-outlined">
-            cookie
-          </span>
-        </p>
-      </div>
+        <div class="about-content">
+          <Content />
+        </div>
     </div>
-
-    <div class="lg:col-span-12 space-y-6">
-      <div class="aboutMeContainer">
-        <TitleTag tags={['My daily essential products']} />
-
-        <p>
-          Computer<span class="material-symbols-outlined">computer</span>,
-          Coffee<span class="material-symbols-outlined">coffee_maker</span> or Tea<span
-            class="material-symbols-outlined">
-            emoji_food_beverage
-          </span> both with Milk<span class="material-symbols-outlined">
-            local_drink
-          </span>, Egg<span class="material-symbols-outlined">egg_alt</span>,
-          Sweets<span class="material-symbols-outlined">icecream</span><span
-            class="material-symbols-outlined">
-            bakery_dining
-          </span>, Headphones<span class="material-symbols-outlined">
-            headphones
-          </span>, Keyboard<span class="material-symbols-outlined">
-            keyboard
-          </span>, GoPro<span class="material-symbols-outlined">videocam</span>
-        </p>
-      </div>
-    </div>
-
-    <div class="lg:col-span-12 space-y-6">
-      <div class="aboutMeContainer">
-        <TitleTag tags={['Hobbies']} />
-
-        <p>
-          Travel<span class="material-symbols-outlined">flight_takeoff</span>,
-          Foodies<span class="material-symbols-outlined">local_dining</span>, Go
-          outdoors<span class="material-symbols-outlined">landscape</span><span
-            class="material-symbols-outlined">
-            wb_sunny
-          </span>, Watch series and movies<span
-            class="material-symbols-outlined">
-            movie
-          </span>, Reading<span class="material-symbols-outlined">
-            auto_stories
-          </span>
-        </p>
-        <p>
-          Be Creator<span class="material-symbols-outlined">camera_roll</span>
-        </p>
-      </div>
-    </div>
-
-    <div class="lg:col-span-12 space-y-6">
-      <div class="aboutMeContainer">
-        <TitleTag tags={['Pets']} />
-        <p>
-          Cat<span class="material-symbols-outlined">pets</span>, Plants<span
-            class="material-symbols-outlined">
-            potted_plant
-          </span>
-        </p>
-      </div>
-    </div>
-
-    <div class="lg:col-span-12 space-y-6">
-      <div class="aboutMeContainer">
-        <TitleTag tags={['Special skills']} />
-        <p>
-          Attract cats <span class="material-symbols-outlined">pets</span>or
-          animals automatically.
-        </p>
-      </div>
-    </div>
-
-    <TitleTag
-      tags={['Nice to meet you, contact me to tell me more about you!']}
-    />
   </section>
 </Layout>
 
 <style>
   @reference "@/styles/global.css";
+
+  a{
+    @apply underline text-[var(--color-text-primary)] hover:text-[var(--color-text-hover)] hover:text-shadow-[0.05rem_0.05rem_var(--color-text-primary)];
+  }
 
   .aboutMe {
     @apply px-[2.5rem] my-[12rem] mx-auto;
@@ -202,5 +115,18 @@ const gifImagePath = `${base}${gifImage}`;
     .aboutMe {
       @apply max-w-[80rem];
     }
+  }
+
+  /* about content styling */
+  :global(.about-content h4 ){
+    @apply flex mt-[1.5rem] gap-2 flex-wrap text-lg font-medium border-b-[1.5px] border-[var(--color-text-primary)] p-[0.2rem];
+  }
+
+  :global(.about-content h4:hover ){
+    @apply border-[var(--color-caption-primary)] bg-[var(--color-text-hover)] text-[var(--color-border)] shadow-[0.1rem_0.1rem_var(--color-caption-secondary)] transition duration-300;
+  }
+
+  :global(.about-content a ){
+      @apply underline text-[var(--color-text-primary)] hover:text-[var(--color-text-hover)] hover:text-shadow-[0.05rem_0.05rem_var(--color-text-primary)];
   }
 </style>
