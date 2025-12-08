@@ -15,6 +15,6 @@ I focus on creating intuitive, human-centered tools that bridge digital and phys
 #### What else I love
 When I'm not coding, you'll find me exploring Zürich's hiking trails, spending time to attract cats<span class="material-symbols-outlined">pets</span> or animals automatically outside, trying to perfect my German (currently somewhere between ordering coffee<span class="material-symbols-outlined">coffee_maker</span> or Tea<span class="material-symbols-outlined">emoji_food_beverage</span> and giving directions), or experimenting with new creative tools.<span class="material-symbols-outlined">auto_awesome</span>
 
-
-#### 
 I'm fascinated by how different cultures approach design and technology: it's why I love working in Switzerland's multicultural tech scene.
+
+####
