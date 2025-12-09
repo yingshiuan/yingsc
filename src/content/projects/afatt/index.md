@@ -34,6 +34,10 @@ After completing the **Figma** and **Canva** designs, I brought the menu system 
   </a>
 </div>
 
+#### Tools & Technologies:
+
+Vue.js, TypeScript, Tailwind CSS, Node.js and Puppeteer
+
 #### Highlights:
 
 - Upload menu data via CSV and export as PDF for printing
