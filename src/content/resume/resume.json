@@ -25,7 +25,7 @@
       "company": "insdash",
       "location": "Remote",
       "linkInfo":"Independent web development and interaction design practice.",
-      "tech": ["TypeScript", "JavaScript", "Vue.js", "React.js","HTML5/CSS3", "Tailwind CSS", "Node.js", "Figma"],
+      "tech": ["TypeScript", "JavaScript", "Vue.js", "React.js", "HTML5/CSS3", "Tailwind CSS", "Node.js",  "SQL", "Figma"],
       "date": "Jan 2022 – July 2024",
       "role" :""
     },
@@ -155,7 +155,7 @@
     },
     {
       "title": "Backend & Tools",
-      "skills": ["Python", "C#", "Node.js", "SQL", "RAG Systems", "ChromaDB", "Large Language Models (LLMs)", "Git/GitHub/GitLab"]
+      "skills": ["Python", "C#", "Node.js", "SQL", "FastAPI", "RAG Systems", "ChromaDB", "Large Language Models (LLMs)", "Git/GitHub/GitLab"]
     },
     {
       "title": "UI/UX & Prototyping",

@@ -1,7 +1,7 @@
 ---
 import type { SeoData } from '@/ts/type.ts';
 
-const { title, description, image, url, keywords} = Astro.props as SeoData;
+const { title, description, image, url, keywords, alt} = Astro.props as SeoData;
 const fullTitle = `${title} | Ying-Shiuan Chen | Zürich`;
 
 const keywordString = Array.isArray(keywords) ? keywords.join(', ') : keywords ?? '';
@@ -26,9 +26,11 @@ const canonicalUrl = pageUrl.startsWith('http')
 {url && <meta property="og:url" content={url} />}
 {description && <meta property="og:description" content={description} />}
 {image && <meta property="og:image" content={image} />}
+{alt && <meta property="og:image:alt" content={alt} />}
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={fullTitle} />
 {description && <meta name="twitter:description" content={description} />}
 {image && <meta name="twitter:image" content={image} />}
+{alt && <meta name="twitter:image:alt" content={alt} />}

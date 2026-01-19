@@ -4,4 +4,5 @@ export interface SeoData {
   image: string;
   url: string;
   keywords?: string[];
+  alt?: string;
 }

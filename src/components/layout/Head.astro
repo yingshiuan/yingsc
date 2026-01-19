@@ -2,7 +2,7 @@
 import SEO from '@/components/layout/SEO.astro';
 import type { SeoData } from '@/ts/type.ts';
 
-const { title, description, image, url, keywords } = Astro.props as SeoData;
+const { title, description, image, url, keywords, alt } = Astro.props as SeoData;
 
 const siteUrl = import.meta.env.SITE || 'https://yingshiuan.github.io';
 const baseUrl = import.meta.env.BASE_URL || 'https://yingshiuan.github.io/yingsc/'; 
@@ -19,6 +19,7 @@ const jsonLd = {
   "description": description ?? '',
   "url": canonicalUrl,
   "image": image,
+  "alt": alt ?? 'Ying-Shiuan Chen Portfolio Preview Image',
   "keywords": keywords,
   "author": {
     "@type": "Person",
@@ -96,6 +97,7 @@ const jsonLd = {
     image={image}
     url={canonicalUrl}
     keywords={keywords}
+    alt={alt}
   />
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com" />
