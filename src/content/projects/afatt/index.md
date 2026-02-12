@@ -41,7 +41,7 @@ Vue.js, TypeScript, Tailwind CSS, Node.js and Puppeteer
 #### Highlights:
 
 - Upload menu data via CSV and export as PDF for printing
-- Live menu creation and editing
+- Live menu creation and inline editing
 - Modular layout components
 - Multi-language support (English, German, Traditional Chinese)
 - Dietary tagging for vegan, vegetarian, gluten-free, and spicy options
@@ -50,6 +50,8 @@ Vue.js, TypeScript, Tailwind CSS, Node.js and Puppeteer
 <br>
 
 This tool complements the Figma and Canva designs, creating a **living, scalable menu system** that the restaurant staff can manage independently.
+
+![MenuGen](./menuGen.webp)
 
 </div>
 
