@@ -1,7 +1,7 @@
 ---
 title: 'A Fatt Restaurant Menu'
 order: 2
-category: 'Web App'
+category: 'Design System'
 slug: 'afatt'
 tags: ['UI/UX', 'Web App', 'Design System']
 image: './afatt/afatt_c.png'
