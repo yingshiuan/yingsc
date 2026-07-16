@@ -1,9 +1,9 @@
 ---
 title: 'A Fatt Restaurant Menu'
-order: 0
+order: 2
 category: 'Web App'
 slug: 'afatt'
-tags: ['Full Stack', 'UI/UX', 'Web App', 'Design System']
+tags: ['UI/UX', 'Web App', 'Design System']
 image: './afatt/afatt_c.png'
 hoverImage: './afatt/afatt-menu.webp'
 info: 'Inclusive, dietary-friendly, multilingual menu with intuitive layout for customers to enjoy Malaysian Chinese Home Favourites.'

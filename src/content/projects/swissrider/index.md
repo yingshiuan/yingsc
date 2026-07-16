@@ -1,6 +1,6 @@
 ---
 title: 'Swissrider'
-order: 3
+order: 5
 category: '3D Animation'
 slug: 'swissrider'
 tags: ['3D Animation', 'Advertising', 'UI/UX']
