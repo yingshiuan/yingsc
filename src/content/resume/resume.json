@@ -1,31 +1,31 @@
 {
   "experience": [
     {
-      "title": "Research Intern",
+      "title": "Research Intern (AI & Frontend Engineering)",
       "company": "DisneyResearch|Studios",
       "location": "Zürich, Switzerland",
       "link": "https://studios.disneyresearch.com",
       "linkInfo":"A lab advancing visual computing, AI, and filmmaking technologies.",
-      "tech": ["TypeScript", "Vue.js", "Python", "Node.js", "ChromaDB", "Figma"],
+      "tech": ["TypeScript", "Vue.js", "Python", "Node.js", "RAG Pipelines", "ChromaDB", "LLMs", "Figma"],
       "date": "Feb 2025 – Aug 2025",
       "role" :""
     },
     {
-      "title": "Development Intern",
+      "title": "XR Software Engineer Intern",
       "company": "Sensoryx",
       "location": "Zürich, Switzerland",
       "link": "https://sensoryx.tech",
       "linkInfo":"A Swiss startup specializing in motion tracking for VR/AR.",
-      "tech":["C#", "Unity 3D", "AR/VR", "Figma"],
+      "tech":["C#", "Unity", "XR", "Figma"],
       "date": "Aug 2024 – Dec 2024",
       "role" :""
     },
     {
-      "title": "Product Designer & Developer",
+      "title": "Frontend Developer",
       "company": "insdash",
       "location": "Remote",
       "linkInfo":"Independent web development and interaction design practice.",
-      "tech": ["TypeScript", "JavaScript", "Vue.js", "React.js", "HTML5/CSS3", "Tailwind CSS", "Node.js", "SQL", "Docker & Docker Compose", "Figma"],
+      "tech": ["TypeScript", "JavaScript", "Vue.js", "React", "HTML5", "CSS3", "Tailwind CSS", "Node.js", "SQL", "Docker", "Docker Compose", "Figma"],
       "date": "Jan 2022 – July 2024",
       "role" :""
     },
@@ -150,20 +150,20 @@
   ],
    "skills": [
     {
-      "title": "Frontend & Web Development",
-      "skills": ["JavaScript", "TypeScript", "Vue.js", "HTML5/CSS3", "Bootstrap", "jQuery", "Tailwind CSS", "Cytoscape.js", "Interactive Data Visualization"]
+      "title": "Frontend & Data Visualization",
+      "skills": ["TypeScript", "JavaScript", "Vue.js", "React", "HTML5", "CSS3", "Tailwind CSS", "Cytoscape.js", "Interactive Data Visualization"]
     },
     {
-      "title": "Backend & Tools",
-      "skills": ["Python", "C#", "Node.js", "SQL", "FastAPI", "Docker & Docker Compose", "RAG Systems", "ChromaDB", "Large Language Models (LLMs)", "Git/GitHub/GitLab"]
+      "title": "Backend & AI",
+      "skills": ["Python", "Node.js", "SQL", "FastAPI", "Docker", "Docker Compose", "RAG Pipelines", "ChromaDB", "Large Language Models (LLMs)", "Git/GitHub/GitLab"]
     },
     {
       "title": "UI/UX & Prototyping",
       "skills": ["Figma", "Miro", "Adobe Creative Suite"]
     },
     {
-      "title": "AR/VR & 3D Development",
-      "skills": ["Unity 3D", "XR Interaction Toolkit", "Oculus XR Plugin", "Blender 3D", "Cinema 4D", "Rhinoceros 3D & Grasshopper"]
+      "title": "XR & Spatial Computing",
+      "skills": ["Unity", "C#", "XR Interaction Toolkit", "Meta XR SDK", "Blender", "Cinema 4D", "Rhinoceros 3D & Grasshopper"]
     },
     {
       "title": "Digital & Robotic Fabrication",

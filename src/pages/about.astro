@@ -19,35 +19,61 @@ const gifImagePath = `${baseUrl}${gifImage}`;
 
 const aboutMeCollection = await getCollection('about');
 const aboutMe = aboutMeCollection[0];
+const roleTitle = aboutMe.data.role ?? 'Product Engineer';
 const Content = (await aboutMe.render()).Content;
 ---
+
 <Layout
   title="About Me"
   description="Ying-Shiuan Chen loves creating functional yet fun interactions to humanize technology!"
   image={profileImagePath}
-  keywords="Ying-Shiuan Chen, software engineer, product designer, developer, interaction"
-  >
-  
+  keywords="Ying-Shiuan Chen, software engineer, product designer, developer, interaction">
   <!-- Content -->
   <section class="aboutMe">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
       <!-- Text section -->
       <div class="lg:col-span-8 space-y-6">
-        <h5>Hi Hi! I'm Ying.<span class="material-symbols-outlined">pets</span></h5>
+        <h5>
+          Hi Hi! I'm Ying.<span class="material-symbols-outlined">pets</span>
+        </h5>
         <p>
-          I am a <b>Design Engineer</b>, 
-          at the intersection of AI, spatial computing, and human-centered technology—building interactive systems that bridge digital and physical experiences.<span class="material-symbols-outlined">star</span>
+          I am a <b>{roleTitle}</b>, at the intersection of AI, spatial
+          computing, and human-centered technology—building interactive systems
+          that bridge digital and physical experiences.<span
+            class="material-symbols-outlined">
+            star
+          </span>
         </p>
-        <p>I'm wrapping up a research internship at
-          <a href="https://studios.disneyresearch.com" target="_blank" rel="noopener noreferrer">DisneyResearch|Studios</a>
-          in Zürich, where I've been creating AI-powered data platforms and interactive web applications.
+        <p>
+          I'm wrapping up a research internship at
+          <a
+            href="https://studios.disneyresearch.com"
+            target="_blank"
+            rel="noopener noreferrer">
+            DisneyResearch|Studios
+          </a>
+          in Zürich, where I've been creating AI-powered data platforms and interactive
+          web applications.
         </p>
         <div>
           <p>
             Check out my
-            <a href={`${baseUrl}projects`} target="_blank" rel="noopener noreferrer">projects</a>,
-            or <a href={`${baseUrl}content/resume/Ying-Shiuan Chen-Resume.pdf`} target="_blank" rel="noopener noreferrer">PDF Resume</a>,
-            connect with me on <a href="https://www.linkedin.com/in/chenyingshiuan/" target="_blank" rel="noopener noreferrer">LinkedIn</a>,
+            <a
+              href={`${baseUrl}projects`}
+              target="_blank"
+              rel="noopener noreferrer">
+              projects
+            </a>, or <a
+              href={`${baseUrl}content/resume/Ying-Shiuan Chen-Resume.pdf`}
+              target="_blank"
+              rel="noopener noreferrer">
+              PDF Resume
+            </a>, connect with me on <a
+              href="https://www.linkedin.com/in/chenyingshiuan/"
+              target="_blank"
+              rel="noopener noreferrer">
+              LinkedIn
+            </a>,
           </p>
         </div>
       </div>
@@ -73,14 +99,16 @@ const Content = (await aboutMe.render()).Content;
     </div>
 
     <div class="lg:col-span-12 space-y-6">
-        <div class="about-content">
-          <Content />
-        </div>
+      <div class="about-content">
+        <Content />
+      </div>
     </div>
 
     <h5 class="aboutMeContainer">
       - For the complete list of my skills and experience, visit my
-      <a href={`${baseUrl}resume`} target="_blank" rel="noopener noreferrer">resume</a>
+      <a href={`${baseUrl}resume`} target="_blank" rel="noopener noreferrer">
+        resume
+      </a>
     </h5>
   </section>
 </Layout>
@@ -88,7 +116,7 @@ const Content = (await aboutMe.render()).Content;
 <style>
   @reference "@/styles/global.css";
 
-  a{
+  a {
     @apply underline text-[var(--color-text-primary)] hover:text-[var(--color-text-hover)] hover:text-shadow-[0.05rem_0.05rem_var(--color-text-primary)];
   }
 
@@ -119,15 +147,15 @@ const Content = (await aboutMe.render()).Content;
   }
 
   /* about content styling */
-  :global(.about-content h4 ){
+  :global(.about-content h4) {
     @apply flex mt-[1.5rem] gap-2 flex-wrap text-lg font-medium border-b-[1.5px] border-[var(--color-text-primary)] p-[0.2rem];
   }
 
-  :global(.about-content h4:hover ){
+  :global(.about-content h4:hover) {
     @apply border-[var(--color-caption-primary)] bg-[var(--color-text-hover)] text-[var(--color-border)] shadow-[0.1rem_0.1rem_var(--color-caption-secondary)] transition duration-300;
   }
 
-  :global(.about-content a ){
-      @apply underline text-[var(--color-text-primary)] hover:text-[var(--color-text-hover)] hover:text-shadow-[0.05rem_0.05rem_var(--color-text-primary)];
+  :global(.about-content a) {
+    @apply underline text-[var(--color-text-primary)] hover:text-[var(--color-text-hover)] hover:text-shadow-[0.05rem_0.05rem_var(--color-text-primary)];
   }
 </style>

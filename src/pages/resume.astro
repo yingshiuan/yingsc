@@ -4,7 +4,7 @@ import LinkTag from '@/components/UI/LinkTag.astro';
 import Button from '@/components/UI/Button.astro';
 import BreakLine from '@/components/UI/BreakLine.astro';
 import ResumeSection from '@/components/content/ResumeSection.astro';
-import AEO from '@/components/layout/AEO.astro'
+import AEO from '@/components/layout/AEO.astro';
 
 import type { ResumeData } from '@/ts/resume';
 import resumeDataJson from '@/content/resume/resume.json';
@@ -23,25 +23,21 @@ const {
   gifImage = 'images/about/hihi.webp',
 } = Astro.props;
 
-
 const profileImagePath = `${baseUrl}${profileImage}`;
 const gifImagePath = `${baseUrl}${gifImage}`;
-
 ---
 
 <Layout
   title="Resume"
   description="Ying-Shiuan Chen loves creating functional yet fun interactions to humanize technology!"
   image={profileImagePath}
-  keywords="Ying-Shiuan Chen, software engineer, product designer, developer, interaction"
-  >
-
+  keywords="Ying-Shiuan Chen, software engineer, product designer, developer, interaction">
   <AEO
-      title="Ying-Shiuan Chen"
-      canonicalUrl="https://yingshiuan.github.io/"
-      resumeData={resumeData}
+    title="Ying-Shiuan Chen"
+    canonicalUrl="https://yingshiuan.github.io/"
+    resumeData={resumeData}
   />
-  
+
   <section class="aboutMe">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
       <!-- Images section -->
@@ -67,11 +63,14 @@ const gifImagePath = `${baseUrl}${gifImage}`;
       <div class="lg:col-span-8 space-y-6 text-center">
         <h1>Hi! I'm Ying.</h1>
         <p>
-          As an <LinkTag tags={['Design Engineer']} />, who
-          builds tools that make experiences intuitive and enjoyable.
+          As an <LinkTag tags={['Product Engineer']} />, who builds tools that
+          make experiences intuitive and enjoyable.
         </p>
         <p>
-          I taught myself to code<span class="material-symbols-outlined">code</span>to build interactive applications, AR/VR prototypes, and design systems that bridge user needs with technical possibilities.
+          I taught myself to code<span class="material-symbols-outlined">
+            code
+          </span>to build interactive applications, AR/VR prototypes, and design
+          systems that bridge user needs with technical possibilities.
         </p>
         <div class="flex justify-end">
           <Button
@@ -92,7 +91,11 @@ const gifImagePath = `${baseUrl}${gifImage}`;
 
   <ResumeSection title="EXPERIENCE" items={resumeData.experience} />
   <ResumeSection title="OTHER INITIATIVES" items={resumeData.initiatives} />
-  <ResumeSection title="EDUCATION" items={resumeData.education} showDivider={false}/>
+  <ResumeSection
+    title="EDUCATION"
+    items={resumeData.education}
+    showDivider={false}
+  />
   <ResumeSection title="CERTIFICATION" items={resumeData.certification} />
   <ResumeSection title="TOOLS & SKILLS" items={resumeData.skills} />
   <ResumeSection title="LANGUAGE" items={resumeData.languages} />
@@ -107,7 +110,6 @@ const gifImagePath = `${baseUrl}${gifImage}`;
   </div>
 
   <BreakLine />
-
 
   <style>
     @reference "@/styles/global.css";
