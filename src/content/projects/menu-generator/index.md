@@ -1,9 +1,10 @@
 ---
 title: 'Interactive Menu Generator'
 order: 0
+created: 2026-01-01
 category: 'Web App'
 slug: 'menu-generator'
-tags: ['Full Stack', 'Web App', 'PDF Generation']
+tags: ['Full Stack', 'Web App', 'PDF Generator']
 image: './menu-generator/menu-generator-c.png'
 hoverImage: './menu-generator/menu-generator.webp'
 info: 'A full-stack web application that transforms structured menu data into an interactive editor and print-ready PDFs.'

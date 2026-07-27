@@ -1,6 +1,7 @@
 ---
 title: 'VR-Tracked Robotic Fabrication of Brick Wall'
 order: 4
+created: 2023-12-02
 category: 'AR/VR'
 slug: 'vr-robotic-fabrication-of-brick-wall'
 tags: ['HTC VIVE Tracker', 'Robotic Fabrication', 'On-site']

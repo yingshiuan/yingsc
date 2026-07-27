@@ -1,6 +1,7 @@
 ---
 title: 'Outfits You'
 order: 3
+created: 2024-11-01
 category: 'UI/UX'
 slug: 'outfits-you'
 tags: ['Augmented Reality', 'UI/UX', 'Application']

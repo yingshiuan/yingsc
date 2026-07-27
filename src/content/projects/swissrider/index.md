@@ -1,6 +1,7 @@
 ---
 title: 'Swissrider'
 order: 5
+created: 2023-12-01
 category: '3D Animation'
 slug: 'swissrider'
 tags: ['3D Animation', 'Advertising', 'UI/UX']

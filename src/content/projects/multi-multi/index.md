@@ -1,6 +1,7 @@
 ---
 title: 'Multi-Multi Language Application'
 order: 1
+created: 2024-12-01
 category: 'UI/UX'
 slug: 'multi-multi'
 tags: ['Augmented Reality', 'UI/UX', 'Application']

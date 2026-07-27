@@ -15,6 +15,7 @@ const projects = defineCollection({
     //optional
     type: z.string().optional(),
     date: z.date().optional(),
+    created: z.date().optional(),
     role: z.string().optional(),
     timeline: z.string().optional(),
     completed: z.string().optional(),
