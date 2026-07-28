@@ -22,6 +22,7 @@ const projects = defineCollection({
     credit: z.string().optional(),
     creditLink: z.string().optional(),
     tools: z.array(z.string()).optional(),
+    focus: z.array(z.string()).optional(),
     activities: z.string().optional(),
   }),
 });

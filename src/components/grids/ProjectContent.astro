@@ -13,14 +13,13 @@ interface Props {
 // load the data
 const { project, baseUrl } = Astro.props;
 const Content = (await project.render()).Content;
-
 ---
 
 <div class="project-content">
   <!-- Project Meta -->
   <div class="mt-[12rem] mb-[4rem]">
-    <MetaCard 
-      projectMeta={{ ...project.data, slug: project.slug } as ProjectMeta} 
+    <MetaCard
+      projectMeta={{ ...project.data, slug: project.slug } as ProjectMeta}
     />
   </div>
   <div class="projectThumbnail">
@@ -100,6 +99,31 @@ const Content = (await project.render()).Content;
 
     :global(.content .embedFrame) {
       @apply mx-auto w-full max-w-screen-lg aspect-[16/9];
+    }
+
+    :global(.content table) {
+      @apply w-full my-8 border-collapse overflow-x-auto;
+    }
+
+    :global(.content th),
+    :global(.content td) {
+      @apply border px-4 py-3 align-top;
+    }
+
+    :global(.content th) {
+      @apply font-semibold;
+    }
+
+    :global(.content pre) {
+      @apply bg-zinc-900 text-zinc-100 rounded-xl p-4 overflow-x-auto my-6;
+    }
+
+    :global(.content pre code) {
+      @apply bg-transparent p-0 text-sm;
+    }
+
+    :global(.content code) {
+      @apply bg-zinc-100 px-1 py-0.5 rounded text-sm;
     }
 
     @media (min-width: 900px) {

@@ -15,5 +15,6 @@ export interface ProjectMeta {
   credit?: string;
   creditLink?: string;
   tools?: string[];
+  focus?: string[];
   activities?: string;
 }

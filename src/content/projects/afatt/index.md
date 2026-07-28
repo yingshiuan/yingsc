@@ -1,7 +1,7 @@
 ---
 title: 'A Fatt Restaurant Menu'
 order: 2
-created: 2025-12-01
+created: 2024-12-01
 category: 'Design System'
 slug: 'afatt'
 tags: ['UI/UX', 'Web App', 'Design System']
