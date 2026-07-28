@@ -4,6 +4,31 @@ import type { SeoData } from '@/ts/type.ts';
 
 const { title, description, image, url, keywords, alt } = Astro.props as SeoData;
 
+const defaultKeywords = [
+  "Product Engineer",
+  "AI Product Engineer",
+  "AI Applications",
+  "Workflow Automation",
+  "AI Agents",
+  "Retrieval-Augmented Generation",
+  "RAG",
+  "n8n",
+  "Full-Stack Development",
+  "React",
+  "TypeScript",
+  "Node.js",
+  "Human-Centered Design",
+  "Interaction Design",
+  "Rapid Prototyping",
+  "Spatial Computing",
+  "XR Interaction Systems",
+  "Hardware-Software Integration",
+  "Information Visualization",
+  "Knowledge Visualization"
+];
+
+const seoKeywords = keywords ?? defaultKeywords;
+
 const siteUrl = import.meta.env.SITE || 'https://yingshiuan.github.io';
 const baseUrl = import.meta.env.BASE_URL || 'https://yingshiuan.github.io/yingsc/'; 
 
@@ -14,13 +39,13 @@ const canonicalUrl = `${siteUrl}${pageUrl.startsWith('/') ? pageUrl : `/${pageUr
 //@type: SoftwareSourceCode - further can define in each project.
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "CreativeWork",
+  "@type": "WebPage",
   "name": title ?? 'Ying-Shiuan Chen',
-  "description": description ?? '',
+  "description": description ?? 'Product Engineer building AI-powered applications, spatial computing experiences, and human-centered software through full-stack engineering, interaction design, and rapid prototyping.',
   "url": canonicalUrl,
   "image": image,
   "alt": alt ?? 'Ying-Shiuan Chen Portfolio Preview Image',
-  "keywords": keywords,
+  "keywords": seoKeywords,
   "author": {
     "@type": "Person",
     "name": "Ying-Shiuan Chen",
@@ -30,26 +55,37 @@ const jsonLd = {
       "https://github.com/yingshiuan",
       "https://yingshiuan.github.io/yshiuanc/"
     ],
-    "jobTitle": "Frontend Developer & Interaction Designer",
-    "knowsAbout": [
+    "jobTitle": "Product Engineer",
+    hasOccupation: {
+      "@type": "Occupation",
+      "name": "Product Engineer"
+    },
+    knowsAbout: [
+      // AI
+      "AI Workflows",
+      "Workflow Automation",
+      "AI Agents",
+      "Retrieval-Augmented Generation (RAG)",
+      "Prompt Engineering",
+      // Software
+      "Full-Stack Development",
       "Frontend Development",
-      "Interaction Design",
-      "UI/UX Design",
-      "Responsive Web Design",
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "TypeScript",
       "React",
-      "Vue.js",
+      "TypeScript",
       "Node.js",
-      "Accessibility (a11y)",
-      "User Experience",
-      "Prototyping",
-      "Web Performance Optimization",
-      "Cross-Browser Compatibility",
-      "Design Systems"
-    ], 
+      // Product
+      "Product Engineering",
+      "Rapid Prototyping",
+      "Human-Centered Design",
+      "Interaction Design",
+      // XR
+      "Spatial Computing",
+      "XR Interaction Systems",
+      "Hardware–Software Integration",
+      // Data
+      "Data Visualization",
+      "Information Design",
+    ],
     alumniOf: 
     {
       '@type': 'EducationalOrganization',
@@ -58,6 +94,12 @@ const jsonLd = {
       startDate: '2018',
       endDate: '2019'
     },
+    knowsLanguage: [
+    "English",
+    "Mandarin Chinese",
+    "German",
+    "Japanese"
+    ],
   }
 };
 ---
@@ -135,8 +177,8 @@ const jsonLd = {
   {import.meta.env.PROD && (
     <>
       <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      new Date().getTime(),event:'gtm.js'});const f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
       })(window,document,'script','dataLayer','GTM-MZKP489Z');</script>
     </>

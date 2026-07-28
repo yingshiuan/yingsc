@@ -3,21 +3,20 @@ import Layout from '@/layouts/Layout.astro';
 import Intro from '@/components/layout/Intro.astro';
 import Square from '@/components/grids/Square.astro';
 
-const baseUrl = import.meta.env.BASE_URL || 'https://yingshiuan.github.io/yingsc/';
 
+const baseUrl =
+  import.meta.env.BASE_URL || 'https://yingshiuan.github.io/yingsc/';
 ---
 
 <Layout
   title="Projects | Ying-Shiuan Chen"
   description="Ying-Shiuan Chen loves creating functional yet fun interactions to humanize technology!"
   image={`${baseUrl}ying.png`}
-  keywords="Ying-Shiuan Chen, software engineer, product designer, developer, interaction"
-  alt="Ying-Shiuan Chen Portfolio Preview Image"
-  >
+  keywords="Ying-Shiuan Chen, software engineer, product engineer, interaction">
   <div class="my-[12rem]">
     <Intro />
   </div>
   <!-- Portfolio Section -->
-<Square />
-  
+  <Square />
+
 </Layout>
