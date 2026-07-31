@@ -42,7 +42,7 @@ The project separates content management from presentation, allowing restaurants
 - Engineered a deterministic HTML-to-PDF rendering pipeline using Puppeteer.
 - Built an asset optimization pipeline for images and SVGs with Sharp.
 - Implemented asynchronous PDF generation to improve responsiveness.
-- Adopted a privacy-first, local-first architecture with zero onboarding.
+- Adopted a local-first architecture with zero onboarding.
 - Containerized the application with Docker and deployed it to production.
 
 
@@ -138,6 +138,8 @@ This approach reduces infrastructure complexity while allowing users to start im
 
 ## System Architecture
 
+The architecture separates user interaction, asset processing, and document rendering to keep the editing experience responsive while handling resource-intensive PDF generation.
+
 ```
 CSV Upload
 ↓
@@ -188,8 +190,7 @@ Print-ready PDF
 
 #### Pixel-perfect Rendering
 
-Keeping browser previews identical to exported PDFs required careful handling of HTML, CSS, fonts, images, and SVG assets.
-
+Keeping browser previews identical to exported PDFs was the main engineering challenge. Browser rendering and PDF generation environments handle layouts, fonts, and assets differently, requiring careful control over rendering behavior.
 
 #### Reliable Asset Loading
 
