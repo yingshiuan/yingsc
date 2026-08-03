@@ -1,6 +1,20 @@
 ---
 title: 'VR-Tracked Robotic Fabrication of Brick Wall'
-order: 4
+# New-format entries (fill later)
+subtitle: ''
+type: 'Research'
+featured: true
+domains:
+  - Spatial Computing
+  - Robotics
+  - Computational Design
+
+stack:
+  - Grasshopper
+  - Python
+  - Universal Robot UR10
+  - HTC VIVE Tracker
+
 created: 2023-12-02
 category: 'AR/VR'
 slug: 'vr-robotic-fabrication-of-brick-wall'
@@ -9,14 +23,26 @@ image: './vr-robotic-fabrication-of-brick-wall/brickwall.jpg'
 hoverImage: './vr-robotic-fabrication-of-brick-wall/brickwall.webp'
 info: 'Realtime HTC VIVE tracking locates the on-site UR10 relative to the double-curved wall for precise robotic fabrication.'
 description: 'This project constructs a 3 m × 6.7 m fundraising brick wall using the HTC VIVE tracker system to locate the relative coordinates between the double-curved wall geometry and the on-site UR10 robotic arm, enabling precise robotic fabrication.'
-type: 'demo'
 role: 'Research Assistant'
 timeline: '3 months'
 completed: '11/2017'
 credit: 'CCC Lab, Tamkang University'
 creditLink: 'https://vimeo.com/digitalaieou'
-tools: ['Rhinoceros 3D & Grasshopper 3D,', 'python', 'Universal Robot 10', 'HTC VIVE']
-activities: "I was responsible for completing the development of the robotic system and fabricating the brick walls on site."
+tools:
+  [
+    'Rhinoceros 3D & Grasshopper 3D,',
+    'python',
+    'Universal Robot 10',
+    'HTC VIVE',
+  ]
+focus:
+  [
+    'Spatial Tracking',
+    'Robotic Fabrication',
+    'Digital-to-Physical Workflow',
+    'Computational Design',
+  ]
+activities: 'I was responsible for completing the development of the robotic system and fabricating the brick walls on site.'
 ---
 
 <div class="contentSection">
@@ -26,6 +52,7 @@ activities: "I was responsible for completing the development of the robotic sys
 In this project, my role is to fabricate a fundraising brick wall on-site and developed a real-time positioning system that integrates the HTC VIVE Tracker with a UR10 robotic arm.
 
 #### The work began with two challenges:
+
 1. How to reposition a robotic system on a construction site, and
 2. How to use VR-based tracking to locate building components in situ?
 
@@ -34,9 +61,6 @@ In this project, my role is to fabricate a fundraising brick wall on-site and de
 ![vr-vive-brick-wall](./VIVE.jpg)
 
 </div>
-
-
-
 
 <div class="contentSection">
 
@@ -48,9 +72,6 @@ The UR10 robotic arm was mounted on a mobile station for on-site deployment. A p
 
 </div>
 
-
-
-
 <div class="contentSection">
 
 ## VR–Robotics Integration Pipeline
@@ -60,9 +81,6 @@ HTC VIVE tracking was used to collect real-time positional data. Using Rhino3D, 
 ![vr-vive-brick-wall-pipeline](./pipeline.jpg)
 
 </div>
-
-
-
 
 <div class="contentSection">
 
@@ -74,20 +92,15 @@ The VIVE Tracker provided relative coordinates between the UR10 and a reference 
 
 </div>
 
-
-
 <div class="contentSection">
 
 ## Construction Sequence
 
 Throughout construction, the UR10 was repositioned 22 times to complete 24 layers totaling 1024 bricks. Due to ceiling height limitations, the remaining 28 layers (406 bricks) were assembled using prefabricated components.
 
-
 ![vr-vive-brick-wall-sequence](./sequence.webp)
 
 </div>
-
-
 
 ## Welcome to watch the video below.
 
@@ -96,8 +109,6 @@ Throughout construction, the UR10 was repositioned 22 times to complete 24 layer
 <iframe class="responsive-iframe" title="vimeo-player" width="100%" height="100%" loading="lazy" src="https://player.vimeo.com/video/244675340" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
 
 </div>
-
-
 
 <div class="contentSection">
 

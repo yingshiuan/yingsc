@@ -1,15 +1,25 @@
 ---
-title: 'MenuGen — Restaurant Menu Management Platform'
-order: 0
-created: 2026-01-01
-category: 'Web App'
+title: 'MenuGen'
+subtitle: 'Restaurant Menu Management Platform'
 slug: 'menu-generator'
+featured: true
+type: 'Professional'
+created: 2026-01-01
+domains:
+  - Product Engineering
+  - Frontend Engineering
+stack:
+  - Vue.js
+  - TypeScript
+  - Node.js
+  - Express
+  - Docker
+category: 'Web App'
 tags: ['Full Stack', 'Product Engineering', 'Web App', 'PDF Generator', 'Vue']
 image: './menu-generator/menu-generator-c.png'
 hoverImage: './menu-generator/menu-generator.webp'
 info: 'A full-stack platform that enables restaurants to manage menu content, preview layouts in real time, and generate print-ready PDFs.'
 description: 'Designed and developed a full-stack product that transforms structured menu data into an interactive editing workflow with real-time preview and deterministic HTML-to-PDF rendering.'
-type: 'demo'
 role: 'Full-Stack Product Engineer'
 timeline: '2 months'
 completed: '12/2025'
@@ -18,8 +28,9 @@ creditLink: 'https://menugen.insdash.ch'
 tools: [ 'Vue.js', 'TypeScript', 'Tailwind CSS', 'Pinia', 'PapaParse', 'Vitest', 'Node.js', 'Express', 'Puppeteer', 'Sharp', 'Docker', 'Vercel']
 focus:
   [
-    'Document Generation',
+    'Full-Stack Architecture',
     'Product Engineering',
+    'Document Generation',
     'System Design',
   ]
 activities: "Designed and developed the application from end to end, transforming Figma and Canva designs into a production-ready web application. Built reusable Vue components, a CSV-driven editing workflow, multilingual support, dietary tagging, modular layouts, and a Puppeteer-powered HTML-to-PDF pipeline for generating consistent, print-ready menus."

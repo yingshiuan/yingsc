@@ -1,22 +1,42 @@
 ---
 title: 'Multi-Multi Language Application'
-order: 1
-created: 2024-12-01
-category: 'UI/UX'
+subtitle: ''
 slug: 'multi-multi'
+featured: true
+type: 'Personal'
+created: 2024-12-01
+domains:
+  - AI Systems
+  - Spatial Computing
+  - Human-Computer Interaction
+stack:
+  - LLM
+  - AR
+  - Figma
+
+category: 'UI/UX'
 tags: ['Augmented Reality', 'UI/UX', 'Application']
 image: './multi-multi/multi.png'
 hoverImage: './multi-multi/multi.webp'
 info: 'Learn languages with augmented reality and memorize everyday phrases in immersive, real-world contexts.'
 description: 'Multi-Multi is an AR-driven language learning app that helps users practice vocabulary and phrases in everyday scenarios. The app integrates map-based exploration, object recognition, and memory-associative techniques to create an immersive learning experience.'
-type: 'demo'
 role: 'UX Designer'
 timeline: '6 Week'
 completed: '10/2021'
 credit: 'Personal Project'
 creditLink: '#'
-tools: [Figma, Adobe XD, Adobe Illustrator, Adobe Photoshop, Adobe After Effects]
-activities: "I designed an immersive AR-based language learning app, combining UX research, interface design, and technical feasibility studies. By exploring object recognition APIs and discussing implementation strategies with engineers, I aligned the design with practical engineering considerations, ensuring the project was both user-friendly and technically feasible solution."
+tools:
+  [Figma, Adobe XD, Adobe Illustrator, Adobe Photoshop, Adobe After Effects]
+focus:
+  [
+    'AI-Powered Learning Systems',
+    'AR Interaction Design',
+    'Human-Computer Interaction',
+    'Contextual Learning',
+    'Conversational AI',
+  ]
+
+activities: 'I designed an immersive AR-based language learning app, combining UX research, interface design, and technical feasibility studies. By exploring object recognition APIs and discussing implementation strategies with engineers, I aligned the design with practical engineering considerations, ensuring the project was both user-friendly and technically feasible solution.'
 ---
 
 <div class="contentSection">
@@ -38,7 +58,6 @@ Use AR to label and contextualize real-world objects and scenarios, enabling lea
 Competitive Audit, User Research, Prototype, UI Design, Usability Testing
 
 </div>
-
 
 <div class="contentSection">
 
@@ -74,11 +93,7 @@ Create an immersive environment that helps users learn essential vocabulary and 
 </div>
 </div>
 
-
 </div>
-
-
-
 
 <div class="contentSection">
 
@@ -93,12 +108,10 @@ To address technical challenges, we explored current computer vision methods and
 - Integration with maps to display locations, dialogues, and relevant content.
 
 #### Open source object recognition API
+
 [YOLO](!https://github.com/WongKinYiu/yolov7), [TensorFlow](!https://www.tensorflow.org/),[ML Kit](!https://developers.google.com/ml-kit), [Google Map Platform](!https://developers.google.com/maps)
 
 </div>
-
-
-
 
 <div class="contentSection">
 
@@ -112,11 +125,7 @@ Multi-Multi draws inspiration from Duolingo, Mondly, and Tripadvisor. Its differ
 - Immersive observation using AR.
 - Memory-linked learning experiences through travel and cultural exploration.
 
-
-
 </div>
-
-
 
 <div class="contentSection">
 
@@ -139,8 +148,6 @@ Multi-Multi draws inspiration from Duolingo, Mondly, and Tripadvisor. Its differ
 
 </div>
 
-
-
 <div class="colsLayout">
 <div class="col-span-8">
 
@@ -152,8 +159,6 @@ Multi-Multi draws inspiration from Duolingo, Mondly, and Tripadvisor. Its differ
   A housewife learning her first foreign language. Uses small pockets of free time to explore culture and practice language for trips.
 </div>
 </div>
-
-
 
 #### Insights
 
@@ -169,11 +174,7 @@ Multi-Multi draws inspiration from Duolingo, Mondly, and Tripadvisor. Its differ
 
 - Limited access to practice partners; location-independent learning needed.
 
-
-
 </div>
-
-
 
 <div class="contentSection">
 
@@ -216,8 +217,6 @@ The app supports goal-driven and curiosity-driven learning. Users:
 
 </div>
 
-
-
 <div class="contentSection">
 
 ## User Flow & Information Architecture
@@ -240,10 +239,7 @@ With the IA defined, we moved into wireframing to explore layout options and tes
 
 ![Information Architecture](./ia.png)
 
-
 </div>
-
-
 
 <div class="contentSection">
 
@@ -257,15 +253,13 @@ Paper wireframes help organize the main layout, interactions, user flow, and UI 
 
 #### Low and mid Fidelity Prototype
 
-In the low-fidelity prototype, I start with the user flow, the goal is to establish main layout, interaction, and flow. 
+In the low-fidelity prototype, I start with the user flow, the goal is to establish main layout, interaction, and flow.
 
 In mid-fidelity prototypes, I focus on smooth navigation, feature discovery, and interaction behaviors.
 
-
-
 <div class="relative group my-4">
 <!-- * Default image -->
-<div class="block group-hover:hidden"> 
+<div class="block group-hover:hidden">
 
 ![low-fidelity-prototype](./low-fidelity-prototype.jpg)
 
@@ -280,9 +274,6 @@ In mid-fidelity prototypes, I focus on smooth navigation, feature discovery, and
 </div>
 
 </div>
-
-
-
 
 <div class="contentSection">
 
@@ -301,7 +292,6 @@ Two rounds of usability studies guided design evolution:
 5. Make notes
 
 6. Learning pattern
-
 
 #### Round 1 - Medium-fidelity prototype
 
@@ -331,7 +321,6 @@ Two rounds of usability studies guided design evolution:
 
 - Whether Offer more tips of organize notes and learning.
 
-
 #### Round 2 - High-fidelity prototype refined language switching, content presentation, and memory-linked learning patterns.
 
 The second round will focus on future product trends
@@ -350,10 +339,7 @@ The second round will focus on future product trends
 
 - Create a new page for the new language when the user switches other languages during the search and watch functions.
 
-
 </div>
-
-
 
 <div class="contentSection">
 
@@ -364,8 +350,6 @@ Here is the multi-multi prototype on Figma.
 ![multi-multi-prototype](./prototype.webp)
 
 </div>
-
-
 
 <div class="contentSection">
 
@@ -389,7 +373,6 @@ AR Vocabulary: Scan surroundings to learn object names and phrases, connecting e
 
 </div>
 
-
 #### Learn daily phrases by searching on the map
 
 <div class="colsLayout">
@@ -408,7 +391,6 @@ Map Mode: Explore global locations to practice daily phrases and dialogues.
 
 </div>
 
-
 #### Read introductions and practice conversations based on attractions
 
 <div class="colsLayout">
@@ -426,7 +408,6 @@ Attraction Introductions: Read cultural and historical context, then practice di
 </div>
 
 </div>
-
 
 #### Make your notes and associate with your memories
 
@@ -448,7 +429,6 @@ Personal Notes: Create memos that connect vocabulary, conversations, and phrases
 
 </div>
 
-
 <div class="contentSection">
 
 ## Cross Platform
@@ -459,7 +439,6 @@ Supports mobile and web, maintaining consistent experience and learning pathways
 
 </div>
 
-
 <div class="contentSection">
 
 ## Design System
@@ -467,8 +446,6 @@ Supports mobile and web, maintaining consistent experience and learning pathways
 ![multi-multi-design-system](./multi_design_system.png)
 
 </div>
-
-
 
 <div class="contentSection">
 
@@ -492,7 +469,6 @@ The app keeps users motivated by tying language learning to exploration. Learner
 
 </div>
 
-
 <div class="colsLayout">
 
 <div class="col-span-6">
@@ -512,9 +488,6 @@ Designing Multi-Multi reinforced the importance of integrating UX design with te
 </div>
 
 </div>
-
-
-
 
 <div class="contentSection">
 
@@ -542,14 +515,9 @@ Designing Multi-Multi reinforced the importance of integrating UX design with te
 
 </div>
 
-
-
-
-
 <div class="contentSection">
 
 ## Reflection
-
 
 I’ve always been a self-taught learner, exploring skills from coding and robotics to languages. When I studied in Switzerland, I discovered that the simplest experiences—like learning food names at the supermarket—could make language learning tangible and memorable. This inspired Multi-Multi: an app that connects vocabulary and dialogues to real-world observations and travel experiences, allowing users to practice naturally and build confidence.
 

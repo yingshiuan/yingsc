@@ -1,15 +1,24 @@
 ---
-title: 'Transforming a Motion-Tracked Stylus into an XR Input System'
-order: 3
-created: 2025-01-01
-category: 'AR/VR'
+title: 'XR Stylus Interaction System'
+subtitle: 'Hardware–Software Integration for Spatial Computing'
 slug: 'sensoryx-xr-interaction-experiences'
+featured: true
+type: 'Professional'
+created: 2025-01-01
+domains:
+  - Spatial Computing
+  - XR Engineering
+stack:
+  - Unity
+  - C#
+  - XR Interaction Toolkit
+  - Meta XR SDK
+category: 'AR/VR'
 tags: ['XR Interaction Systems', 'Hardware–Software Integration', 'Spatial Computing']
 image: './xr-hand-painting.jpg'
 hoverImage: './xr-hand-painting.webp'
 info: 'Designed XR interaction systems that transformed a motion-tracked stylus into an intuitive input device for spatial computing experiences.'
 description: 'Designed and integrated XR interaction systems for a motion-tracked stylus, connecting hardware input, spatial computing workflows, and human-centered interaction design.'
-type: 'demo'
 role: 'XR Software Engineer Intern'
 timeline: '4 months'
 completed: '12/2024'
@@ -25,6 +34,7 @@ focus:
     'Hand Tracking',
     'XR Framework Integration',
     'Human-Centered Interaction Design',
+
   ]
 activities: "At Sensoryx, I worked on designing interaction systems for a motion-tracked XR stylus. My role was to bridge hardware and software by defining interaction behaviors that felt intuitive within immersive environments. I designed and iterated on button mappings, spatial interactions, and hand tracking workflows through rapid prototyping and usability evaluation. I also collaborated with external XR partners to evaluate how the stylus could integrate into different spatial computing workflows. Working in a six-person startup, I contributed beyond implementation by participating in product decisions, user research, and interaction design."
 

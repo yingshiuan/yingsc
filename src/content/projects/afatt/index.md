@@ -1,24 +1,39 @@
 ---
 title: 'A Fatt Restaurant Menu'
-order: 2
-created: 2024-12-01
-category: 'Design System'
+subtitle: ''
 slug: 'afatt'
+featured: false
+type: 'Professional'
+created: 2024-12-01
+domains:
+  - Product Engineering
+  - Design Systems
+  - Frontend Engineering
+stack:
+  - Figma
+  - Canva
+  - Vue.js
+category: 'Design System'
 tags: ['UI/UX', 'Web App', 'Design System']
 image: './afatt/afatt_c.png'
 hoverImage: './afatt/afatt-menu.webp'
 info: 'Inclusive, dietary-friendly, multilingual menu with intuitive layout for customers to enjoy Malaysian Chinese Home Favourites.'
 description: 'I designed a scalable, flexible menu system for A Fatt, integrating multilingual content, dietary tagging, and a modular layout. Alongside UX design in Figma and Canva, I also built a web app that allows the restaurant team to update menu items dynamically, manage translations, and export menus as PDF—bridging UX design and software functionality in a single solution.'
-type: 'demo'
 role: 'UX & System Designer'
 timeline: '1 month'
 completed: '08/2024'
 credit: 'A Fatt'
 creditLink: 'https://afatt.ch/'
-tools: ['Figma', 'Canva', 'vue']
+tools: ['Figma', 'Canva', 'Vue.js']
+focus:
+  [
+    'Design Systems',
+    'Content Management Workflow',
+    'Multilingual UX',
+    'Product Engineering'
+  ]
 activities: 'I love designing food experiences—probably because I love eating just as much. For this project, I engineered a scalable menu system in Figma and Canva, defining reusable layout modules, typographic hierarchies, and multilingual components. By structuring the menu as a living system, the restaurant team can update dishes, translations, or dietary labels without recreating layouts. Inspired by this workflow, I created a full-stack web app as a side project that translates the system into a dynamic, independently managed digital menu, supporting live updates, CSV uploads, and PDF exports—showcasing both my design and development skills.'
 ---
-
 
 <div class="contentSection border rounded-sm p-[0.5rem]">
 
@@ -55,8 +70,6 @@ This tool complements the Figma and Canva designs, creating a **living, scalable
 ![MenuGen](./menuGen.webp)
 
 </div>
-
-
 
 <div class="contentSection">
 

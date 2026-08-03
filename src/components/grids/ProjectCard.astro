@@ -43,15 +43,39 @@ const hoverImageUrl = getImageUrl(projectMeta.hoverImage);
       </picture> -->
     </div>
     <div class="w-full text-center p-2 flex-1">
-      <h5 class="square_title">{projectMeta.title}</h5>
-      {projectMeta.info && <p class="square_description">{projectMeta.info}</p>}
-      <div class="flex justify-center items-center w-full">
-        <Tag tags={projectMeta.tags} justify="center" />
+      <div class="w-full text-start flex-1">
+        <div class="flex justify-center items-center">
+          <TitleTag tags={projectMeta.type} />
+        </div>
       </div>
-    </div>
-    <div class="w-full text-start flex-1">
+      <h4 class="square_title">{projectMeta.title}</h4>
+      {
+        projectMeta.subtitle && (
+          <p class="square_subTitle">{projectMeta.subtitle}</p>
+        )
+      }
+      {projectMeta.info && <p class="square_description">{projectMeta.info}</p>}
       <div class="flex justify-center items-center">
-        <TitleTag tags={projectMeta.category} />
+        <Tag
+          tags={projectMeta.domains?.length
+            ? projectMeta.domains
+            : projectMeta.tags}
+        />
+      </div>
+      <!-- <div class="flex justify-center items-center">
+        <Tag
+          tags={projectMeta.stack?.length
+            ? projectMeta.stack
+            : projectMeta.tags}
+        />
+      </div> -->
+      <div class="flex justify-center items-center m-[0.25rem] text-sm font-light">
+        {
+          (projectMeta.stack?.length
+            ? projectMeta.stack
+            : projectMeta.tags
+          )?.join(' · ')
+        }
       </div>
     </div>
   </a>
@@ -79,8 +103,11 @@ const hoverImageUrl = getImageUrl(projectMeta.hoverImage);
   .square_title {
     @apply text-[var(--color-text-primary)] text-center mt-2 font-semibold;
   }
+  .square_subTitle {
+    @apply text-[var(--color-text-primary)] text-center text-sm line-clamp-1 opacity-70;
+  }
   .square_description {
-    @apply text-[var(--color-text-primary)] text-center text-sm;
+    @apply text-[var(--color-text-primary)] text-center text-sm line-clamp-2;
   }
 
   .img-default {

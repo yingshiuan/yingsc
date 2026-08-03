@@ -5,21 +5,28 @@ import type { ProjectMeta } from '@/ts/project';
 
 const baseUrl = import.meta.env.BASE_URL;
 
-const projects = (await getCollection('projects')).sort((a, b) =>
-  a.data.title.localeCompare(b.data.title)
-);
+const projects = (await getCollection('projects')).sort((a, b) => {
+  const aDate = a.data.created;
+  const bDate = b.data.created;
+
+  if (!aDate && !bDate) return 0;
+  if (!aDate) return 1;
+  if (!bDate) return -1;
+
+  return new Date(bDate).getTime() - new Date(aDate).getTime();
+});
 
 type ProjectsByCategory = {
-  [category: string]: ProjectMeta[];
+  [type: string]: ProjectMeta[];
 };
 
 const projectsByCategory: ProjectsByCategory = projects.reduce(
   (acc: ProjectsByCategory, project) => {
-    const category = project.data.category || 'Other';
+    const type = project.data.type || 'Other';
 
-    if (!acc[category]) acc[category] = [];
+    if (!acc[type]) acc[type] = [];
 
-    acc[category].push({
+    acc[type].push({
       ...project.data,
       slug: project.data.slug || project.slug,
       // || project.data.title.toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w-]/g, '')
@@ -27,12 +34,13 @@ const projectsByCategory: ProjectsByCategory = projects.reduce(
 
     return acc;
   },
-  {}
+  {},
 );
 
 interface TreeNode {
   label: string;
   href: string;
+  meta?: string;
   children?: TreeNode[];
 }
 
@@ -44,14 +52,32 @@ const siteTree: TreeNode[] = [
     label: 'Projects',
     href: `${baseUrl}projects`,
     children: Object.entries(projectsByCategory).map(
-      ([category, items]): TreeNode => ({
-        label: category,
-        href: `${baseUrl}projects/${category}`, // Add href for the category itself, Currently points to a non-existent page
-        children: items.map((project) => ({
-          label: project.title,
-          href: `${baseUrl}projects/${project.slug}`,
-        })),
-      })
+      ([type, items]): TreeNode => ({
+        label: type,
+        href: `${baseUrl}projects/${type}`, // Add href for the category itself, Currently points to a non-existent page
+        children: items
+          .slice()
+          .sort((a, b) => {
+            const aDate = a.created;
+            const bDate = b.created;
+
+            if (!aDate && !bDate) return 0;
+            if (!aDate) return 1;
+            if (!bDate) return -1;
+
+            return new Date(bDate).getTime() - new Date(aDate).getTime();
+          })
+          .map((project) => ({
+            label: project.title,
+            href: `${baseUrl}projects/${project.slug}`,
+            meta: [
+              project.domains?.length ? project.domains.join(' | ') : '',
+              // project.stack?.length ? project.stack.join(' · ') : '',
+            ]
+              .filter(Boolean)
+              .join(' | '),
+          })),
+      }),
     ),
   },
 ];
@@ -67,8 +93,7 @@ const siteTree: TreeNode[] = [
     title="Sitemap | Ying-Shiuan Chen"
     description="Ying-Shiuan Chen loves creating functional yet fun interactions to humanize technology!"
     image="./yinz.png"
-    keywords="Ying-Shiuan Chen, software engineer, product designer, developer, interaction"
-    >
+    keywords="Ying-Shiuan Chen, software engineer, product designer, developer, interaction">
     <div class="sitemap my-[12rem]">
       <h2>Site Sitemap</h2>
       <hr />
@@ -84,14 +109,17 @@ const siteTree: TreeNode[] = [
               {node.children && (
                 <ul class="ml-4 list-disc">
                   {node.children.map((child) => (
-                    <li class="mt-1">
+                    <li class="ml-4 mt-1">
                       <h4>{child.label}</h4>
                       {/* <a href={child.href}></a>  */}
                       {child.children && (
-                        <ul class="ml-4 list-disc">
+                        <ul class="ml-4 list-disc text-xl">
                           {child.children.map((grandchild) => (
-                            <li class="mt-1">
+                            <li class="mb-4">
                               <a href={grandchild.href}>{grandchild.label}</a>
+                              {grandchild.meta && (
+                                <div class="projectMeta">{grandchild.meta}</div>
+                              )}
                             </li>
                           ))}
                         </ul>
@@ -107,8 +135,6 @@ const siteTree: TreeNode[] = [
     </div>
   </Layout>
 
-
-
   <style>
     @reference "@/styles/global.css";
 
@@ -120,10 +146,16 @@ const siteTree: TreeNode[] = [
       @apply hover:underline;
     }
 
+    .projectMeta {
+      @apply mt-1 text-sm opacity-70;
+    }
+
     @media (min-width: 900px) {
       .sitemap {
         @apply max-w-[80rem];
       }
     }
   </style>
+
+
 </html>

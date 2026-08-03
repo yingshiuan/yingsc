@@ -1,22 +1,38 @@
 ---
 title: 'Swissrider'
-order: 5
-created: 2023-12-01
-category: '3D Animation'
+subtitle: ''
 slug: 'swissrider'
+featured: false
+type: 'Professional'
+created: 2023-12-01
+domains:
+  - Creative Technology
+  - 3D Visualization
+stack:
+  - Blender
+  - After Effects
+  - Premiere Pro
+  - Figma
+category: '3D Animation'
 tags: ['3D Animation', 'Advertising', 'UI/UX']
 image: './swissrider/swissrider_s.png'
 hoverImage: './swissrider/swissrider.webp'
 info: 'The 3D animation introduces the features of the next generation of lightweight electric bicycles.'
 description: 'I had the pleasure of working with Thömus AG on a breakthrough 60-second animation for the Swissrider, an lightweight electric bike. The animation is to introduce the features of the next generation of electric bicycles. Futuristic design, integrated maxon electric drive system, refined carbon fiber frame. The unrivaled light train and office companion.'
-type: 'demo'
 role: '3D Artist & Animator'
 timeline: '4 months'
 completed: '01/2023'
 credit: 'THÖMUS AG'
 creditLink: 'https://www.youtube.com/watch?v=OredYyH_3tQ'
-tools: ['Blender 3D', 'Adobe Premiere Pro', 'Adobe After Effects', 'Figma']
-activities: "On this project, my role was to create 3D animations from storyboards, background music, visual effects, lighting, rigs and animations. It was a great experience working with the CMO and the 3D modelers. Along the way, I tested the effects and made some short prototypes to show off the capabilities of the e-bike. This helps us communicate beyond text and efficiently iterate on our animations. In the end, we published two versions for a better viewing experience on laptops and mobile devices."
+tools: ['Blender', 'Adobe Premiere Pro', 'Adobe After Effects', 'Figma']
+focus:
+  [
+    '3D Product Visualization',
+    'Visual Storytelling',
+    'Motion Design',
+    'Product Communication',
+  ]
+activities: 'On this project, my role was to create 3D animations from storyboards, background music, visual effects, lighting, rigs and animations. It was a great experience working with the CMO and the 3D modelers. Along the way, I tested the effects and made some short prototypes to show off the capabilities of the e-bike. This helps us communicate beyond text and efficiently iterate on our animations. In the end, we published two versions for a better viewing experience on laptops and mobile devices.'
 ---
 
 <div class="contentSection">
@@ -38,7 +54,6 @@ Research animation techniques, visual effects, and market research to determine 
 User Research, Competitive Audit, Animation Techniques Research, Prototype
 
 </div>
-
 
 <div class="contentSection">
 
@@ -92,9 +107,7 @@ Next Generation, High-Tech, Electronics Bicycles, Dynamic, Versatile, Lightweigh
 </div>
 </div>
 
-
 </div>
-
 
 <div class="contentSection">
 
@@ -107,8 +120,6 @@ Paper wireframes help organize the main layout, interactions, user flow, and UI 
 ![swissrider-rigging-bike-with-x-ray](./swissrider_rig_xray.webp)
 
 </div>
-
-
 
 <div class="contentSection">
 
@@ -130,8 +141,6 @@ To understand the industrial aesthetic of the bike, I search most of the brands 
 
 </div>
 
-
-
 <div class="contentSection">
 
 ## Storyboard
@@ -145,6 +154,7 @@ Additionally, we designed transitions from each scene to scene and wanted to pro
 #### Overview
 
 ##### Intro - Use Bike Urban/Off-Road in the scene: Scene 1~4
+
 1. Bike-Urban/Off-Road
 
 2. Brand - Thömus
@@ -154,6 +164,7 @@ Additionally, we designed transitions from each scene to scene and wanted to pro
 4. Model - Swissrider
 
 ##### Intro - Features, Light, Motor, Two bikes, Color: Scene 5~9
+
 5. Front Light
 
 6. Backlight
@@ -165,6 +176,7 @@ Additionally, we designed transitions from each scene to scene and wanted to pro
 9. Display two type - Urban/Off-Road, Road/Gravel - Color
 
 ##### Features - Maxon Motor, lightweight, Colors, Lights: Scene 10~13
+
 10. Transition to Motor
 
 11. Maxon motor and battery with X-Ray
@@ -174,11 +186,13 @@ Additionally, we designed transitions from each scene to scene and wanted to pro
 13. Frame color
 
 ##### Bike - Use Road/Gravel in the scene : Scene 14~15
+
 14. Left back to top, right front
 
 15. Right Side to left back
 
 ##### End - Display Urban and Road bike Scene 16~20
+
 16. Top
 
 17. Bike-Road/Gravel
@@ -193,9 +207,6 @@ Additionally, we designed transitions from each scene to scene and wanted to pro
 
 </div>
 
-
-
-
 <div class="contentSection">
 
 ## Prototype
@@ -206,7 +217,6 @@ We used an X-ray effect to show the silhouette of the bike and kept the motor an
 
 ![swissrider-bike-xray](./swissrider_xray.webp)
 
-
 #### Rigging
 
 To animate the bike, we need to understand the mechanics of the bike and separate each component into different layers. Then set the component in its parent component and its driver.
@@ -214,7 +224,6 @@ To animate the bike, we need to understand the mechanics of the bike and separat
 ![swissrider-rigging](./swissrider_rigging.webp)
 
 </div>
-
 
 <div class="contentSection">
 
@@ -232,11 +241,7 @@ We used an X-ray effect to show the silhouette of the bike and kept the motor an
 
 ![swissrider-portrait](./portrait.png)
 
-
 </div>
-
-
-
 
 <div class="contentSection">
 
@@ -258,13 +263,11 @@ We used an X-ray effect to show the silhouette of the bike and kept the motor an
 
 ![swissrider-monocoque-handleba](./feature5.png)
 
-
 #### Swissrider: Urban/Off-Road & Road/Gravel
 
 ![swissrider-Urban-road-bike](./feature3.png)
 
 </div>
-
 
 <div class="contentSection">
 
@@ -274,16 +277,13 @@ We used an X-ray effect to show the silhouette of the bike and kept the motor an
 
 </div>
 
-
 <div class="embedFrame">
 
-##  Welcome to watch the video below.
+## Welcome to watch the video below.
 
 <iframe class="responsive-iframe" title="vimeo-player" width="100%" height="100%" loading="lazy" src="https://player.vimeo.com/video/805829495?h=4808c91ecf" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
 
 </div>
-
-
 
 <div class="contentSection">
 
@@ -295,14 +295,10 @@ In this project, I not only improved my animation skills, but also paid more att
 
 </div>
 
-
-
 <div class="contentSection">
 
 ## Reflection
 
 Big thanks to THÖMUS for giving me a great opportunity to work on everything from storyboards, background music, visual effects, lighting, rigging to animation. It was a great experience working with the CMO and other 3d modelers. Sometimes, I feel a little stressed. But I told myself: We are never fully prepared for anything, but the most important thing is never stop learning and trying. The more challenges, the more opportunities I have to improve my skills. Thanks for giving me this opportunity. I am already looking forward to the next one.
-
-
 
 </div>

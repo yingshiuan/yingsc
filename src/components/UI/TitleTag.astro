@@ -20,10 +20,10 @@ const { tags } = Astro.props;
 <style>
   @reference "@/styles/global.css";
   .tags_container {
-    @apply flex mt-[1rem] gap-2 flex-wrap;
+    @apply flex m-[1rem] gap-2 flex-wrap;
   }
   .tags {
-    @apply text-lg font-medium border-[1.5px] border-[var(--color-text-primary)] rounded-[6px] p-[0.2rem];
+    @apply text-xs uppercase opacity-70 border-[1.5px] border-[var(--color-text-primary)] rounded-[6px] p-[0.2rem];
   }
 
   .tags:hover {

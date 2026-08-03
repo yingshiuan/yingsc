@@ -1,22 +1,43 @@
 ---
 title: 'Outfits You'
-order: 3
-created: 2024-11-01
-category: 'UI/UX'
+subtitle: ''
 slug: 'outfits-you'
+featured: false
+type: 'Personal'
+created: 2024-11-01
+domains:
+  - Spatial Computing
+  - Human-Computer Interaction
+stack:
+  - Figma
+  - AR
+category: 'UI/UX'
 tags: ['Augmented Reality', 'UI/UX', 'Application']
 image: './outfits-you/impact.png'
 hoverImage: './outfits-you/prototype.webp'
 info: 'An interactive AR application that lets users virtually try on outfits and curate their fashion collections.'
 description: 'OUTFITS YOU is an interactive try-on application where users can create their outfits and build their fashion collections. Through the creative process, help people find suitable styles and clothing. The goal is to encourage people to try different fashion items and find types of clothing that suit the user on a specific occasion.'
-type: 'demo'
 role: 'UX researcher, Interaction Designer'
 timeline: '8 weeks'
 completed: '06/2021'
 credit: 'Personal Project'
 creditLink: '#'
-tools: ['Figma', 'Adobe XD', 'Adobe Illustrator', 'Adobe Photoshop', 'Adobe After Effects']
-activities: "This project began while I was consulting for a small artisanal fashion brand transitioning into e-commerce. I noticed how difficult it was for customers to understand textures, colors, and fit through digital screens. That sparked the idea: how might AR help shoppers make more confident fashion decisions? This project became an exploration of virtual try-on technology, user behavior, fashion retail, and AR feasibility—combining research, UX design, and interdisciplinary experimentation."
+tools:
+  [
+    'Figma',
+    'Adobe XD',
+    'Adobe Illustrator',
+    'Adobe Photoshop',
+    'Adobe After Effects',
+  ]
+focus:
+  [
+    'AR Experience Design',
+    'Human-Computer Interaction',
+    'User Research',
+    'Digital-to-Physical Interaction'
+  ]
+activities: 'This project began while I was consulting for a small artisanal fashion brand transitioning into e-commerce. I noticed how difficult it was for customers to understand textures, colors, and fit through digital screens. That sparked the idea: how might AR help shoppers make more confident fashion decisions? This project became an exploration of virtual try-on technology, user behavior, fashion retail, and AR feasibility—combining research, UX design, and interdisciplinary experimentation.'
 ---
 
 <div class="contentSection">
@@ -47,7 +68,6 @@ An AR-powered app where users can:
 Competitive Audit · User Research · UX Design · Prototyping · AR Feasibility Study · Usability Testing
 
 </div>
-
 
 <div class="contentSection">
 
@@ -88,10 +108,7 @@ Enable users to confidently explore clothing styles through:
 </div>
 </div>
 
-
 </div>
-
-
 
 <div class="contentSection">
 
@@ -107,20 +124,19 @@ To understand the feasibility of AR virtual try-on, I explored existing computer
 - Build a material preference database (texture, color, type, size)
 - Generate outfit suggestions depending on weather and context
 
-
 #### Open source Pose, Face Detection API
+
 [YOLO](!https://github.com/WongKinYiu/yolov7), [TensorFlow](!https://www.tensorflow.org/), [ML Kit](!https://developers.google.com/ml-kit)
 
-
 #### Augmented Reality API
+
 [ARKit (LiDAR)](!https://developer.apple.com/augmented-reality), [Augmented Reality(iOS)](!https://developer.apple.com/design/human-interface-guidelines/technologies/augmented-reality/), [ARCore](!https://developers.google.com/ar)
 
 #### Visual-Inertial Odometry(VIO)
+
 [Apple World Tracking documentation](!https://developer.apple.com/documentation/arkit/configuration_objects/understanding_world_tracking)
 
 </div>
-
-
 
 <div class="contentSection">
 
@@ -143,8 +159,6 @@ Millie, a researcher, wants to experiment with new styles and understand what su
 
 </div>
 
-
-
 <div class="colsLayout">
 <div class="col-span-8">
 
@@ -157,25 +171,24 @@ Chris, a retired professor, enjoys staying stylish and wants a simple way to exp
 </div>
 </div>
 
-
-
 #### Takeaway
 
 ##### User needs
+
 - Understand clothing materials, texture, and fit digitally
 - Get inspiration based on weather, events, or style preferences
 
 ##### Accessibility
+
 - The interface must be intuitive for users across a wide age range
 - Cross-platform accessibility is highly valuable
 
 ##### Brand–User Connection
+
 - Brands need more interactive ways to showcase items
 - Users want to feel confident and informed before buyin
 
 </div>
-
-
 
 <div class="contentSection">
 
@@ -209,8 +222,6 @@ The design process began with a storyboard illustrating how a user might plan an
 
 </div>
 
-
-
 <div class="contentSection">
 
 ## User Flow & Information Architecture
@@ -239,11 +250,7 @@ Each function includes clear goals, user actions, and content types. This struct
 
 ![Information Architecture](./ia.png)
 
-
 </div>
-
-
-
 
 <div class="contentSection">
 
@@ -261,7 +268,7 @@ The early prototypes ensured the core interactions—switching between features,
 
 <div class="relative group my-4">
 <!-- * Default image -->
-<div class="block group-hover:hidden"> 
+<div class="block group-hover:hidden">
 
 ![low-fidelity-prototype](./low-fidelity-prototype.jpg)
 
@@ -276,8 +283,6 @@ The early prototypes ensured the core interactions—switching between features,
 </div>
 
 </div>
-
-
 
 <div class="contentSection">
 
@@ -313,11 +318,7 @@ Two rounds of user testing shaped the design.
 
 2. Use default clothing categories, allowing users to add custom ones
 
-
 </div>
-
-
-
 
 <div class="contentSection">
 
@@ -329,8 +330,6 @@ Here is the multi-multi prototype on Figma.
 
 </div>
 
-
-
 <div class="contentSection">
 
 ## Main Feature
@@ -340,8 +339,6 @@ Here is the multi-multi prototype on Figma.
 ![outfits-you-final](./final.png)
 
 </div>
-
-
 
 <div class="contentSection">
 
@@ -365,7 +362,6 @@ Outfits You gives users an engaging way to understand what suits them—visually
 
 </div>
 
-
 <div class="colsLayout">
 
 <div class="col-span-6">
@@ -385,9 +381,6 @@ This project taught me how initial concepts evolve significantly through usabili
 </div>
 
 </div>
-
-
-
 
 <div class="contentSection">
 
@@ -411,8 +404,6 @@ This project taught me how initial concepts evolve significantly through usabili
 ![outfits-for-today](./item.jpg)
 
 </div>
-
-
 
 <div class="contentSection">
 

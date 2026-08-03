@@ -10,12 +10,9 @@ skills:
   - 'Frontend Engineering & Data Visualization'
   - 'Interactive Systems'
   - 'XR & Spatial Computing'
-
 previously:
   - company: 'DisneyResearch|Studios'
     url: 'https://studios.disneyresearch.com/'
-
-
 studies:
   institution: 'ETH Zürich'
   url: 'https://ethz.ch/'
