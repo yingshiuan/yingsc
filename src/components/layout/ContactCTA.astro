@@ -1,0 +1,83 @@
+---
+import { getCollection } from 'astro:content';
+import Button from '@/components/UI/Button.astro';
+
+const introCollection = await getCollection('intro');
+const contact = introCollection[0]?.data.contact;
+
+const baseUrl = import.meta.env.BASE_URL;
+---
+
+{
+  contact && (
+    <section class="contact">
+      <p class="section_label">GET IN TOUCH</p>
+      <h3 class="contact_headline">{contact.headline}</h3>
+      {contact.subline && <p class="contact_subline">{contact.subline}</p>}
+
+      <div class="contact_actions">
+        <Button
+          href={`mailto:${contact.email}`}
+          label="Email me"
+          color="primary"
+          variant="outline"
+          size="md"
+        />
+        {contact.linkedin && (
+          <Button
+            href={contact.linkedin}
+            target="_blank"
+            label="LinkedIn"
+            color="primary"
+            variant="outline"
+            size="md"
+          />
+        )}
+        {contact.github && (
+          <Button
+            href={contact.github}
+            target="_blank"
+            label="GitHub"
+            color="primary"
+            variant="outline"
+            size="md"
+          />
+        )}
+        {/* {contact.resume && (
+          <Button
+            href={`${baseUrl}${contact.resume}`}
+            target="_blank"
+            label="Download resume"
+            color="primary"
+            variant="outline"
+            size="md"
+          />
+        )} */}
+      </div>
+    </section>
+  )
+}
+
+<style>
+  @reference "@/styles/global.css";
+
+  .contact {
+    @apply px-[2.5rem] my-[8rem] mx-auto max-w-[80rem];
+  }
+
+  .section_label {
+    @apply uppercase text-sm tracking-widest text-[var(--color-text-secondary)];
+  }
+
+  .contact_headline {
+    @apply mt-[1rem];
+  }
+
+  .contact_subline {
+    @apply mt-[1rem];
+  }
+
+  .contact_actions {
+    @apply mt-[2rem] flex flex-wrap gap-3 justify-end ;
+  }
+</style>

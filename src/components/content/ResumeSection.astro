@@ -58,7 +58,7 @@ const { title, items, showDivider = true } = Astro.props;
                 <div class="mt-[0.5rem] pl-4">
                   {item.tech.map((t, index) => (
                     <span class="item_emphasis">
-                      {t}{index < item.tech!.length - 1 ? ',' : ''}
+                      {t}{index < item.tech!.length - 1 ? ' · ': ''}
                     </span>
                   ))}
                 </div>
@@ -101,7 +101,7 @@ const { title, items, showDivider = true } = Astro.props;
               <div class="lg:col-span-12 mt-[0.5rem]">
                 {item.skills.map((t, index) => (
                   <span class="item_emphasis">
-                    {t}{index < item.skills!.length - 1 ? ', ' : ''}
+                    {t}{index < item.skills!.length - 1 ? ' · ' : ''}
                   </span>
                 ))}
               </div>
@@ -170,7 +170,7 @@ const { title, items, showDivider = true } = Astro.props;
   }
 
   .item_emphasis {
-    @apply text-[var(--color-text-primary)] inline;
+    @apply text-sm font-light text-[var(--color-text-secondary)] inline;
   }
 
   .item_link {

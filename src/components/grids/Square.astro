@@ -5,6 +5,8 @@ import Button from '@/components/UI/Button.astro';
 
 const projects = await getCollection('projects');
 projects.sort((a, b) => {
+  if (a.data.featured !== b.data.featured) return a.data.featured ? -1 : 1;
+
   const aDate = a.data.created;
   const bDate = b.data.created;
 
@@ -65,7 +67,7 @@ projects.sort((a, b) => {
 </div>
 
 <div class="moreButton">
-  <div class="flex justify-end">
+  <div class="flex justify-end gap-2">
     {
       projects.length > 3 && (
         <Button
@@ -77,6 +79,13 @@ projects.sort((a, b) => {
         />
       )
     }
+    <!-- <Button
+      href={`${baseUrl}projects`}
+      label="View all projects →"
+      variant="outline"
+      color="primary"
+      size="md"
+    /> -->
   </div>
 </div>
 

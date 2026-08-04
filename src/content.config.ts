@@ -48,6 +48,31 @@ const about = defineCollection({
     role: z.string().optional(),
     profileImage: z.string().optional(),
     gifImage: z.string().optional(),
+    // Condensed version for the homepage block. The /about page renders the
+    // markdown body instead, so the two stay independent.
+    homepage: z
+      .object({
+        label: z.string().optional(),
+        heading: z.string(),
+        body: z.array(z.string()),
+      })
+      .optional(),
+    // Intro block shown beside the profile photo on /about, above the body.
+    // `currentLink.label` must appear verbatim inside `current` — the component
+    // splits on it to turn that phrase into a link.
+    intro: z
+      .object({
+        greeting: z.string(),
+        summary: z.string(),
+        current: z.string().optional(),
+        currentLink: z
+          .object({
+            label: z.string(),
+            href: z.string(),
+          })
+          .optional(),
+      })
+      .optional(),
   }),
 });
 
@@ -64,6 +89,27 @@ const intro = defineCollection({
     intro: z.string().optional(),
     description: z.string().optional(),
     skills: z.array(z.string()).optional(),
+
+    // Homepage "Technical Focus" pillars. Rendered in order, numbered 01..n.
+    focus: z
+      .array(
+        z.object({
+          title: z.string(),
+          items: z.array(z.string()),
+        }),
+      )
+      .optional(),
+    // Homepage closing call-to-action.
+    contact: z
+      .object({
+        headline: z.string(),
+        subline: z.string().optional(),
+        email: z.string(),
+        linkedin: z.string().optional(),
+        github: z.string().optional(),
+        resume: z.string().optional(),
+      })
+      .optional(),
 
     previously: z
       .array(

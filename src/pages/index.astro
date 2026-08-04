@@ -2,7 +2,10 @@
 import Layout from '@/layouts/Layout.astro';
 import Intro from '@/components/layout/Intro.astro';
 import Square from '@/components/grids/Square.astro';
+import TechnicalFocus from '@/components/layout/TechnicalFocus.astro';
+import ExperienceHighlights from '@/components/layout/ExperienceHighlights.astro';
 import About from '@/components/layout/About.astro';
+import ContactCTA from '@/components/layout/ContactCTA.astro';
 
 const baseUrl = import.meta.env.BASE_URL || 'https://yingshiuan.github.io/yingsc/';
 
@@ -23,5 +26,8 @@ const baseUrl = import.meta.env.BASE_URL || 'https://yingshiuan.github.io/yingsc
   </div>
 
   <Square />
+  <div class="my-[12rem]"><TechnicalFocus /></div>
+  <div class="my-[12rem]"><ExperienceHighlights /></div>
   <div class="my-[12rem]"><About /></div>
+  <ContactCTA />
 </Layout>
