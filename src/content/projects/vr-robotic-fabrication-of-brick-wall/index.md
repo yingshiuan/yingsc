@@ -17,10 +17,10 @@ stack:
 
 created: 2023-12-02
 category: 'AR/VR'
-slug: 'vr-robotic-fabrication-of-brick-wall'
 tags: ['HTC VIVE Tracker', 'Robotic Fabrication', 'On-site']
-image: './vr-robotic-fabrication-of-brick-wall/brickwall.jpg'
-hoverImage: './vr-robotic-fabrication-of-brick-wall/brickwall.webp'
+image: './brickwall.jpg'
+hoverImage: './brickwall.webp'
+thumbnail: './vr-robotic-fabrication-of-brick-wall.jpg'
 info: 'Realtime HTC VIVE tracking locates the on-site UR10 relative to the double-curved wall for precise robotic fabrication.'
 description: 'This project constructs a 3 m × 6.7 m fundraising brick wall using the HTC VIVE tracker system to locate the relative coordinates between the double-curved wall geometry and the on-site UR10 robotic arm, enabling precise robotic fabrication.'
 role: 'Research Assistant'

@@ -7,16 +7,19 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "check": "astro check",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.astro"
   },
   "dependencies": {
+    "@astrojs/markdown-remark": "^7.2.2",
     "@astrojs/partytown": "^2.1.4",
-    "@astrojs/sitemap": "^3.6.0",
+    "@astrojs/sitemap": "^3.7.3",
     "@tailwindcss/vite": "^4.1.16",
-    "astro": "^5.15.3",
+    "astro": "^7.1.6",
     "tailwindcss": "^4.1.16"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.10",
     "@eslint/js": "^9.39.1",
     "@typescript-eslint/eslint-plugin": "^8.47.0",
     "@typescript-eslint/parser": "^8.47.0",
@@ -27,8 +30,10 @@
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-prettier": "^5.5.4",
     "globals": "^16.5.0",
+    "playwright": "^1.62.1",
     "prettier": "3.6.2",
     "prettier-plugin-astro": "0.14.1",
+    "typescript": "^5.9.3",
     "typescript-eslint": "^8.47.0"
   }
 }

@@ -1,7 +1,6 @@
 ---
 title: 'Swissrider'
 subtitle: ''
-slug: 'swissrider'
 featured: false
 type: 'Professional'
 created: 2023-12-01
@@ -15,8 +14,9 @@ stack:
   - Figma
 category: '3D Animation'
 tags: ['3D Animation', 'Advertising', 'UI/UX']
-image: './swissrider/swissrider_s.png'
-hoverImage: './swissrider/swissrider.webp'
+image: './swissrider_s.png'
+hoverImage: './swissrider.webp'
+thumbnail: './swissrider.jpg'
 info: 'The 3D animation introduces the features of the next generation of lightweight electric bicycles.'
 description: 'I had the pleasure of working with Thömus AG on a breakthrough 60-second animation for the Swissrider, an lightweight electric bike. The animation is to introduce the features of the next generation of electric bicycles. Futuristic design, integrated maxon electric drive system, refined carbon fiber frame. The unrivaled light train and office companion.'
 role: '3D Artist & Animator'

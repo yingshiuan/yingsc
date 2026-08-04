@@ -1,6 +1,5 @@
 ---
 import { getCollection } from 'astro:content';
-import type { ProjectMeta } from '@/ts/project';
 import ProjectCard from '@/components/grids/ProjectCard.astro';
 import Button from '@/components/UI/Button.astro';
 
@@ -22,10 +21,9 @@ projects.sort((a, b) => {
     projects.map((project, index) => (
       <div
         class={`project-item ${index < 3 ? '' : 'hidden'}`}
-        id={`project-${index}`}>
-        <ProjectCard
-          projectMeta={{ ...project.data, slug: project.slug } as ProjectMeta}
-        />
+        id={`project-${index}`}
+      >
+        <ProjectCard project={project} />
       </div>
     ))
   }
@@ -36,10 +34,12 @@ projects.sort((a, b) => {
       href="https://yingshiuan.github.io/yshiuanc/portfolio/"
       class="block no-underline"
       target="_blank"
-      rel="noopener noreferrer">
+      rel="noopener noreferrer"
+    >
       <div
         class="p-6 border rounded-xl flex flex-col items-center justify-center text-center h-full
-            hover:shadow-lg dark:hover:shadow-gray-500 transition-shadow">
+            hover:shadow-lg dark:hover:shadow-gray-500 transition-shadow"
+      >
         <span class="text-4xl mb-2">✨</span>
         <h3 class="text-xl font-semibold">More projects coming soon</h3>
         <p class="text-sm opacity-80 mt-2">
@@ -56,23 +56,7 @@ projects.sort((a, b) => {
   <!-- {
     projects.length > 0 ? (
       projects.map((project) => (
-        <ProjectCard
-          projectMeta={{
-            ...project.data,
-            slug: project.slug,
-          }}
-        />
-      ))
-    ) : (
-      <p>No projects found.</p>
-    )
-  } -->
-
-  <!-- {
-    projects.length > 0 ? (
-      projects.map((project) => (
-        <p>{project.data.order} {project.data.category}: <a href={`${baseUrl}projects/${project.slug}`}>{project.data.title}</a></p>
- 
+        <ProjectCard project={project} />
       ))
     ) : (
       <p>No projects found.</p>

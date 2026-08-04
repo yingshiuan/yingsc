@@ -1,7 +1,6 @@
 ---
 title: 'MenuGen'
 subtitle: 'Restaurant Menu Management Platform'
-slug: 'menu-generator'
 featured: true
 type: 'Professional'
 created: 2026-01-01
@@ -16,8 +15,9 @@ stack:
   - Docker
 category: 'Web App'
 tags: ['Full Stack', 'Product Engineering', 'Web App', 'PDF Generator', 'Vue']
-image: './menu-generator/menu-generator-c.png'
-hoverImage: './menu-generator/menu-generator.webp'
+image: './menu-generator-c.png'
+hoverImage: './menu-generator.webp'
+thumbnail: './menu-generator.png'
 info: 'A full-stack platform that enables restaurants to manage menu content, preview layouts in real time, and generate print-ready PDFs.'
 description: 'Designed and developed a full-stack product that transforms structured menu data into an interactive editing workflow with real-time preview and deterministic HTML-to-PDF rendering.'
 role: 'Full-Stack Product Engineer'
@@ -25,7 +25,7 @@ timeline: '2 months'
 completed: '12/2025'
 credit: 'Menu Generator'
 creditLink: 'https://menugen.insdash.ch'
-tools: [ 'Vue.js', 'TypeScript', 'Tailwind CSS', 'Pinia', 'PapaParse', 'Vitest', 'Node.js', 'Express', 'Puppeteer', 'Sharp', 'Docker', 'Vercel']
+tools: [ 'Vue.js', 'TypeScript', 'Tailwind CSS', 'Pinia', 'PapaParse', 'Vitest', 'Node.js', 'Express', 'Puppeteer', 'Sharp', 'Docker', 'Render', 'Vercel']
 focus:
   [
     'Full-Stack Architecture',
@@ -49,30 +49,22 @@ The project separates content management from presentation, allowing restaurants
 
 #### Key Highlights
 
-- Designed and developed a full-stack web application from concept to deployment.
+- Designed and developed a full-stack web application from concept to production.
 - Engineered a deterministic HTML-to-PDF rendering pipeline using Puppeteer.
 - Built an asset optimization pipeline for images and SVGs with Sharp.
 - Implemented asynchronous PDF generation to improve responsiveness.
-- Adopted a local-first architecture with zero onboarding.
-- Containerized the application with Docker and deployed it to production.
-
-
-#### Project Origin
-
-This project began after I completed the restaurant's visual menu designs in Figma and Canva.
-
-Although the design system was complete, every menu update required reopening the original design files, making manual edits, checking layouts, and exporting new PDFs. Even small content changes became repetitive and difficult to maintain.
-
-Rather than continuing to update static designs, I decided to transform the design system into a web application.
-
-The result is MenuGen — a platform that preserves the original visual design while allowing menu content to be managed through structured data and exported as production-ready PDFs.
+- Designed a local-first architecture with zero onboarding.
+- Containerized and deployed the application using Docker.
 
 
 #### The Problem
 
-Updating restaurant menus is often repetitive and time-consuming.
+Restaurant menus are typically maintained in design tools such as Figma or Canva.
 
-Typical workflows involve editing design files whenever prices, seasonal dishes, or descriptions change. This creates unnecessary manual work, especially for businesses that update menus frequently or support multiple languages.
+Every update requires reopening design files, adjusting layouts manually, and exporting new PDFs—even for simple changes like prices or seasonal dishes.
+
+This workflow becomes difficult to maintain as menus grow or support multiple languages.
+
 
 #### The Solution
 
@@ -88,41 +80,58 @@ Live Preview
 Print-ready PDF
 ```
 
-Instead of editing layouts manually, restaurant staff only maintain structured content while the application preserves the visual design automatically.
+Instead of editing layouts manually, restaurant staff only manage structured content while MenuGen preserves the visual design automatically.
+
+
+#### Project Origin
+
+This project began after I completed the restaurant's visual menu designs in Figma and Canva.
+
+Although the design system was complete, every menu update required reopening the original design files, making manual edits, checking layouts, and exporting new PDFs. Even small content changes became repetitive and difficult to maintain.
+
+Rather than continuing to update static designs, I decided to transform the design system into a web application.
+
+The result is MenuGen — a platform that preserves the original visual design while allowing menu content to be managed through structured data and exported as production-ready PDFs.
 
 </div>
 
 
 <div class="contentSection">
 
-## Product Philosophy
+## Architecture Decisions
 
-This architecture intentionally prioritizes simplicity and rapid iteration over persistence, making it suitable for validating the core workflow before introducing SaaS capabilities.
+#### Goal
+
+Validate the core editing workflow before introducing SaaS complexity.
 
 #### Design Principles
 
+- Local-first editing
 - No account required
 - No database
-- Local-first editing
 - Minimal onboarding
 - Fast workflow
 
+#### Why this approach?
+
 Menu data remains inside the user's browser and is only sent to the backend when generating a PDF.
 
-This approach reduces infrastructure complexity while allowing users to start immediately.
+This keeps the infrastructure simple while allowing users to start immediately.
+
+I intentionally avoided authentication and persistent storage because they were not required to validate the core workflow. This reduced implementation complexity while leaving room for future expansion.
 
 
 #### Trade-offs
 
-##### Benefits
+#### Benefits
 
 - Better privacy
 - Zero onboarding
+- Faster iteration
 - Simple deployment
-- Faster development
 
 
-##### Limitations
+#### Limitations
 
 - No persistent storage
 - No collaboration
@@ -141,6 +150,7 @@ This approach reduces infrastructure complexity while allowing users to start im
 - Implemented asynchronous PDF generation to improve responsiveness and prepare the architecture for future scaling.
 - Designed a CSV-driven workflow that separates structured menu data from presentation.
 - Adopted a local-first architecture to validate the core editing workflow with minimal onboarding.
+- Containerized the application with Docker and deployed it to production.
 
 </div>
 
@@ -152,26 +162,50 @@ This approach reduces infrastructure complexity while allowing users to start im
 The architecture separates user interaction, asset processing, and document rendering to keep the editing experience responsive while handling resource-intensive PDF generation.
 
 ```
-CSV Upload
-↓
-Vue 3 + Pinia
-↓
-Application State
-↓
-Interactive Editor
-↓
-Live Preview
-↓
-Express API
-↓
-Asset Processing Pipeline
-↓
-PDF Generation Queue
-↓
-Puppeteer
-↓
-PDF Output
+                USER
+                 |
+                 v
+        Vue 3 Frontend + Pinia State
+                 |
+        ------------------
+        |                |
+        v                v
+ Interactive Editor     Live Preview
+        |
+        |
+        v
+     Menu Data Model (CSV / JSON)
+                 |
+                 v
+          Express API
+                 |
+        ------------------
+        |                |
+        v                v
+ Asset Pipeline       PDF Renderer
+    Sharp             Puppeteer
+        |                |
+        ------------------
+                 |
+                 v
+          Print-ready PDF
 ```
+
+
+
+#### Frontend
+
+Responsible for editing structured menu data and rendering the live preview.
+
+#### Backend
+
+Handles PDF generation and asset preprocessing.
+
+#### Rendering Pipeline
+
+Processes images, embeds assets, and generates deterministic PDFs.
+
+
 
 ## PDF Rendering Pipeline
 
@@ -197,24 +231,57 @@ Print-ready PDF
 
 <div class="contentSection">
 
-## Technical Challenges
+## Engineering Challenges
 
-#### Pixel-perfect Rendering
+#### Pixel-perfect PDF Rendering
 
-Keeping browser previews identical to exported PDFs was the main engineering challenge. Browser rendering and PDF generation environments handle layouts, fonts, and assets differently, requiring careful control over rendering behavior.
+| Challenge | Approach | Outcome |
+|-----------|----------|---------|
+| Browser preview and PDF output rendered differently. | Built a deterministic Puppeteer pipeline with controlled asset handling. | Exported PDFs consistently match the browser preview. |
+
 
 #### Reliable Asset Loading
 
-Images stored in different locations can behave inconsistently during server-side rendering.
+| Challenge | Approach | Outcome |
+|-----------|----------|---------|
+| Browser-side assets were unreliable during server rendering. | Preprocessed images and embedded assets before PDF generation. | Generated PDFs without missing assets or broken references. |
 
-To guarantee reliable output, all required assets are processed before rendering.
+
+#### Performance Optimization
+
+| Challenge | Approach | Outcome |
+|-----------|----------|---------|
+| Large images increased PDF generation time and output size. | Built a Sharp-based optimization pipeline for images and SVGs. | Faster rendering while maintaining print quality. |
 
 
-#### Performance
+</div>
 
-Large images significantly increased rendering time and PDF size.
 
-An image optimization pipeline using Sharp reduces asset size while maintaining print quality.
+
+<div class="contentSection">
+
+## Production Deployment
+
+#### Frontend
+
+- Vue
+- Vercel
+
+#### Backend
+
+- Express
+- Render
+
+#### Containerization
+
+- Docker
+- Docker Compose
+
+#### Document Generation
+
+- Puppeteer
+- Sharp
+
 
 </div>
 
@@ -248,7 +315,7 @@ An image optimization pipeline using Sharp reduces asset size while maintaining 
 
 <div class="contentSection">
 
-## Future Evolution
+## Future Improvements
 
 The current version focuses on validating the core editing workflow through a privacy-first architecture.
 
@@ -269,11 +336,9 @@ These additions build upon the existing document generation pipeline without cha
 
 <div class="contentSection">
 
-## Takeaways
+## Engineering Takeaways
 
-#### What I Learned
-
-Building MenuGen reinforced several engineering principles.
+#### Building MenuGen reinforced several engineering principles.
 
 - Product requirements often drive architectural decisions more than technology choices.
 - Separating content from presentation improves maintainability.
@@ -281,13 +346,14 @@ Building MenuGen reinforced several engineering principles.
 - Building the simplest architecture that solves today's problem often creates a better foundation than over-engineering for hypothetical future requirements.
 
 
-#### Impact - What this project demonstrates
+#### What This Project Demonstrates
 
-- Product thinking from identifying a real workflow problem
-- End-to-end full-stack development
-- Translating design systems into reusable software
-- Engineering trade-offs and architectural decisions
-- Production deployment and operational considerations
+- Identifying and solving a real product workflow problem
+- End-to-end full-stack product development
+- Translating design systems into maintainable software
+- Making architectural decisions based on product requirements
+- Deploying and operating production applications
+
 
 </div>
 
@@ -295,7 +361,7 @@ Building MenuGen reinforced several engineering principles.
 
 <div class="contentSection">
 
-#### You can explore my side project on GitHub
+#### GitHub Repository
 
 <div>
   <a href="https://github.com/yingshiuan/menuGen" target="_blank" rel="noopener noreferrer">

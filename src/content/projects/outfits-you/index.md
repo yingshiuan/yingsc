@@ -1,7 +1,6 @@
 ---
 title: 'Outfits You'
 subtitle: ''
-slug: 'outfits-you'
 featured: false
 type: 'Personal'
 created: 2024-11-01
@@ -13,8 +12,9 @@ stack:
   - AR
 category: 'UI/UX'
 tags: ['Augmented Reality', 'UI/UX', 'Application']
-image: './outfits-you/impact.png'
-hoverImage: './outfits-you/prototype.webp'
+image: './impact.png'
+hoverImage: './prototype.webp'
+thumbnail: './outfits-you.jpg'
 info: 'An interactive AR application that lets users virtually try on outfits and curate their fashion collections.'
 description: 'OUTFITS YOU is an interactive try-on application where users can create their outfits and build their fashion collections. Through the creative process, help people find suitable styles and clothing. The goal is to encourage people to try different fashion items and find types of clothing that suit the user on a specific occasion.'
 role: 'UX researcher, Interaction Designer'

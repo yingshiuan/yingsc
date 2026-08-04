@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
@@ -7,49 +8,34 @@ interface Props {
 
 const { project } = Astro.props;
 
-const images = import.meta.glob<{ default: ImageMetadata}>(
-  '/src/content/projects/**/*.{png,jpg}',
-  { eager: true }
-);
-
-const getProjectImage = (slug: string) => {
-  let entry = Object.entries(images).find(([path]) =>
-    path.includes(`/src/content/projects/${slug}/${slug}.png`)
-  );
-  if (!entry) {
-    entry = Object.entries(images).find(([path]) =>
-      path.includes(`/src/content/projects/${slug}/${slug}.jpg`)
-    );
-  }
-  return entry ? entry[1].default : null;
-};
-
-const mainImage = getProjectImage(project.slug);
-
+const mainImage = project.data.thumbnail ?? project.data.image;
 ---
 
 <div class="relative group thumbnail overflow-hidden">
   <!-- Image -->
-  <img
-    src={mainImage?.src}
+  <Image
+    src={mainImage}
     alt={project.data.title}
-    class="transition-transform duration-300 ease-in-out group-hover:scale-101 items-center"
+    widths={[640, 1024, 1600]}
+    sizes="(min-width: 900px) 80rem, 100vw"
+    class="w-full aspect-[16/10] object-cover object-center transition-transform duration-300 ease-in-out group-hover:scale-105"
   />
 
   <!-- Overlay with text -->
   <div class="glassHover">
-    <h3 class="text-[var(--background-color)] drop-shadow-[1px_1px_2px_var(--color-caption-secondary)]">
+    <h3
+      class="text-[var(--background-color)] drop-shadow-[1px_1px_2px_var(--color-caption-secondary)]"
+    >
       {project.data.title}
     </h3>
   </div>
 </div>
 
-
 <style>
   @reference "@/styles/global.css";
 
-  .thumbnail{
-    @apply w-full max-w-full;   
+  .thumbnail {
+    @apply w-full overflow-hidden;
   }
 
   /* .glassHover{
@@ -59,7 +45,6 @@ const mainImage = getProjectImage(project.slug);
     rounded-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100;
   } */
 
-
   body.light_mode .glassHover {
     @apply absolute inset-0 flex flex-col items-center justify-center
     bg-gradient-to-t from-black/5 via-black/2 to-transparent
@@ -67,12 +52,10 @@ const mainImage = getProjectImage(project.slug);
     rounded-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100;
   }
 
-
   body.dark_mode .glassHover {
     @apply absolute inset-0 flex flex-col items-center justify-center
     bg-gradient-to-t from-white/20 via-white/10 to-white/5
     backdrop-blur-md border border-white/25
     rounded-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100;
   }
-
 </style>

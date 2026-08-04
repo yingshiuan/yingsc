@@ -1,95 +1,67 @@
 ---
 import { getCollection } from 'astro:content';
-import type { ProjectMeta } from '@/ts/project';
 import ProjectCardText from '@/components/grids/ProjectCardText.astro';
 
 const projects = await getCollection('projects');
-projects.sort((a, b) => a.data.order - b.data.order);
+projects.sort((a, b) => {
+  const aDate = a.data.created;
+  const bDate = b.data.created;
+
+  if (!aDate && !bDate) return 0;
+  if (!aDate) return 1;
+  if (!bDate) return -1;
+
+  return new Date(bDate).getTime() - new Date(aDate).getTime();
+});
+
+// The asymmetric block below has exactly 6 hand-placed slots. Anything beyond
+// them falls through to a uniform grid rather than being silently dropped.
+const FEATURE_SLOTS = 6;
+const overflow = projects.slice(FEATURE_SLOTS);
 ---
 
 <div class="asy-split-grid">
   <!-- Left Column: Big Square -->
   <div class="leftColumn order-1 md:order-1">
-    {
-      projects[0] && (
-        <ProjectCardText
-          projectMeta={{
-            ...projects[0].data,
-            slug: projects[0].slug,
-          } as ProjectMeta}
-        />
-      )
-    }
+    {projects[0] && <ProjectCardText project={projects[0]} />}
   </div>
 
   <!-- Right Column -->
   <div class="rightColumn order-2 md:order-2">
     <div class="smallUnit order-1 md:order-1">
-      {
-        projects[3] && (
-          <ProjectCardText
-            projectMeta={{
-              ...projects[3].data,
-              slug: projects[3].slug,
-            } as ProjectMeta}
-          />
-        )
-      }
+      {projects[3] && <ProjectCardText project={projects[3]} />}
     </div>
 
     <div class="smallUnit order-2 md:order-2">
-      {
-        projects[2] && (
-          <ProjectCardText
-            projectMeta={{
-              ...projects[2].data,
-              slug: projects[2].slug,
-            } as ProjectMeta}
-          />
-        )
-      }
+      {projects[2] && <ProjectCardText project={projects[2]} />}
     </div>
 
     <div class="rectUnit order-3 md:order-3">
-      {
-        projects[1] && (
-          <ProjectCardText
-            projectMeta={{
-              ...projects[1].data,
-              slug: projects[1].slug,
-            } as ProjectMeta}
-          />
-        )
-      }
+      {projects[1] && <ProjectCardText project={projects[1]} />}
     </div>
 
     <div class="smallUnit order-4 md:order-5">
-      {
-        projects[4] && (
-          <ProjectCardText
-            projectMeta={{
-              ...projects[4].data,
-              slug: projects[4].slug,
-            } as ProjectMeta}
-          />
-        )
-      }
+      {projects[4] && <ProjectCardText project={projects[4]} />}
     </div>
 
     <div class="squareUnit order-5 md:order-4">
-      {
-        projects[5] && (
-          <ProjectCardText
-            projectMeta={{
-              ...projects[5].data,
-              slug: projects[5].slug,
-            } as ProjectMeta}
-          />
-        )
-      }
+      {projects[5] && <ProjectCardText project={projects[5]} />}
     </div>
   </div>
 </div>
+
+<!-- Everything past the 6 feature slots, so no project is ever dropped -->
+{
+  overflow.length > 0 && (
+    <div class="overflowGrid">
+      {overflow.map((project) => (
+        <div class="overflowUnit">
+          <ProjectCardText project={project} />
+        </div>
+      ))}
+    </div>
+  )
+}
 
 <style>
   @reference "@/styles/global.css";
@@ -116,6 +88,14 @@ projects.sort((a, b) => a.data.order - b.data.order);
   }
   .squareUnit {
     @apply col-span-2 row-span-2 relative overflow-hidden rounded-lg;
+  }
+
+  .overflowGrid {
+    @apply w-full p-2 grid grid-cols-1 sm:grid-cols-2 gap-2 mb-[4rem];
+  }
+
+  .overflowUnit {
+    @apply aspect-square relative overflow-hidden rounded-lg;
   }
 
   @media (min-width: 900px) {

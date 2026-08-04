@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { render } from 'astro:content';
 import MetaCard from '@/components/content/MetaCard.astro';
-import type { ProjectMeta } from '@/ts/project';
 import ProjectThumbnail from '@/components/content/ProjectThumbnail.astro';
 import ContentFooter from '@/components/content/ContentFooter.astro';
 
@@ -12,15 +12,14 @@ interface Props {
 
 // load the data
 const { project, baseUrl } = Astro.props;
-const Content = (await project.render()).Content;
+
+const { Content } = await render(project);
 ---
 
 <div class="project-content">
   <!-- Project Meta -->
   <div class="mt-[12rem] mb-[4rem]">
-    <MetaCard
-      projectMeta={{ ...project.data, slug: project.slug } as ProjectMeta}
-    />
+    <MetaCard project={project} />
   </div>
   <div class="projectThumbnail">
     <ProjectThumbnail project={project} />
@@ -38,22 +37,28 @@ const Content = (await project.render()).Content;
   <style>
     @reference "@/styles/global.css";
 
+    /* Base: Mobile */
     :global(.content, .contentFooter) {
-      @apply px-[2.5rem] my-[12rem] mx-auto;
+      @apply px-[1.5rem] my-[6rem] mx-auto;
     }
 
     :global(.content .contentSection) {
-      @apply mb-[12rem];
+      @apply mb-[6rem];
     }
 
-    :global(.content h1, h2, h3, h4) {
+    :global(.content h1),
+    :global(.content h2),
+    :global(.content h3),
+    :global(.content h4) {
       @apply mt-[3rem];
     }
 
-    :global(.content h5, h6) {
-      @apply mt-[3rem];
+    :global(.content h5),
+    :global(.content h6) {
+      @apply mt-[2rem];
     }
 
+    /* Project sections */
     :global(.content .projectGoal) {
       @apply grid grid-cols-1 md:grid-cols-3 gap-6;
     }
@@ -62,6 +67,7 @@ const Content = (await project.render()).Content;
       @apply h-full object-cover;
     }
 
+    /* Lists */
     :global(.content ul) {
       @apply list-none pl-0;
     }
@@ -85,35 +91,45 @@ const Content = (await project.render()).Content;
       @apply mr-2 font-semibold flex-shrink-0;
     }
 
+    /* Links */
     :global(.content a) {
       @apply underline;
     }
 
-    :global(.content .colsLayout) {
-      @apply grid grid-cols-12 gap-4 items-center;
-    }
-
+    /* Images */
     :global(.content img) {
       @apply mx-auto;
     }
 
+    /* Layout */
+    :global(.content .colsLayout) {
+      @apply flex flex-col lg:flex-row items-center gap-8;
+    }
+
+    :global(.content .col) {
+      @apply flex-1;
+    }
+
+    /* Embed */
     :global(.content .embedFrame) {
       @apply mx-auto w-full max-w-screen-lg aspect-[16/9];
     }
 
+    /* Tables */
     :global(.content table) {
-      @apply w-full my-8 border-collapse overflow-x-auto;
+      @apply w-full my-8 border-collapse;
     }
 
     :global(.content th),
     :global(.content td) {
-      @apply border px-4 py-3 align-top;
+      @apply border px-4 py-3 align-top text-left;
     }
 
     :global(.content th) {
-      @apply font-semibold;
+      @apply font-semibold text-sm;
     }
 
+    /* Code */
     :global(.content pre) {
       @apply bg-zinc-900 text-zinc-100 rounded-xl p-4 overflow-x-auto my-6;
     }
@@ -126,22 +142,22 @@ const Content = (await project.render()).Content;
       @apply bg-zinc-100 px-1 py-0.5 rounded text-sm;
     }
 
+    /* Mobile table scrolling */
+    @media (max-width: 899px) {
+      :global(.content table) {
+        @apply block overflow-x-auto whitespace-nowrap;
+      }
+    }
+
+    /* Desktop */
     @media (min-width: 900px) {
       :global(.content, .contentFooter) {
         @apply my-[4rem] max-w-[80rem];
       }
-    }
 
-    /*      
-      :global(.custom-markdown p) {
-      @apply text-gray-700;
+      :global(.content .contentSection) {
+        @apply mb-[10rem];
       }
-      :global(.custom-markdown a) {
-      @apply text-blue-500 underline;
-      } */
-
-    /* :global(.content img) {
-      @apply w-full max-w-full;
-      } */
+    }
   </style>
 </div>

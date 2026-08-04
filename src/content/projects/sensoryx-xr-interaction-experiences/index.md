@@ -1,7 +1,6 @@
 ---
 title: 'XR Stylus Interaction System'
 subtitle: 'Hardware–Software Integration for Spatial Computing'
-slug: 'sensoryx-xr-interaction-experiences'
 featured: true
 type: 'Professional'
 created: 2025-01-01
@@ -17,6 +16,7 @@ category: 'AR/VR'
 tags: ['XR Interaction Systems', 'Hardware–Software Integration', 'Spatial Computing']
 image: './xr-hand-painting.jpg'
 hoverImage: './xr-hand-painting.webp'
+thumbnail: './sensoryx-xr-interaction-experiences.jpg'
 info: 'Designed XR interaction systems that transformed a motion-tracked stylus into an intuitive input device for spatial computing experiences.'
 description: 'Designed and integrated XR interaction systems for a motion-tracked stylus, connecting hardware input, spatial computing workflows, and human-centered interaction design.'
 role: 'XR Software Engineer Intern'

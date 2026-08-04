@@ -1,6 +1,6 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 
 interface Props {
   profileImage?: string;
@@ -19,15 +19,22 @@ const gifImagePath = `${baseUrl}${gifImage}`;
 
 const aboutMeCollection = await getCollection('about');
 const aboutMe = aboutMeCollection[0];
+
+if (!aboutMe) {
+  throw new Error('About content not found');
+}
+
 const roleTitle = aboutMe.data.role ?? 'Product Engineer';
-const Content = (await aboutMe.render()).Content;
+
+const { Content } = await render(aboutMe);
 ---
 
 <Layout
   title="About Me"
   description="Ying-Shiuan Chen loves creating functional yet fun interactions to humanize technology!"
   image={profileImagePath}
-  keywords="Ying-Shiuan Chen, software engineer, product designer, developer, interaction">
+  keywords="Ying-Shiuan Chen, software engineer, product designer, developer, interaction"
+>
   <!-- Content -->
   <section class="aboutMe">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -40,7 +47,8 @@ const Content = (await aboutMe.render()).Content;
           I am a <b>{roleTitle}</b>, at the intersection of AI, spatial
           computing, and human-centered technology—building interactive systems
           that bridge digital and physical experiences.<span
-            class="material-symbols-outlined">
+            class="material-symbols-outlined"
+          >
             star
           </span>
         </p>
@@ -49,7 +57,8 @@ const Content = (await aboutMe.render()).Content;
           <a
             href="https://studios.disneyresearch.com"
             target="_blank"
-            rel="noopener noreferrer">
+            rel="noopener noreferrer"
+          >
             DisneyResearch|Studios
           </a>
           in Zürich, where I've been creating AI-powered data platforms and interactive
@@ -61,17 +70,20 @@ const Content = (await aboutMe.render()).Content;
             <a
               href={`${baseUrl}projects`}
               target="_blank"
-              rel="noopener noreferrer">
+              rel="noopener noreferrer"
+            >
               projects
             </a>, or <a
               href={`${baseUrl}content/resume/Ying-Shiuan Chen-Resume.pdf`}
               target="_blank"
-              rel="noopener noreferrer">
+              rel="noopener noreferrer"
+            >
               PDF Resume
             </a>, connect with me on <a
               href="https://www.linkedin.com/in/chenyingshiuan/"
               target="_blank"
-              rel="noopener noreferrer">
+              rel="noopener noreferrer"
+            >
               LinkedIn
             </a>,
           </p>

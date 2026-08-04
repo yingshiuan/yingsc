@@ -11,10 +11,7 @@ export default defineConfig({
   // repo name
   base: "/yingsc/",
   integrations: [
-    sitemap({
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      filter: (page) => true,
-    }),
+    sitemap(),
     partytown({
         config: {
           forward: ["dataLayer.push"],
