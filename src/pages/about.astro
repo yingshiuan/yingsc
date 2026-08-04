@@ -26,6 +26,18 @@ if (!aboutMe) {
 
 const roleTitle = aboutMe.data.role ?? 'Product Engineer';
 
+// The copy lives in the content file. These splits keep the role bold and the
+// company a link without embedding markup in the frontmatter.
+const introBlock = aboutMe.data.intro;
+
+const summaryParts = introBlock?.summary.split(roleTitle) ?? [];
+
+const currentLink = introBlock?.currentLink;
+const currentParts =
+  introBlock?.current && currentLink
+    ? introBlock.current.split(currentLink.label)
+    : null;
+
 const { Content } = await render(aboutMe);
 ---
 
@@ -41,32 +53,40 @@ const { Content } = await render(aboutMe);
       <!-- Text section -->
       <div class="lg:col-span-8 space-y-6">
         <h5>
-          Hi Hi! I'm Ying.<span class="material-symbols-outlined">pets</span>
+          {introBlock?.greeting}<span class="material-symbols-outlined">
+            pets
+          </span>
         </h5>
         <p>
-          I am a <b>{roleTitle}</b>, at the intersection of AI, spatial
-          computing, and human-centered technology—building interactive systems
-          that bridge digital and physical experiences.<span
-            class="material-symbols-outlined"
-          >
-            star
-          </span>
+          {
+            summaryParts.length > 1 ? (
+              <>
+                {summaryParts[0]}
+                <b>{roleTitle}</b>
+                {summaryParts.slice(1).join(roleTitle)}
+              </>
+            ) : (
+              introBlock?.summary
+            )
+          }<span class="material-symbols-outlined">star</span>
         </p>
-        <p>
-          I'm wrapping up a research internship at
-          <a
-            href="https://studios.disneyresearch.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            DisneyResearch|Studios
-          </a>
-          in Zürich, where I've been creating AI-powered data platforms and interactive
-          web applications.
-        </p>
+        {
+          currentParts && currentLink && (
+            <p>
+              {currentParts[0]}
+              <a
+                href={currentLink.href}
+                target="_blank"
+                rel="noopener noreferrer">
+                {currentLink.label}
+              </a>
+              {currentParts.slice(1).join(currentLink.label)}
+            </p>
+          )
+        }
         <div>
           <p>
-            Check out my
+            Check out my{' '}
             <a
               href={`${baseUrl}projects`}
               target="_blank"
@@ -85,7 +105,7 @@ const { Content } = await render(aboutMe);
               rel="noopener noreferrer"
             >
               LinkedIn
-            </a>,
+            </a>.
           </p>
         </div>
       </div>
@@ -110,18 +130,14 @@ const { Content } = await render(aboutMe);
       </div>
     </div>
 
-    <div class="lg:col-span-12 space-y-6">
-      <div class="about-content">
-        <Content />
-      </div>
+    <div class="about-content">
+      <Content />
     </div>
 
-    <h5 class="aboutMeContainer">
-      - For the complete list of my skills and experience, visit my
-      <a href={`${baseUrl}resume`} target="_blank" rel="noopener noreferrer">
-        resume
-      </a>
-    </h5>
+    <p class="aboutMeContainer">
+      For the complete list of my skills and experience, visit my{' '}
+      <a href={`${baseUrl}resume`}>resume</a>.
+    </p>
   </section>
 </Layout>
 
@@ -149,7 +165,7 @@ const { Content } = await render(aboutMe);
   }
 
   .aboutMeContainer {
-    @apply my-[2.5rem];
+    @apply my-[2.5rem] max-w-[46rem];
   }
 
   @media (min-width: 900px) {
@@ -159,8 +175,31 @@ const { Content } = await render(aboutMe);
   }
 
   /* about content styling */
+
+  /* Caps the measure at roughly 70 characters in DM Mono. Left-aligned rather
+     than centred so the body stays anchored to the intro column above it. */
+  .about-content {
+    @apply max-w-[80rem];
+  }
+
   :global(.about-content h4) {
-    @apply flex mt-[1.5rem] gap-2 flex-wrap text-lg font-medium border-b-[1.5px] border-[var(--color-text-primary)] p-[0.2rem];
+    @apply flex mt-[4rem] mb-[1.5rem] gap-2 flex-wrap text-lg font-medium border-b-[1.5px] border-[var(--color-text-primary)] p-[0.2rem];
+  }
+
+  /* The first heading follows the intro block, which already has its own gap. */
+  :global(.about-content > h4:first-child) {
+    @apply mt-0;
+  }
+
+  :global(.about-content p) {
+    @apply mb-[1.25rem];
+  }
+
+  /* The global rule gives these 0.5rem of vertical padding, which inflates the
+     line box and makes icon-bearing lines taller than the rest of a paragraph.
+     Scoped to the prose so the rest of the site keeps its spacing. */
+  :global(.about-content .material-symbols-outlined) {
+    @apply py-0 leading-none;
   }
 
   :global(.about-content h4:hover) {

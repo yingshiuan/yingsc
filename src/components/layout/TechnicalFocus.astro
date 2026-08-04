@@ -1,0 +1,65 @@
+---
+import { getCollection } from 'astro:content';
+
+// The pillars live in src/content/intro/index.md so the copy stays editable
+// alongside the rest of the homepage content.
+const introCollection = await getCollection('intro');
+const focus = introCollection[0]?.data.focus ?? [];
+---
+
+{
+  focus.length > 0 && (
+    <section class="technicalFocus">
+      <p class="section_label">TECHNICAL FOCUS</p>
+      <h3>I build at the intersection of</h3>
+
+      <div class="focus_grid">
+        {focus.map((area, index) => (
+          <div class="focus_item">
+            <span class="focus_number">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <h5 class="focus_title">{area.title}</h5>
+            <ul class="focus_list">
+              {area.items.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+<style>
+  @reference "@/styles/global.css";
+
+  .technicalFocus {
+    @apply px-[2.5rem] my-[4rem] mx-auto max-w-[80rem];
+  }
+
+  .section_label {
+    @apply uppercase text-sm tracking-widest text-[var(--color-text-secondary)];
+  }
+
+  .focus_grid {
+    @apply grid grid-cols-1 md:grid-cols-3 gap-8 mt-[3rem];
+  }
+
+  .focus_item {
+    @apply border-t border-[var(--color-text-secondary)] pt-[1rem];
+  }
+
+  .focus_number {
+    @apply text-sm text-[var(--color-text-secondary)];
+  }
+
+  .focus_title {
+    @apply mt-[1rem] mb-[1rem];
+  }
+
+  .focus_list {
+    @apply space-y-1 text-[var(--color-text-primary)];
+  }
+</style>

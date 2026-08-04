@@ -1,0 +1,111 @@
+---
+import Button from '@/components/UI/Button.astro';
+import type { ResumeData } from '@/ts/resume';
+import resumeDataJson from '@/content/resume/resume.json';
+
+interface Props {
+  // Only the most recent roles belong on the homepage; /resume carries the rest.
+  limit?: number;
+  // Long tech lists read as a keyword dump at this size.
+  techLimit?: number;
+}
+
+const { limit = 3, techLimit = 7 } = Astro.props;
+
+const resumeData = resumeDataJson as ResumeData;
+const highlights = resumeData.experience.slice(0, limit);
+
+const baseUrl = import.meta.env.BASE_URL;
+---
+
+<section class="experience">
+  <p class="section_label">EXPERIENCE</p>
+  <h3>Where I've built</h3>
+
+  <div class="mt-[3rem]">
+    {
+      highlights.map((item) => (
+        <div class="experience_row">
+          <div class="row_left">
+            {item.link ? (
+              <a
+                class="company_link"
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer">
+                <h5 class="company_name">{item.company}</h5>
+              </a>
+            ) : (
+              <h5 class="company_name">{item.company}</h5>
+            )}
+            <p class="role_title">{item.title}</p>
+            {item.tech?.length && (
+              <p class="tech_line">
+                {item.tech.slice(0, techLimit).join(' · ')}
+              </p>
+            )}
+          </div>
+
+          <div class="row_right">
+            <p>{item.date}</p>
+            {item.location && <p class="location">{item.location}</p>}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  <div class="flex justify-end mt-[2rem]">
+    <Button
+      href={`${baseUrl}resume`}
+      label="Full experience & resume →"
+      color="primary"
+      variant="outline"
+      size="md"
+    />
+  </div>
+</section>
+
+<style>
+  @reference "@/styles/global.css";
+
+  .experience {
+    @apply px-[2.5rem] my-[4rem] mx-auto max-w-[80rem];
+  }
+
+  .section_label {
+    @apply uppercase text-sm tracking-widest text-[var(--color-text-secondary)];
+  }
+
+  .experience_row {
+    @apply grid grid-cols-1 lg:grid-cols-12 gap-2 py-[1.5rem] border-t border-[var(--color-text-secondary)];
+  }
+
+  .row_left {
+    @apply lg:col-span-8;
+  }
+
+  .row_right {
+    @apply lg:col-span-4 text-[var(--color-text-secondary)] lg:text-right;
+  }
+
+  .company_name {
+    @apply mb-1;
+  }
+
+  .company_link:hover .company_name {
+    @apply text-[var(--color-text-hover)] text-shadow-[0.05rem_0.05rem_var(--color-text-primary)] transition duration-300;
+  }
+
+  .role_title {
+    @apply mb-1;
+  }
+
+  .tech_line {
+    @apply text-sm font-light text-[var(--color-text-secondary)] mb-0;
+  }
+
+  .location {
+    @apply text-sm mb-0;
+  }
+</style>

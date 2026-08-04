@@ -8,7 +8,7 @@
       "linkInfo":"A lab advancing visual computing, AI, and filmmaking technologies.",
       "tech": ["TypeScript", "Vue.js", "Python", "Node.js", "RAG Pipelines", "ChromaDB", "LLMs", "Figma"],
       "date": "Feb 2025 – Aug 2025",
-      "role" :""
+      "role" :"Built AI-powered data platforms and interactive web applications, combining RAG pipelines over ChromaDB with graph-based data visualization to make retrieval results explorable rather than merely accurate."
     },
     {
       "title": "XR Software Engineer Intern",
@@ -16,18 +16,18 @@
       "location": "Zürich, Switzerland",
       "link": "https://sensoryx.tech",
       "linkInfo":"A Swiss startup specializing in motion tracking for VR/AR.",
-      "tech":["C#", "Unity", "XR", "Figma"],
+      "tech":["C#", "Unity", "XR"],
       "date": "Aug 2024 – Dec 2024",
-      "role" :""
+      "role" :"Designed and implemented a VR stylus interaction system in Unity, mapping a single hardware button to painting, object manipulation, and selection workflows through gesture-based controls refined for B2B and consumer use."
     },
     {
       "title": "Frontend Developer",
       "company": "insdash",
       "location": "Remote",
       "linkInfo":"Independent web development and interaction design practice.",
-      "tech": ["TypeScript", "JavaScript", "Vue.js", "React", "HTML5", "CSS3", "Tailwind CSS", "Node.js", "SQL", "Docker", "Docker Compose", "Figma"],
+      "tech": ["TypeScript", "Vue.js", "React", "Tailwind CSS", "Node.js", "SQL", "Docker", "Docker Compose", "FastAPI", "HTML5", "CSS3", "JavaScript", "Figma"],
       "date": "Jan 2022 – July 2024",
-      "role" :""
+      "role" :"Built and shipped production web applications end to end — Vue and React frontends, Node and FastAPI services, SQL data models, and Docker-based deployment — including a full-stack menu platform for a Zürich restaurant."
     },
     {
       "title": "3D Artist & Animator",
@@ -41,7 +41,7 @@
         }
       ],
       "linkInfo":"A Swiss manufacturer of customizable high-quality bikes and e-bikes.",
-      "tech": ["Blender 3D", "Figma"],
+      "tech": ["Blender", "Adobe Premiere Pro", "Adobe After Effects", "Figma"],
       "date": "Jan 2022 – July 2024",
       "role": "I created 3D product animations from concept to completion, achieving 10k views (5x above average) and driving customer traffic to product pages."
     },
@@ -50,7 +50,7 @@
       "company": "yun.official - Fashion startup",
       "location": "Remote",
       "linkInfo":"Fashion startup transitioning from handcrafted to digital e-commerce.",
-      "tech": ["Figma", "HTML5/CSS3", "UI/UX"],
+      "tech": ["Figma", "UI/UX"],
       "date": "Mar 2021 – Aug 2021",
       "role" :"Optimized e-commerce UX to secure manufacturing partnerships and drive a 35% order increase in the first season post-launch."
     },
@@ -58,11 +58,11 @@
       "title": "Web Developer & 3D Generalist",
       "company": "Freelance",
       "location": "Remote",
-       "tech": ["Figma", "HTML5/CSS3", "UI/UX", "Adobe After Effects"],
+       "tech": ["JavaScript", "Figma", "Blender", "Adobe Creative Suite", "UI/UX", "HTML5/CSS3"],
       "date": "Mar 2020 – Aug 2021"
     },
     {
-      "title": "Research and Teaching Assistant",
+      "title": "Research and Teaching Assistant", 
       "company": "Dept. Architecture of Tamkang University",
       "location": "Taiwan",
       "tech": ["Rhinoceros 3D & Grasshopper", "Unity 3D", "C#", "JavaScript", "Python", "CAD/CAM"],
@@ -155,7 +155,7 @@
     },
     {
       "title": "Backend & AI",
-      "skills": ["Python", "Node.js", "SQL", "FastAPI", "Docker", "Docker Compose", "RAG Pipelines", "ChromaDB", "Large Language Models (LLMs)", "Git/GitHub/GitLab"]
+      "skills": ["Python", "Node.js", "FastAPI", "SQL", "REST APIs", "Webhooks", "LLMs", "RAG Pipelines", "ChromaDB", "Workflow Automation (n8n)", "Docker", "Docker Compose", "Git"]
     },
     {
       "title": "UI/UX & Prototyping",

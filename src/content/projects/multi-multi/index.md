@@ -1,7 +1,7 @@
 ---
 title: 'Multi-Multi Language Application'
 subtitle: ''
-featured: true
+featured: false
 type: 'Personal'
 created: 2024-12-01
 domains:
