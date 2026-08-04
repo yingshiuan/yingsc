@@ -1,7 +1,6 @@
 ---
 title: 'A Fatt Restaurant Menu'
 subtitle: ''
-slug: 'afatt'
 featured: false
 type: 'Professional'
 created: 2024-12-01
@@ -15,8 +14,9 @@ stack:
   - Vue.js
 category: 'Design System'
 tags: ['UI/UX', 'Web App', 'Design System']
-image: './afatt/afatt_c.png'
-hoverImage: './afatt/afatt-menu.webp'
+image: './afatt_c.png'
+hoverImage: './afatt-menu.webp'
+thumbnail: './afatt.jpg'
 info: 'Inclusive, dietary-friendly, multilingual menu with intuitive layout for customers to enjoy Malaysian Chinese Home Favourites.'
 description: 'I designed a scalable, flexible menu system for A Fatt, integrating multilingual content, dietary tagging, and a modular layout. Alongside UX design in Figma and Canva, I also built a web app that allows the restaurant team to update menu items dynamically, manage translations, and export menus as PDF—bridging UX design and software functionality in a single solution.'
 role: 'UX & System Designer'

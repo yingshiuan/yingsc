@@ -9,11 +9,12 @@
     "dist"
   ],
   "compilerOptions": {
-    "baseUrl": ".", // Required for paths to work
+    // No "baseUrl": deprecated in TS 5.5+, removed in TS 7.
+    // `paths` values are tsconfig-relative, which TS 4.4+ supports on its own.
     "paths": {
       "@/*": [
         "./src/*"
       ]
     }
-  },
+  }
 }

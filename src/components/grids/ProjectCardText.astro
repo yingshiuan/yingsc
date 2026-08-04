@@ -1,51 +1,49 @@
 ---
-import type { ProjectMeta } from '@/ts/project';
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
 import Tag from '@/components/UI/Tag.astro';
 
 interface Props {
-  projectMeta: ProjectMeta;
+  project: CollectionEntry<'projects'>;
 }
 
-const { projectMeta } = Astro.props as Props;
+const { project } = Astro.props as Props;
 
 const baseUrl = import.meta.env.BASE_URL ?? '/';
-const href = `${baseUrl}projects/${projectMeta.slug}`;
-
-const images = import.meta.glob<{ default: ImageMetadata }>(
-  '/src/content/projects/**/*.{jpeg,jpg,png,webp}',
-  { eager: true },
-);
-
-const getImageUrl = (filename: string) => {
-  if (!filename) return null;
-  const clean = filename.replace(/^\.\//, '');
-  const entry = Object.entries(images).find(([path]) => path.endsWith(clean));
-
-  return entry ? entry[1].default : null;
-};
-const imageUrl = getImageUrl(projectMeta.image);
-const hoverImageUrl = getImageUrl(projectMeta.hoverImage);
+const href = `${baseUrl}projects/${project.id}`;
 ---
 
 <div class="project_card group relative">
   <a href={href} class="relative">
     <div class="square_item relative overflow-hidden">
-      <img src={imageUrl?.src} alt={projectMeta.title} class="img-default" />
-      <img
-        src={hoverImageUrl?.src}
-        alt={projectMeta.title + ' hover'}
+      <Image
+        src={project.data.image}
+        alt={project.data.title}
+        widths={[320, 640, 960]}
+        sizes="(min-width: 900px) 30rem, 100vw"
+        class="img-default"
+      />
+      <Image
+        src={project.data.hoverImage}
+        alt={`${project.data.title} preview`}
+        widths={[320, 640, 960]}
+        sizes="(min-width: 900px) 30rem, 100vw"
         class="img-hover"
       />
       <!-- <picture class="hoverImage">
-        <source srcset={projectMeta.hoverImage} type="image/webp" />
-        <img src={projectMeta.hoverImage} alt={projectMeta.title + ' hover'} class="w-full h-full object-cover" />
+        <source srcset={project.data.hoverImage} type="image/webp" />
+        <img src={project.data.hoverImage} alt={project.data.title + ' hover'} class="w-full h-full object-cover" />
       </picture> -->
     </div>
     <div class="absolute bottom-0 w-full text-center">
-      <p class="square_title">{projectMeta.title}</p>
-      {projectMeta.info && <p class="square_description">{projectMeta.info}</p>}
+      <p class="square_title">{project.data.title}</p>
+      {
+        project.data.info && (
+          <p class="square_description">{project.data.info}</p>
+        )
+      }
       <div class="flex justify-center items-center w-full">
-        <Tag tags={projectMeta.tags} justify="center" />
+        <Tag tags={project.data.tags} justify="center" />
       </div>
     </div>
   </a>

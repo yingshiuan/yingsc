@@ -1,7 +1,6 @@
 ---
 title: 'Multi-Multi Language Application'
 subtitle: ''
-slug: 'multi-multi'
 featured: true
 type: 'Personal'
 created: 2024-12-01
@@ -16,8 +15,9 @@ stack:
 
 category: 'UI/UX'
 tags: ['Augmented Reality', 'UI/UX', 'Application']
-image: './multi-multi/multi.png'
-hoverImage: './multi-multi/multi.webp'
+image: './multi.png'
+hoverImage: './multi.webp'
+thumbnail: './multi-multi.png'
 info: 'Learn languages with augmented reality and memorize everyday phrases in immersive, real-world contexts.'
 description: 'Multi-Multi is an AR-driven language learning app that helps users practice vocabulary and phrases in everyday scenarios. The app integrates map-based exploration, object recognition, and memory-associative techniques to create an immersive learning experience.'
 role: 'UX Designer'
@@ -359,13 +359,13 @@ Here is the multi-multi prototype on Figma.
 
 <div class="colsLayout">
 
-<div class="col-span-6">
+<div class="col">
 
 AR Vocabulary: Scan surroundings to learn object names and phrases, connecting environment with memory.
 
 </div>
 
-<div class="col-span-6">
+<div class="col">
 
 ![multi-multi-feature-1](./feature_1.webp)
 
@@ -377,13 +377,13 @@ AR Vocabulary: Scan surroundings to learn object names and phrases, connecting e
 
 <div class="colsLayout">
 
-<div class="col-span-6">
+<div class="col">
 
 Map Mode: Explore global locations to practice daily phrases and dialogues.
 
 </div>
 
-<div class="col-span-6">
+<div class="col">
 
 ![multi-multi-feature](./feature.webp)
 
@@ -395,13 +395,13 @@ Map Mode: Explore global locations to practice daily phrases and dialogues.
 
 <div class="colsLayout">
 
-<div class="col-span-6">
+<div class="col">
 
 Attraction Introductions: Read cultural and historical context, then practice dialogues.
 
 </div>
 
-<div class="col-span-6">
+<div class="col">
 
 ![multi-multi-feature-2](./feature_2.webp)
 
@@ -413,13 +413,13 @@ Attraction Introductions: Read cultural and historical context, then practice di
 
 <div class="colsLayout">
 
-<div class="col-span-6">
+<div class="col">
 
 Personal Notes: Create memos that connect vocabulary, conversations, and phrases to real-life experiences for easy reference during your travels.
 
 </div>
 
-<div class="col-span-6">
+<div class="col">
 
 ![multi-multi-feature-3](./feature_3.webp)
 

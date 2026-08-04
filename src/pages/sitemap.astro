@@ -1,7 +1,8 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import Layout from '@/layouts/Layout.astro';
-import type { ProjectMeta } from '@/ts/project';
+
+type Project = CollectionEntry<'projects'>;
 
 const baseUrl = import.meta.env.BASE_URL;
 
@@ -17,7 +18,7 @@ const projects = (await getCollection('projects')).sort((a, b) => {
 });
 
 type ProjectsByCategory = {
-  [type: string]: ProjectMeta[];
+  [type: string]: Project[];
 };
 
 const projectsByCategory: ProjectsByCategory = projects.reduce(
@@ -26,11 +27,7 @@ const projectsByCategory: ProjectsByCategory = projects.reduce(
 
     if (!acc[type]) acc[type] = [];
 
-    acc[type].push({
-      ...project.data,
-      slug: project.data.slug || project.slug,
-      // || project.data.title.toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w-]/g, '')
-    } as ProjectMeta);
+    acc[type].push(project);
 
     return acc;
   },
@@ -58,8 +55,8 @@ const siteTree: TreeNode[] = [
         children: items
           .slice()
           .sort((a, b) => {
-            const aDate = a.created;
-            const bDate = b.created;
+            const aDate = a.data.created;
+            const bDate = b.data.created;
 
             if (!aDate && !bDate) return 0;
             if (!aDate) return 1;
@@ -68,11 +65,15 @@ const siteTree: TreeNode[] = [
             return new Date(bDate).getTime() - new Date(aDate).getTime();
           })
           .map((project) => ({
-            label: project.title,
-            href: `${baseUrl}projects/${project.slug}`,
+            label: project.data.title,
+            // The collection id is the route segment — deriving one from the
+            // title would not match the built route.
+            href: `${baseUrl}projects/${project.id}`,
             meta: [
-              project.domains?.length ? project.domains.join(' | ') : '',
-              // project.stack?.length ? project.stack.join(' · ') : '',
+              project.data.domains?.length
+                ? project.data.domains.join(' | ')
+                : '',
+              // project.data.stack?.length ? project.data.stack.join(' · ') : '',
             ]
               .filter(Boolean)
               .join(' | '),
@@ -93,7 +94,8 @@ const siteTree: TreeNode[] = [
     title="Sitemap | Ying-Shiuan Chen"
     description="Ying-Shiuan Chen loves creating functional yet fun interactions to humanize technology!"
     image="./yinz.png"
-    keywords="Ying-Shiuan Chen, software engineer, product designer, developer, interaction">
+    keywords="Ying-Shiuan Chen, software engineer, product designer, developer, interaction"
+  >
     <div class="sitemap my-[12rem]">
       <h2>Site Sitemap</h2>
       <hr />

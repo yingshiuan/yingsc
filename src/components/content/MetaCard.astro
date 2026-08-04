@@ -1,83 +1,83 @@
 ---
-import type { ProjectMeta } from '@/ts/project';
+import type { CollectionEntry } from 'astro:content';
 import Tag from '@/components/UI/Tag.astro';
 
 interface Props {
-  projectMeta: ProjectMeta;
+  project: CollectionEntry<'projects'>;
 }
 
-const { projectMeta } = Astro.props as Props;
+const { project } = Astro.props as Props;
 ---
 
 <section class="meta space-y-16">
   <div class="space-y-16">
-    <h1 class="projectTitle">{projectMeta.title}</h1>
-    <p class="projectDescription">{projectMeta.description}</p>
+    <h1 class="projectTitle">{project.data.title}</h1>
+    <p class="projectDescription">{project.data.description}</p>
     <div class="my-[2rem]">
-      {projectMeta.tags && <Tag tags={projectMeta.tags} />}
+      {project.data.tags && <Tag tags={project.data.tags} />}
     </div>
   </div>
 
   <ul class="projectDetail grid grid-cols-1 md:grid-cols-4 gap-6 list-none">
     {
-      projectMeta.role && (
+      project.data.role && (
         <li>
           <ol>Role:</ol>
-          <ol>{projectMeta.role}</ol>
+          <ol>{project.data.role}</ol>
         </li>
       )
     }
     {
-      projectMeta.timeline && (
+      project.data.timeline && (
         <li>
           <ol>Timeline:</ol>
-          <ol>{projectMeta.timeline}</ol>
+          <ol>{project.data.timeline}</ol>
         </li>
       )
     }
     {
-      projectMeta.completed && (
+      project.data.completed && (
         <li>
           <ol>Completed:</ol>
-          <ol>{projectMeta.completed}</ol>
+          <ol>{project.data.completed}</ol>
         </li>
       )
     }
     {
-      projectMeta.credit && (
+      project.data.credit && (
         <li>
           <ol>Credit:</ol>
-          <ol>{projectMeta.credit}</ol>
+          <ol>{project.data.credit}</ol>
         </li>
       )
     }
 
     <!-- Tools full width -->
     {
-      projectMeta.tools && (
+      project.data.tools && (
         <li class="col-span-1 md:col-span-4">
           <ol>Tools & Technologies:</ol>
-          <ol>{projectMeta.tools.join(', ')}</ol>
+          <ol>{project.data.tools.join(', ')}</ol>
         </li>
       )
     }
 
     <!-- focus full width -->
     {
-      projectMeta.focus && projectMeta.focus.length > 0 && (
+      project.data.focus && project.data.focus.length > 0 && (
         <li class="col-span-1 md:col-span-4">
           <ol>Focus:</ol>
-          <ol>{projectMeta.focus.join(', ')}</ol>
+          <ol>{project.data.focus.join(', ')}</ol>
         </li>
       )
     }
 
     <!-- Activities full width -->
     {
-      projectMeta.activities && (
+      project.data.activities && (
         <li class="col-span-1 md:col-span-4">
           <ol>Activities:</ol>
-          <ol>{projectMeta.activities}</ol>
+          <ol>{project.data.activities}</ol>
         </li>
       )
     }
