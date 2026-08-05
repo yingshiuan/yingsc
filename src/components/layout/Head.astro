@@ -56,7 +56,6 @@ const absoluteImage = new URL(image ?? 'yingsc.png', siteRoot).href;
 
 // Shared identifier for the site-wide Person entity emitted by <AEO />.
 const personId = `${siteRoot}#person`;
-// const GTM_ID = 'GT-WPD7VDFK';
 
 // Pages set their own @type: AboutPage, CollectionPage, ProfilePage,
 // CreativeWork for a project. Defaults to WebPage.
@@ -132,26 +131,5 @@ const jsonLd = {
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
   />
   <!-- <meta name="generator" content={Astro.generator} /> -->
-  {import.meta.env.PROD && (
-    <>
-      <script is:inline type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-XPJ7PBRN07"></script>
-      <script is:inline type="text/partytown">
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-XPJ7PBRN07', { anonymize_ip: true });
-      </script>
-    </>
-  )}
-
-  <!-- Google Tag Manager -->
-  {import.meta.env.PROD && (
-    <>
-      <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-      new Date().getTime(),event:'gtm.js'});const f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','GTM-MZKP489Z');</script>
-    </>
-  )}
+  <!-- Analytics (GA4 + GTM) live in layout/Analytics.astro, mounted from Layout.astro. -->
 </head>

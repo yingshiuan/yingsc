@@ -26,13 +26,11 @@ const { title, description, image, url, keywords, alt, noindex, schemaType } =
   
   <Header />
   <body>
-    <!-- <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GT-WPD7VDFK"
-    height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript> -->
-    {import.meta.env.PROD && (
-      <>
-        <Analytics measurementId="G-XPJ7PBRN07" requireConsent={false} />
-      </>
-    )}
+    <Analytics
+      measurementId="G-XPJ7PBRN07"
+      gtmId="GTM-MZKP489Z"
+      requireConsent={false}
+    />
     <slot />
     <main class="min-h-[30vh]"></main>
     

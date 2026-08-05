@@ -22,11 +22,18 @@ Push to `main` = deploy. GitHub Actions builds and publishes to Pages.
 
 ## Notes
 
-**Analytics are already set up** — GA4 `G-XPJ7PBRN07` and GTM `GTM-MZKP489Z`
-live in `src/components/layout/Head.astro`, both wrapped in
-`import.meta.env.PROD` so they only run in production builds, never in `dev`.
-To change the IDs, edit that file. `layout/AnalyticsStub.astro` is an unused
-consent-denied variant.
+**Analytics are already set up** — GA4 `G-XPJ7PBRN07` (via Partytown) and GTM
+`GTM-MZKP489Z` both live in `src/components/layout/Analytics.astro`, mounted
+once from `Layout.astro`. The component gates itself on `import.meta.env.PROD`,
+so it only runs in production builds, never in `dev`.
+
+To change the IDs, edit the `measurementId` / `gtmId` props at the
+`<Analytics />` call in `src/layouts/Layout.astro`. Don't add a gtag or GTM
+snippet anywhere else — a second `gtag('config', ...)` double-counts pageviews.
+
+The cookie banner is off (`requireConsent={false}`), so GA4 loads with
+`analytics_storage` granted. Flip it to `true` to show the banner and hold
+storage denied via GA4 Consent Mode until the visitor accepts.
 
 **Before publishing:** delete the placeholder projects
 `src/content/projects/demo/` and `src/content/projects/arvr/` — they build to

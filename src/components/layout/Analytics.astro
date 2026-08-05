@@ -2,81 +2,112 @@
 import Button from '@/components/UI/Button.astro';
 
 interface Props {
-  measurementId: string;
+  /** GA4 measurement ID, e.g. G-XXXXXXXXXX. Omit to disable GA4. */
+  measurementId?: string;
+  /** GTM container ID, e.g. GTM-XXXXXXX. Omit to disable GTM. */
+  gtmId?: string;
+  /** Show the cookie banner and keep analytics storage denied until accepted. */
   requireConsent?: boolean;
 }
 
-const { measurementId, requireConsent = true } = Astro.props;
+const { measurementId, gtmId, requireConsent = true } = Astro.props;
+
+const enabled = import.meta.env.PROD;
 ---
 
-<div
-  id="cookie-banner"
-  data-ga-id={measurementId}
-  data-require-consent={requireConsent}
-  class="flex flex-col justify-center items-center fixed inset-0 bg-[var(--color-caption-primary)]/80 text-[var(--color-caption-secondary)] p-4 rounded shadow-lg z-50 hidden opacity-0 transition-opacity"
->
-  <p class="text-sm text-center">
-    This site uses Google Analytics to understand usage. You can choose whether to allow analytics cookies.
-  </p>
-  <br />
-  <div class="flex justify-center items-center gap-4">
-    <Button id="acceptCookies" label="Accept" color="blue" variant="solid" size="md" />
-    <Button id="rejectCookies" label="Reject" color="gray" variant="outline" size="md" />
-  </div>
-</div>
-
-<script is:inline>
-(() => {
-  const banner = document.getElementById("cookie-banner");
-  if (!banner) return;
-
-  const requireConsent = banner.dataset.requireConsent === "true";
-  const measurementId = banner.dataset.gaId;
-  const savedConsent = localStorage.getItem("analytics_consent");
-
-  function loadGA() {
-    if (!measurementId || window.gtagLoaded) return;
-    window.gtagLoaded = true;
-
-    // Load GA via Partytown
-    const script = document.createElement("script");
-    script.type = "text/partytown";
-    script.async = true;
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
-    script.onload = () => {
+{enabled && measurementId && (
+  <>
+    <script is:inline type="text/partytown" async src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}></script>
+    <script is:inline type="text/partytown" define:vars={{ measurementId, requireConsent }}>
       window.dataLayer = window.dataLayer || [];
-      window.gtag = function(...args) { window.dataLayer.push(args); };
+      function gtag(){ dataLayer.push(arguments); }
 
-      // Initialize GA after loading
+      // Consent Mode: deny storage up front when a banner is in play, so the
+      // tag can load immediately without writing cookies.
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: requireConsent ? 'denied' : 'granted',
+      });
+
       gtag('js', new Date());
       gtag('config', measurementId, { anonymize_ip: true });
-    };
-    document.head.appendChild(script);
-  }
+    </script>
+  </>
+)}
 
-  function accept() {
-    localStorage.setItem("analytics_consent", "accepted");
-    loadGA();
-    banner?.remove();
-  }
+{enabled && gtmId && (
+  <>
+    <script is:inline define:vars={{ gtmId }}>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer',gtmId);
+    </script>
+    <noscript>
+      <iframe
+        src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+        title="Google Tag Manager"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"></iframe>
+    </noscript>
+  </>
+)}
 
-  function reject() {
-    localStorage.setItem("analytics_consent", "rejected");
-    banner?.remove();
-  }
+{enabled && measurementId && requireConsent && (
+  <div
+    id="cookie-banner"
+    class="flex flex-col justify-center items-center fixed inset-0 bg-[var(--color-caption-primary)]/80 text-[var(--color-caption-secondary)] p-4 rounded shadow-lg z-50 hidden opacity-0 transition-opacity"
+  >
+    <p class="text-sm text-center">
+      This site uses Google Analytics to understand usage. You can choose whether to allow analytics cookies.
+    </p>
+    <br />
+    <div class="flex justify-center items-center gap-4">
+      <Button id="acceptCookies" label="Accept" color="blue" variant="solid" size="md" />
+      <Button id="rejectCookies" label="Reject" color="gray" variant="outline" size="md" />
+    </div>
+  </div>
+)}
 
-  if (requireConsent) {
-    if (!savedConsent) {
+{enabled && measurementId && requireConsent && (
+  <script is:inline>
+    (() => {
+      const banner = document.getElementById("cookie-banner");
+      if (!banner) return;
+
+      // Runs on the main thread; Partytown forwards dataLayer.push into the
+      // worker (see `forward` in astro.config.mjs), so the worker-side tag
+      // picks these up.
+      window.dataLayer = window.dataLayer || [];
+      const gtag = (...args) => window.dataLayer.push(args);
+
+      const setConsent = (granted) => {
+        gtag("consent", "update", {
+          analytics_storage: granted ? "granted" : "denied",
+        });
+      };
+
+      const decide = (choice) => {
+        localStorage.setItem("analytics_consent", choice);
+        setConsent(choice === "accepted");
+        banner.remove();
+      };
+
+      const saved = localStorage.getItem("analytics_consent");
+      if (saved) {
+        setConsent(saved === "accepted");
+        banner.remove();
+        return;
+      }
+
       banner.classList.remove("hidden");
       requestAnimationFrame(() => banner.classList.add("opacity-100"));
-    } else if (savedConsent === "accepted") {
-      loadGA();
-    }
-    document.getElementById("acceptCookies")?.addEventListener("click", accept);
-    document.getElementById("rejectCookies")?.addEventListener("click", reject);
-  } else {
-    // Auto-load GA if consent is not required
-    loadGA();
-  }
-})();
-</script>
+      document.getElementById("acceptCookies")?.addEventListener("click", () => decide("accepted"));
+      document.getElementById("rejectCookies")?.addEventListener("click", () => decide("rejected"));
+    })();
+  </script>
+)}
