@@ -84,17 +84,12 @@ const siteTree: TreeNode[] = [
 ];
 ---
 
-<html lang="en">
-  <head>
-    <title>Site Sitemap</title>
-    <meta name="robots" content="noindex" />
-  </head>
-
-  <Layout
-    title="Sitemap | Ying-Shiuan Chen"
-    description="Ying-Shiuan Chen loves creating functional yet fun interactions to humanize technology!"
-    image="./yinz.png"
-    keywords="Ying-Shiuan Chen, software engineer, product designer, developer, interaction"
+<Layout
+    title="Sitemap"
+    description="Every page and project on Ying-Shiuan Chen's portfolio, in one list."
+    alt="Ying-Shiuan Chen portfolio sitemap"
+    keywords={['Ying-Shiuan Chen', 'sitemap', 'portfolio']}
+    noindex={true}
   >
     <div class="sitemap my-[12rem]">
       <h2>Site Sitemap</h2>
@@ -158,6 +153,3 @@ const siteTree: TreeNode[] = [
       }
     }
   </style>
-
-
-</html>

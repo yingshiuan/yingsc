@@ -3,20 +3,25 @@ import Layout from '@/layouts/Layout.astro';
 import Intro from '@/components/layout/Intro.astro';
 import Square from '@/components/grids/Square.astro';
 
-
-const baseUrl =
-  import.meta.env.BASE_URL || 'https://yingshiuan.github.io/yingsc/';
 ---
 
 <Layout
-  title="Projects | Ying-Shiuan Chen"
-  description="Ying-Shiuan Chen loves creating functional yet fun interactions to humanize technology!"
-  image={`${baseUrl}ying.png`}
-  keywords="Ying-Shiuan Chen, software engineer, product engineer, interaction">
+  title="Projects"
+  description="Selected engineering work by Ying-Shiuan Chen — full-stack AI platforms, interactive data visualization, and XR interaction systems."
+  alt="Selected projects by Ying-Shiuan Chen"
+  keywords={[
+    'Ying-Shiuan Chen projects',
+    'Product Engineer portfolio',
+    'AI applications',
+    'Full-Stack Development',
+    'Data Visualization',
+    'XR Interaction Systems',
+  ]}
+  schemaType="CollectionPage"
+>
   <div class="my-[12rem]">
     <Intro />
   </div>
   <!-- Portfolio Section -->
   <Square />
-
 </Layout>

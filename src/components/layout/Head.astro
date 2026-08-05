@@ -1,8 +1,18 @@
 ---
 import SEO from '@/components/layout/SEO.astro';
+import AEO from '@/components/layout/AEO.astro';
 import type { SeoData } from '@/ts/type.ts';
 
-const { title, description, image, url, keywords, alt } = Astro.props as SeoData;
+const {
+  title,
+  description,
+  image,
+  url,
+  keywords,
+  alt,
+  noindex = false,
+  schemaType = 'WebPage',
+} = Astro.props as SeoData;
 
 const defaultKeywords = [
   "Product Engineer",
@@ -30,77 +40,36 @@ const defaultKeywords = [
 const seoKeywords = keywords ?? defaultKeywords;
 
 const siteUrl = import.meta.env.SITE || 'https://yingshiuan.github.io';
-const baseUrl = import.meta.env.BASE_URL || 'https://yingshiuan.github.io/yingsc/'; 
+const baseUrl = import.meta.env.BASE_URL;
 
 const pageUrl = url ?? Astro.url.pathname;
 const canonicalUrl = `${siteUrl}${pageUrl.startsWith('/') ? pageUrl : `/${pageUrl}`}`;
+
+// og:image and twitter:image are ignored by every social platform unless they
+// are absolute URLs. Pages may pass `images/x.png`, `/yingsc/x.png`, `./x.png`
+// or a full URL — resolve all of them here, once, instead of in every page.
+const siteRoot = `${siteUrl}${baseUrl}`;
+// Default share card: public/yingsc.png, 1200x630 — the size Facebook,
+// LinkedIn and Twitter all want. Pages only override it when they have
+// something more specific to show (a project shows its own cover).
+const absoluteImage = new URL(image ?? 'yingsc.png', siteRoot).href;
+
+// Shared identifier for the site-wide Person entity emitted by <AEO />.
+const personId = `${siteRoot}#person`;
 // const GTM_ID = 'GT-WPD7VDFK';
 
-//@type: SoftwareSourceCode - further can define in each project.
+// Pages set their own @type: AboutPage, CollectionPage, ProfilePage,
+// CreativeWork for a project. Defaults to WebPage.
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "WebPage",
+  "@type": schemaType,
   "name": title ?? 'Ying-Shiuan Chen',
   "description": description ?? 'Product Engineer building AI-powered applications, spatial computing experiences, and human-centered software through full-stack engineering, interaction design, and rapid prototyping.',
   "url": canonicalUrl,
-  "image": image,
-  "alt": alt ?? 'Ying-Shiuan Chen Portfolio Preview Image',
+  "image": absoluteImage,
+  "inLanguage": "en",
   "keywords": seoKeywords,
-  "author": {
-    "@type": "Person",
-    "name": "Ying-Shiuan Chen",
-    "url": siteUrl,
-    "sameAs": [
-      "https://www.linkedin.com/in/chenyingshiuan/",
-      "https://github.com/yingshiuan",
-      "https://yingshiuan.github.io/yshiuanc/"
-    ],
-    "jobTitle": "Product Engineer",
-    hasOccupation: {
-      "@type": "Occupation",
-      "name": "Product Engineer"
-    },
-    knowsAbout: [
-      // AI
-      "AI Workflows",
-      "Workflow Automation",
-      "AI Agents",
-      "Retrieval-Augmented Generation (RAG)",
-      "Prompt Engineering",
-      // Software
-      "Full-Stack Development",
-      "Frontend Development",
-      "React",
-      "TypeScript",
-      "Node.js",
-      // Product
-      "Product Engineering",
-      "Rapid Prototyping",
-      "Human-Centered Design",
-      "Interaction Design",
-      // XR
-      "Spatial Computing",
-      "XR Interaction Systems",
-      "Hardware–Software Integration",
-      // Data
-      "Data Visualization",
-      "Information Design",
-    ],
-    alumniOf: 
-    {
-      '@type': 'EducationalOrganization',
-      name: 'ETH Zürich',
-      sameAs: 'https://masdfab.arch.ethz.ch/',
-      startDate: '2018',
-      endDate: '2019'
-    },
-    knowsLanguage: [
-    "English",
-    "Mandarin Chinese",
-    "German",
-    "Japanese"
-    ],
-  }
+  "author": { "@id": personId }
 };
 ---
 
@@ -125,20 +94,22 @@ const jsonLd = {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta property="og:type" content="website" />
   <meta name="author" content="Ying-Shiuan Chen" />
   <meta name="copyright" content="Ying-Shiuan Chen" />
   <meta name="color-scheme" content="light dark" />
+  {noindex && <meta name="robots" content="noindex, follow" />}
   <meta name="google-site-verification" content="7x_392_0i3J2ueR1hniQdwveOFtObZQZRLa89TBTdXc" />
   <link rel="icon" type="image/svg+xml" href={`${baseUrl}yinz.svg`} />
   <link rel="icon" type="image/png" sizes="32x32" href={`${baseUrl}yinz.png`} />
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
+  <!-- The site-wide Person entity, generated from resume.json -->
+  <AEO />
   <SEO
     title={title}
     description={description}
-    image={image}
+    image={absoluteImage}
     url={canonicalUrl}
-    keywords={keywords}
+    keywords={seoKeywords}
     alt={alt}
   />
   <!-- Fonts -->

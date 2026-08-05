@@ -42,10 +42,19 @@ const { Content } = await render(aboutMe);
 ---
 
 <Layout
-  title="About Me"
-  description="Ying-Shiuan Chen loves creating functional yet fun interactions to humanize technology!"
+  title="About"
+  description="How Ying-Shiuan Chen went from architecture and robotic fabrication at ETH Zürich to building AI-powered products and interactive interfaces."
   image={profileImagePath}
-  keywords="Ying-Shiuan Chen, software engineer, product designer, developer, interaction"
+  alt="Portrait of Ying-Shiuan Chen"
+  keywords={[
+    'Ying-Shiuan Chen',
+    'Product Engineer',
+    'ETH Zürich',
+    'Architecture and Digital Fabrication',
+    'Human-Centered Design',
+    'Interaction Design',
+  ]}
+  schemaType="AboutPage"
 >
   <!-- Content -->
   <section class="aboutMe">

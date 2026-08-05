@@ -27,14 +27,25 @@ const baseUrl = import.meta.env.BASE_URL;
 
 // og:image needs an absolute URL, and `image()` gives us the built asset path.
 const ogImage = new URL(project.data.image.src, Astro.site ?? Astro.url).href;
+
+// Tags alone are thin for search. Fold in the domains and stack the project
+// already declares, de-duplicated.
+const seoKeywords = [
+  ...new Set([
+    ...project.data.tags,
+    ...(project.data.domains ?? []),
+    ...(project.data.stack ?? []),
+  ]),
+];
 ---
 
 <Layout
   title={project.data.title}
   description={project.data.info}
   image={ogImage}
-  keywords={project.data.tags}
-  alt={project.data.title}
+  keywords={seoKeywords}
+  alt={`${project.data.title} — ${project.data.subtitle || project.data.category}`}
+  schemaType="CreativeWork"
 >
   <!-- <h1>{project.data.title}</h1>
   <img
