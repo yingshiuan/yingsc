@@ -1,68 +1,69 @@
-# My Portfolio Website
+# Ying-Shiuan Chen — Portfolio
 
-A personal portfolio website built with [Astro](https://astro.build/) for scalability and performance. Its component-based architecture allows integration of frameworks like [Vue](https://vuejs.org/) or npm [React](https://reactjs.org/) for interactive components, while showcasing **my projects** and **skills**.
+Personal portfolio site of a Product Engineer working across AI systems, interactive interfaces, and spatial computing.
 
-Key advantages of using Astro:
+**Live:** <https://yingshiuan.github.io/yingsc/>
 
-- **Scalable architecture**: Easily add new pages or components without affecting site performance.
-- **Framework flexibility**: Mix and match frameworks (Vue, React, Svelte, etc.) for specific parts of the site.
-- **Performance-first**: Static HTML output by default, with hydration only where necessary.
-- **SEO-friendly**: Automatic sitemap generation and fast-loading pages improve search engine visibility.
+Built with [Astro](https://astro.build/) as a static site: content lives in Markdown, pages ship as plain HTML, and JavaScript is added only where a page actually needs it.
 
-## Tech Stack
+## What's inside
 
-- [Astro](https://astro.build/) – Static site framework
-- [Tailwind CSS](https://tailwindcss.com/) – Utility-first CSS framework
-- [@astrojs/sitemap](https://docs.astro.build/en/guides/integrations-guide/sitemap/) – Automatic sitemap generation
-- [TypeScript](https://www.typescriptlang.org/) – Optional for type safety
+- **Project case studies** — each project is a Markdown file with co-located images, validated by a typed content schema
+- **Resume** — a single `resume.json` drives the homepage experience section, the `/resume` page, and the structured data
+- **Light / dark / system theme**, remembered across visits
+- **SEO & AEO** — per-page meta and Open Graph tags, plus schema.org JSON-LD (one `Person` entity generated from the resume, so it can't drift)
+- **Automatic sitemap** and a human-readable `/sitemap` page
 
-## Installed packages
+## Tech stack
 
-The following packages are listed in this project's `package.json` (as dependencies):
+| | |
+|---|---|
+| [Astro](https://astro.build/) 7 | Static site framework, content collections |
+| [Tailwind CSS](https://tailwindcss.com/) 4 | Styling, via `@tailwindcss/vite` |
+| [TypeScript](https://www.typescriptlang.org/) | Types for content, resume data and SEO props |
+| [@astrojs/sitemap](https://docs.astro.build/en/guides/integrations-guide/sitemap/) | Sitemap generation at build time |
+| [@astrojs/partytown](https://docs.astro.build/en/guides/integrations-guide/partytown/) | Runs analytics off the main thread |
+| ESLint + Prettier | Linting and formatting |
 
-- `@astrojs/sitemap` — ^3.6.0
-- `@tailwindcss/vite` — ^4.1.16
-- `astro` — ^5.15.3
-- `tailwindcss` — ^4.1.16
+Exact versions live in [`package.json`](./package.json).
 
-To install the project's dependencies locally, run:
+## Project structure
 
-```bash
-npm install
+```
+src/
+├── content/            Markdown + JSON content (projects, about, intro, resume)
+├── content.config.ts   Content collection schemas
+├── pages/              Routes — one file per page, [id].astro for projects
+├── layouts/            Page shell
+├── components/         layout/ · grids/ · content/ · UI/
+├── styles/global.css   Design tokens and base typography
+└── ts/                 Shared types and helpers
+public/                 Files served as-is: images, resume PDF, favicons
+docs/                   Handbook for maintaining the site
 ```
 
-To add a new package, run:
-
-```bash
-npm install <package-name>
-```
-
-## Linting
-
-This project uses [ESLint](https://eslint.org/) to maintain code quality and accessibility rules.
-
-To check for linting errors:
-
-```bash
-npx eslint .
-```
-
-To automatically fix fixable issues, run:
-```bash
-npx eslint . --fix
-```
+Adding a project means creating `src/content/projects/<slug>/index.md` with its
+images beside it — the folder name becomes the URL. No components to touch.
 
 ## Deployment
 
-This website is currently hosted on **GitHub Pages**.
+Pushing to `main` triggers [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml),
+which builds the site and publishes it to GitHub Pages. There is no separate
+release step.
 
-To deploy your own Astro site to GitHub Pages, follow the official guide:  
-[Astro Deployment on GitHub Pages](https://docs.astro.build/en/guides/deploy/github/)
+Deploying your own Astro site this way:
+[Astro on GitHub Pages](https://docs.astro.build/en/guides/deploy/github/).
+
+## Documentation
+
+[`docs/`](./docs/README.md) is the handbook for this site — running it locally,
+adding a project, what to write on each page, and how the code fits together.
 
 ## Author
 
-Created by [Ying-Shiuan Chen](https://github.com/yingshiuan/)
+[Ying-Shiuan Chen](https://github.com/yingshiuan/) ·
+[LinkedIn](https://www.linkedin.com/in/chenyingshiuan/)
 
 ## License
 
-This project is licensed under the MIT License.
+MIT — see [LICENSE](./LICENSE).
