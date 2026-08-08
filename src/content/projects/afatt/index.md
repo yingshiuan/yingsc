@@ -1,5 +1,5 @@
 ---
-title: 'A Fatt Restaurant Menu'
+title: 'Modular Menu System'
 subtitle: ''
 featured: false
 type: 'Professional'
