@@ -287,7 +287,7 @@ A Fatt work in Canva and are happily still on the system above. menuGen was
 built for the general problem rather than for them.
 
 <div>
-  <a href="./menu-generator">Read the menuGen case study →</a>
+  <a href="../menuGen">Read the menuGen case study →</a>
 </div>
 
 #### Tools & Technologies:
