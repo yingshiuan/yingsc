@@ -5,71 +5,31 @@ featured: false
 type: 'Professional'
 created: 2024-12-01
 domains:
-  - Product Engineering
-  - Design Systems
-  - Frontend Engineering
+  - Design
 stack:
   - Figma
   - Canva
-  - Vue.js
-category: 'Design System'
-tags: ['UI/UX', 'Web App', 'Design System']
+category: 'UX Design'
+tags: ['UI/UX', 'Design']
 image: './afatt_c.png'
 hoverImage: './afatt-menu.webp'
 thumbnail: './afatt.jpg'
 info: 'Inclusive, dietary-friendly, multilingual menu with intuitive layout for customers to enjoy Malaysian Chinese Home Favourites.'
-description: 'I designed a scalable, flexible menu system for A Fatt, integrating multilingual content, dietary tagging, and a modular layout. Alongside UX design in Figma and Canva, I also built a web app that allows the restaurant team to update menu items dynamically, manage translations, and export menus as PDF—bridging UX design and software functionality in a single solution.'
+description: 'I designed a scalable, modular menu system for A Fatt, integrating multilingual content, dietary tagging, and a reusable modular layout, delivered in Figma and Canva so the restaurant team can update dishes, translations and labels themselves without recreating a layout.'
 role: 'UX & System Designer'
 timeline: '1 month'
 completed: '08/2024'
 credit: 'A Fatt'
 creditLink: 'https://afatt.ch/'
-tools: ['Figma', 'Canva', 'Vue.js']
+tools: ['Figma', 'Canva']
 focus:
   [
-    'Design Systems',
+    'Design Modular Layout',
     'Content Management Workflow',
     'Multilingual UX',
-    'Product Engineering'
   ]
-activities: 'I love designing food experiences—probably because I love eating just as much. For this project, I engineered a scalable menu system in Figma and Canva, defining reusable layout modules, typographic hierarchies, and multilingual components. By structuring the menu as a living system, the restaurant team can update dishes, translations, or dietary labels without recreating layouts. Inspired by this workflow, I created a full-stack web app as a side project that translates the system into a dynamic, independently managed digital menu, supporting live updates, CSV uploads, and PDF exports—showcasing both my design and development skills.'
+activities: 'I love designing food experiences—probably because I love eating just as much. For this project, I engineered a scalable menu system in Figma and Canva, defining reusable layout modules, typographic hierarchies, and multilingual components. By structuring the menu as a living system, the restaurant team can update dishes, translations, or dietary labels without recreating layouts. Working this way is what showed me the limit of it — even in Canva, every change is still layout work. That is the problem I went on to solve in menuGen, a separate, self-initiated project that turns structured menu data into a print-ready PDF automatically.'
 ---
-
-<div class="contentSection border rounded-sm p-[0.5rem]">
-
-## Explore the Interactive Menu Generator
-
-After completing the **Figma** and **Canva** designs, I brought the menu system to life by developing a **web app** that allows the restaurant team to dynamically create, update, and manage the menu. The app translates the design system into a fully interactive tool, supporting multilingual content, dietary tagging, modular layouts, and PDF exports for printing.
-
-<div>
-  You can explore my side project on GitHub:
-
-  <a href="https://github.com/yingshiuan/menuGen" target="_blank" rel="noopener noreferrer">
-    <img src="https://img.shields.io/badge/View%20on-GitHub-181717?logo=github&logoColor=white" alt="GitHub Repo - menuGen"
-    style="height: 1.5rem; display: inline;">
-  </a>
-</div>
-
-#### Tools & Technologies:
-
-Vue.js, TypeScript, Tailwind CSS, Node.js and Puppeteer
-
-#### Highlights:
-
-- Upload menu data via CSV and export as PDF for printing
-- Live menu creation and inline editing
-- Modular layout components
-- Multi-language support (English, German, Traditional Chinese)
-- Dietary tagging for vegan, vegetarian, gluten-free, and spicy options
-- Designed for operational efficiency and ease of use
-
-<br>
-
-This tool complements the Figma and Canva designs, creating a **living, scalable menu system** that the restaurant staff can manage independently.
-
-![MenuGen](./menuGen.webp)
-
-</div>
 
 <div class="contentSection">
 
@@ -313,5 +273,47 @@ Collaborating closely with the restaurant team reinforced the importance of empa
 ## Reflection
 
 This project reinforced that effective design is both an experience and a system. Designing modular, reusable components not only enhanced the customer experience but also empowered the staff to manage and evolve the menu independently. It highlighted how design thinking can improve operational workflows as much as visual experience.
+
+</div>
+
+
+<div class="contentSection border rounded-sm">
+
+## From Menu Design to Menu Software
+
+After completing the **Figma** and **Canva** designs, I wanted to take the idea further, which inspired me to build a **web app** as a side project. **menuGen** turns structured menu data into an interactive editor and a print-ready PDF — multilingual content, dietary tagging, modular layouts. It's built for the general problem rather than for A Fatt, who work in Canva and are happily still on the system above.
+
+A Fatt work in Canva and are happily still on the system above. menuGen was
+built for the general problem rather than for them.
+
+<div>
+  <a href="./menu-generator">Read the menuGen case study →</a>
+</div>
+
+#### Tools & Technologies:
+
+Vue.js, TypeScript, Tailwind CSS, Node.js and Puppeteer
+
+#### Highlights:
+
+- Upload menu data via CSV and export as PDF for printing
+- Live menu creation and inline editing
+- Modular layout components
+- Multi-language support (English, German, Traditional Chinese)
+- Dietary tagging for vegan, vegetarian, gluten-free, and spicy options
+- Designed for operational efficiency and ease of use
+
+This tool complements the Figma and Canva designs, creating a **living, scalable menu system** that the restaurant can manage independently.
+
+![MenuGen](./menuGen.webp)
+
+<div>
+  You can explore my side project on GitHub:
+
+  <a href="https://github.com/yingshiuan/menuGen" target="_blank" rel="noopener noreferrer">
+    <img src="https://img.shields.io/badge/View%20on-GitHub-181717?logo=github&logoColor=white" alt="GitHub Repo - menuGen"
+    style="height: 1.5rem; display: inline;">
+  </a>
+</div>
 
 </div>
