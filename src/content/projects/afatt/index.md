@@ -15,7 +15,7 @@ image: './afatt_c.png'
 hoverImage: './afatt-menu.webp'
 thumbnail: './afatt.jpg'
 info: 'Inclusive, dietary-friendly, multilingual menu with intuitive layout for customers to enjoy Malaysian Chinese Home Favourites.'
-description: 'I designed a scalable, modular menu system for A Fatt, integrating multilingual content, dietary tagging, and a reusable modular layout, delivered in Figma and Canva so the restaurant team can update dishes, translations and labels themselves without recreating a layout.'
+description: 'I designed a scalable, modular menu system for a Zürich restaurant, integrating multilingual content, dietary tagging, and a reusable modular layout, delivered in Figma and Canva so the restaurant team can could maintain dishes, translations and labels themselves without recreating a layout. They still use it. Doing that job is what showed me the repeating problem, and I built menuGen afterwards, on my own, for the general case.'
 role: 'UX & System Designer'
 timeline: '1 month'
 completed: '08/2024'
@@ -283,9 +283,6 @@ This project reinforced that effective design is both an experience and a system
 
 After completing the **Figma** and **Canva** designs, I wanted to take the idea further, which inspired me to build a **web app** as a side project. **menuGen** turns structured menu data into an interactive editor and a print-ready PDF — multilingual content, dietary tagging, modular layouts. It's built for the general problem rather than for A Fatt, who work in Canva and are happily still on the system above.
 
-A Fatt work in Canva and are happily still on the system above. menuGen was
-built for the general problem rather than for them.
-
 <div>
   <a href="../menu-generator">Read the menuGen case study →</a>
 </div>
@@ -303,7 +300,7 @@ Vue.js, TypeScript, Tailwind CSS, Node.js and Puppeteer
 - Dietary tagging for vegan, vegetarian, gluten-free, and spicy options
 - Designed for operational efficiency and ease of use
 
-This tool complements the Figma and Canva designs, creating a **living, scalable menu system** that the restaurant can manage independently.
+MenuGen complements the Figma and Canva designs, creating a **living, scalable menu system** that the other restaurant can manage independently.
 
 ![MenuGen](./menuGen.webp)
 

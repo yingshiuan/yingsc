@@ -7,7 +7,7 @@ interface Props {
   type?: 'button' | 'submit'; // for <button>
   variant?: 'solid' | 'outline'; // style variants
   color?: 'primary' | 'blue' | 'red' | 'green' | 'gray'; // color theme
-  size?: 'sm' | 'md' | 'lg'; // button size
+  size?: 'xs' | 'sm' | 'md' | 'lg'; // button size
   rounded?: boolean; // rounded corners
   onclick?: string | (() => void);// JavaScript code to run on click
 }
@@ -49,6 +49,7 @@ const colorClasses = {
 };
 
 const sizeClasses = {
+  xs: 'px-2.5 py-1 text-xs',
   sm: 'px-3 py-1 text-sm',
   md: 'px-5 py-2 text-base',
   lg: 'px-6 py-3 text-lg',

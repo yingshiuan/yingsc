@@ -21,38 +21,73 @@
       "role" :"Designed and implemented a VR stylus interaction system in Unity, mapping a single hardware button to painting, object manipulation, and selection workflows through gesture-based controls refined for B2B and consumer use."
     },
     {
-      "title": "Frontend Developer",
+      "title": "Product Engineer",
       "company": "insdash",
-      "location": "Remote",
-      "linkInfo":"Independent web development and interaction design practice.",
+      "location": "Remote, Switzerland, Taiwan",
+       "link": "https://insdash.ch",
+      "linkInfo":"End-to-end product design and development for clients across industries.",
       "tech": ["TypeScript", "Vue.js", "React", "Tailwind CSS", "Node.js", "SQL", "Docker", "Docker Compose", "FastAPI", "HTML5", "CSS3", "JavaScript", "Figma"],
-      "date": "Jan 2022 – July 2024",
-      "role" :"Built and shipped production web applications end to end — Vue and React frontends, Node and FastAPI services, SQL data models, and Docker-based deployment — including a full-stack menu platform for a Zürich restaurant."
-    },
-    {
-      "title": "3D Artist & Animator",
-      "company": "Thömus",
-      "link": "https://thoemus.ch/",
-      "location": "Switzerland",
-      "links": [
+      "date": "Mar 2021 – Present",
+      "role" :"Built and shipped production web applications end to end — Vue and React frontends, Node and FastAPI services, SQL data models, and Docker-based deployment — including a full-stack menu platform for a Zürich restaurant.",
+      "clients": [
         {
-          "href": "https://www.youtube.com/watch?v=OredYyH_3tQ",
-          "label": "Swissrider E-bike Animation"
+          "company": "Sprachschule Yang",
+          "role": "Design Engineer",
+          "link": "https://sprachschule-yang.ch/",
+          "location": "Zürich, Switzerland",
+          "links": [
+            {
+              "href": "https://roomplan.org/login",
+              "label": "Scheduling system and room booking platform"
+            }
+          ],
+          "linkInfo":"A specialized language institute in Zurich offering East Asian language courses and cultural workshops for adults and children.",
+          "tech": ["TypeScript", "Tailwind CSS", "React", "Figma"],
+          "date": "Jun 2026",
+          "description": ""
+        },
+        {
+          "company": "A Fatt",
+          "role": "Designer",
+          "link": "https://afatt.ch/",
+          "location": "Zürich, Switzerland",
+          "links": [
+            {
+              "href": "https://yingshiuan.github.io/yingsc/projects/afatt/",
+              "label": "Modular Menu System"
+            }
+          ],
+          "linkInfo":"A Zürich restaurant serving Malaysian, Chinese, and Taiwanese home favourites.",
+          "tech": ["Figma", "Canva"],
+          "date": "Aug 2024",
+          "description": "Designed a modular multilingual menu system (EN/DE/zh-TW) with dietary tagging — handed over in Canva so staff own updates themselves, no designer on retainer."
+        },
+        {
+          "company": "Thömus",
+          "role": "3D Artist & Animator",
+          "link": "https://thoemus.ch/",
+          "location": "Remote, Switzerland",
+          "links": [
+            {
+              "href": "https://www.youtube.com/watch?v=OredYyH_3tQ",
+              "label": "Swissrider E-bike Animation"
+            }
+          ],
+          "linkInfo":"A Swiss manufacturer of customizable high-quality bikes and e-bikes.",
+          "tech": ["Blender", "Adobe Premiere Pro", "Adobe After Effects", "Figma"],
+          "date": "Oct 2022 – Feb 2023",
+          "description": "Created 3D product animations from concept to completion, achieving 10k views (5x above average) and driving customer traffic to product pages."
+        },
+        {
+          "company": "yun.official",
+          "role": "Frontend Developer & Designer (E-Commerce Lead)",
+          "location": "Remote, Taiwan",
+          "linkInfo":"Fashion startup transitioning from handcrafted to digital e-commerce.",
+          "tech": ["Shopify", "SHOPLINE", "Figma", "UI/UX"],
+          "date": "Mar 2021 – Aug 2021",
+          "description": "Designed and launched the storefront on Shopify then SHOPLINE — taking the brand from DM-based selling to real checkout, payments, and fulfilment — driving a 35% order increase in the first season."
         }
-      ],
-      "linkInfo":"A Swiss manufacturer of customizable high-quality bikes and e-bikes.",
-      "tech": ["Blender", "Adobe Premiere Pro", "Adobe After Effects", "Figma"],
-      "date": "Jan 2022 – July 2024",
-      "role": "I created 3D product animations from concept to completion, achieving 10k views (5x above average) and driving customer traffic to product pages."
-    },
-    {
-      "title": "Product Design Manager",
-      "company": "yun.official - Fashion startup",
-      "location": "Remote",
-      "linkInfo":"Fashion startup transitioning from handcrafted to digital e-commerce.",
-      "tech": ["Figma", "UI/UX"],
-      "date": "Mar 2021 – Aug 2021",
-      "role" :"Optimized e-commerce UX to secure manufacturing partnerships and drive a 35% order increase in the first season post-launch."
+      ]
     },
     {
       "title": "Web Developer & 3D Generalist",

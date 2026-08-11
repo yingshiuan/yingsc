@@ -3,6 +3,18 @@ export interface ResumeLink {
   label: string;
 }
 
+export interface ResumeClient {
+  company: string;
+  role?: string;
+  location?: string;
+  link?: string;
+  links?: ResumeLink[];
+  linkInfo?: string;
+  tech?: string[];
+  description?: string;
+  date?: string;
+}
+
 export interface ResumeItem {
   title: string;
   company?: string;
@@ -17,6 +29,7 @@ export interface ResumeItem {
   role?: string;
   level?: string;
   skills?: string[];
+  clients?: ResumeClient[];
 }
 
 export interface ResumeData {

@@ -52,7 +52,7 @@ const { title, items, showDivider = true } = Astro.props;
                 </span>
               )}
 
-              {item.location && <p class="item_caption">| {item.location}</p>}
+              {item.location && <p class="item_caption"> | {item.location}</p>}
 
               {item.tech?.length && (
                 <div class="mt-[0.5rem] pl-4">
@@ -72,7 +72,7 @@ const { title, items, showDivider = true } = Astro.props;
                       label={l.label}
                       color="primary"
                       variant="outline"
-                      size="sm"
+                      size="xs"
                     />
                   ))}
                 </div>
@@ -111,6 +111,81 @@ const { title, items, showDivider = true } = Astro.props;
             {item.date && (
               <div class="section_right">
                 <p>{item.date}</p>
+              </div>
+            )}
+
+            <!-- Client list -->
+            {item.clients?.length && (
+              <div class="lg:col-span-12 client_list">
+                {item.clients.map((client) => (
+                  <div class="client_item">
+                    <div class="client_head">
+                      <div>
+                        {client.role && (
+                          <span class="client_role">{client.role}</span>
+                        )}
+
+                        {client.role && <span class="item_caption"> — </span>}
+
+                        <span class="relative group">
+                          {client.link ? (
+                            <a
+                              class="item_link cursor-pointer"
+                              href={client.link}
+                              target="_blank"
+                              rel="noopener noreferrer">
+                              {client.company}
+                            </a>
+                          ) : (
+                            <span class="client_company cursor-default">
+                              {client.company}
+                            </span>
+                          )}
+
+                          {client.link && client.linkInfo && (
+                            <span class="item_link_hover">
+                              {`${client.linkInfo} - Go to ${client.company} website`}
+                            </span>
+                          )}
+                        </span>
+
+                        {client.location && (
+                          <span class="item_caption"> | {client.location}</span>
+                        )}
+                      </div>
+
+                      {client.date && <p class="client_date">{client.date}</p>}
+                    </div>
+
+                    {!client.link && client.linkInfo && (
+                      <p class="client_info pl-4 mt-[0.5rem]">{client.linkInfo}</p>
+                    )}
+
+                    {client.tech?.length && (
+                      <div class="mt-[0.5rem] pl-4">
+                        {client.tech.map((t, index) => (
+                          <span class="item_emphasis">
+                            {t}{index < client.tech!.length - 1 ? ' · ' : ''}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+
+                    {client.links && (
+                      <div class="mt-[1rem] flex flex-wrap gap-2 pl-4">
+                        {client.links.map((l) => (
+                          <Button
+                            href={l.href}
+                            label={l.label}
+                            color="primary"
+                            variant="outline"
+                            size="xs"
+                          />
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
               </div>
             )}
 
@@ -169,6 +244,30 @@ const { title, items, showDivider = true } = Astro.props;
     @apply text-[var(--color-text-secondary)] inline;
   }
 
+  .client_list {
+    @apply mt-[1rem] ml-[2rem] pl-[1.5rem] space-y-[2.5rem] border-l border-[var(--color-text-secondary)];
+  }
+
+  .client_head {
+    @apply flex flex-col gap-x-4 lg:flex-row lg:items-baseline lg:justify-between;
+  }
+
+  .client_role {
+    @apply font-medium text-[var(--color-text-primary)];
+  }
+
+  .client_company {
+    @apply text-[var(--color-text-primary)];
+  }
+
+  .client_info {
+    @apply block mb-[0.25rem] text-sm font-light text-[var(--color-text-secondary)];
+  }
+
+  .client_date {
+    @apply mb-0 text-[var(--color-text-secondary)] shrink-0 lg:text-right;
+  }
+
   .item_emphasis {
     @apply text-sm font-light text-[var(--color-text-secondary)] inline;
   }
@@ -184,6 +283,7 @@ const { title, items, showDivider = true } = Astro.props;
   .breakline {
     @apply max-w-[80rem] mx-auto my-[2rem];
   }
+
 
   @media (min-width: 900px) {
     .resume {
