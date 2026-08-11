@@ -96,7 +96,7 @@ The VIVE Tracker provided relative coordinates between the UR10 and a reference 
 
 ## Construction Sequence
 
-Throughout construction, the UR10 was repositioned 22 times to complete 24 layers totaling 1024 bricks. Due to ceiling height limitations, the remaining 28 layers (406 bricks) were assembled using prefabricated components.
+Throughout construction, the UR10 was repositioned 22 times to complete 38 layers totaling 1024 bricks. Due to ceiling height limitations, the remaining 14 layers (406 bricks) were assembled using prefabricated components.
 
 ![vr-vive-brick-wall-sequence](./sequence.webp)
 
