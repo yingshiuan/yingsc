@@ -3,6 +3,7 @@
 import Button from '@/components/UI/Button.astro';
 import BreakLine from '@/components/UI/BreakLine.astro';
 import type { ResumeItem } from '@/ts/resume';
+import { isExternal, resolveHref } from '@/ts/url';
 
 interface Props {
   title: string;
@@ -11,6 +12,15 @@ interface Props {
 }
 
 const { title, items, showDivider = true } = Astro.props;
+
+// Internal hrefs in resume.json are base-relative (`projects/afatt`); only
+// off-site links get a new tab.
+const linkAttrs = (href: string) => ({
+  href: resolveHref(href),
+  ...(isExternal(href)
+    ? { target: '_blank', rel: 'noopener noreferrer' }
+    : {}),
+});
 ---
 
 <section class="resume">
@@ -29,11 +39,7 @@ const { title, items, showDivider = true } = Astro.props;
               {item.company && (
                 <span class="relative group">
                   {item.link ? (
-                    <a
-                      class="item_link cursor-pointer"
-                      href={item.link}
-                      target="_blank"
-                      rel="noopener noreferrer">
+                    <a class="item_link cursor-pointer" {...linkAttrs(item.link)}>
                       {item.company}
                     </a>
                   ) : (
@@ -68,7 +74,8 @@ const { title, items, showDivider = true } = Astro.props;
                 <div class="mt-[1rem] flex gap-2 pl-4">
                   {item.links.map((l) => (
                     <Button
-                      href={l.href}
+                      href={resolveHref(l.href)}
+                      target={isExternal(l.href) ? '_blank' : undefined}
                       label={l.label}
                       color="primary"
                       variant="outline"
@@ -131,9 +138,7 @@ const { title, items, showDivider = true } = Astro.props;
                           {client.link ? (
                             <a
                               class="item_link cursor-pointer"
-                              href={client.link}
-                              target="_blank"
-                              rel="noopener noreferrer">
+                              {...linkAttrs(client.link)}>
                               {client.company}
                             </a>
                           ) : (
@@ -175,7 +180,8 @@ const { title, items, showDivider = true } = Astro.props;
                       <div class="mt-[1rem] flex flex-wrap gap-2 pl-4">
                         {client.links.map((l) => (
                           <Button
-                            href={l.href}
+                            href={resolveHref(l.href)}
+                            target={isExternal(l.href) ? '_blank' : undefined}
                             label={l.label}
                             color="primary"
                             variant="outline"

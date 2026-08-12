@@ -16,6 +16,12 @@
       "location": "Zürich, Switzerland",
       "link": "https://sensoryx.tech",
       "linkInfo":"A Swiss startup specializing in motion tracking for VR/AR.",
+      "links": [
+            {
+              "href": "projects/sensoryx-xr-interaction-experiences",
+              "label": "XR Stylus Interaction System"
+            }
+          ],
       "tech":["C#", "Unity", "XR"],
       "date": "Aug 2024 – Dec 2024",
       "role" :"Designed and implemented a VR stylus interaction system in Unity, mapping a single hardware button to painting, object manipulation, and selection workflows through gesture-based controls refined for B2B and consumer use."
@@ -53,11 +59,11 @@
           "location": "Zürich, Switzerland",
           "links": [
             {
-              "href": "https://yingshiuan.github.io/yingsc/projects/afatt/",
+              "href": "projects/afatt",
               "label": "Modular Menu System"
             },
              {
-              "href": "https://yingshiuan.github.io/yingsc/projects/menu-generator/",
+              "href": "projects/menu-generator",
               "label": "Restaurant Menu Management Platform"
             }
           ],
@@ -97,13 +103,19 @@
       "title": "Web Developer & 3D Generalist",
       "company": "Freelance",
       "location": "Remote",
-       "tech": ["JavaScript", "Figma", "Blender", "Adobe Creative Suite", "UI/UX", "HTML5/CSS3"],
+      "tech": ["JavaScript", "Figma", "Blender", "Adobe Creative Suite", "UI/UX", "HTML5/CSS3"],
       "date": "Mar 2020 – Aug 2021"
     },
     {
       "title": "Research and Teaching Assistant", 
       "company": "Dept. Architecture of Tamkang University",
       "location": "Taiwan",
+      "links": [
+            {
+              "href": "projects/vr-robotic-fabrication-of-brick-wall",
+              "label": "VIVE-Tracked Robotic Bricklaying on Site"
+            }
+          ],
       "tech": ["Rhinoceros 3D & Grasshopper", "Unity 3D", "C#", "JavaScript", "Python", "CAD/CAM"],
       "date": "Sep 2017 – Sep 2018"
     },
@@ -112,6 +124,7 @@
       "company": "CCC Lab",
       "location": "Taiwan",
       "date": "Sep 2017 – Sep 2018"
+      
     }
   ],
   "initiatives": [

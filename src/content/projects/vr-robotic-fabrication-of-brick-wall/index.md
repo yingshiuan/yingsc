@@ -1,23 +1,23 @@
 ---
-title: 'VR-Tracked Robotic Fabrication of Brick Wall'
-# New-format entries (fill later)
-subtitle: ''
+title: 'VIVE-Tracked Rc'
+subtitle: '1,430 bricks, 52 layers, double-curved — a mobile UR10 sequenced through a wall larger than its own reach'
 type: 'Research'
 featured: true
 domains:
-  - Spatial Computing
   - Robotics
   - Computational Design
+  - Real-Time Tracking
 
 stack:
-  - Grasshopper
   - Python
-  - Universal Robot UR10
-  - HTC VIVE Tracker
+  - SteamVR/OpenVR
+  - Rhino / Grasshopper
+  - UR10
+  - HTC VIVE
 
 created: 2023-12-02
 category: 'AR/VR'
-tags: ['HTC VIVE Tracker', 'Robotic Fabrication', 'On-site']
+tags: ['HTC VIVE', 'Robotic Fabrication', 'On-site']
 image: './brickwall.jpg'
 hoverImage: './brickwall.webp'
 thumbnail: './vr-robotic-fabrication-of-brick-wall.jpg'
@@ -30,10 +30,7 @@ credit: 'CCC Lab, Tamkang University'
 creditLink: 'https://vimeo.com/digitalaieou'
 tools:
   [
-    'Rhinoceros 3D & Grasshopper 3D,',
-    'python',
-    'Universal Robot 10',
-    'HTC VIVE',
+    'Rhino / Grasshopper', 'Python', 'SteamVR/OpenVR', 'Rhino / Grasshopper', 'Universal Robot 10', 'HTC VIVE'
   ]
 focus:
   [
