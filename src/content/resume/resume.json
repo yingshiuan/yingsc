@@ -38,7 +38,7 @@
           "links": [
             {
               "href": "https://roomplan.org/login",
-              "label": "Scheduling system and room booking platform"
+              "label": "Scheduling System and Room Booking Platform"
             }
           ],
           "linkInfo":"A specialized language institute in Zurich offering East Asian language courses and cultural workshops for adults and children.",
@@ -55,6 +55,10 @@
             {
               "href": "https://yingshiuan.github.io/yingsc/projects/afatt/",
               "label": "Modular Menu System"
+            },
+             {
+              "href": "https://yingshiuan.github.io/yingsc/projects/menu-generator/",
+              "label": "Restaurant Menu Management Platform"
             }
           ],
           "linkInfo":"A Zürich restaurant serving Malaysian, Chinese, and Taiwanese home favourites.",
