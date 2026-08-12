@@ -1,5 +1,5 @@
 ---
-title: 'VIVE-Tracked Rc'
+title: 'VIVE-Tracked Robotic Bricklaying on Site'
 subtitle: '1,430 bricks, 52 layers, double-curved — a mobile UR10 sequenced through a wall larger than its own reach'
 type: 'Research'
 featured: true
