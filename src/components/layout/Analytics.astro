@@ -20,7 +20,7 @@ const enabled = import.meta.env.PROD;
     <script is:inline type="text/partytown" async src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}></script>
     <script is:inline type="text/partytown" define:vars={{ measurementId, requireConsent }}>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){ dataLayer.push(arguments); }
+      function gtag(){ dataLayer.push(arguments); }  // eslint-disable-line prefer-rest-params
 
       // Consent Mode: deny storage up front when a banner is in play, so the
       // tag can load immediately without writing cookies.
@@ -41,7 +41,7 @@ const enabled = import.meta.env.PROD;
   <>
     <script is:inline define:vars={{ gtmId }}>
       (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], // eslint-disable-line no-var
       j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
       })(window,document,'script','dataLayer',gtmId);
