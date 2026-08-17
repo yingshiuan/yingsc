@@ -6,7 +6,7 @@ import astro from "eslint-plugin-astro";
 import prettier from "eslint-plugin-prettier";
 
 // parsers
-const tsParser = tseslint.parser;
+// const tsParser = tseslint.parser;
 const astroParser = astro.parser;
 
 export default defineConfig([

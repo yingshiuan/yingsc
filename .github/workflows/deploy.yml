@@ -14,8 +14,30 @@ permissions:
   pages: write
   id-token: write
 
+# Only one deploy at a time. A newer push supersedes an in-flight run, but let a
+# run that already reached the deploy step finish so Pages isn't left half-updated.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout your repository using git
+        uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24 # keep in sync with withastro/action's default
+          cache: npm
+      - run: npm ci
+      - name: Lint
+        run: npm run lint
+      - name: Type check (astro check)
+        run: npm run check
+
   build:
+    needs: quality
     runs-on: ubuntu-latest
     steps:
       - name: Checkout your repository using git
