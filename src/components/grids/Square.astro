@@ -32,7 +32,10 @@ projects.sort((a, b) => {
   }
 
   <!-- Coming Soon Card -->
-  <div class={`project-item ${projects.length < 3 ? '' : 'hidden'}`}>
+  <div
+    class={`project-item ${projects.length < 3 ? '' : 'hidden'}`}
+    tabindex="-1"
+  >
       <div
         class="p-6 border rounded-xl flex flex-col items-center justify-center text-center h-full
             hover:shadow-lg dark:hover:shadow-gray-500 transition-shadow"

@@ -17,17 +17,30 @@ const year = new Date().getFullYear();
     <!-- Social media -->
     <div class="media">
       <div class="media_icon">
-        <a href="https://www.linkedin.com/in/chenyingshiuan/" target="_blank">
-          <i class="fab fa-linkedin"></i>
+        <!-- Add aria-label to make it accessible. -->
+        <a
+          href="https://www.linkedin.com/in/chenyingshiuan/"
+          target="_blank"
+          aria-label="LinkedIn profile">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
         </a>
-        <a href="https://github.com/yingshiuan" target="_blank">
-          <i class="fab fa-github"></i>
+        <a
+          href="https://github.com/yingshiuan"
+          target="_blank"
+          aria-label="GitHub profile">
+          <i class="fab fa-github" aria-hidden="true"></i>
         </a>
-        <a href="https://yingsc.medium.com" target="_blank">
-          <i class="fab fa-medium-m"></i>
+        <a
+          href="https://yingsc.medium.com"
+          target="_blank"
+          aria-label="Medium blog">
+          <i class="fab fa-medium-m" aria-hidden="true"></i>
         </a>
-        <a href="https://vimeo.com/yshiuanc" target="_blank">
-          <i class="fab fa-vimeo-v"></i>
+        <a
+          href="https://vimeo.com/yshiuanc"
+          target="_blank"
+          aria-label="Vimeo profile">
+          <i class="fab fa-vimeo-v" aria-hidden="true"></i>
         </a>
 
         <!-- <a
@@ -45,12 +58,11 @@ const year = new Date().getFullYear();
         <li><a href={`${baseUrl}sitemap`}>Site Map</a></li>
       </ul>
     </div>
-
+    
     <!-- Copyright -->
     <div class="footer_copyright">
       <p>
-        Copyright &copy; {year}
-        <a href="/">Ying-Shiuan Chen</a>. All rights reserved.
+        Copyright &copy; {year} <a href="/">Ying-Shiuan Chen</a>. All rights reserved.
       </p>
     </div>
   </div>

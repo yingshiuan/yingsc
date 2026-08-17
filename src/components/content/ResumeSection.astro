@@ -29,7 +29,8 @@ const linkAttrs = (href: string) => ({
       <h5>{title}</h5>
     </div>
     
-    <div class="item_content">
+    {/* eslint-disable-next-line astro/jsx-a11y/no-redundant-roles */}
+    <ul class="item_content" role="list">
       {
         items.map((item) => (
           <li class="item_section">
@@ -211,7 +212,7 @@ const linkAttrs = (href: string) => ({
           </li>
         ))
       }
-    </div>
+    </ul>
   </div>
 
   {showDivider && ( 
@@ -251,7 +252,7 @@ const linkAttrs = (href: string) => ({
   }
 
   .client_list {
-    @apply mt-[1rem] ml-[2rem] pl-[1.5rem] space-y-[2.5rem] border-l border-[var(--color-text-secondary)];
+    @apply mt-[1rem] ml-[2rem] pl-[1.5rem] space-y-[2.5rem] border-l border-[var(--color-rule)];
   }
 
   .client_head {

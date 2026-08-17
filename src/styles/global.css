@@ -11,10 +11,16 @@
 }
 
 
+/* Text colors carry a WCAG AA contrast floor of 4.5:1 against the background
+   they sit on. On #ffffff the lightest passing grey is #767676, which is why
+   --color-text-secondary can no longer be #C2C2C2 (1.78:1). Primary is darkened
+   alongside it so the two still read as a hierarchy rather than one weight.
+   --color-rule keeps the old light grey for hairlines: borders are not text and
+   have no contrast minimum, so darkening them would only make them heavy. */
 :root {
       --background-color: #ffffff;
-      --color-text-primary: #707070;
-      --color-text-secondary: #C2C2C2;
+      --color-text-primary: #595959;   /*  7.0:1 on #ffffff */
+      --color-text-secondary: #6F6F6F;  /* 5.0:1 on #ffffff */
       --color-text-caption: #2C2C2C;
       --color-text-hover: #000000;
       --color-text-link: #0C77DD;
@@ -23,9 +29,10 @@
       --color-caption-secondary: #E6E6E6;
 
       --color-border: #ffffff;
+      --color-rule: #C2C2C2;
       --color-work-background: rgba(242, 242, 242, 0.5);
       --font-mono:'DM Mono', monospace;
-      
+
 }
 
 /* System color. Keyed off <html>, not <body>: the pre-paint theme script in
@@ -33,8 +40,8 @@
 html.dark_mode {
       --background-color: #000000;
       /* Text colors */
-      --color-text-primary: #C2C2C2;
-      --color-text-secondary: #707070;
+      --color-text-primary: #C2C2C2;   /* 11.8:1 on #000000 */
+      --color-text-secondary: #8A8A8A;  /*  6.1:1 on #000000 — was #707070, 4.24:1 */
       --color-text-caption: #3C3C3C;
       --color-text-hover: #707070;
       --color-text-link: #4DA3FF;
@@ -43,6 +50,7 @@ html.dark_mode {
       --color-caption-secondary: #E6E6E6;
       --color-border: #000000;
       /* Borders and backgrounds */
+      --color-rule: #3C3C3C;
       --color-work-background: rgba(242, 242, 242, 0.1);
       
 }
@@ -52,7 +60,7 @@ html.dark_mode {
       html:not(.light_mode) {
             --background-color: #000000;
             --color-text-primary: #C2C2C2;
-            --color-text-secondary: #707070;
+            --color-text-secondary: #8A8A8A;
             --color-text-caption: #3C3C3C;
             --color-text-hover: #707070;
             --color-text-link: #0C77DD;
@@ -63,6 +71,7 @@ html.dark_mode {
 
             /* Borders and backgrounds */
             --color-border: #000000;
+            --color-rule: #3C3C3C;
             --color-work-background: rgba(242, 242, 242, 0.1);
       }
 }

@@ -25,8 +25,8 @@ const {
   onclick,
 } = Astro.props;
 
-// Tailwind styles
-const baseStyles = 'font-semibold focus:outline-none transition duration-300 cursor-pointer';
+const baseStyles =
+  'font-semibold transition duration-300 cursor-pointer focus:outline-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--color-text-primary)] focus-visible:ring-offset-[var(--background-color)]';
 
 const colorClasses = {
   solid: {
