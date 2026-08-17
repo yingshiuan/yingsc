@@ -88,12 +88,12 @@ const href = `${baseUrl}projects/${project.id}`;
     @apply rounded-[1rem] bg-[var(--color-work-background)] p-[1rem] relative flex flex-col justify-end overflow-hidden;
   }
 
-  body.light_mode .project_card.group:hover {
+  html.light_mode .project_card.group:hover {
     @apply bg-gradient-to-t from-black/5 via-black/2 to-transparent
     border border-black/10;
   }
 
-  body.dark_mode .project_card.group:hover {
+  html.dark_mode .project_card.group:hover {
     @apply bg-gradient-to-t from-white/20 via-white/10 to-white/5
     border border-white/25;
   }

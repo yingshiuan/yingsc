@@ -24,6 +24,7 @@ projects.sort((a, b) => {
       <div
         class={`project-item ${index < 3 ? '' : 'hidden'}`}
         id={`project-${index}`}
+        tabindex="-1"
       >
         <ProjectCard project={project} />
       </div>
@@ -84,18 +85,32 @@ projects.sort((a, b) => {
       size="md"
     /> -->
   </div>
+  <p id="load-more-status" class="sr-only" role="status" aria-live="polite"></p>
 </div>
 
-<script is:inline>
+<script>
   const btn = document.getElementById('load-more-button');
+  const status = document.getElementById('load-more-status');
+
   if (btn) {
     btn.addEventListener('click', () => {
-      const items = document.querySelectorAll('.project-item.hidden');
+      const items =
+        document.querySelectorAll<HTMLElement>('.project-item.hidden');
       const toShow = Array.from(items).slice(0, 3); // show 3 more
       toShow.forEach((item) => item.classList.remove('hidden'));
 
+      const remaining = document.querySelectorAll('.project-item.hidden').length;
+
+
+      if (status) {
+        status.textContent = `${toShow.length} more project${
+          toShow.length === 1 ? '' : 's'
+        } shown, ${remaining} remaining.`;
+      }
+
       // hide button if all items are now visible
-      if (document.querySelectorAll('.project-item.hidden').length === 0) {
+      if (remaining === 0) {
+        toShow[0]?.focus();
         btn.style.display = 'none';
       }
     });

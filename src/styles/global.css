@@ -28,8 +28,9 @@
       
 }
 
-/* system color */
-body.dark_mode {
+/* System color. Keyed off <html>, not <body>: the pre-paint theme script in
+   Head.astro runs while the head is still parsing, before <body> exists. */
+html.dark_mode {
       --background-color: #000000;
       /* Text colors */
       --color-text-primary: #C2C2C2;
@@ -48,7 +49,7 @@ body.dark_mode {
 
 
 @media (prefers-color-scheme: dark) {
-      body:not(.light_mode) {
+      html:not(.light_mode) {
             --background-color: #000000;
             --color-text-primary: #C2C2C2;
             --color-text-secondary: #707070;

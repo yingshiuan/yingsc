@@ -45,14 +45,14 @@ const mainImage = project.data.thumbnail ?? project.data.image;
     rounded-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100;
   } */
 
-  body.light_mode .glassHover {
+  html.light_mode .glassHover {
     @apply absolute inset-0 flex flex-col items-center justify-center
     bg-gradient-to-t from-black/5 via-black/2 to-transparent
     border border-black/10 backdrop-blur-md
     rounded-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100;
   }
 
-  body.dark_mode .glassHover {
+  html.dark_mode .glassHover {
     @apply absolute inset-0 flex flex-col items-center justify-center
     bg-gradient-to-t from-white/20 via-white/10 to-white/5
     backdrop-blur-md border border-white/25

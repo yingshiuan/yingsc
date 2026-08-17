@@ -15,30 +15,40 @@ const links: NavLink[] = [
 ---
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const toggleBtn = document.querySelector<HTMLElement>('.navbarToggle');
+  // Bundled module scripts are deferred, so the DOM is already parsed here and
+  // there is nothing to wait for.
+  {
+    const toggle = document.querySelector<HTMLElement>('.navbarToggle');
+    const toggleBtn = toggle?.querySelector<HTMLButtonElement>('button');
     const items = document.querySelectorAll<HTMLElement>('.item');
 
     toggleBtn?.addEventListener('click', () => {
+      const open = toggleBtn.getAttribute('aria-expanded') !== 'true';
+
       items.forEach((item) => {
-        item.classList.toggle('show');
+        item.classList.toggle('show', open);
       });
-      toggleBtn.classList.toggle('hide');
+      toggle?.classList.toggle('hide', open);
+
+      toggleBtn.setAttribute('aria-expanded', String(open));
     });
-  });
+  }
 
-  document.addEventListener('DOMContentLoaded', () => {
-  const currentPath = window.location.pathname.replace(/\/$/, '');
-  const items = document.querySelectorAll<HTMLLIElement>('#navbar .item');
+  {
+    const currentPath = window.location.pathname.replace(/\/$/, '');
+    const items = document.querySelectorAll<HTMLLIElement>('#navbar .item');
 
-  items.forEach(item => {
-    const link = item.querySelector('a')!;
-    const linkPath = new URL(link.href, window.location.origin).pathname.replace(/\/$/, '');
-    if (linkPath === currentPath) {
-      item.classList.add('active-link'); // add to li instead of a
-    }
-  });
-});
+    items.forEach((item) => {
+      const link = item.querySelector('a')!;
+      const linkPath = new URL(
+        link.href,
+        window.location.origin
+      ).pathname.replace(/\/$/, '');
+      if (linkPath === currentPath) {
+        item.classList.add('active-link'); // add to li instead of a
+      }
+    });
+  }
 </script>
 
 <nav id="mynav">
@@ -47,7 +57,7 @@ const links: NavLink[] = [
       <a href=`${baseUrl}`></a>
     </li> -->
     <li class="navbarToggle">
-      <button aria-label="Toggle menu">
+      <button aria-label="Toggle menu" aria-expanded="false">
         <i class="material-symbols-outlined menu-icon">menu</i>
         <i class="material-symbols-outlined close-icon hidden">close</i>
       </button>

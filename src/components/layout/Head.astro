@@ -72,30 +72,42 @@ const jsonLd = {
 };
 ---
 
-<script is:inline>
-  document.addEventListener("DOMContentLoaded", () => {
-    const pref = localStorage.getItem("mode") || "tonality";
-    const applied =
-      pref === "light_mode"
-        ? "light_mode"
-        : pref === "dark_mode"
-          ? "dark_mode"
-          : window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark_mode"
-            : "light_mode";
-
-    document.body.className = applied;
-    const meta = document.querySelector('meta[name="color-scheme"]');
-    if (meta) meta.content = applied;
-  });
-</script>
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="author" content="Ying-Shiuan Chen" />
   <meta name="copyright" content="Ying-Shiuan Chen" />
   <meta name="color-scheme" content="light dark" />
+  <script is:inline>
+    (() => {
+      let pref = 'tonality';
+      try {
+        pref = localStorage.getItem('mode') || 'tonality';
+      } catch {
+        // Storage access throws when cookies are blocked or the page is
+        // sandboxed. Fall through to following the system preference.
+      }
+
+      const applied =
+        pref === 'light_mode' || pref === 'dark_mode'
+          ? pref
+          : matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark_mode'
+            : 'light_mode';
+
+      const root = document.documentElement;
+      root.classList.remove('light_mode', 'dark_mode');
+      root.classList.add(applied);
+
+      // "tonality" means follow the system, so leave color-scheme as
+      // "light dark" and let the OS keep styling scrollbars and controls.
+      // Note the value is `light`/`dark` — `dark_mode` is not valid CSS.
+      const meta = document.querySelector('meta[name="color-scheme"]');
+      if (meta && pref !== 'tonality') {
+        meta.content = applied.replace('_mode', '');
+      }
+    })();
+  </script>
   {noindex && <meta name="robots" content="noindex, follow" />}
   <meta name="google-site-verification" content="7x_392_0i3J2ueR1hniQdwveOFtObZQZRLa89TBTdXc" />
   <link rel="icon" type="image/svg+xml" href={`${baseUrl}yinz.svg`} />
