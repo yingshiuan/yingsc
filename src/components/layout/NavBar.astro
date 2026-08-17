@@ -18,19 +18,25 @@ const links: NavLink[] = [
   // Bundled module scripts are deferred, so the DOM is already parsed here and
   // there is nothing to wait for.
   {
-    const toggle = document.querySelector<HTMLElement>('.navbarToggle');
-    const toggleBtn = toggle?.querySelector<HTMLButtonElement>('button');
-    const items = document.querySelectorAll<HTMLElement>('.item');
+    const toggle = document.getElementById('nav-toggle');
 
-    toggleBtn?.addEventListener('click', () => {
-      const open = toggleBtn.getAttribute('aria-expanded') !== 'true';
+    const setOpen = (open: boolean) =>
+      toggle?.setAttribute('aria-expanded', String(open));
 
-      items.forEach((item) => {
-        item.classList.toggle('show', open);
-      });
-      toggle?.classList.toggle('hide', open);
+    toggle?.addEventListener('click', () => {
+      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    });
 
-      toggleBtn.setAttribute('aria-expanded', String(open));
+    document.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape') return;
+      if (toggle?.getAttribute('aria-expanded') !== 'true') return;
+      setOpen(false);
+      toggle.focus();
+    });
+
+    // Following a link leaves the panel open behind the navigation otherwise.
+    document.querySelectorAll('#navbar a').forEach((link) => {
+      link.addEventListener('click', () => setOpen(false));
     });
   }
 
@@ -45,30 +51,31 @@ const links: NavLink[] = [
         window.location.origin
       ).pathname.replace(/\/$/, '');
       if (linkPath === currentPath) {
-        item.classList.add('active-link'); // add to li instead of a
+        item.classList.add('active-link');
       }
     });
   }
 </script>
 
 <nav id="mynav">
-  <ul id="navbar">
-    <!-- <li class="logo">
-      <a href=`${baseUrl}`></a>
-    </li> -->
-    <li class="navbarToggle">
-      <button aria-label="Toggle menu" aria-expanded="false">
-        <i class="material-symbols-outlined menu-icon">menu</i>
-        <i class="material-symbols-outlined close-icon hidden">close</i>
-      </button>
-    </li>
+  <button
+    id="nav-toggle"
+    class="navbarToggle"
+    aria-label="Toggle menu"
+    aria-expanded="false"
+    aria-controls="navbar">
+    <i class="material-symbols-outlined menu-icon" aria-hidden="true">menu</i>
+    <i class="material-symbols-outlined close-icon" aria-hidden="true">close</i>
+  </button>
 
-    {links.map((link) => (
-      <li class="item">
-        <a href={link.href}>{link.label}</a>
-      </li>
-    ))}
-   
+  <ul id="navbar">
+    {
+      links.map((link) => (
+        <li class="item">
+          <a href={link.href}>{link.label}</a>
+        </li>
+      ))
+    }
   </ul>
 </nav>
 
@@ -78,21 +85,42 @@ const links: NavLink[] = [
   /* ===========================
    Base (mobile first)
    =========================== */
-
   nav {
-    @apply w-full px-6 bg-[var(--color-header)] fixed top-0 left-0 z-[-99] opacity-90;
+    @apply flex items-center ml-auto;
   }
 
-  ul {
-    @apply list-none flex flex-col items-start m-0 py-[0.5rem];
+  .navbarToggle {
+    @apply flex items-center border-none bg-transparent text-white text-2xl
+      cursor-pointer p-0;
   }
 
-  .logo {
-    @apply flex-1;
+  .navbarToggle:focus-visible {
+    @apply outline-2 outline-offset-2 outline-white rounded-sm;
+  }
+
+  /* --- Icon toggle logic, driven entirely by aria-expanded --- */
+  .navbarToggle .close-icon {
+    @apply hidden;
+  }
+
+  .navbarToggle[aria-expanded='true'] .menu-icon {
+    @apply hidden;
+  }
+
+  .navbarToggle[aria-expanded='true'] .close-icon {
+    @apply block;
+  }
+
+  #navbar {
+    @apply hidden absolute top-full left-0 right-0 z-10 m-0 list-none flex-col bg-[var(--color-header)] shadow-lg;
+  }
+
+  .navbarToggle[aria-expanded='true'] + #navbar {
+    @apply flex;
   }
 
   .item {
-    @apply hidden w-full text-center py-[0.5rem];
+    @apply w-full text-center py-[0.5rem];
   }
 
   .item:hover {
@@ -101,32 +129,7 @@ const links: NavLink[] = [
   }
 
   .item a {
-    @apply text-white ;
-  }
-
-  .item.show {
-    @apply block;
-  }
-
-  .navbarToggle {
-    @apply self-end;
-  }
-
-  .navbarToggle button {
-    @apply border-none text-white text-2xl cursor-pointer;
-  }
-
-  /* --- Icon toggle logic --- */
-  .navbarToggle .close-icon {
-    @apply hidden;
-  }
-
-  .navbarToggle.hide .menu-icon {
-    @apply hidden;
-  }
-
-  .navbarToggle.hide .close-icon {
-    @apply block;
+    @apply text-white;
   }
 
   /* Active border */
@@ -141,32 +144,20 @@ const links: NavLink[] = [
 
   @media (min-width: 900px) {
     nav {
-      @apply max-w-[80rem] mx-auto z-[99] bg-transparent static flex justify-center items-center;
+      @apply max-w-[80rem] mx-auto flex justify-center items-center;
     }
-
-    ul {
-      @apply flex-row p-[0.5rem];
-      /* rounded-[1rem] bg-[var(--color-header)] border border-white/25  */
-    }
-
-    li {
-      @apply px-4 py-0;
-    }
-
-    .item {
-      @apply block w-auto;
-    }
-
-    /* .item a {
-      @apply text-white hover:text-[var(--color-text-hover)] hover:text-shadow-[0.05rem_0.05rem_var(--color-text-primary)];
-    } */
 
     .navbarToggle {
       @apply hidden;
     }
-    .footer_container,
+
+    #navbar {
+      @apply static flex flex-row min-w-0 bg-transparent rounded-none
+        shadow-none;
+    }
+
     .item {
-      @apply text-white;
+      @apply w-auto px-4 py-0 text-white py-[0.5rem];
     }
   }
 </style>

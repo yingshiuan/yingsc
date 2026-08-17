@@ -132,7 +132,11 @@ const baseUrl = import.meta.env.BASE_URL;
 <header>
   <div class="header-container">
     <div class="flex flex-col">
-      <div class="items-center sticky">
+      <!-- Positioning anchor for NavBar's mobile dropdown: this box spans the
+           full header width (the padding lives on .theme-bar inside it), so a
+           panel with left-0 right-0 fills the page. Was `sticky`, which with no
+           offsets behaved identically but read as accidental. -->
+      <div class="items-center relative">
         <div class="logo">
           <!-- Replace with your logo or <img> if needed -->
         </div>
@@ -172,7 +176,7 @@ const baseUrl = import.meta.env.BASE_URL;
   }
 
   .theme-bar {
-    @apply flex justify-between items-center py-0 px-[5rem];
+    @apply flex justify-between items-center px-[5rem] py-[0.5rem];
   }
 
   .theme-link {
@@ -180,11 +184,12 @@ const baseUrl = import.meta.env.BASE_URL;
   }
 
   .mode-button {
-    @apply text-white bg-transparent border-0 cursor-pointer text-[1.5rem] relative hover:text-[var(--color-text-secondary)] items-center;
+    /* The header is always the dark navy --color-header, in both themes, so the hover color is fixed here rather than taken from a theme token. */
+    @apply text-white bg-transparent border-0 cursor-pointer text-[1.5rem] relative hover:text-white/70 items-center;
   }
 
   .scroll-bar {
-    @apply block text-center mt-[1.5rem] py-[0.5rem] bg-[var(--color-work-background)] text-[var(--color-text-primary)] z-[98] shadow-[0_0.5px_6px_var(--color-text-secondary)] backdrop-blur-md;
+    @apply block text-center mt-[1.5rem] py-[0.5rem] bg-[var(--color-work-background)] text-[var(--color-text-primary)] z-[98] shadow-[0_0.5px_6px_var(--color-rule)] backdrop-blur-md;
   }
 
   .scroll-bar p {
@@ -209,14 +214,12 @@ const baseUrl = import.meta.env.BASE_URL;
 
   @media all and (max-width: 900px) {
     .header-container {
-      background: none;
-      width: 90%;
       opacity: 100%;
     }
 
-    .theme-bar {
-      @apply px-[2rem] py-[0.5rem];
-    }
+    /* .theme-bar {
+      @apply px-[5rem] py-[0.5rem];
+    } */
 
     .infoBar {
       position: fixed;
