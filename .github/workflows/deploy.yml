@@ -38,12 +38,12 @@ jobs:
 
   # Playwright + axe over the built site: theme-flash timing, keyboard focus, and
   # a WCAG AA sweep of every page in both colour schemes.
-  # Non-blocking for now: continue-on-error keeps a red run from holding up a
-  # deploy, and the job is deliberately absent from `deploy.needs`. To make
-  # accessibility a release gate, drop continue-on-error and add `a11y` there.
+  # A failing suite turns this job red — the run should say so — but it is
+  # deliberately absent from `deploy.needs`, so the site still ships. A new
+  # suite over a site that wasn't built to be accessible ratchets rather than
+  # gates. To make accessibility a release gate, add `a11y` to `deploy.needs`.
   a11y:
     runs-on: ubuntu-latest
-    continue-on-error: true
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v5
