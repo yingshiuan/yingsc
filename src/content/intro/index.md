@@ -20,7 +20,7 @@ focus:
     items:
       - 'TypeScript, Vue & React'
       - 'Interactive data visualization'
-      - 'Design systems that scale'
+      - 'Reusable component libraries'
   - title: 'Spatial Computing'
     items:
       - 'XR interaction design'
