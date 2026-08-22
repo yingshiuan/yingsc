@@ -32,7 +32,7 @@ focus:
     'Motion Design',
     'Product Communication',
   ]
-activities: 'On this project, my role was to create 3D animations from storyboards, background music, visual effects, lighting, rigs and animations. It was a great experience working with the CMO and the 3D modelers. Along the way, I tested the effects and made some short prototypes to show off the capabilities of the e-bike. This helps us communicate beyond text and efficiently iterate on our animations. In the end, we published two versions for a better viewing experience on laptops and mobile devices.'
+activities: 'On this project, my role was to propose the storyboard and produce the animation — the concept and narrative structure were mine, and so were the visual effects, lighting, rigging, background music and the 3D animation itself. It was a great experience working with the CMO and the 3D modelers. Along the way, I tested the effects and made some short prototypes to show off the capabilities of the e-bike. This helps us communicate beyond text and efficiently iterate on our animations. In the end, we published two versions for a better viewing experience on laptops and mobile devices.'
 ---
 
 <div class="contentSection">
@@ -145,7 +145,7 @@ To understand the industrial aesthetic of the bike, I search most of the brands 
 
 ## Storyboard
 
-The storyboard highlights the characteristics of the Swissrider, such as its lightweight, modern design, high-tech motor system and versatility. Showcasing the bike's industrial aesthetic and providing a lifestyle for the rider.
+The narrative was not specified by the client, so I proposed the storyboard. It highlights the characteristics of the Swissrider, such as its lightweight, modern design, high-tech motor system and versatility. Showcasing the bike's industrial aesthetic and providing a lifestyle for the rider.
 
 Additionally, we designed transitions from each scene to scene and wanted to provide viewers with a seamless viewing experience. Hopefully our spectators and riders will get an overview of the Swissrider and see more details on the website to learn about the Swissrider.
 

@@ -46,7 +46,7 @@ activities: 'I was responsible for completing the development of the robotic sys
 
 ## Background
 
-In this project, my role is to fabricate a fundraising brick wall on-site and developed a real-time positioning system that integrates the HTC VIVE Tracker with a UR10 robotic arm.
+My role was to fabricate the fundraising brick wall on site, and to take the real-time positioning system — an HTC VIVE Tracker integrated with a UR10 robotic arm — from a working lab rig to something that held up through 22 re-registrations on a live construction site.
 
 #### The work began with two challenges:
 
@@ -93,7 +93,7 @@ The VIVE Tracker provided relative coordinates between the UR10 and a reference 
 
 ## Construction Sequence
 
-Throughout construction, the UR10 was repositioned 22 times to complete 38 layers totaling 1024 bricks. Due to ceiling height limitations, the remaining 14 layers (406 bricks) were assembled using prefabricated components.
+Throughout construction, the UR10 was repositioned 22 times to complete 38 layers totaling 1,024 bricks. Due to ceiling height limitations, the remaining 14 layers (406 bricks) could not be reached in place, so the robot built them as prefabricated components off the wall and we installed them by hand. All 1,430 bricks were laid by the robot.
 
 ![vr-vive-brick-wall-sequence](./sequence.webp)
 

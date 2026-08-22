@@ -15,7 +15,7 @@ image: './afatt_c.png'
 hoverImage: './afatt-menu.webp'
 thumbnail: './afatt.jpg'
 info: 'Inclusive, dietary-friendly, multilingual menu with intuitive layout for customers to enjoy Malaysian Chinese Home Favourites.'
-description: 'I designed a scalable, modular menu system for a Zürich restaurant, integrating multilingual content, dietary tagging, and a reusable modular layout, delivered in Figma and Canva so the restaurant team can could maintain dishes, translations and labels themselves without recreating a layout. They still use it. Doing that job is what showed me the repeating problem, and I built menuGen afterwards, on my own, for the general case.'
+description: 'I designed a scalable, modular menu system for a Zürich restaurant, integrating multilingual content, dietary tagging, and a reusable modular layout, delivered in Figma and Canva so the restaurant team could maintain dishes, translations and labels themselves without recreating a layout. They still use it. Doing that job is what showed me the repeating problem, and I built menuGen afterwards, on my own, for the general case.'
 role: 'UX & System Designer'
 timeline: '1 month'
 completed: '08/2024'
@@ -236,9 +236,9 @@ Here are two version can view it one flow 1 and flow 2.
 
 <div class="contentSection">
 
-## Design System
+## The Modular System
 
-The design system codifies layout, typography, color, and iconography into modular components that can be reused across menus. It functions as a living system: scalable, editable, and aligned with operational workflow, allowing the restaurant to independently manage updates while maintaining consistent user experience.
+The menu system codifies layout, typography, color, and iconography into modular components that can be reused across menus. It functions as a living system: scalable, editable, and aligned with operational workflow, allowing the restaurant to independently manage updates while maintaining consistent user experience.
 
 ![afatt-design-system](./afatt-design-system.jpg)
 

@@ -19,7 +19,7 @@ image: './menu-generator-c.png'
 hoverImage: './menu-generator.webp'
 thumbnail: './menu-generator.png'
 info: 'A full-stack platform that enables restaurants to manage menu content, preview layouts in real time, and generate print-ready PDFs.'
-description: 'Designed and developed a full-stack product that transforms structured menu data into an interactive editing workflow with real-time preview and deterministic HTML-to-PDF rendering.'
+description: 'Designed and developed a full-stack product that transforms structured menu data into an interactive editing workflow with real-time preview and print-faithful HTML-to-PDF rendering.'
 role: 'Full-Stack Product Engineer'
 timeline: '4 months'
 completed: '03/2026'
@@ -50,7 +50,7 @@ The project separates content management from presentation, allowing restaurants
 #### Key Highlights
 
 - Designed and developed a full-stack web application from concept to production.
-- Engineered a deterministic HTML-to-PDF rendering pipeline using Puppeteer.
+- Engineered an HTML-to-PDF rendering pipeline in Puppeteer whose output matches the browser preview.
 - Built an asset optimization pipeline for images and SVGs with Sharp.
 - Implemented asynchronous PDF generation to improve responsiveness.
 - Designed a local-first architecture with zero onboarding.
@@ -87,9 +87,9 @@ Instead of editing layouts manually, restaurant staff only manage structured con
 
 This project began after I completed the restaurant's visual menu designs in Figma and Canva.
 
-Although the design system was complete, every menu update required reopening the original design files, making manual edits, checking layouts, and exporting new PDFs. Even small content changes became repetitive and difficult to maintain.
+Although the menu design was complete, every menu update required reopening the original design files, making manual edits, checking layouts, and exporting new PDFs. Even small content changes became repetitive and difficult to maintain.
 
-Rather than continuing to update static designs, I decided to transform the design system into a web application.
+Rather than continuing to update static designs, I decided to turn the modular menu system into a web application.
 
 The result is MenuGen — a platform that preserves the original visual design while allowing menu content to be managed through structured data and exported as production-ready PDFs.
 
@@ -145,7 +145,7 @@ I intentionally avoided authentication and persistent storage because they were 
 
 ## Engineering Highlights
 
-- Built a deterministic HTML-to-PDF rendering pipeline using Puppeteer to ensure exported documents match the browser preview.
+- Built an HTML-to-PDF rendering pipeline using Puppeteer to ensure exported documents match the browser preview.
 - Designed an asset processing pipeline using Sharp to optimize images and SVGs before server-side rendering.
 - Implemented asynchronous PDF generation to improve responsiveness and prepare the architecture for future scaling.
 - Designed a CSV-driven workflow that separates structured menu data from presentation.
@@ -203,7 +203,7 @@ Handles PDF generation and asset preprocessing.
 
 #### Rendering Pipeline
 
-Processes images, embeds assets, and generates deterministic PDFs.
+Processes images, embeds assets, and generates print-ready PDFs that match the preview.
 
 
 
@@ -237,7 +237,7 @@ Print-ready PDF
 
 | Challenge | Approach | Outcome |
 |-----------|----------|---------|
-| Browser preview and PDF output rendered differently. | Built a deterministic Puppeteer pipeline with controlled asset handling. | Exported PDFs consistently match the browser preview. |
+| Browser preview and PDF output rendered differently. | Built a Puppeteer pipeline with controlled asset handling. | Exported PDFs consistently match the browser preview. |
 
 
 #### Reliable Asset Loading
@@ -342,7 +342,7 @@ These additions build upon the existing document generation pipeline without cha
 
 - Product requirements often drive architectural decisions more than technology choices.
 - Separating content from presentation improves maintainability.
-- Reliable document generation requires deterministic asset handling.
+- Reliable document generation requires controlled asset handling.
 - Building the simplest architecture that solves today's problem often creates a better foundation than over-engineering for hypothetical future requirements.
 
 
@@ -350,7 +350,7 @@ These additions build upon the existing document generation pipeline without cha
 
 - Identifying and solving a real product workflow problem
 - End-to-end full-stack product development
-- Translating design systems into maintainable software
+- Translating a modular design into maintainable software
 - Making architectural decisions based on product requirements
 - Deploying and operating production applications
 
