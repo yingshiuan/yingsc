@@ -100,15 +100,8 @@
       ]
     },
     {
-      "title": "Web Developer & 3D Generalist",
-      "company": "Freelance",
-      "location": "Remote",
-      "tech": ["JavaScript", "Figma", "Blender", "Adobe Creative Suite", "UI/UX", "HTML5/CSS3"],
-      "date": "Mar 2020 – Aug 2021"
-    },
-    {
       "title": "Research and Teaching Assistant", 
-      "company": "Dept. Architecture of Tamkang University",
+      "company": "Dept. Architecture of Tamkang University - CCC Lab",
       "location": "Taiwan",
       "links": [
             {
@@ -118,13 +111,6 @@
           ],
       "tech": ["Rhinoceros 3D & Grasshopper", "Unity 3D", "C#", "JavaScript", "Python", "CAD/CAM"],
       "date": "Sep 2017 – Sep 2018"
-    },
-    {
-      "title": "Research Assistant Laboratory Manager",
-      "company": "CCC Lab",
-      "location": "Taiwan",
-      "date": "Sep 2017 – Sep 2018"
-      
     }
   ],
   "initiatives": [
