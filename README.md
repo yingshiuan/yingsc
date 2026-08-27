@@ -22,7 +22,6 @@ Built with [Astro](https://astro.build/) as a static site: content lives in Mark
 | [Tailwind CSS](https://tailwindcss.com/) 4 | Styling, via `@tailwindcss/vite` |
 | [TypeScript](https://www.typescriptlang.org/) | Types for content, resume data and SEO props |
 | [@astrojs/sitemap](https://docs.astro.build/en/guides/integrations-guide/sitemap/) | Sitemap generation at build time |
-| [@astrojs/partytown](https://docs.astro.build/en/guides/integrations-guide/partytown/) | Runs analytics off the main thread |
 | ESLint + Prettier | Linting and formatting |
 
 Exact versions live in [`package.json`](./package.json).

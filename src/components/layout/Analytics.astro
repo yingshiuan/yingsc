@@ -6,34 +6,59 @@ interface Props {
   measurementId?: string;
   /** GTM container ID, e.g. GTM-XXXXXXX. Omit to disable GTM. */
   gtmId?: string;
-  /** Show the cookie banner and keep analytics storage denied until accepted. */
+  /** Show the consent dialog and keep analytics storage denied until accepted. */
   requireConsent?: boolean;
 }
 
 const { measurementId, gtmId, requireConsent = true } = Astro.props;
 
 const enabled = import.meta.env.PROD;
+
+// The tags themselves never load in `dev`, but the consent dialog can be
+// previewed there on its own — `PUBLIC_CONSENT_PREVIEW=true npm run dev` — so
+// it can be styled with HMR instead of through a full build. GA4 and GTM stay
+// off, so nothing is reported either way.
+const consentPreview =
+  import.meta.env.DEV && import.meta.env.PUBLIC_CONSENT_PREVIEW === 'true';
+const showConsent =
+  (enabled && !!measurementId && requireConsent) || consentPreview;
+
+// Built as a string and handed to `set:html` rather than passed through
+// `define:vars`, which rewrites the script and drops attributes off it. The
+// values here are ours, not user input, so there is nothing to escape.
+const gtagInit = `
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+
+  // Read before the default below so a returning visitor is initialised with
+  // the consent state they already chose, rather than being denied and then
+  // corrected. Both this and the banner run on the main thread, so the order
+  // is simply source order — there is no worker boundary to race against.
+  var storedConsent = null;
+  try {
+    storedConsent = localStorage.getItem('analytics_consent');
+  } catch (e) {
+    // Storage is unavailable in private mode; fall through to denied.
+  }
+
+  // Consent Mode: deny storage up front when a banner is in play, so the
+  // tag can load immediately without writing cookies.
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: ${requireConsent ? "storedConsent === 'accepted' ? 'granted' : 'denied'" : "'granted'"},
+  });
+
+  gtag('js', new Date());
+  gtag('config', ${JSON.stringify(measurementId ?? '')}, { anonymize_ip: true });
+`;
 ---
 
 {enabled && measurementId && (
   <>
-    <script is:inline type="text/partytown" async src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}></script>
-    <script is:inline type="text/partytown" define:vars={{ measurementId, requireConsent }}>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){ dataLayer.push(arguments); }  // eslint-disable-line prefer-rest-params
-
-      // Consent Mode: deny storage up front when a banner is in play, so the
-      // tag can load immediately without writing cookies.
-      gtag('consent', 'default', {
-        ad_storage: 'denied',
-        ad_user_data: 'denied',
-        ad_personalization: 'denied',
-        analytics_storage: requireConsent ? 'denied' : 'granted',
-      });
-
-      gtag('js', new Date());
-      gtag('config', measurementId, { anonymize_ip: true });
-    </script>
+    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}></script>
+    <script is:inline set:html={gtagInit} />
   </>
 )}
 
@@ -57,33 +82,61 @@ const enabled = import.meta.env.PROD;
   </>
 )}
 
-{enabled && measurementId && requireConsent && (
+{/* The id is deliberately not `cookie-banner`, `cookie-notice` or similar:
+    those are generic cosmetic-filter targets in Fanboy's Cookiemonster list,
+    which ships in uBlock Origin, AdGuard, Brave Shields and Safari blockers.
+    `###cookie-banner` hides this on every site, so blocked visitors could never
+    accept. `privacy-choice` matches no generic rule. The aria-label is fine as
+    it is — the one generic rule touching it also requires a .cc-dialog class. */}
+{showConsent && (
   <div
-    id="cookie-banner"
-    class="flex flex-col justify-center items-center fixed inset-0 bg-[var(--color-caption-primary)]/80 text-[var(--color-caption-secondary)] p-4 rounded shadow-lg z-50 hidden opacity-0 transition-opacity"
+    id="privacy-choice"
+    role="region"
+    aria-label="Cookie consent"
+    class="fixed bottom-0 inset-x-0 z-[110] hidden opacity-0 transition-opacity border-t-1 border-[var(--color-text-primary)]/70 bg-[var(--background-color)]/70 backdrop-blur-md text-[var(--color-text-primary)] shadow-lg"
   >
-    <p class="text-sm text-center">
-      This site uses Google Analytics to understand usage. You can choose whether to allow analytics cookies.
-    </p>
-    <br />
-    <div class="flex justify-center items-center gap-4">
-      <Button id="acceptCookies" label="Accept" color="blue" variant="solid" size="md" />
-      <Button id="rejectCookies" label="Reject" color="gray" variant="outline" size="md" />
+    <div class="mx-auto max-w-3xl flex flex-col sm:flex-row sm:items-center gap-4 p-4">
+      <p class="text-sm flex-1">
+        This site uses Google Analytics to understand usage. You can choose whether to allow analytics cookies.
+      </p>
+      <div class="flex items-center gap-3 shrink-0">
+        <Button id="acceptCookies" label="Accept" color="accent" variant="solid" size="sm" />
+        <Button id="rejectCookies" label="Reject" color="accent" variant="outline" size="sm" />
+      </div>
     </div>
   </div>
 )}
 
-{enabled && measurementId && requireConsent && (
+{consentPreview && (
+  <script is:inline>
+    // Dev-only: `?consent=reset` clears the stored choice so the bar reappears
+    // without a trip to the console. Gated on `consentPreview`, so this script
+    // is never emitted in a production build. Runs before the bar script below,
+    // which is the one that reads the key.
+    (() => {
+      try {
+        if (new URLSearchParams(location.search).get("consent") === "reset") {
+          localStorage.removeItem("analytics_consent");
+        }
+      } catch {
+        // Storage unavailable; nothing to clear.
+      }
+    })();
+  </script>
+)}
+
+{showConsent && (
   <script is:inline>
     (() => {
-      const banner = document.getElementById("cookie-banner");
+      const banner = document.getElementById("privacy-choice");
       if (!banner) return;
 
-      // Runs on the main thread; Partytown forwards dataLayer.push into the
-      // worker (see `forward` in astro.config.mjs), so the worker-side tag
-      // picks these up.
+      // Same dataLayer, same thread as the tag, so this update applies to the
+      // live page rather than waiting for the next load. It has to push a real
+      // `arguments` object: gtag only reads entries of that shape, and an array
+      // is silently treated as a data push instead of a command.
       window.dataLayer = window.dataLayer || [];
-      const gtag = (...args) => window.dataLayer.push(args);
+      function gtag() { window.dataLayer.push(arguments); }  // eslint-disable-line prefer-rest-params
 
       const setConsent = (granted) => {
         gtag("consent", "update", {
@@ -91,23 +144,36 @@ const enabled = import.meta.env.PROD;
         });
       };
 
+      const accept = document.getElementById("acceptCookies");
+      const reject = document.getElementById("rejectCookies");
+
       const decide = (choice) => {
         localStorage.setItem("analytics_consent", choice);
         setConsent(choice === "accepted");
+        document.body.style.paddingBottom = "";
         banner.remove();
       };
 
-      const saved = localStorage.getItem("analytics_consent");
-      if (saved) {
-        setConsent(saved === "accepted");
+      // A stored choice was already applied as the consent default (see
+      // gtagInit), so re-sending it as an update here would be redundant.
+      if (localStorage.getItem("analytics_consent")) {
         banner.remove();
         return;
       }
 
       banner.classList.remove("hidden");
       requestAnimationFrame(() => banner.classList.add("opacity-100"));
-      document.getElementById("acceptCookies")?.addEventListener("click", () => decide("accepted"));
-      document.getElementById("rejectCookies")?.addEventListener("click", () => decide("rejected"));
+
+      // The bar is fixed to the bottom, so without this it sits on top of
+      // whatever is at the end of the page — including a focused link tabbed
+      // to while the bar is still up (WCAG 2.2, Focus Not Obscured).
+      document.body.style.paddingBottom = `${banner.offsetHeight}px`;
+
+      // Deliberately no autofocus: the bar does not block the page, so pulling
+      // focus out of the document on load would interrupt someone who is
+      // already reading or tabbing.
+      accept?.addEventListener("click", () => decide("accepted"));
+      reject?.addEventListener("click", () => decide("rejected"));
     })();
   </script>
 )}

@@ -1,4 +1,9 @@
 import { test, expect } from '@playwright/test';
+import { seedConsent } from './consent';
+
+test.beforeEach(async ({ page }) => {
+  await seedConsent(page);
+});
 
 // .navbarToggle is display:none at >=900px (NavBar.astro), so the hamburger only
 // exists on a narrow viewport. Without this the button is never visible and the

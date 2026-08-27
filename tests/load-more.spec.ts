@@ -1,6 +1,11 @@
 import { test, expect } from '@playwright/test';
+import { seedConsent } from './consent';
 
 const loadMore = /load more projects/i;
+
+test.beforeEach(async ({ page }) => {
+  await seedConsent(page);
+});
 
 test('focus stays in the page when the button removes itself', async ({
   page,
