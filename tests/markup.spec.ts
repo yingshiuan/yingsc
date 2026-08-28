@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { seedConsent } from './consent';
 
-const paths = ['./', './projects', './resume', './about'];
+const paths = ['./', './projects', './resume', './about', './privacy'];
 
 test.beforeEach(async ({ page }) => {
   await seedConsent(page);
