@@ -128,4 +128,21 @@ const intro = defineCollection({
   }),
 });
 
-export const collections = { projects, about, intro };
+// Policy copy, kept as markdown so the wording can be revised without touching
+// the page. Deliberately schema-light: unlike the other collections this one
+// carries no structured data, because the figures it would hold (retention
+// periods, tag IDs) live in `src/ts/site.ts` and are rendered into the body by
+// the page rather than duplicated here, where they could drift.
+const privacy = defineCollection({
+  loader: glob({
+    pattern: '**/*.md',
+    base: './src/content/privacy',
+  }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    keywords: z.array(z.string()).optional(),
+  }),
+});
+
+export const collections = { projects, about, intro, privacy };

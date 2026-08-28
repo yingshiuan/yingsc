@@ -13,8 +13,21 @@ async function blockHits(page: Page) {
 
 const bar = (page: Page) => page.getByRole('region', { name: /cookie consent/i });
 
-const stored = (page: Page) =>
-  page.evaluate(() => localStorage.getItem('analytics_consent'));
+// The stored value is `{choice, ts}` since the six-month expiry landed, and
+// older builds wrote the bare choice. Read through both so these assertions
+// stay about the decision rather than about how it happens to be encoded.
+const stored = async (page: Page) => {
+  const raw = await page.evaluate(() =>
+    localStorage.getItem('analytics_consent')
+  );
+  if (!raw) return null;
+  if (raw === 'accepted' || raw === 'rejected') return raw;
+  try {
+    return (JSON.parse(raw).choice as string) ?? null;
+  } catch {
+    return null;
+  }
+};
 
 test.beforeEach(async ({ page }) => {
   await blockHits(page);
@@ -200,12 +213,141 @@ test('dismissing does not strand focus on the removed bar', async ({
   await page.goto('./');
   await page.getByRole('button', { name: 'Accept' }).click();
 
-  const state = await page.evaluate(() => ({
-    barGone: !document.getElementById('privacy-choice'),
-    // A detached activeElement is the failure mode: focus pointing at a node
-    // that is no longer in the document swallows the next keystroke.
-    focusConnected: document.activeElement?.isConnected ?? false,
-  }));
-  expect(state.barGone).toBe(true);
+  // The bar is hidden rather than removed now — it has to survive a choice so
+  // Cookie settings has something to reopen. So "gone" means gone from the
+  // accessibility tree, not gone from the DOM.
+  await expect(bar(page)).toHaveCount(0);
+
+  const state = await page.evaluate(() => {
+    const el = document.getElementById('privacy-choice');
+    return {
+      barHidden: !!el && getComputedStyle(el).display === 'none',
+      // Focus stranded inside a display:none subtree is the failure mode: the
+      // next keystroke goes nowhere. Browsers move it to <body>, so assert
+      // that rather than trusting them.
+      focusConnected: document.activeElement?.isConnected ?? false,
+      focusInBar: !!el && el.contains(document.activeElement),
+    };
+  });
+  expect(state.barHidden).toBe(true);
   expect(state.focusConnected).toBe(true);
+  expect(state.focusInBar).toBe(false);
 });
+
+// Withdrawal was unreachable before these: the bar promised "Cookie settings in
+// the footer" and linked to a /privacy page, and neither existed — and the bar
+// removed itself from the DOM on a choice, so there was nothing left to reopen.
+test.describe('reopening after a choice', () => {
+  const trigger = (page: Page) =>
+    page.locator('footer [data-cookie-settings]');
+
+  test('the footer trigger is revealed and reopens the bar', async ({
+    page,
+  }) => {
+    await seedConsent(page, 'accepted');
+    await page.goto('./');
+
+    // A returning visitor is not asked again...
+    await expect(bar(page)).toHaveCount(0);
+
+    // ...but the control is there. It ships `hidden` and is revealed only by
+    // wireTriggers, so this failing means the bar never found it.
+    await expect(trigger(page)).toBeVisible();
+
+    await trigger(page).click();
+    await expect(bar(page)).toBeVisible();
+  });
+
+  test('the reopened bar reports the current choice and can be escaped', async ({
+    page,
+  }) => {
+    await seedConsent(page, 'rejected');
+    await page.goto('./');
+    await trigger(page).click();
+
+    await expect(bar(page)).toContainText(/analytics is currently off/i);
+
+    // Reopening is a request, so unlike the first visit it takes focus and
+    // Escape backs out without forcing a second decision.
+    await page.keyboard.press('Escape');
+    await expect(bar(page)).toHaveCount(0);
+    expect(await stored(page)).toBe('rejected');
+  });
+
+  test('withdrawing from the footer flips the choice and expires _ga', async ({
+    page,
+    context,
+  }) => {
+    // Unlike the other tests here this one reads the raw command queue, so
+    // gtag.js has to stay out: once it loads it consumes `dataLayer` and
+    // rewrites the entries, and there is nothing left to assert against.
+    await page.route('**://*.googletagmanager.com/**', (r) => r.abort());
+
+    await seedConsent(page, 'accepted');
+    // Stand in for what GA4 would have written; the real tag is blocked here.
+    await context.addCookies([
+      { name: '_ga', value: 'GA1.1.test', url: 'http://localhost:4321/' },
+    ]);
+    await page.goto('./');
+
+    await trigger(page).click();
+    await page.getByRole('button', { name: 'Reject' }).click();
+
+    expect(await stored(page)).toBe('rejected');
+    expect(consentArg(await commands(page), 'update')?.analytics_storage).toBe(
+      'denied'
+    );
+
+    // A consent update alone would stop new writes and leave this behind, so
+    // assert the cookie is actually gone rather than merely unused.
+    const names = (await context.cookies()).map((c) => c.name);
+    expect(names).not.toContain('_ga');
+  });
+});
+
+test('the policy link in the bar goes to a real page', async ({ page }) => {
+  await page.goto('./');
+
+  await bar(page).getByRole('link', { name: /privacy policy/i }).click();
+
+  await expect(page).toHaveURL(/\/privacy\/?$/);
+  await expect(page.getByRole('heading', { name: 'Privacy' })).toBeVisible();
+});
+
+// The padding assertion above passes even when this fails, which is how the
+// overlap survived: the reservation is set on <body>, but while
+// `body { height: 100% }` pinned the content box to the viewport it landed
+// mid-scroll instead of after the footer. So assert the geometry that actually
+// matters — and at both widths, since the bar stacks below `sm` and is roughly
+// twice as tall there.
+for (const viewport of [
+  { name: 'desktop', size: { width: 1280, height: 800 } },
+  { name: 'mobile', size: { width: 390, height: 844 } },
+]) {
+  test.describe(`${viewport.name} bottom of page`, () => {
+    test.use({ viewport: viewport.size });
+
+    test('the bar does not cover the footer', async ({ page }) => {
+      await page.goto('./');
+      await expect(bar(page)).toBeVisible();
+
+      await page.evaluate(() =>
+        window.scrollTo(0, document.documentElement.scrollHeight)
+      );
+
+      const box = await page.evaluate(() => {
+        const footer = document.querySelector('footer');
+        const el = document.getElementById('privacy-choice');
+        if (!footer || !el) return null;
+        return {
+          footerBottom: footer.getBoundingClientRect().bottom,
+          barTop: el.getBoundingClientRect().top,
+        };
+      });
+
+      expect(box).not.toBeNull();
+      // Sub-pixel layout rounding, not a gap worth asserting away.
+      expect(box!.footerBottom).toBeLessThanOrEqual(box!.barTop + 1);
+    });
+  });
+}

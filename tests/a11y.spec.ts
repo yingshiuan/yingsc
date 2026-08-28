@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { seedConsent } from './consent';
 
-const paths = ['./', './projects', './resume', './about'];
+const paths = ['./', './projects', './resume', './about', './privacy'];
 const schemes = ['light', 'dark'] as const;
 
 // Mobile is not just a narrower desktop here: below 900px the header switches

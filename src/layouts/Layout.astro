@@ -4,6 +4,7 @@ import Header from '@/components/layout/Header.astro';
 import Footer from '@/components/layout/Footer.astro';
 import Analytics from '@/components/layout/Analytics.astro';
 import type { SeoData } from '@/ts/type.ts';
+import { analytics } from '@/ts/site.ts';
 import '@/styles/global.css';
 
 const { title, description, image, url, keywords, alt, noindex, schemaType } =
@@ -26,8 +27,8 @@ const { title, description, image, url, keywords, alt, noindex, schemaType } =
 
   <body>
     <Analytics
-      measurementId="G-XPJ7PBRN07"
-      gtmId="GTM-MZKP489Z"
+      measurementId={analytics.measurementId}
+      gtmId={analytics.gtmId}
       requireConsent={true}
     />
     <Header />
@@ -44,6 +45,13 @@ const { title, description, image, url, keywords, alt, noindex, schemaType } =
   body {
     margin: 0;
     width: 100%;
+  }
+
+  html {
     height: 100%;
+  }
+
+  body {
+    min-height: 100%;
   }
 </style>

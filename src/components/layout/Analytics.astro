@@ -14,46 +14,105 @@ const { measurementId, gtmId, requireConsent = true } = Astro.props;
 
 const enabled = import.meta.env.PROD;
 
+const base = import.meta.env.BASE_URL;
+
 // The tags themselves never load in `dev`, but the consent dialog can be
-// previewed there on its own — `PUBLIC_CONSENT_PREVIEW=true npm run dev` — so
-// it can be styled with HMR instead of through a full build. GA4 and GTM stay
-// off, so nothing is reported either way.
+// previewed there on its own — `PUBLIC_CONSENT_PREVIEW=true npm run dev`
 const consentPreview =
   import.meta.env.DEV && import.meta.env.PUBLIC_CONSENT_PREVIEW === 'true';
-const showConsent =
-  (enabled && !!measurementId && requireConsent) || consentPreview;
+const hasTag = !!measurementId || !!gtmId;
+const showConsent = (enabled && hasTag && requireConsent) || consentPreview;
 
-// Built as a string and handed to `set:html` rather than passed through
-// `define:vars`, which rewrites the script and drops attributes off it. The
-// values here are ours, not user input, so there is nothing to escape.
-const gtagInit = `
+const needsStore = (enabled && hasTag) || showConsent;
+
+const consentDefault = `
   window.dataLayer = window.dataLayer || [];
   function gtag(){ dataLayer.push(arguments); }
 
-  // Read before the default below so a returning visitor is initialised with
-  // the consent state they already chose, rather than being denied and then
-  // corrected. Both this and the banner run on the main thread, so the order
-  // is simply source order — there is no worker boundary to race against.
-  var storedConsent = null;
-  try {
-    storedConsent = localStorage.getItem('analytics_consent');
-  } catch (e) {
-    // Storage is unavailable in private mode; fall through to denied.
-  }
-
-  // Consent Mode: deny storage up front when a banner is in play, so the
-  // tag can load immediately without writing cookies.
   gtag('consent', 'default', {
     ad_storage: 'denied',
     ad_user_data: 'denied',
     ad_personalization: 'denied',
-    analytics_storage: ${requireConsent ? "storedConsent === 'accepted' ? 'granted' : 'denied'" : "'granted'"},
+    analytics_storage: ${requireConsent ? "window.privacyChoice.read() === 'accepted' ? 'granted' : 'denied'" : "'granted'"},
   });
+`;
 
+// `gtag` and `dataLayer` come from the defaults script above, which is always
+// emitted alongside this one.
+const gtagInit = `
   gtag('js', new Date());
   gtag('config', ${JSON.stringify(measurementId ?? '')}, { anonymize_ip: true });
 `;
 ---
+
+{needsStore && (
+  <script is:inline>
+    // The one place that touches storage. Every read can throw — Chrome and
+    // Brave raise SecurityError when site data is blocked — so callers get a
+    // plain "accepted" / "rejected" / null and never have to guard.
+    (() => {
+      const KEY = "analytics_consent";
+      // Six months.
+      const MAX_AGE = 1000 * 60 * 60 * 24 * 183;
+      const valid = (c) => c === "accepted" || c === "rejected";
+
+      const store = {
+        // "accepted", "rejected", or null when there is no live choice.
+        read() {
+          let raw = null;
+          try {
+            raw = localStorage.getItem(KEY);
+          } catch {
+            // Storage is blocked; behave as if nothing was ever stored.
+            return null;
+          }
+          if (!raw) return null;
+
+          if (valid(raw)) {
+            store.save(raw);
+            return raw;
+          }
+
+          let parsed = null;
+          try {
+            parsed = JSON.parse(raw);
+          } catch {
+            // Corrupt or hand-edited; fall through and ask again.
+          }
+          if (!parsed || !valid(parsed.choice) || typeof parsed.ts !== "number") {
+            store.clear();
+            return null;
+          }
+          if (Date.now() - parsed.ts > MAX_AGE) {
+            store.clear();
+            return null;
+          }
+          return parsed.choice;
+        },
+
+        save(choice) {
+          try {
+            localStorage.setItem(KEY, JSON.stringify({ choice, ts: Date.now() }));
+          } catch {
+            // Nothing to persist to.
+          }
+        },
+
+        clear() {
+          try {
+            localStorage.removeItem(KEY);
+          } catch {
+            // Nothing stored to remove.
+          }
+        },
+      };
+
+      window.privacyChoice = store;
+    })();
+  </script>
+)}
+
+{enabled && hasTag && <script is:inline set:html={consentDefault} />}
 
 {enabled && measurementId && (
   <>
@@ -95,12 +154,19 @@ const gtagInit = `
     aria-label="Cookie consent"
     class="fixed bottom-0 inset-x-0 z-[110] hidden opacity-0 transition-opacity border-t-1 border-[var(--color-text-primary)]/70 bg-[var(--background-color)]/70 backdrop-blur-md text-[var(--color-text-primary)] shadow-lg"
   >
-    <div class="mx-auto max-w-3xl flex flex-col sm:flex-row sm:items-center gap-4 p-4">
+    <div class="mx-auto max-w-5xl flex flex-col sm:flex-row sm:items-center gap-4 p-4">
       <p class="text-sm flex-1">
-        This site uses Google Analytics to understand usage. You can choose whether to allow analytics cookies.
+        This site uses Google Analytics to understand usage. Choose whether to
+        allow analytics cookies — you can change this at any time under Cookie
+        settings in the footer. Our <a
+          href={`${base}privacy`}
+          class="underline underline-offset-4 hover:text-[var(--color-text-hover)]"
+          >privacy policy</a
+        > says what is collected either way.<span id="privacy-choice-state"></span>
       </p>
+
       <div class="flex items-center gap-3 shrink-0">
-        <Button id="acceptCookies" label="Accept" color="accent" variant="solid" size="sm" />
+        <Button id="acceptCookies" label="Accept" color="accent" variant="outline" size="sm" />
         <Button id="rejectCookies" label="Reject" color="accent" variant="outline" size="sm" />
       </div>
     </div>
@@ -109,17 +175,10 @@ const gtagInit = `
 
 {consentPreview && (
   <script is:inline>
-    // Dev-only: `?consent=reset` clears the stored choice so the bar reappears
-    // without a trip to the console. Gated on `consentPreview`, so this script
-    // is never emitted in a production build. Runs before the bar script below,
-    // which is the one that reads the key.
+    // Dev-only: `?consent=reset` 
     (() => {
-      try {
-        if (new URLSearchParams(location.search).get("consent") === "reset") {
-          localStorage.removeItem("analytics_consent");
-        }
-      } catch {
-        // Storage unavailable; nothing to clear.
+      if (new URLSearchParams(location.search).get("consent") === "reset") {
+        window.privacyChoice?.clear();
       }
     })();
   </script>
@@ -129,51 +188,104 @@ const gtagInit = `
   <script is:inline>
     (() => {
       const banner = document.getElementById("privacy-choice");
-      if (!banner) return;
+      const store = window.privacyChoice;
+      if (!banner || !store) return;
 
-      // Same dataLayer, same thread as the tag, so this update applies to the
-      // live page rather than waiting for the next load. It has to push a real
-      // `arguments` object: gtag only reads entries of that shape, and an array
-      // is silently treated as a data push instead of a command.
+      const state = document.getElementById("privacy-choice-state");
+      const accept = document.getElementById("acceptCookies");
+      const reject = document.getElementById("rejectCookies");
+
       window.dataLayer = window.dataLayer || [];
       function gtag() { window.dataLayer.push(arguments); }  // eslint-disable-line prefer-rest-params
+
+      const clearAnalyticsCookies = () => {
+        const parts = location.hostname.split(".");
+        const hosts = [location.hostname];
+        for (let i = 1; i < parts.length - 1; i++) hosts.push(parts.slice(i).join("."));
+        document.cookie.split(";").forEach((entry) => {
+          const name = entry.split("=")[0].trim();
+          if (!/^_(ga|gid|gat)/.test(name)) return;
+          const dead = "=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+          document.cookie = name + dead;
+          hosts.forEach((host) => {
+            document.cookie = name + dead + "; domain=" + host;
+            document.cookie = name + dead + "; domain=." + host;
+          });
+        });
+      };
 
       const setConsent = (granted) => {
         gtag("consent", "update", {
           analytics_storage: granted ? "granted" : "denied",
         });
+        if (!granted) clearAnalyticsCookies();
       };
 
-      const accept = document.getElementById("acceptCookies");
-      const reject = document.getElementById("rejectCookies");
+      const onEscape = (e) => {
+        if (e.key === "Escape") hide();
+      };
+
+      const hide = () => {
+        banner.classList.add("hidden");
+        banner.classList.remove("opacity-100");
+        document.body.style.paddingBottom = "";
+        document.removeEventListener("keydown", onEscape);
+      };
+
+      const reserve = () => {
+        if (banner.classList.contains("hidden")) return;
+        document.body.style.paddingBottom = `${banner.offsetHeight}px`;
+      };
+      new ResizeObserver(reserve).observe(banner);
+
+      const show = (reopened) => {
+        if (state) {
+          const current = reopened ? store.read() : null;
+          state.textContent = !current
+            ? ""
+            : current === "accepted"
+              ? " Analytics is currently allowed."
+              : " Analytics is currently off.";
+        }
+
+        banner.classList.remove("hidden");
+        requestAnimationFrame(() => banner.classList.add("opacity-100"));
+
+        reserve();
+
+        if (reopened) {
+          document.addEventListener("keydown", onEscape);
+          accept?.focus();
+        }
+      };
 
       const decide = (choice) => {
-        localStorage.setItem("analytics_consent", choice);
+        store.save(choice);
         setConsent(choice === "accepted");
-        document.body.style.paddingBottom = "";
-        banner.remove();
+        hide();
       };
 
-      // A stored choice was already applied as the consent default (see
-      // gtagInit), so re-sending it as an update here would be redundant.
-      if (localStorage.getItem("analytics_consent")) {
-        banner.remove();
-        return;
-      }
-
-      banner.classList.remove("hidden");
-      requestAnimationFrame(() => banner.classList.add("opacity-100"));
-
-      // The bar is fixed to the bottom, so without this it sits on top of
-      // whatever is at the end of the page — including a focused link tabbed
-      // to while the bar is still up (WCAG 2.2, Focus Not Obscured).
-      document.body.style.paddingBottom = `${banner.offsetHeight}px`;
-
-      // Deliberately no autofocus: the bar does not block the page, so pulling
-      // focus out of the document on load would interrupt someone who is
-      // already reading or tabbing.
       accept?.addEventListener("click", () => decide("accepted"));
       reject?.addEventListener("click", () => decide("rejected"));
+
+      // Any `data-cookie-settings` control on the page reopens the bar — the
+      // footer ships one. 
+      const wireTriggers = () => {
+        document.querySelectorAll("[data-cookie-settings]").forEach((el) => {
+          el.hidden = false;
+          const wrap = el.parentElement;
+          if (wrap && wrap.hasAttribute("hidden")) wrap.hidden = false;
+          el.addEventListener("click", () => show(true));
+        });
+      };
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", wireTriggers);
+      } else {
+        wireTriggers();
+      }
+
+      if (!store.read()) show(false);
     })();
   </script>
 )}
