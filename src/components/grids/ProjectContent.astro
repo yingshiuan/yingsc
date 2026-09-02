@@ -138,8 +138,9 @@ const { Content } = await render(project);
       @apply bg-transparent p-0 text-sm;
     }
 
+    /* bg-zinc-100 was hardcoded: unreadable in dark mode (1.6:1). */
     :global(.content code) {
-      @apply bg-zinc-100 px-1 py-0.5 rounded text-sm;
+      @apply bg-[var(--color-code-background)] px-1 py-0.5 rounded text-sm;
     }
 
     /* Mobile table scrolling */
