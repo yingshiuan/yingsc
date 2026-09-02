@@ -2,7 +2,7 @@
 title: 'Multi-Multi Language Application'
 subtitle: ''
 featured: false
-type: 'Personal'
+type: 'Self-initiated'
 created: 2024-12-01
 domains:
   - AI Systems

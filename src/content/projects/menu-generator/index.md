@@ -2,7 +2,7 @@
 title: 'MenuGen'
 subtitle: 'Restaurant Menu Management Platform'
 featured: true
-type: 'Professional'
+type: 'Self-initiated'
 created: 2026-01-01
 domains:
   - Product Engineering

@@ -31,6 +31,7 @@
       --color-border: #ffffff;
       --color-rule: #C2C2C2;
       --color-work-background: rgba(242, 242, 242, 0.5);
+      --color-code-background: #F4F4F5;  /* --color-text-primary on it: 6.4:1 */
       --font-mono:'DM Mono', monospace;
 
 }
@@ -52,6 +53,7 @@ html.dark_mode {
       /* Borders and backgrounds */
       --color-rule: #3C3C3C;
       --color-work-background: rgba(242, 242, 242, 0.1);
+      --color-code-background: #1F1F1F;  /* --color-text-primary on it: 9.3:1 */
       
 }
 
@@ -73,6 +75,7 @@ html.dark_mode {
             --color-border: #000000;
             --color-rule: #3C3C3C;
             --color-work-background: rgba(242, 242, 242, 0.1);
+            --color-code-background: #1F1F1F;
       }
 }
 
