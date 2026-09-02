@@ -2,7 +2,7 @@
 title: 'Outfits You'
 subtitle: ''
 featured: false
-type: 'Personal'
+type: 'Self-initiated'
 created: 2024-11-01
 domains:
   - Spatial Computing
