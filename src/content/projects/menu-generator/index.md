@@ -6,7 +6,7 @@ type: 'Self-initiated'
 created: 2026-01-01
 domains:
   - Product Engineering
-  - Frontend Engineering
+  - Full-Stack Engineering
 stack:
   - Vue.js
   - TypeScript
