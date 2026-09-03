@@ -4,6 +4,7 @@ import { render } from 'astro:content';
 import MetaCard from '@/components/content/MetaCard.astro';
 import ProjectThumbnail from '@/components/content/ProjectThumbnail.astro';
 import ContentFooter from '@/components/content/ContentFooter.astro';
+import SectionNav from '@/components/content/SectionNav.astro';
 
 interface Props {
   project: CollectionEntry<'projects'>;
@@ -13,7 +14,11 @@ interface Props {
 // load the data
 const { project, baseUrl } = Astro.props;
 
-const { Content } = await render(project);
+const { Content, headings } = await render(project);
+
+const words = project.body
+  ? project.body.replace(/<[^>]*>/g, ' ').split(/\s+/).filter(Boolean).length
+  : 0;
 ---
 
 <div class="project-content">
@@ -24,6 +29,8 @@ const { Content } = await render(project);
   <div class="projectThumbnail">
     <ProjectThumbnail project={project} />
   </div>
+
+  <SectionNav headings={headings} words={words} />
 
   <!-- Markdown content -->
   <article class="content custom-markdown">
@@ -53,6 +60,13 @@ const { Content } = await render(project);
       @apply mt-[3rem];
     }
 
+    /* Jumping to a section must clear the fixed header and the sticky nav, or
+       the heading lands underneath both. SectionNav measures and publishes the
+       distance; the fallback covers the pages that render no nav. */
+    :global(.content :is(h2, h3, h4, h5, h6)[id]) {
+      scroll-margin-top: var(--project-nav-offset, 6rem);
+    }
+
     :global(.content h5),
     :global(.content h6) {
       @apply mt-[2rem];
@@ -67,28 +81,51 @@ const { Content } = await render(project);
       @apply h-full object-cover;
     }
 
-    /* Lists */
-    :global(.content ul) {
+    /* Lists
+       The marker hangs in a gutter rather than sitting in a flex row with the
+       text. As flex containers these items made a separate flex item of every
+       inline child — so a bullet opening with a bold lead-in became two
+       columns, and the body of each one started at whatever width its own
+       lead-in happened to wrap to. Absolute markers leave the content to flow
+       as ordinary text, which is what a list item is. */
+    :global(.content ul),
+    :global(.content ol) {
       @apply list-none pl-0;
-    }
-
-    :global(.content ul li) {
-      @apply before:content-['-'] before:mr-2 flex items-start;
     }
 
     :global(.content ol) {
-      @apply list-none pl-0;
       counter-reset: item;
+    }
+
+    :global(.content ul li) {
+      @apply relative pl-[1.25rem];
+    }
+
+    :global(.content ul li::before) {
+      content: '-';
+      @apply absolute left-0 top-0;
     }
 
     :global(.content ol li) {
       counter-increment: item;
-      @apply flex items-start;
+      @apply relative pl-[2.25rem];
     }
 
+    /* Right-aligned in a fixed gutter so the text edge holds whether the list
+       reaches 9 or 20 — the longest of these runs to 20. */
     :global(.content ol li::before) {
       content: counter(item) '.';
-      @apply mr-2 font-semibold flex-shrink-0;
+      @apply absolute left-0 top-0 w-[1.75rem] text-right font-semibold;
+    }
+
+    /* Markdown emits <p> children for a loose list; without this they inherit
+       paragraph margins and the gap between items doubles. */
+    :global(.content li > p) {
+      @apply m-0;
+    }
+
+    :global(.content li + li) {
+      @apply mt-[0.75rem];
     }
 
     /* Links */
