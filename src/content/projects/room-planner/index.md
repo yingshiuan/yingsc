@@ -65,13 +65,14 @@ It is multi-tenant: every school is an organisation with its own rooms, members 
 
 Built as a pair. The infrastructure, the security model and the recurring-series model are the senior engineer's, from the first release; v1.3.0 — the hours report, the calendar's small controls, the colour migrations, the mobile pass, the admin-permission fix and the patch notes — is mine, reviewed by him.
 
-![Room Planner day view](./day.png)
-
 #### Key Highlights
 
 - **Scoped and priced the replacement.** A commercial subscription had doubled in price; the custom build cost about 28% of one year at the new rate, and has run since at roughly 4% of it.
 - **Found the feature nobody asked for.** Mapping the school's term surfaced an hours report that turns the calendar itself into an invoice-ready CSV — a monthly job the office was doing with a calculator.
 - **Talked them out of the native app, and out of a feature I wanted.** They got a home-screen icon and a calendar rebuilt for touch; the class-category dimension I had already scoped did not ship.
+- **Caught a permission bug myself.** Demoting an admin could leave scheduler rights behind; tracing the state showed the flag was redundant for admins, so I removed the extra write instead of patching the symptom.
+
+![Room Planner day view](./day.png)
 
 #### The Problem
 
@@ -185,9 +186,7 @@ The date between the arrows is also the way to leave them — clicking it opens 
 
 ###### Select all, clear all
 
-Narrowing the calendar to one teacher meant clicking seven names off one at a time, so the members row gained a Select all / Clear all control. The control was the easy half. Clearing it used to undo itself a few seconds later: TanStack Query refetches on window focus, and a fresh `profiles` array was read as a first load, so every chip a teacher had just switched off came straight back. A ref now records which ids the show-by-default rule has already been applied to, which is what separates *new to this session* from *hidden on purpose* — and it is written in the effect body rather than inside the state updater, because React may run an updater twice and the second pass would find every id already recorded and select nobody.
-
-The same effect trusts only a successful fetch. An empty `profiles` from a query that had failed or not yet finished used to clear the legend and every booking with it, drawing a complete and entirely empty grid with no error anywhere — one in which every occupied room reads as free. It is the calendar's version of the all-zero payroll CSV: the answer looks like data, and nothing on it says otherwise.
+Narrowing the calendar to one teacher meant clicking seven names off one at a time, so the members row gained a single Select all / Clear all control.
 
 <video
   src="/yingsc/media/projects/room-planner/filter.mp4"
@@ -341,6 +340,19 @@ Working inside those three is where most of what I learned came from. The review
 ```
 
 The application's logic lives in the schema itself — policies, constraints and RPC functions — rather than in a separate API tier. The Workers runtime handles SSR, auth middleware and the iCal endpoint; pushes to `main` build with Bun and deploy through Wrangler in GitHub Actions.
+
+<!-- #### Frontend
+
+React 19 with TanStack Router in server-rendered mode, TanStack Query for data, Tailwind and Radix primitives for the interface. The calendar, the hours report and settings are three routes behind one authenticated boundary.
+
+#### Backend
+
+Supabase provides Postgres, auth and storage. The application's logic lives in the schema itself — policies, constraints and RPC functions — rather than in a separate API tier. The Workers runtime handles SSR, auth middleware and the iCal endpoint.
+
+#### Delivery
+
+Pushes to `main` build with Bun and deploy to Cloudflare Workers through Wrangler in GitHub Actions.
+ -->
 
 </div>
 
