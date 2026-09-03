@@ -1,0 +1,242 @@
+---
+import type { MarkdownHeading } from 'astro';
+
+interface Props {
+  headings: MarkdownHeading[];
+  /** Words in the article body, used to decide whether a nav is worth its space. */
+  words: number;
+  minSections?: number;
+  minWords?: number;
+}
+
+const { headings, words, minSections = 4, minWords = 1000 } = Astro.props;
+
+// Only the `##` headings.
+const sections = headings.filter((heading) => heading.depth === 2);
+
+// Section count on its own is a bad gate: the shortest case studies here carry
+// the most headings, and a row of seventeen chips over a two-minute read is
+// noise. Length is what makes a reader lose their place, so both must clear.
+const show = sections.length >= minSections && words >= minWords;
+---
+
+{
+  show && (
+    <nav class="sectionNav" aria-label="Sections" data-section-nav>
+      <ul>
+        {sections.map((section) => (
+          <li>
+            <a href={`#${section.slug}`} data-section-link={section.slug}>
+              {section.text}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )
+}
+
+<style>
+  @reference "@/styles/global.css";
+
+  .sectionNav {
+    /* Sticks below the fixed site header and below the availability banner
+       when that is showing. Both offsets are measured at runtime rather than
+       hardcoded, so neither a header that changes height nor a banner that
+       wraps to more lines leaves the nav overlapping them or floating below. */
+    @apply sticky z-[97] w-full;
+    top: var(--project-nav-top, 3.5rem);
+    background:
+      linear-gradient(var(--color-work-background), var(--color-work-background)),
+      var(--background-color);
+    backdrop-filter: blur(0.75rem);
+    box-shadow: 0 0.5px 6px var(--color-rule);
+  }
+
+  .sectionNav ul {
+    @apply flex list-none gap-[1.5rem] m-0 mx-auto max-w-[80rem] overflow-x-auto px-[1.5rem] py-[0.75rem];
+    scrollbar-width: none;
+  }
+
+  .sectionNav ul::-webkit-scrollbar {
+    @apply hidden;
+  }
+
+  .sectionNav li {
+    @apply flex-shrink-0;
+  }
+
+  /* `.content a` underlines every link in the article; these are controls. */
+  .sectionNav a {
+    @apply no-underline whitespace-nowrap text-[0.875rem] text-[var(--color-text-secondary)] hover:text-[var(--color-text-hover)];
+  }
+
+  .sectionNav a[aria-current='true'] {
+    @apply text-[var(--color-text-primary)] font-semibold;
+  }
+
+  @media (min-width: 900px) {
+    .sectionNav ul {
+      @apply px-[5rem];
+    }
+  }
+</style>
+
+<script>
+  interface Section {
+    heading: HTMLElement;
+    link: HTMLAnchorElement;
+  }
+
+  const HEADING_GAP = 16;
+
+  function initSectionNav(): void {
+    const nav = document.querySelector<HTMLElement>('[data-section-nav]');
+    if (!nav) return;
+
+    const links = Array.from(
+      nav.querySelectorAll<HTMLAnchorElement>('[data-section-link]')
+    );
+
+    const sections: Section[] = links
+      .map((link) => {
+        const slug = link.dataset.sectionLink;
+        const heading = slug ? document.getElementById(slug) : null;
+        return heading ? { heading, link } : null;
+      })
+      .filter((section): section is Section => section !== null);
+
+    if (sections.length === 0) return;
+
+    const header = document.querySelector<HTMLElement>('.header-container');
+
+    // The availability banner shares this band: fixed under the header, sliding
+    // in and out with scroll direction. The nav rides below it rather than
+    // under it — at z-97 against the banner's z-98 it was covered whenever the
+    // banner showed, 85% of it on a desktop and the whole of it on a phone.
+    const banner = document.querySelector<HTMLElement>('#scroll');
+
+    // How far the banner currently reaches past the header. Taken from its live
+    // rect rather than from its own show/hide rule, so the nav tracks it through
+    // the slide without a second copy of that rule to keep in step.
+    function bannerOverlap(): number {
+      if (!banner) return 0;
+      const headerHeight = header?.offsetHeight ?? 0;
+      return Math.max(0, banner.getBoundingClientRect().bottom - headerHeight);
+    }
+
+    let lastTop = -1;
+
+    function positionNav(): void {
+      const top = (header?.offsetHeight ?? 0) + bannerOverlap();
+      if (Math.abs(top - lastTop) < 0.5) return;
+      lastTop = top;
+      document.documentElement.style.setProperty('--project-nav-top', `${top}px`);
+    }
+
+    // Where a heading has to stop when it is jumped to. This one counts the
+    // banner at full height whether or not it is showing: which way a jump
+    // scrolls decides whether the banner is out when the page settles, and a
+    // heading parked a little low is much better than one parked behind a bar.
+    function measureOffsets(): void {
+      const headerHeight = header?.offsetHeight ?? 0;
+      const bannerHeight = banner?.offsetHeight ?? 0;
+      document.documentElement.style.setProperty(
+        '--project-nav-offset',
+        `${headerHeight + bannerHeight + nav!.offsetHeight + HEADING_GAP}px`
+      );
+    }
+
+    let activeLink: HTMLAnchorElement | null = null;
+
+    function setActive(link: HTMLAnchorElement | null): void {
+      if (link === activeLink) return;
+      activeLink?.removeAttribute('aria-current');
+      activeLink = link;
+      // Scrolled above the first heading, no section is current, and saying one
+      // is puts `aria-current` on a link the reader has not reached.
+      if (!link) return;
+      link.setAttribute('aria-current', 'true');
+
+      // Keep the current section visible in the scrolling row. `scrollLeft` is
+      // set directly rather than via scrollIntoView, which would also scroll the
+      // page vertically and fight the scroll that triggered this.
+      const list = link.parentElement?.parentElement;
+      if (!list) return;
+      const target = link.offsetLeft - list.clientWidth / 2 + link.offsetWidth / 2;
+      list.scrollLeft = Math.max(0, target);
+    }
+
+    // The active section is the last one whose heading has passed under the nav.
+    // Read against the viewport each frame instead of caching offsets, which go
+    // stale as images and videos above finish loading and shift the page.
+    function updateActive(): void {
+      const boundary = nav!.getBoundingClientRect().bottom + HEADING_GAP + 8;
+      let current: Section | null = null;
+
+      for (const section of sections) {
+        if (section.heading.getBoundingClientRect().top <= boundary) {
+          current = section;
+        }
+      }
+
+      setActive(current?.link ?? null);
+    }
+
+    let queued = false;
+
+    function onScroll(): void {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(() => {
+        queued = false;
+        positionNav();
+        updateActive();
+      });
+    }
+
+    function refresh(): void {
+      positionNav();
+      measureOffsets();
+      updateActive();
+    }
+
+    refresh();
+
+    // The header has no fixed height and carries a Material Symbols icon whose
+    // font is requested without `display=swap`, so the first measurement can be
+    // taken before the header has settled at its final height. Left stale, the
+    // published offset parks anchor jumps with the heading under the bar.
+    document.fonts?.ready.then(refresh);
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', refresh);
+
+    // The banner goes on sliding for 0.3s after the scroll that triggered it, so
+    // a reader who stops the moment it appears runs out of scroll frames while
+    // it is still moving, and the nav freezes halfway. Track it to the end.
+    let following = false;
+
+    function followBanner(): void {
+      positionNav();
+      updateActive();
+      if (following) requestAnimationFrame(followBanner);
+    }
+
+    banner?.addEventListener('transitionrun', () => {
+      if (following) return;
+      following = true;
+      requestAnimationFrame(followBanner);
+    });
+
+    for (const event of ['transitionend', 'transitioncancel']) {
+      banner?.addEventListener(event, () => {
+        following = false;
+        positionNav();
+        updateActive();
+      });
+    }
+  }
+
+  initSectionNav();
+</script>
