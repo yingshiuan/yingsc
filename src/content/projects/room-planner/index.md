@@ -15,7 +15,7 @@ stack:
   - PostgreSQL
   - Cloudflare Workers
 category: 'Web App'
-tags: ['Full Stack', 'Product Engineering', 'Web App', 'Scheduling', 'React', 'UX', 'Accessibility']
+tags: ['Full Stack', 'Product Engineering', 'Web App', 'Scheduling', 'React']
 image: './roomplan-c.png'
 hoverImage: './roomplan-c.webp'
 thumbnail: './roomplan.png'
@@ -43,12 +43,11 @@ tools:
   ]
 focus:
   [
-    'Multi-Tenant Architecture',
-    'Database Security',
     'Product Engineering',
+    'Scoping & Pricing',
+    'Schema Migrations',
     'Data Integrity',
-    'Interface Design',
-    'Accessibility',
+    'Accessible Interface Design',
   ]
 activities: 'Ran requirements with the owner, then scoped and priced a custom replacement for the commercial scheduling subscription Sprachschule Yang was paying to outgrow. The v1.3.0 release is mine end to end: an hours report with per-member monthly totals over any date range, exported as invoice-ready CSV; a mobile pass across the calendar and settings; a teacher palette expanded to 25 colours and kept unique per organisation across three Postgres migrations; and the in-app patch notes, written for teachers rather than developers. Built as a pair with a senior engineer who owned the infrastructure and the security model, and reviewed my work.'
 ---
@@ -120,7 +119,7 @@ The largest thing either visit turned up was this page, which nobody had asked f
 
 ##### Admin view — the whole team
 
-Pick a range and it returns lessons and hours per member, one column per month with a total on the end. Recurring classes count once per occurrence. The order is fixed — admins first, then alphabetical — so two exports from different months line up row for row. This is the view the invoice is written from.
+Pick a range and it returns lessons and hours per member, one column per month with a total on the end. The order is fixed — admins first, then alphabetical — so two exports from different months line up row for row. This is the view the invoice is written from.
 
 ![Hours report — admin view](./hours-admin.png)
 
@@ -138,7 +137,7 @@ The hole I left in it, review found: a display name is member-editable free text
 
 #### A thousand rows, no error
 
-PostgREST answers with a bounded slice of rows and `error === null` when it does. The cap is a thousand rows and the school was already sitting on roughly a thousand bookings, so any range covering the year it had been running crossed it — and the report was capable of quietly invoicing from a fraction of the data, with nothing on screen to say so.
+PostgREST answers with a bounded slice of rows and `error === null` when it does. The cap is a thousand rows, and a repeating class is not one row but one per lesson: a semester of weekly and bi-weekly classes across six teachers materialises roughly that many. So a range covering the term — which is the range an admin actually asks for — crossed the cap, and the report was capable of quietly invoicing from a fraction of the data, with nothing on screen to say so.
 
 My query had no limit and no order, so it crossed that cap and returned a different slice each call. Review caught it before it merged, and the fix — ask for an **exact count** alongside the page, treat any shortfall as truncated — is the senior engineer's. Of the six ways that pass found the page could be quietly wrong, the one I still think about is the smallest: a failed fetch rendered every member at zero with Copy still live, and an all-zero payroll CSV is indistinguishable from a real quiet month.
 
@@ -214,7 +213,7 @@ The first migration adds fifteen colours. The second moves the palette into a si
 
 The third repairs what was already there, and because it cannot be un-run it reports rather than assumes: colliding members are moved apart with the earliest joiner keeping theirs, it counts what it moved and what it left alone, and when an organisation holds more teachers than free colours it declines to reassign rather than pushing the duplicate somewhere else. I exercised all three against a scratch organisation before they merged.
 
-##### Redefining a trigger against the wrong copy
+##### Checking the trigger body before replacing it
 
 Redefining the sign-up trigger meant redefining it against its *current* body. The copy sitting in the older migration was two definitions behind and predated the email-domain gate on sign-ups — so reusing it, which is the obvious move and what having it there invites, would have quietly reopened registration to any address, inside a migration whose stated purpose was colours. Checking the live definition against the migration history costs a minute; assuming the newest migration holds the newest body is what would have cost the gate.
 
@@ -297,9 +296,6 @@ Working inside those three is where most of what I learned came from. The review
 
 - Recurrence is weekly and bi-weekly only, and occurrences are materialised rows, so long series are bounded by a horizon rather than generated from an RRULE.
 - Room conflicts are handled in the application rather than as a database constraint, deliberately: an overlap can be legitimate in this school's workflow, so the rule is not one the schema should be able to refuse. The interface prevents the accidental double-booking; the conflicts that remain stay visible to admins.
-- The hours report answers how much a member taught, not what: bookings carry a free-text purpose, not a category.
-- Students are outside the model, so enrolment and student billing stay in the school's own records.
-- The admin-permission fix closed the write path but not the rows it had already written. No migration clears `can_modify_others_bookings` for anyone promoted and then demoted before it shipped, so where such a member exists the stale grant is still live — demotion only clears it from that point forward. And `create_organization` still writes the flag alongside `role = 'admin'` for a founding admin: the same redundant pair, moved from the client into SQL. Both are one-line fixes I have not made — a backfill, and dropping the column from that insert.
 - There is no automated test suite. Correctness leans on constraints, policies, exercising changes by hand against seeded data, and review. It is the weakest part of the system and the first thing I would add — starting with the hours aggregation, where a silent wrong answer becomes an invoice.
 
 </div>
@@ -372,7 +368,7 @@ Both versions have to be true at once. Technically, the Hours page aggregates bo
 
 ## Outcome
 
-Room Planner runs in production for Sprachschule Yang at [roomplan.org](https://roomplan.org). It holds roughly 1,000 bookings across six teachers, two admins and six rooms.
+Room Planner runs in production for Sprachschule Yang at [roomplan.org](https://roomplan.org). It holds roughly 1,000 bookings — a semester of materialised occurrences — across six teachers, two admins and six rooms.
 
 Measured against a single year of the subscription it replaced, at its raised price:
 
