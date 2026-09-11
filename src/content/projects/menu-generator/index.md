@@ -19,7 +19,7 @@ image: './menu-generator-c.png'
 hoverImage: './menu-generator.webp'
 thumbnail: './menu-generator.png'
 info: 'A menu editor whose live preview is the document — a restaurant keeps a spreadsheet, and the PDF prints from the same markup they edited.'
-description: 'Built the general-case answer to a menu I had already designed by hand: a CSV-driven editor with no second layout to keep in sync, a render path with a ceiling on every wait, and an honest account of why the restaurant it was built from still does not use it.'
+description: 'Built the general-case answer to a menu I had already designed by hand: a CSV-driven editor with no second layout to keep in sync, a render path with a ceiling on every wait, and a data model whose elegance turned out to be a prerequisite in the user.'
 role: 'Full-Stack Product Engineer'
 timeline: '4 months'
 completed: '03/2026'
@@ -33,7 +33,7 @@ focus:
     'Document Generation',
     'System Design',
   ]
-activities: "Designed and built MenuGen alone, end to end — a CSV-driven menu editor whose live preview is the document the PDF prints from, so there is no second layout to keep in sync. Made the import a schema decision: six fixed columns describe a dish and every other column becomes a taggable attribute with an icon the user assigns, so a restaurant extends its own vocabulary without waiting for a release. Built the export as a JSDOM and Sharp pass that strips the interface out of the posted DOM and inlines every asset, then a Puppeteer render path with an explicit ceiling on every wait, after Chinese glyphs turned out to render only on my own machine. Sized the backend honestly — one browser, a single-worker in-memory queue, and a cold start the interface admits to rather than hides — and took the adoption finding seriously: the restaurant whose menu it was built from still does not use it, because the tool assumes a user who already keeps their menu as data."
+activities: "Designed and built MenuGen alone, end to end — a CSV-driven menu editor whose live preview is the document the PDF prints from, so there is no second layout to keep in sync. Made the import a schema decision: six fixed columns describe a dish and every other column becomes a taggable attribute with an icon the user assigns, so a restaurant extends its own vocabulary without waiting for a release. Built the export as a JSDOM and Sharp pass that strips the interface out of the posted DOM and inlines every asset, then a Puppeteer render path with an explicit ceiling on every wait, after Chinese glyphs turned out to render only on my own machine. Sized the backend honestly — one browser, a single-worker in-memory queue, and a cold start the interface admits to rather than hides — then followed the adoption question past the build, where making the spreadsheet the schema turned out to decide not just how a menu is maintained but who can start one."
 ---
 
 <div class="contentSection">
@@ -139,7 +139,7 @@ Two smaller rules do a similar amount of work. A row with a name but no number a
 
 The export goes back the other way, tab-separated, with an `X` in each tag column the dish carries — so the file that came out of a restaurant's spreadsheet can go back into it.
 
-What I would fix first: an image whose filename matches nothing is dropped silently. Forty photos go in, thirty-eight land, and the interface says the same thing either way.
+That matching used to fail in silence. A photograph whose filename matched nothing was discarded where it was compressed — and because the list of uploaded files is computed from the dishes themselves, it then appeared in neither the menu nor the list of what you had just uploaded. Forty photos went in, thirty-eight landed, and the interface said the same thing either way. It now names what it could not place — *3 of 5 files were not added*, each filename and its reason — directly above the line that explains the naming rule which fixes it. A batch operation that reports only its successes leaves you to audit it by hand, which was the work the batch existed to remove.
 
 </div>
 
@@ -307,7 +307,7 @@ So the spreadsheet-as-schema decision cuts both ways, and I would rather say so 
 
 The finding was available in week two. I could have handed the owner a price change and watched what they did with it; instead I spent four months building, and learned the same thing by noticing which tool they kept opening.
 
-What I can defend: the tool works, and its segment is narrower than "restaurants". What I cannot defend yet: that the narrower segment adopts it, because I have not put it in front of one. The next move is not a feature — it is making the first dish typeable, and keeping CSV as the way data leaves and returns rather than the way it has to arrive.
+What I can defend: the tool works, and its segment is narrower than "restaurants". What I cannot defend yet: that the narrower segment adopts it. The next move is not a feature — it is making the first dish typeable, and keeping CSV as the way data leaves and returns rather than the way it has to arrive.
 
 </div>
 
@@ -315,7 +315,7 @@ What I can defend: the tool works, and its segment is narrower than "restaurants
 
 ## Where It Stands
 
-MenuGen is live at [menugen.insdash.ch](https://menugen.insdash.ch). It opens on four placeholder rows rather than a finished menu, so the first thing a visitor can do is edit one instead of clearing ninety. The menu it was built and tested against is A Fatt's: 90 dishes across 20 sections, bilingual, tagged, photographed, thirteen pages in the preview. It is a working product tested against real data, and it has no users.
+MenuGen is live at [menugen.insdash.ch](https://menugen.insdash.ch). It opens on four placeholder rows rather than a finished menu, so the first thing a visitor can do is edit one instead of clearing ninety. The menu it was built and tested against is A Fatt's: 90 dishes across 20 sections, bilingual, tagged, photographed, thirteen pages in the preview. It is a working product tested against real data — one restaurant's. That is what makes its edge cases real, and what leaves me unable to name the ones it has not met.
 
 </div>
 
@@ -325,9 +325,10 @@ MenuGen is live at [menugen.insdash.ch](https://menugen.insdash.ch). It opens on
 
 - **Two representations of one thing will drift, so keep one.** Preview fidelity was never a rendering problem — it was the decision not to write the layout twice, and every claim downstream rests on that rather than on Puppeteer.
 - **A preview that is right by accident is worse than one that is wrong.** The Chinese glyphs were correct on the only machine that could not report the problem. Fallbacks that matter get written down, not inherited from whatever the developer's OS happens to have.
-- **Waits need ceilings, and success paths need assertions.** The two failures that reached users — a font stall and a download that never fired — were both cases where the code was waiting for something to be true and had no plan for it not being.
-- **A data model is a claim about who the user is.** Making the spreadsheet the schema was the best decision in the build and the reason the restaurant it was built from never adopted it. Elegance in the model came out as a prerequisite in the user, and I did not see it until I noticed who was still opening Canva.
+- **Waits need ceilings, and success paths need assertions.** A font stall, a download that never fired, and an image that decoded to nothing and left the spinner running forever — each one was the code waiting for something to be true with no plan for it not being. That last was a missing `img.onerror` beside a handled `reader.onerror`: the failure I had thought of, and the one I had not, four lines apart. It surfaced while I was writing tests for a different bug, which is most of the argument for writing them.
+- **A data model is a claim about who the user is.** Making the spreadsheet the schema was the best decision in the build and the one that decided who could use it. Elegance in the model came out as a prerequisite in the user, and I did not see it until I noticed who was still opening Canva.
 - **Coverage is not correctness.** My first test suite exercised a CSV parser nothing called, while the parser the product actually runs went untested. I deleted the dead one and moved its assertions onto the live path, including the quoted comma the naive version would have split in half.
+
 #### Where I Stopped
 
 Authentication, stored menus and multi-restaurant workspaces are all scoped and none of them are built, because none of them were needed to find out whether the core idea worked. Translation is the one I want to build — the model already carries a name and a Chinese name per dish, so a bilingual menu today is two columns somebody types twice. It is not the one I would build next. Next is the empty state, because the finding above is that the tool loses people before it ever gets the chance to be useful.
