@@ -23,7 +23,7 @@ info: 'A multi-tenant room and class booking system for language schools, with r
 description: 'Scoped and priced a custom replacement for the scheduling subscription a language school had outgrown, then built the release that turned its calendar into payroll — per-member teaching hours over any date range, exported as an invoice-ready CSV.'
 role: 'Full-Stack Product Engineer'
 timeline: 'June 2026 · one month from signed scope to production'
-completed: 'Delivered 07/2026 · v1.3.0 08/2026 · Maintenance'
+completed: 'Delivered 07/2026 · v1.3.0 08/2026 · v1.4.0 09/2026 · Maintenance'
 credit: 'Sprachschule Yang'
 creditLink: 'https://sprachschule-yang.ch'
 tools:
@@ -49,7 +49,7 @@ focus:
     'Data Integrity',
     'Accessible Interface Design',
   ]
-activities: 'Ran requirements with the owner, then scoped and priced a custom replacement for the commercial scheduling subscription Sprachschule Yang was paying to outgrow. The v1.3.0 release is mine end to end: an hours report with per-member monthly totals over any date range, exported as invoice-ready CSV; a mobile pass across the calendar and settings; a teacher palette expanded to 25 colours and kept unique per organisation across three Postgres migrations; and the in-app patch notes, written for teachers rather than developers. Built as a pair with a senior engineer who owned the infrastructure and the security model, and reviewed my work.'
+activities: 'Ran requirements with the owner, then scoped and priced a custom replacement for the commercial scheduling subscription Sprachschule Yang was paying to outgrow. The v1.3.0 release is mine end to end: an hours report with per-member monthly totals over any date range, exported as invoice-ready CSV; a mobile pass across the calendar and settings; a teacher palette expanded to 25 colours and kept unique per organisation across three Postgres migrations; and the in-app patch notes, written for teachers rather than developers. v1.4.0 is mine too: a term break became part of the recurrence rule rather than a hole punched in it, behind a new table, two security-definer RPCs and a rewrite of the function every series regenerates through, shipped in September. Also added the local Supabase stack the project had been doing without: one script, a seeded school, committed with the repo, so a migration can be rehearsed before it reaches live data. Built as a pair with a senior engineer who owned the infrastructure and the security model, and reviewed my work.'
 ---
 
 <div class="contentSection">
@@ -62,7 +62,7 @@ It replaced a subscription whose price had doubled. **The harder part was decidi
 
 It is multi-tenant: every school is an organisation with its own rooms, members and colours, isolated at the database level rather than by application code.
 
-Built as a pair. The infrastructure, the security model and the recurring-series model are the senior engineer's, from the first release; v1.3.0 — the hours report, the calendar's small controls, the colour migrations, the mobile pass, the admin-permission fix and the patch notes — is mine, reviewed by him.
+Built as a pair. The infrastructure, the security model and the recurring-series model are the senior engineer's, from the first release; v1.3.0 — the hours report, the calendar's small controls, the colour migrations, the mobile pass, the admin-permission fix and the patch notes — is mine, reviewed by him. So is v1.4.0 — a skipped date became part of the recurrence rule instead of a hole in it — which we deployed together in September.
 
 #### Key Highlights
 
@@ -70,6 +70,7 @@ Built as a pair. The infrastructure, the security model and the recurring-series
 - **Found the feature nobody asked for.** Mapping the school's term surfaced an hours report that turns the calendar itself into an invoice-ready CSV — a monthly job the office was doing with a calculator.
 - **Talked them out of the native app, and out of a feature I wanted.** They got a home-screen icon and a calendar rebuilt for touch; the class-category dimension I had already scoped did not ship.
 - **Caught a permission bug myself.** Demoting an admin could leave scheduler rights behind; tracing the state showed the flag was redundant for admins, so I removed the extra write instead of patching the symptom.
+- **Fixed a delete that undid itself.** A lesson removed from a repeating class stayed gone only until the next edit to the series regenerated it. A gap is now part of the rule, which is the only place regeneration has to read it from.
 
 ![Room Planner day view](./day.png)
 
@@ -280,6 +281,32 @@ Clearing the flag on demotion is the obvious fix and it is the smaller half. The
 
 <div class="contentSection">
 
+## The Lesson That Came Back
+
+Nothing in the calendar had a word for a term break. Deleting the lessons that fall inside one is the obvious move, and for as long as nobody edits the series afterwards it looks like it worked.
+
+It does not hold. A repeating class here is a rule rather than a list of copies — one weekday, one time, one unbroken stretch of dates — and any structural edit regenerates every occurrence from that rule. The deleted lessons come back the next time someone nudges the end date or moves the class an hour later, and a teacher's hours go up with nobody having touched them. Deleting a single lesson had the identical defect for the identical reason. The defect was never the delete; it was recording the decision in a row the rule was free to rewrite — the same shape as the permission bug above, state kept somewhere it could not survive being read back.
+
+v1.4.0 made the gap part of the rule. `series_skips` holds the date ranges a series does not run on, regeneration consults it, and skipping is now what deleting one lesson of a series means: the confirmation says **Skip this date**, and the gap is listed underneath with a Restore beside it.
+
+![Skip dates over the day view](./skip-date.png)
+
+##### The only way in is the way that checks
+
+Members can read that table and nobody can write it. Two `security definer` functions are the only write path, because the check that matters — a gap has to fall inside the series' own dates — is worth nothing if a client can POST a row straight past it to PostgREST. That is the rule I had been handed in July, applied this time without being told.
+
+The same question asked of smaller things is most of the release. Restoring inserts only the dates the gap was hiding rather than regenerating the series, so a lesson somebody had moved to a different hour survives being put back. Gaps match on each occurrence's local calendar date rather than on its cast timestamp, because the database session runs in UTC and a 9am lesson at UTC+9 falls on the previous UTC day — the wrong day to test. And the migration backfills nothing: a date already missing from an old series might have been deleted or might have been moved, the data cannot tell the two apart, and guessing would have punched holes in a term nobody asked me to touch.
+
+##### Rehearsing it somewhere that is not the school
+
+The review of v1.3.0 found six ways the hours page could be quietly wrong, and I had been building against the hosted database the whole time. This change adds a table, replaces the function every series regenerates through, and deletes bookings — so before it merged I put a local Supabase stack behind one script, seeded with a school to work against, and ran the regression the change exists to fix: a series of 13 occurrences, three of them inside a gap, regenerated to 10 rows rather than 13.
+
+The stack outlasted the change, which is why it was worth building rather than a scratch database. One script and a seeded school, committed with the repo: `up` points the app at it, `reset` re-runs every migration over the seed, and `status` reports which backend the dev server is really serving — the one check a stale build cache cannot fool. Nothing in it can reach the hosted project. v1.4.0 went through it before we deployed the release together, migration and all. A stack I can break without consequence is still not a test suite; it is where the first one will run.
+
+</div>
+
+<div class="contentSection">
+
 ## Constraints I Worked Inside
 
 Three decisions from the first release, none of them mine, that set the shape of everything above.
@@ -296,7 +323,7 @@ Working inside those three is where most of what I learned came from. The review
 
 - Recurrence is weekly and bi-weekly only, and occurrences are materialised rows, so long series are bounded by a horizon rather than generated from an RRULE.
 - Room conflicts are handled in the application rather than as a database constraint, deliberately: an overlap can be legitimate in this school's workflow, so the rule is not one the schema should be able to refuse. The interface prevents the accidental double-booking; the conflicts that remain stay visible to admins.
-- There is no automated test suite. Correctness leans on constraints, policies, exercising changes by hand against seeded data, and review. It is the weakest part of the system and the first thing I would add — starting with the hours aggregation, where a silent wrong answer becomes an invoice.
+- There is no automated test suite. Correctness leans on constraints, policies, exercising changes by hand against seeded data — on a local stack committed with the repo since September, on the hosted project before that — and review. It is the weakest part of the system and the first thing I would add — starting with the hours aggregation, where a silent wrong answer becomes an invoice.
 
 </div>
 
@@ -356,7 +383,7 @@ Pushes to `main` build with Bun and deploy to Cloudflare Workers through Wrangle
 
 ## Releasing to Non-Developers
 
-The users are teachers, so the changelog is written for teachers: an in-app patch notes page, in plain language, with a screenshot, candid about bugs — including the release where editing a series could delete it.
+The users are teachers, so the changelog is written for teachers: an in-app patch notes page, in plain language, with a screenshot, candid about bugs — including the release where editing a series could delete it, and the one where a lesson deleted from a series quietly came back.
 
 ![Patch notes](./patchnotes.png)
 
@@ -379,7 +406,7 @@ It also replaced something nobody had asked it to. Teachers submitted their hour
 
 #### What I took from it
 
-- **Put invariants where they cannot be bypassed.** RLS policies and server-side identity hold regardless of what the client sends. Spending a release building on top of them is what taught me why they sit where they do.
+- **Put invariants where they cannot be bypassed.** RLS policies and server-side identity hold regardless of what the client sends. Spending a release building on top of them is what taught me why they sit where they do; the next release was where I placed one myself, and the skip table is read-only to clients because a check is worth only what the path around it is worth.
 - **Silence is the expensive failure mode.** My hours query returned no error and looked correct while it was silently truncated. Data that feeds money has to prove it is complete, not merely fail loudly when it is not.
 - **What they ask for is not the job.** The hours report was never requested, and the native app was. Being close enough to a client's work to tell the two apart is worth more than agreeing to whichever they said out loud.
 
