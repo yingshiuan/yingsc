@@ -53,7 +53,7 @@ It reads as a sequence because it happened as one. Each tool on this page starte
 - **The layout I kept redoing became a tool of my own.** That tool is [menuGen](/yingsc/projects/menu-generator). A Fatt looked at it and kept the system I had handed them, which is the handover working.
 - **The same spreadsheet, on their website.** MenuDash is an open-source WordPress plugin: the owner uploads the menu sheet, and a wrong file gets a report and a rollback, never a broken page.
 
-![The three A2 posters: the full menu, the recommended dishes, and every vegan and vegetarian dish](./posters.webp)
+![The two A2 posters: the recommended dishes, and every vegan and vegetarian dish](./posters.webp)
 
 #### The Problem
 
@@ -99,24 +99,22 @@ Both obvious fixes were ruled out by the client's own constraints. A photo for e
 
 ## Two Years Later, They Came Back
 
-In September 2026 A Fatt came back as a paying client: a new dessert section for the menu, an exterior flyer with their opening hours and a QR code, three A2 posters (the whole menu, the recommended dishes, and every vegan and vegetarian dish), gift cards and name cards.
+In September 2026 A Fatt came back as a paying client: a new dessert section for the menu, an exterior flyer with their opening hours and a QR code, two A2 posters (the recommended dishes, and every vegan and vegetarian dish), gift cards and name cards.
 
 The dessert section went straight into the 2024 system. The modular layout took a new category two years later without a redesign. Everything else I built as code.
-
-![The A2 menu, generated from the dish list](./a2-menu.webp)
 
 #### One dish list, every poster
 
 Each piece is an HTML and CSS page at its real print size, with the brand's colours and fonts in one shared stylesheet. The dish list is a single TypeScript file: every dish has a number, a German and a Chinese name, a price, its diet tags, and a photo if it has one.
 
-- **Mark a dish as a pick and it joins two posters at once:** it gets a seal on the full menu and a card on the recommendations poster.
+- **Mark a dish as a pick and it joins the recommendations poster,** as a card with its photo.
 - **Tag it vegan or vegetarian and it joins the veggie poster:** as a photo card if it has a photo, and in the list below if it doesn't.
 - **The types stop a malformed dish before the export does.** A dish with a missing field fails the build instead of printing a gap.
 - **A page that overflows says so.** It draws a red dashed outline in the browser, on screen only, before anything reaches a printer.
 
 A small Python script compiles the TypeScript, then renders every page in headless Chrome to a print PDF and a PNG, plus a version tiled across four A4 sheets for proofing at the real size. A price changes in one place, and every poster built from that list follows.
 
-![The recommended dishes, generated from the same list](./a2-picks.webp)
+![The recommended dishes, generated from the dish list](./a2-picks.webp)
 
 ![Every vegan and vegetarian dish, also from the same list](./a2-veggie.webp)
 
@@ -210,7 +208,7 @@ I also wrote an owner guide with a screenshot of every step, including how to ex
 
 - **The handover is the product.** The 2024 decision that mattered wasn't the layout. It was building something the staff could run without me, and then drawing the line of what they would still need a designer for. Both held for two years.
 - **Research that finds a problem you can't fix is still worth doing.** The diner test found a real ambiguity, and the client's constraints ruled out the cheap fixes. Knowing about it is better than a menu that only looked tested.
-- **Keep the data in one place and make everything else a view.** One dish list became three posters. One spreadsheet became a website. Every copy made by hand is a copy that drifts.
+- **Keep the data in one place and make everything else a view.** One dish list became two posters. One spreadsheet became a website. Every copy made by hand is a copy that drifts.
 - **Build the tool when the question comes back.** Every tool here started as a question I kept answering by hand: will this code scan, will this line fit, did anyone update the website.
 - **A test can pass for the wrong reason.** The QR check that passed at a size no phone could read taught me to ask where a pass comes from, not only whether it happened.
 
