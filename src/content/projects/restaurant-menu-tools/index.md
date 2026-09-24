@@ -122,7 +122,7 @@ A poster at A2 needs a logo that stays sharp at any size.
 
 I rebuilt their logo in Python: the seal from true circles and arcs, and the wordmark traced and refitted. That script produced the logo set the posters use. Afterwards I generalised it into a browser vectoriser for other clients' logos, one that never uploads the image anywhere. Its port is held to the original script by a parity suite that has to agree within a hundredth of a pixel.
 
-![A test run of the vectoriser on A Fatt's wordmark, after the job: one ink found, background removed, repeated letters written as exact copies. The delivered logo set came from the Python script.](./vectorize.webp)
+![A test run of the vectoriser on A Fatt's wordmark, after the job, with tuned settings: one ink found, background removed, repeated letters written as exact copies. The delivered logo set came from the Python script.](./vectorize.webp)
 
 ![The bowl up close in the vectoriser, traced with tuned settings (background tolerance 0.48, smoothing 2.5): the chopsticks keep their white outline against the bowl. At the default settings those gaps closed up.](./vectorize-bowl.webp)
 
