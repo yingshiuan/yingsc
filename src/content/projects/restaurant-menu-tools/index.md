@@ -140,6 +140,8 @@ A logo eats a QR code's error correction, and a code that has gone over the line
 - **It reports the module size at the chosen print size,** because a code that scans on a screen can fail on a wall.
 - **It decodes every file it writes,** with a real decoder, before calling an export done. The rule in the repo is *nothing is written that has not been read back*.
 
+![inscode with A Fatt's seal on a code for afatt.ch: data intact, module size at print size, verified safe](./inscode.webp)
+
 My own check fooled me once. Early on, the design decoded perfectly at a tiny size. The test renderer draws perfect geometry and the decoder recovers it at a resolution no phone camera could manage, so the test was measuring the renderer, not a scanner. I found it by shrinking the size until it failed and asking where the pass had come from.
 
 The flyer is printed, and its code scans with a phone. I built inscode with agentic coding: I wrote the specification and checked every result, and the model wrote most of the code. It is a tool for one client job, not a product.
@@ -151,6 +153,8 @@ The flyer is printed, and its code scans with a phone. I built inscode with agen
 ## Their Logo, as Clean Vectors
 
 Print at A2 needs a logo that stays sharp at any size, so I rebuilt theirs in Python: the seal from true circles and arcs, and the wordmark traced and refitted, so it stays sharp at poster size. That script produced the logo set the posters use. I later generalised its approach into a private browser vectoriser for other clients' logos.
+
+![The vectoriser tracing the studio's own 144 px logo: bitmap on the left, vector on the right](./vectorize.webp)
 
 </div>
 
