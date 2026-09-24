@@ -96,7 +96,7 @@ The flyer hangs outside the restaurant, with a QR code carrying their logo. A lo
 
 #### What it checks
 
-![inscode with A Fatt's seal on a code for afatt.ch: data intact, module size at print size, verified safe](./inscode.webp)
+![The flyer's code in inscode: A Fatt's seal across the whole code, and still verified. Data intact, the module size above the floor at print size, and the logo verified safe.](./inscode.webp)
 
 - **The error-correction headroom as the logo grows,** so the coverage limit is a number, not a guess.
 - **The module size at the chosen print size,** because a code that scans on a screen can fail on a wall.
