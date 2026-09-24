@@ -22,7 +22,7 @@ info: 'A menu editor whose live preview is the document — a restaurant keeps a
 description: 'Built the general-case answer to a menu I had already designed by hand: a CSV-driven editor with no second layout to keep in sync, a render path with a ceiling on every wait, and a data model whose elegance turned out to be a prerequisite in the user.'
 role: 'Full-Stack Product Engineer'
 timeline: '4 months'
-completed: '03/2026'
+completed: '03/2026 · One sheet, every menu 09/2026'
 credit: 'Menu Generator'
 creditLink: 'https://menugen.insdash.ch'
 tools: [ 'Vue.js', 'TypeScript', 'Tailwind CSS', 'Pinia', 'PapaParse', 'Vitest', 'Node.js', 'Express', 'Puppeteer', 'Sharp', 'Docker', 'Render', 'Vercel']
@@ -33,7 +33,7 @@ focus:
     'Document Generation',
     'System Design',
   ]
-activities: "Designed and built MenuGen alone, end to end — a CSV-driven menu editor whose live preview is the document the PDF prints from, so there is no second layout to keep in sync. Made the import a schema decision: six fixed columns describe a dish and every other column becomes a taggable attribute with an icon the user assigns, so a restaurant extends its own vocabulary without waiting for a release. Built the export as a JSDOM and Sharp pass that strips the interface out of the posted DOM and inlines every asset, then a Puppeteer render path with an explicit ceiling on every wait, after Chinese glyphs turned out to render only on my own machine. Sized the backend honestly — one browser, a single-worker in-memory queue, and a cold start the interface admits to rather than hides — then followed the adoption question past the build, where making the spreadsheet the schema turned out to decide not just how a menu is maintained but who can start one."
+activities: "Designed and built MenuGen alone, end to end — a CSV-driven menu editor whose live preview is the document the PDF prints from, so there is no second layout to keep in sync. Made the import a schema decision: six fixed columns describe a dish and every other column becomes a taggable attribute with an icon the user assigns, so a restaurant extends its own vocabulary without waiting for a release. Built the export as a pass that strips the interface out of the posted markup as a string and inlines every asset, then a Puppeteer render path with an explicit ceiling on every wait, after Chinese glyphs turned out to render only on my own machine. Sized the backend honestly — one browser, a single-worker in-memory queue, and a cold start the interface admits to rather than hides — then followed the adoption question past the build, where making the spreadsheet the schema turned out to decide not just how a menu is maintained but who can start one."
 ---
 
 <div class="contentSection">
@@ -44,7 +44,7 @@ MenuGen turns a spreadsheet into a print-ready restaurant menu. The editor's liv
 
 I built it because I had already done the job by hand. In 2024 I designed a [modular menu system](/yingsc/projects/afatt) for A Fatt, a Malaysian Chinese restaurant in Zürich — around 90 dishes across 20 sections, each with a name, a Chinese name, a price, a description, dietary tags and a photo. It worked, and the restaurant still uses it. But every price change went back through Figma and Canva, where editing text means editing a layout: a two-word description lands a dish on the next page, and the next page has to be checked too.
 
-The design was finished; the maintenance was not, and it would outlive the design by years. MenuGen is that problem solved for the general case — built afterwards, on my own, with A Fatt's menu as the fixture.
+The design was finished; the maintenance was not, and it would outlive the design by years. MenuGen is that problem solved for the general case — built afterwards, on my own, with A Fatt's menu as the fixture. The whole arc, from their brief to the tools it led to, is in [Restaurant Menu Tools](/yingsc/projects/restaurant-menu-tools).
 
 #### Key Highlights
 
@@ -95,10 +95,10 @@ Every field is editable in place, and the thing being edited is the thing that p
   preload="metadata"
   aria-label="Editing menu text inline in the live preview"></video>
 
-Three passes, over a JSDOM copy of what the browser sent:
+Three passes, over the markup the browser sent, kept as a string: each pass splices where an HTML parser reports a tag, and no document tree is ever built on the server (why that matters is below).
 
 - **Sanitize.** Every `<input>`, `<textarea>` and `<select>` is replaced by a `<span>` holding its value. The editable menu becomes a printed one without a second stylesheet, because the text was always the text — the input was just wearing it.
-- **Inline.** Every image becomes a base64 data URI, resized through Sharp on the way: uploads to 300px at quality 70, files from disk to 200px, SVG icons rasterised to 96px PNG. Nothing in the printed page has to fetch anything.
+- **Inline.** Every image becomes a base64 data URI, resized through Sharp on the way, and SVG icons are rasterised to 96px PNG. Nothing in the printed page has to fetch anything.
 - **Hide.** Anything marked `data-ui-only` is set to `display: none` — delete buttons, drop zones, the "click to add description" placeholders that exist to invite an edit rather than to be printed.
 
 Only then is the document wrapped in a head carrying the compiled Tailwind stylesheet, read straight off disk so the print and the screen share one source of truth for spacing.
@@ -140,6 +140,24 @@ Two smaller rules do a similar amount of work. A row with a name but no number a
 The export goes back the other way, tab-separated, with an `X` in each tag column the dish carries — so the file that came out of a restaurant's spreadsheet can go back into it.
 
 That matching used to fail in silence. A photograph whose filename matched nothing was discarded where it was compressed — and because the list of uploaded files is computed from the dishes themselves, it then appeared in neither the menu nor the list of what you had just uploaded. Forty photos went in, thirty-eight landed, and the interface said the same thing either way. It now names what it could not place — *3 of 5 files were not added*, each filename and its reason — directly above the line that explains the naming rule which fixes it. A batch operation that reports only its successes leaves you to audit it by hand, which was the work the batch existed to remove.
+
+</div>
+
+<div class="contentSection">
+
+## One Sheet, Every Menu
+
+Going back to A Fatt for paid work in September 2026, I saw a problem in how they work: they keep an English, a German and a vegan and vegetarian menu, so one price change is three edits, and sometimes one gets missed. Releases 1.1 to 1.4 are built for that.
+
+- **A dish holds its name, description and category per language,** and its diets as fields. A main language plus *Also show* sets the line (`Szechuan Suppe / Szechuan Soup / 酸辣湯`), and *Show only* prints the vegetarian or vegan menu from the same rows, with vegan counted as vegetarian.
+- **The preview, the page count and the PDF use the filtered dishes,** while editing, CSV export and photo matching still see the whole menu. A price is typed once and reaches every language and every diet version.
+- **The draft survives a reload.** It saves to the browser a second after each change and at once when the tab is hidden, times out a stalled read rather than saving over it, and trusts nothing it reads back. Work in progress stays on the device, and the backend still holds no user data.
+
+#### The course that didn't print
+
+Testing on their real menu found the worst kind of bug. The preview paginated properly, keeping categories together, but the page counter and the PDF worked the count out by dividing dishes by page size. A page that keeps a category together holds fewer dishes than that, so the PDF ended a page early and the last category never printed. It was A Fatt's desserts, the section I had just been paid to add. Pagination is now one function that the preview, the counter and the PDF all call, under seven tests, one of which pins exactly this. It was the one-layout rule, applied to the one place it hadn't reached.
+
+A Fatt still don't use menuGen. Their menu is what I test it against.
 
 </div>
 
@@ -187,7 +205,11 @@ An earlier version had solved this by committing nine Noto Sans TC weights into 
 
 The second half was *when* to print. `networkidle0` waits for the network to go quiet, which a document full of inlined base64 makes slow and fragile; `domcontentloaded` does not wait for a webfont at all, so the PDF prints in the fallback and looks like a bug in the layout.
 
-So the page loads twice: the head alone with an empty body at `networkidle0`, resolving the font requests and nothing else, then the real document at `domcontentloaded`, needing no network. After that, `document.fonts.ready` raced against five seconds, and every image awaited on `onload`/`onerror` with a three-second cap. Every wait has a ceiling. A font CDN having a bad afternoon costs a restaurant its chosen typeface, not its menu.
+So the document loads at `load`, under a 20-second budget of its own inside the page's 60, and a stylesheet that times out is caught rather than thrown: by then the markup is in place, so a slow CDN costs the webfont and not the export. After that, `document.fonts.ready` is raced against five seconds, and every image is awaited on `onload`/`onerror` with a three-second cap. Every wait has a ceiling. A font CDN having a bad afternoon costs a restaurant its chosen typeface, not its menu.
+
+#### The same bug, one character narrower
+
+The first real menu found the font problem again. 叄, in 叄峇 (sambal, on five of A Fatt's dishes), is not in Noto Sans TC. The preview borrowed it from my Mac, and the PDF printed a box. The March fix had pinned a font; it had not checked that the font covered the menu. Noto Sans SC now sits behind TC in the same request, and Chrome fetches only the slice a character needs.
 
 </div>
 
@@ -201,13 +223,17 @@ So the export is a job, not a request. `POST /generate-pdf` returns a `jobId` im
 
 Being exact: it is a queue in an array in one process. Jobs do not survive a restart, and none of it survives a second instance. For one worker and a single-digit number of concurrent users that is the honest size of the problem — naming it as scaling groundwork would be overselling a `while` loop.
 
-Running in two places produced one more lesson. The Docker image installs Chromium at `/usr/bin/chromium`, so that path was hardcoded — and on Render, where the image is not used, there is nothing there. It is now `process.env.CHROMIUM_PATH || null`: the environment variable where the container knows better, Puppeteer's bundled Chromium everywhere else. A default that is correct in one environment is a bug in the other.
+Running in two places produced one more lesson. The Docker image installs Chromium at `/usr/bin/chromium`, so that path was hardcoded — and on Render's native runtime there was nothing there. It became `process.env.CHROMIUM_PATH || null`. A default that is correct in one environment is a bug in the other. Production now runs the Docker image on Render, which also gives the live service its own Chinese fonts. The move found one more silent failure first: the image had been built without the compiled stylesheet the renderer reads, so every live PDF would have exported unstyled, with no error. CI now checks that the image holds the stylesheet and a Chinese font.
+
+#### The box was smaller than my laptop
+
+The instance has 512 MB, and the product had only ever run on a laptop where that ceiling doesn't exist. A real 76-photo menu took the container to 474 MB and it was killed. The cause was building a whole document tree on the server to make three small edits, then throwing it away so Chrome could parse the same markup again. The export now keeps the page a string end to end: the same menu peaks at 365 MB for the whole container, and the PDF is identical to the pixel. The same bytes cost about 1× as a string and 30× as a document tree, and Chrome parses the page regardless.
 
 #### The sixty seconds I did not fix
 
 A free instance sleeps, and waking it takes up to a minute. I had two options — pay for a warm instance, or tell the truth — and for a portfolio deployment the second is the better product decision anyway.
 
-So the export overlay says so: *the first export may take up to 60 seconds while the server starts.* A dismissible banner repeats it before anyone presses the button. And failure stopped being a `window.alert` and became an in-page state with a **Retry Export PDF** button and the reassurance that the work is still there.
+So the export overlay says so: *the first export may take up to 60 seconds while the server starts.* A dismissible banner repeats it before anyone presses the button. And a failure shows an in-page state with a **Retry Export PDF** button and the reassurance that the work is still there.
 
 An export that can fail at fifty-five seconds and offers one click to try again is a different product from one that fails at fifty-five seconds and says so in a dialog. The rendering code is identical in both.
 
@@ -235,7 +261,7 @@ What I took from it is not about Safari. Two anchors named `a` in one function i
 
 ## No Accounts, No Database
 
-Menu data lives in the browser and leaves it only to be printed. There is no sign-up, no persistence, no user table.
+Menu data lives in the browser and leaves it only to be printed. There is no sign-up, no server-side storage, no user table.
 
 That reads as a privacy feature, and it is one, but it was a scope decision first. The question the project existed to answer was whether managing a menu as structured content beats managing it as a design file, and neither auth nor storage helps answer it. They are the cost of the *next* question, and paying it early would have bought a slower answer to this one.
 
@@ -247,11 +273,11 @@ That reads as a privacy feature, and it is one, but it was a scope decision firs
 
 #### What it costs
 
-- Close the tab and the work is gone. There is no autosave, and the CSV export is the only way back.
+- The work lives on one device. The draft saves itself to the browser (IndexedDB) a second after each change, so a reload keeps it, but nothing follows you to another machine.
 - No collaboration, no history, no reopening last season's menu.
-- The workaround is the export button, which is fine for a designer and thin for a restaurant.
+- The CSV export is the only way to move a menu between devices, which is fine for a designer and thin for a restaurant.
 
-If MenuGen went further, the first thing added would be storage, and every trade-off above would invert.
+If MenuGen went further, the first thing added would be server storage, and every trade-off above would invert.
 
 </div>
 
@@ -291,7 +317,7 @@ There is one reason this has a backend at all: a print-faithful render needs a r
           Print-ready PDF
 ```
 
-Vue 3 and TypeScript with Pinia on Vercel; Express on Render, containerised with Docker for local work. Both halves are stateless, which is what makes the queue's one real cost so small: a restart loses a job in flight and nothing else.
+Vue 3 and TypeScript with Pinia on Vercel; Express on Render, running the same Docker image used locally. Both halves are stateless, which is what makes the queue's one real cost so small: a restart loses a job in flight and nothing else.
 
 </div>
 
@@ -315,7 +341,7 @@ What I can defend: the tool works, and its segment is narrower than "restaurants
 
 ## Where It Stands
 
-MenuGen is live at [menugen.insdash.ch](https://menugen.insdash.ch). It opens on four placeholder rows rather than a finished menu, so the first thing a visitor can do is edit one instead of clearing ninety. The menu it was built and tested against is A Fatt's: 90 dishes across 20 sections, bilingual, tagged, photographed, thirteen pages in the preview. It is a working product tested against real data — one restaurant's. That is what makes its edge cases real, and what leaves me unable to name the ones it has not met.
+MenuGen is live at [menugen.insdash.ch](https://menugen.insdash.ch). It opens on four placeholder rows rather than a finished menu, so the first thing a visitor can do is edit one instead of clearing ninety. The menu it was built and tested against is A Fatt's, and in September 2026 their current menu, over a hundred dishes in three languages, found two silent drops the sample never had: the dessert course missing from the PDF, and 叄 printing as a box. It is a working product tested against real data — one restaurant's. That is what makes its edge cases real, and what leaves me unable to name the ones it has not met.
 
 </div>
 
@@ -331,7 +357,7 @@ MenuGen is live at [menugen.insdash.ch](https://menugen.insdash.ch). It opens on
 
 #### Where I Stopped
 
-Authentication, stored menus and multi-restaurant workspaces are all scoped and none of them are built, because none of them were needed to find out whether the core idea worked. Translation is the one I want to build — the model already carries a name and a Chinese name per dish, so a bilingual menu today is two columns somebody types twice. It is not the one I would build next. Next is the empty state, because the finding above is that the tool loses people before it ever gets the chance to be useful.
+Authentication, stored menus and multi-restaurant workspaces are all scoped and none of them are built, because none of them were needed to find out whether the core idea worked. Translation is the one I want to build — each dish now carries its name, description and category in English, German and Chinese, so the gap is filling those fields, not storing them. It is not the one I would build next. Next is the empty state, because the finding above is that the tool loses people before it ever gets the chance to be useful.
 
 What I would not build is a design tool. MenuGen wins by refusing to be one — the layout is code precisely so that nobody has to open it — and every feature that lets a user nudge the layout takes back the thing the project was for.
 
