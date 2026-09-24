@@ -124,6 +124,8 @@ I rebuilt their logo in Python: the seal from true circles and arcs, and the wor
 
 ![A test run of the vectoriser on A Fatt's wordmark, after the job: one ink found, background removed, repeated letters written as exact copies. The delivered logo set came from the Python script.](./vectorize.webp)
 
+![The bowl up close: the source bitmap on the left, the vector on the right. At the default settings the thin gaps between the chopsticks closed up; raising the background tolerance to 0.35 and lowering smoothing kept them open.](./vectorize-bowl.webp)
+
 #### Where it stands
 
 The script did the client's job. The vectoriser is private and hasn't been used on a client job yet, which is why it gets the shortest section here.
