@@ -5,6 +5,7 @@ import MetaCard from '@/components/content/MetaCard.astro';
 import ProjectThumbnail from '@/components/content/ProjectThumbnail.astro';
 import ContentFooter from '@/components/content/ContentFooter.astro';
 import SectionNav from '@/components/content/SectionNav.astro';
+import ImageZoom from '@/components/content/ImageZoom.astro';
 
 interface Props {
   project: CollectionEntry<'projects'>;
@@ -40,6 +41,8 @@ const words = project.body
   <ContentFooter project={project} baseUrl={baseUrl}>
     <!-- <img src=`${baseUrl}images/projects/multi-multi/prototype.gif` alt="" loading="lazy" decoding="async" class="w-full object-cover" /> -->
   </ContentFooter>
+
+  <ImageZoom />
 
   <style>
     @reference "@/styles/global.css";
