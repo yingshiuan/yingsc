@@ -1,0 +1,66 @@
+---
+// Case-study screenshots are full layouts shrunk to a phone's width, where the
+// text in them is too small to read. Tapping an image opens it full screen;
+// tapping again (or Escape) closes it. Images inside links keep their link.
+---
+
+<dialog class="imageZoom" aria-label="Enlarged image">
+  <img alt="" />
+</dialog>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>('dialog.imageZoom');
+  const zoomed = dialog?.querySelector('img');
+
+  if (dialog && zoomed) {
+    const images = document.querySelectorAll<HTMLImageElement>('.content img');
+
+    const open = (img: HTMLImageElement) => {
+      zoomed.src = img.currentSrc || img.src;
+      zoomed.alt = img.alt;
+      dialog.showModal();
+    };
+
+    images.forEach((img) => {
+      if (img.closest('a')) return;
+      img.classList.add('zoomable');
+      img.tabIndex = 0;
+      img.setAttribute('role', 'button');
+      img.setAttribute('aria-haspopup', 'dialog');
+      img.addEventListener('click', () => open(img));
+      img.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          open(img);
+        }
+      });
+    });
+
+    dialog.addEventListener('click', () => dialog.close());
+  }
+</script>
+
+<style>
+  @reference "@/styles/global.css";
+
+  :global(.content img.zoomable) {
+    @apply cursor-zoom-in;
+  }
+
+  .imageZoom {
+    @apply m-0 p-0 w-screen h-dvh max-w-none max-h-none
+    flex items-center justify-center bg-transparent border-0 cursor-zoom-out;
+  }
+
+  .imageZoom:not([open]) {
+    @apply hidden;
+  }
+
+  .imageZoom::backdrop {
+    @apply bg-black/90;
+  }
+
+  .imageZoom img {
+    @apply max-w-full max-h-full object-contain;
+  }
+</style>
