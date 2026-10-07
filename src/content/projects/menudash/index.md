@@ -41,9 +41,11 @@ activities: 'A restaurant client kept an English, a German and a separate vegan 
 
 A Fatt kept three menus: an English one, a German one, and a separate vegan and vegetarian one. I designed those layouts. Every dish was copied by hand between them, so one price change meant three edits, and every copy was a chance for the three menus to stop saying the same thing.
 
-Making another printed version would only add to that risk. So I proposed something else: why not put the menu online, on the website they already had? Collect every dish once, in one Excel sheet, with a column per language and a mark per diet. Instead of the restaurant printing a menu for each kind of guest, each guest filters the one menu on their own phone.
+Making another printed version would only add to that risk. And I had already shown them [menuGen](https://yingshiuan.github.io/yingsc/projects/menu-generator/), my own tool that prints every version from one spreadsheet, and they kept their Canva menus. It fixed the work behind the menu, and a restaurant judges a menu by what its guests see. So I proposed something else: why not put the menu online, on the website they already had? Collect every dish once, in one Excel sheet, with a column per language and a mark per diet. Instead of the restaurant printing a menu for each kind of guest, each guest filters the one menu on their own phone.
 
 MenuDash is the WordPress plugin I designed and built to do that. It runs the [menu page on afatt.ch](https://afatt.ch/menu/): 110 dishes in three languages, filtered by diet, rebuilt whenever the owner uploads the sheet. Then, because the problem wasn't specific to one restaurant, I made it a product. The core and its theme are open source: [MenuDash on GitHub](https://github.com/yingshiuan/menudash) · [MenuDash Theme](https://github.com/yingshiuan/menudash-theme).
+
+**Where it stands:** live on one restaurant's site since September 2026. The add-ons and the theme are built, not yet installed there.
 
 #### Key Highlights
 
@@ -157,17 +159,16 @@ I built MenuDash with Claude Code. I designed the product and the data model, wr
 
 ## Where It Stands
 
-The core has run A Fatt's menu page since late September 2026, now at the stable version 2.7. It is early: the owner's real test, updating the menu month after month without me, is still ahead. The four add-ons and the theme are built, offered through insdash, and not on A Fatt's site yet. A Fatt is the first restaurant running it; the split is built for the ones that come next.
+The core has run A Fatt's menu page since late September 2026, now at the stable version 2.7. The four add-ons and the theme are built, offered through insdash, and not on A Fatt's site yet. A Fatt is the first restaurant running it; the split is built for the ones that come next.
 
 </div>
 
 <div class="contentSection">
 
-## What I Took From It
+## What's Still Open
 
-- **Turn a layout problem into a data problem.** Three menus that could disagree became one sheet, and every version became a filter.
-- **Design the failure path before the happy path.** The refusal is the feature; the report is how the owner learns the format without a manual.
-- **Split the product where the customers split.** A café and a restaurant need different amounts of the same tool.
-- **The architecture is part of the business model.** Add-ons that work on their own are what make à la carte pricing possible.
+- **The owner's side isn't proven yet.** She's trained to upload the menu. Whether she does it month after month without me is the real result, and it's weeks old.
+- **The guest's side has no data yet.** Statistics is built to show which dishes guests look at, but it isn't installed on afatt.ch, so I can't yet say what guests do with the filters.
+- **I'd get the second customer before the third add-on.** It grew from one menu page into a core, four add-ons and a theme in two weeks, for one restaurant. The split is a bet on restaurants I haven't met yet.
 
 </div>
