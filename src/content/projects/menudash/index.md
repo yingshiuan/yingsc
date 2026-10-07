@@ -20,7 +20,7 @@ thumbnail: './thumbnail.webp'
 info: 'One menu online that every guest filters by language and diet, instead of a separate menu for each, then split into a free core and paid add-ons.'
 description: 'I turned a restaurant''s three hand-copied menus into one spreadsheet and a WordPress plugin that every guest filters by language and diet, designed the upload so a wrong file can''t break the live page, and then made it a product: a free, open-source core for every café and four paid add-ons for a full restaurant.'
 role: 'Product Engineer & Founder'
-timeline: '2 weeks to stable, live on the client''s site from week 1'
+timeline: '2 weeks to stable, live on the client''s site from the first week'
 completed: 'Stable 2.7.0 · Live on afatt.ch since 09/2026'
 credit: 'A Fatt'
 creditLink: 'https://afatt.ch/menu/'
@@ -141,7 +141,7 @@ The theme follows the same rule. It stores no address, phone or hours of its own
 
 I built MenuDash with Claude Code. I designed the product and the data model, wrote the specifications, reviewed every change and decided what shipped. The parser is tested against A Fatt's real spreadsheet as well as made-up ones, and the whole thing runs locally in WordPress Playground, so a site with the client's menu starts with one command.
 
-**I didn't wait for it to be finished.** After one week, at version 1.3, I installed it on afatt.ch to test it against the real site and the real menu, and kept updating it there as each new version shipped. A week later it reached a stable version, 2.7. Testing on the client's site while building is how the real menu's problems showed up early instead of after launch.
+**I didn't wait for it to be finished.** After a few days, at version 1.1.3, I installed it on afatt.ch to test it against the real site and the real menu, and kept updating it there as each new version shipped. Less than two weeks later it reached a stable version, 2.7. Testing on the client's site while building is how the real menu's problems showed up early instead of after launch.
 
 **The last step before a release is a security review.** A plugin that takes files from a restaurant owner and a form from any visitor is an open door if nobody checks it, and code that works isn't the same as code that's safe. So before a version ships, I run a review of how it could be abused, and what turns up is fixed before it goes out. Those reviews are where most of the hardening came from:
 
@@ -157,7 +157,7 @@ I built MenuDash with Claude Code. I designed the product and the data model, wr
 
 ## Where It Stands
 
-The core has run A Fatt's menu page since the end of September 2026, now at the stable version 2.7. It is early: the owner's real test, updating the menu month after month without me, is still ahead. The four add-ons and the theme are built, offered through insdash, and not on A Fatt's site yet. A Fatt is the first restaurant running it; the split is built for the ones that come next.
+The core has run A Fatt's menu page since late September 2026, now at the stable version 2.7. It is early: the owner's real test, updating the menu month after month without me, is still ahead. The four add-ons and the theme are built, offered through insdash, and not on A Fatt's site yet. A Fatt is the first restaurant running it; the split is built for the ones that come next.
 
 </div>
 
