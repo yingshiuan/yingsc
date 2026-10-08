@@ -44,7 +44,7 @@ MenuGen turns a spreadsheet into a print-ready restaurant menu. The editor's liv
 
 I built it because I had already done the job by hand. In 2024 I designed a [modular menu system](/yingsc/projects/afatt) for A Fatt, a Malaysian Chinese restaurant in Zürich — around 90 dishes across 20 sections, each with a name, a Chinese name, a price, a description, dietary tags and a photo. It worked, and the restaurant still uses it. But every change that came back to me went through Figma and Canva, where editing text means editing a layout: a two-word description lands a dish on the next page, and the next page has to be checked too. I was making the same edit by hand, again and again.
 
-The design was finished; the maintenance was not, and it would outlive the design by years. MenuGen is that problem solved for the general case — built afterwards, on my own, with A Fatt's menu as the fixture. The whole arc, from their brief to the tools it led to, is in [Restaurant Menu Tools](/yingsc/projects/restaurant-menu-tools); the tool they did take is [MenuDash](/yingsc/projects/menudash).
+The design was finished; the maintenance was not, and it would outlive the design by years. MenuGen is that problem solved for the general case — built afterwards, on my own, with A Fatt's menu as the fixture. The tool they did take is [MenuDash](/yingsc/projects/menudash).
 
 #### Key Highlights
 
