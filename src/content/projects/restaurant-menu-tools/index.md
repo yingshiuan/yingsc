@@ -20,7 +20,7 @@ image: './cover.webp'
 hoverImage: './cards.webp'
 thumbnail: './cover.webp'
 info: 'One restaurant kept asking the same questions: will this code scan, will this logo hold at poster size, why am I redoing this layout, is the website up to date. I built a tool for each.'
-description: 'Four tools, each built because a paying client job kept asking a question I was answering by hand: a QR check for the restaurant''s flyer, a logo rebuild and vectoriser, menuGen for the layout work, and MenuDash for their website menu.'
+description: 'Four tools, each built because a paying client job kept asking a question I was answering by hand: a QR check for the restaurant''s flyer, a logo rebuild and vectoriser, menuGen for the layout work, and MenuDash, a WordPress plugin that now runs their online menu.'
 role: 'Designer & Engineer'
 timeline: '2024 – 2026'
 completed: 'Menu system 08/2024 · Print work and tools 09/2026'
@@ -34,7 +34,7 @@ focus:
     'Validation',
     'Handover Design',
   ]
-activities: 'A Zürich restaurant hired me in 2024 to redo their menu, and came back in 2026 for new print work, which I built as code from one dish list. Along the way the job kept asking the same questions, and each time I stopped answering by hand and built the tool: inscode, which measures whether a QR code with their logo in it will still scan; a Python logo rebuild, later generalised into a browser vectoriser; menuGen, for the menu layout I kept redoing; and MenuDash, a WordPress plugin that puts the same spreadsheet on their website and refuses a broken file.'
+activities: 'A Zürich restaurant hired me in 2024 to redo their menu, and came back in 2026 for new print work, which I built as code from one dish list. Along the way the job kept asking the same questions, and each time I stopped answering by hand and built the tool: inscode, which measures whether a QR code with their logo in it will still scan; a Python logo rebuild, later generalised into a browser vectoriser; menuGen, for the menu layout I kept redoing; and MenuDash, a WordPress plugin that runs their online menu from the same spreadsheet, refuses a broken file, and grew into a free core with paid add-ons.'
 ---
 
 <div class="contentSection">
@@ -48,7 +48,7 @@ A Fatt is a Malaysian Chinese restaurant in Zürich. Across two jobs for them, t
 | **[inscode](https://github.com/yingshiuan/inscode)** | Will a QR code with their logo in it still scan, printed? | Public. Their flyer is printed and scans |
 | **Logo rebuild + vectoriser** | Will the logo hold at A2? | The script made their logo set; the vectoriser is private |
 | **[menuGen](/yingsc/projects/menu-generator)** | Why am I redoing this layout every time a price changes? | Live, my own. No users yet, and A Fatt isn't one |
-| **[MenuDash](https://github.com/yingshiuan/menudash)** | Is the menu on their website up to date? | Public. Built for their site, not yet installed |
+| **[MenuDash](/yingsc/projects/menudash)** | Is the menu on their website up to date? | Core public, paid for by the client, and running their menu page |
 
 #### Key Highlights
 
@@ -146,7 +146,7 @@ Designing the 2024 menu showed me the part a handover can't remove. Every price 
 
 #### What it does
 
-[menuGen](/yingsc/projects/menu-generator) is my own tool: a menu spreadsheet in, a print-ready PDF out, with the editable preview being the document that prints. The 2026 job sent it somewhere narrower. The restaurant keeps an English, a German and a vegan and vegetarian menu, so one price change is three edits and sometimes one gets missed. Its September releases print every language and every diet version from one sheet, and testing them on the restaurant's real menu found two bugs the sample never had.
+[menuGen](/yingsc/projects/menu-generator) is my own tool: a menu spreadsheet in, a print-ready PDF out, with the editable preview being the document that prints. The 2026 job sent it somewhere narrower. The restaurant asked for a vegan and vegetarian menu next to its English and German ones, and three menus mean one price change is three edits, with one sooner or later missed. Its September releases print every language and every diet version from one sheet, and testing them on the restaurant's real menu found two bugs the sample never had.
 
 #### Where it stands
 
@@ -160,13 +160,13 @@ Live at [menugen.insdash.ch](https://menugen.insdash.ch), with no users yet. A F
 
 #### The question
 
-The menu on the restaurant's website should come from the same spreadsheet as everything else, and the owner, not me, has to be able to update it. Their site already runs on WordPress, so the answer wasn't a new product. It was a plugin for the tool they already log into.
+Guests already read the menu on their phones, as PDFs opened from a QR code that don't fit every screen. Instead of handing each guest the English, the German or the vegan and vegetarian menu, why not put all of it on the website and let the guest choose? That menu should come from the same spreadsheet as everything else, and the owner, not me, has to be able to update it. Their site already runs on WordPress, so the answer wasn't a new product. It was a plugin for the tool they already log into. And where menuGen fixed the work behind the menu, which is why they kept Canva, this changes what their guests see, and a restaurant judges a menu by that.
 
 #### What it does
 
 ![MenuDash on a phone](./menudash-phone.webp)
 
-The owner exports the menu sheet as a CSV and uploads it in the WordPress dashboard. Guests read it in German, English and Chinese, together or one at a time, and filter it by diet. It is real HTML, so it works without JavaScript and search engines can read it.
+The owner uploads the menu sheet in the WordPress dashboard, as a CSV or straight from Excel. Guests read it in German, English and Chinese, together or one at a time, and filter it by diet. It is real HTML, so it works without JavaScript and search engines can read it. It also prints the meat and fish origin list Swiss restaurants have to give, in all three languages, and makes QR table cards that link to the menu.
 
 What I cared about most is what happens when the file is wrong, because the person uploading it isn't the person who designed the data:
 
@@ -180,9 +180,60 @@ A wrong file costs the owner a message, not the website.
 
 I also wrote an owner guide with a screenshot of every step. The plugin is open source, and one export writes both the restaurant's install and the public repository, refusing to write the public copy if anything identifying the client appears in it.
 
+#### From one plugin to a core and add-ons
+
+Once the menu worked, the rest of what guests check on a restaurant's site was the same problem: opening hours, a holiday closure, today's specials, gift cards. Each is something the owner changes and forgets to change in the other places. So I built them on the same dashboard page, and then had to decide how to sell them.
+
+My first plan was one package at a lower price. But a small café only needs the menu, and a full restaurant wants all of it. One price fits neither. So I split it along the same line as the customers: **the core is free, and four add-ons are paid, each working on its own.** The code is split the same way. Each add-on plugs into the core through its own hooks and shows nothing when it isn't installed, and a browser test runs the core alone and each add-on without the others.
+
+#### The core (free): the menu, and what the law and the tables need
+
+Beyond the menu itself, the core carries two things every Swiss restaurant needs. The **meat and fish origin list**, which restaurants here have to give in writing: the owner picks a product and types its countries once, in German or English, and MenuDash writes it in all three menu languages under the menu. And **QR table cards**: four A6 cards on an A4 sheet, or one A4 poster, with the logo, the menu link, a tip in the menu's languages, and optionally a Wi-Fi code guests join by scanning. The codes are drawn in the browser, so no outside service is involved.
+
+![The origin list for A Fatt's menu: products and countries in, a preview of what guests see.](./menudash-origin.webp)
+
+#### Add-on · Restaurant: details, hours and holidays
+
+The restaurant's details are entered once: address, phone, e-mail, how to get there, the delivery and reservation links, social links. Everything else on the site reads them from here.
+
+- **Opening hours with time pickers,** a row per weekday with a *Closed* tick and an optional second time for a lunch break. Days with the same hours are joined ("Dienstag – Freitag"), so nothing has to be typed in a format.
+- **An "open now" badge** in the site's time zone: "Open now · until 22:00", "Closed · opens tomorrow at 17:00", or "Closed for holidays today", because it knows the holidays too.
+- **A holiday notice that runs itself.** The owner enters the first and last day. The notice appears 60 days ahead in all three languages, changes while the restaurant is closed, and disappears afterwards. Nobody has to remember to take it down.
+- **Blocks for the WordPress editor** (Open now, Opening hours, Contact) and the data Google shows about the restaurant.
+
+![Opening hours for A Fatt, with the joined days on the right as guests will see them.](./menudash-opening-hours.webp)
+
+![The holiday notice while the restaurant is closed, in German, English and Chinese. A test closure on the local site.](./menudash-holiday.webp)
+
+#### Add-on · Specials: today's dishes and the week's lunch
+
+Two short spreadsheets beside the menu, with the same columns and the same checks. **Today's specials** show above the menu in the same style and languages; the last five files are kept, and one click takes the specials off the site. **The lunch menu of the week** has the weekdays as headings: the page shows today's lunch (or the next day's) with the whole week one tap away, and a "Served" line under the title. Both can also come in the same Excel workbook as the menu, each from its own sheet.
+
+![Today's specials from A Fatt's own spreadsheet: a mocktail, starters, mains and sides.](./menudash-specials.webp)
+
+![Today's lunch, in A Fatt's colours, with the rest of the week one tap away. Sample dishes.](./menudash-lunch.webp)
+
+#### Add-on · Gift Cards: orders by e-mail
+
+A picture of the card and an order form. Guests pick an amount and how many, and choose to pick the card up and pay at the restaurant or get it by post after paying in advance. The order arrives as an e-mail, with a copy to the guest, and the restaurant confirms by replying. **Nothing is paid online.** The owner can pause orders (over the holidays, or when the cards run out) and send a test e-mail to check the site can send mail at all. Spam is stopped by a hidden field, a signed minimum time, a link filter and limits per visitor and per day, with Cloudflare Turnstile as an option. None of it needs a session, so the form still works on a cached page.
+
+![The gift card order form, built for A Fatt. The order arrives by e-mail; nothing is paid online.](./menudash-gift-card.webp)
+
+#### Add-on · Statistics: which dishes guests look at
+
+A dish counts as seen when half of it stays on screen for two seconds, and a photo when it is opened. Counts are kept per dish and per day, with no cookies and no IP address stored; Do Not Track is honoured, the owner's own visits aren't counted, and a dish keeps its count across menu uploads. It measures attention, not orders, and it isn't on A Fatt's site yet, so there is no data to show.
+
+![The menu page in the public MenuDash Theme, with sample data: jump buttons, the lunch menu and today's specials above the menu, and one language switch for all of it.](./menudash-theme-menu.webp)
+
+#### A theme that holds no data
+
+A restaurant's phone number usually lives in five places: the header, the footer, the contact page, a button, the map. I built a block theme that stores none of them. Address, phone, hours and delivery links are drawn from MenuDash on every page view, and the Reserve, Order and Directions buttons are WordPress's own, linked to MenuDash and hidden while that detail is empty. The owner changes the phone number once, and saving a page in the editor can't freeze an old one into it. There is a public *MenuDash Theme*, and a version made for A Fatt.
+
+![A Fatt's own theme, built on MenuDash: the "open now" badge, address, phone and buttons all come from the plugin. Not on their site yet.](./menudash-afatt-theme.webp)
+
 #### Where it stands
 
-Public on [GitHub](https://github.com/yingshiuan/menudash). Self-initiated, and the owner agreed to it. It is built for their site and, at the time of writing, not yet installed.
+I proposed it, the owner agreed, and A Fatt paid for the core. The core runs the [menu page on afatt.ch](https://afatt.ch/menu/). The add-ons and the theme are built and not on their site yet. The core and theme are public on GitHub ([MenuDash](https://github.com/yingshiuan/menudash), [MenuDash Theme](https://github.com/yingshiuan/menudash-theme)); the add-ons are private and set up for restaurants through insdash. A Fatt is the only restaurant running it so far. The full story is on its [own page](/yingsc/projects/menudash).
 
 </div>
 
@@ -190,14 +241,12 @@ Public on [GitHub](https://github.com/yingshiuan/menudash). Self-initiated, and 
 
 ## What I Took From It
 
-- **Build the tool when the question comes back.** Every tool here started as something I kept answering by hand.
-- **Check with a machine, not with your eyes.** A decoder, a parity suite and a validator each catch the failure that looks fine.
 - **A test can pass for the wrong reason.** The QR check that passed at a size no phone could read taught me to ask where a pass comes from.
-- **Keep the data in one place and make everything else a view.** One dish list became two posters; one spreadsheet became a website.
 - **The handover is the product.** The 2024 system still runs without me, and that is why the client trusted me with the rest.
+- **I'd have watched the owner sooner.** menuGen took four months of building to show what handing the owner a price change in week two would have: a spreadsheet suits someone who already keeps their menu as data, and theirs lived in Canva. MenuDash started from the tool they already use.
 
 #### Where I Stopped
 
-The obvious next step would be one system for all of it: menu, posters and website. The one time I offered a replacement, the restaurant kept what they had, and I take that as the answer. Each tool stays the size of the question it answers.
+The obvious next step would be one system for all of it: menu, posters and website. The one time I offered a replacement, the restaurant kept what they had, and I take that as the answer. The tools stay separate. MenuDash is the one that grew, because its question isn't specific to one restaurant. Whether they will pay for the answer is still open: so far, A Fatt is the only one.
 
 </div>
