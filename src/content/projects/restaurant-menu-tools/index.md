@@ -59,7 +59,6 @@ A Fatt is a Malaysian Chinese restaurant in Zürich. Across two jobs for them, t
 
 I built the tools with Claude Code as the implementer. The questions, the specifications and what counted as done were mine.
 
-![The two A2 posters, generated from one dish list](./posters.webp)
 
 </div>
 
@@ -71,9 +70,9 @@ I built the tools with Claude Code as the implementer. The questions, the specif
 
 ![Two pages of the 2024 menu: German and Chinese names, diet icons, a photo for each dish. The staff still keep it up to date in Canva.](./menu-2024.jpg)
 
-**2026: they came back.** A paying job this time: a dessert section, an exterior flyer with a QR code, two A2 posters (the recommended dishes, and every vegan and vegetarian dish), gift cards and name cards. I built the new pieces as code. Every piece is an HTML page at its real print size, and the dishes live in one TypeScript file: mark a dish as a pick and it joins the recommendations poster, tag it vegan and it joins the veggie poster. A page that overflows draws a red outline before anything reaches a printer, and a small Python script renders every page in headless Chrome to a print PDF.
+**2026: they came back.** A paying job this time. Next to the German and English menus, each with the Chinese names, they wanted a third: a vegan and vegetarian one. Around it came a dessert section, two A2 posters (the recommended dishes, and every vegan and vegetarian dish), signs for the door and the tables (opening hours, a QR code to the menu, the guest Wi-Fi), gift cards and name cards. I built the new pieces as code. Every piece is an HTML page at its real print size, and the dishes live in one TypeScript file: mark a dish as a pick and it joins the recommendations poster, tag it vegan and it joins the veggie poster. A page that overflows draws a red outline before anything reaches a printer, and a small Python script renders every page in headless Chrome to a print PDF.
 
-![The gift card, front and back](./gift-card.webp)
+![The 2026 print work: the two A2 posters, the signs for the door and the tables, and the gift card, front and back.](./print-2026.webp)
 
 The 2024 menu is the staff's to edit. These pieces are mine to maintain. That line was drawn on purpose in 2024, and it held.
 
