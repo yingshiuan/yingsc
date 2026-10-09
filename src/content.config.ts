@@ -14,6 +14,8 @@ const projects = defineCollection({
       title: z.string(),
       subtitle: z.string().optional(),
       featured: z.boolean(),
+      // Kept out of the project grid and sitemap; the page itself still builds.
+      hidden: z.boolean().optional(),
       type: z.string(),
       created: z.union([z.string(), z.date()]).optional(),
       domains: z.array(z.string()).optional(),

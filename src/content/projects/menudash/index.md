@@ -17,8 +17,8 @@ tags: ['Product Engineering', 'WordPress', 'Business Model', 'Open Source', 'Val
 image: './cover.webp'
 hoverImage: './cover-hover.webp'
 thumbnail: './thumbnail.webp'
-info: 'One menu online that every guest filters by language and diet, instead of a separate menu for each, then split into a free core and paid add-ons.'
-description: 'Asked for a separate vegan and vegetarian menu, I turned the restaurant''s menu into one spreadsheet and a WordPress plugin that every guest filters by language and diet instead, designed the upload so a wrong file can''t break the live page, and then made it a product: a free, open-source core for every café and four paid add-ons for a full restaurant.'
+info: 'One menu online that every guest filters by language and diet, behind one QR code instead of three PDFs, then split into a free core and paid add-ons.'
+description: 'Asked for a separate vegan and vegetarian menu, I made it, then turned the restaurant''s menu into one spreadsheet and a WordPress plugin, so guests scan one QR code and filter by language and diet instead of choosing between three PDFs; designed the upload so a wrong file can''t break the live page, and then made it a product: a free, open-source core for every café and four paid add-ons for a full restaurant.'
 role: 'Product Engineer & Founder'
 timeline: '2 weeks to stable, live on the client''s site from the first week'
 completed: 'Stable 2.7.0 · Live on afatt.ch since 09/2026'
@@ -32,7 +32,7 @@ focus:
     'Business Model',
     'Validation',
   ]
-activities: 'A restaurant client had kept the English and German Canva menus I designed for them in 2024 up to date on their own, and came back in 2026 asking for a separate vegan and vegetarian menu. Rather than give them a third PDF to keep in step with the other two, I turned the menu into data: one spreadsheet, a column per language and a mark per diet, read by a WordPress plugin I designed so every guest filters the one menu on their phone. I designed the owner''s side around the file going wrong, with a report that refuses a broken upload and keeps the live menu online. Then I made it a product: a free open-source core and four paid add-ons, split along the line between a café and a full restaurant, with an architecture where each add-on works on its own and a business that sells the setup and the care. I built it with Claude Code: I designed the product and the data model, wrote the specifications, reviewed every change and decided what shipped.'
+activities: 'A restaurant client had kept the English and German Canva menus I designed for them in 2024 up to date on their own, and came back in 2026 asking for a separate vegan and vegetarian menu. They got the third PDF, and with it three files to keep in step and three QR codes for guests to choose from. So I turned the menu into data: one spreadsheet, a column per language and a mark per diet, read by a WordPress plugin I designed so every guest filters the one menu on their phone. I designed the owner''s side around the file going wrong, with a report that refuses a broken upload and keeps the live menu online. Then I made it a product: a free open-source core and four paid add-ons, split along the line between a café and a full restaurant, with an architecture where each add-on works on its own and a business that sells the setup and the care. I built it with Claude Code: I designed the product and the data model, wrote the specifications, reviewed every change and decided what shipped.'
 ---
 
 <div class="contentSection">
@@ -41,7 +41,7 @@ activities: 'A restaurant client had kept the English and German Canva menus I d
 
 Since 2024, A Fatt has kept the menus I designed for them up to date on their own, in Canva, without calling me: an English one and a German one, each with Chinese alongside. Guests scan a QR code at the table and open them as PDFs on their phone. In 2026 they came back with a new request: a third menu, of only their vegan and vegetarian dishes.
 
-Designing it was the easy part. Every vegan and vegetarian dish would then live in three PDFs, so every price change would be three edits, and one missed edit would put the menus out of step, in front of the guests who read a menu most carefully. And the PDFs already had a problem of their own: a PDF has one fixed page size, and it doesn't fit every phone's screen.
+Designing it was the easy part. Every vegan and vegetarian dish now lived in three PDFs, so every price change was three edits, and one missed edit would put the menus out of step, in front of the guests who read a menu most carefully. Guests had three QR codes to choose from. And the PDFs had a problem of their own: a PDF has one fixed page size, and it doesn't fit every phone's screen.
 
 I had already shown them [menuGen](https://yingshiuan.github.io/yingsc/projects/menu-generator/), my own tool that prints every version from one spreadsheet, and they kept their Canva menus. It fixed the work behind the menu, and a restaurant judges a menu by what its guests see. So I asked a different question: instead of handing each guest the English, the German or the vegan and vegetarian menu, why not put all of it on the website they already had, as a page instead of a file? Collect every dish once, in one Excel sheet, with a column per language and a mark per diet. One sheet means one edit, with nothing left to fall out of step. The page fits whatever screen opens it. And the vegan and vegetarian menu becomes a filter: instead of the restaurant keeping a menu for each kind of guest, each guest filters the one menu on their own phone.
 
@@ -51,7 +51,7 @@ MenuDash is the WordPress plugin I designed and built to do that. It runs the [m
 
 #### Key Highlights
 
-- **I turned a layout problem into a data problem.** The vegan and vegetarian menu they asked for, a third PDF that could disagree with the other two, became a filter on one sheet that can't disagree with itself.
+- **I turned a layout problem into a data problem.** The third PDF they asked for could disagree with the other two. Online, it became a filter on one sheet that can't disagree with itself.
 - **I designed for two users.** The guest wants their language and their diet in one tap. The owner wants to change a price without calling me.
 - **I designed the failure path first.** A wrong file gets a red report and is refused, and the live menu stays online.
 - **I split the product where the customers split.** A free core for every café, paid add-ons for a full restaurant, and code where each add-on works on its own.

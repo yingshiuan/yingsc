@@ -1,7 +1,7 @@
 ---
 title: 'MenuGen'
 subtitle: 'Restaurant Menu Management Platform'
-featured: true
+featured: false
 type: 'Self-initiated'
 created: 2026-01-01
 domains:

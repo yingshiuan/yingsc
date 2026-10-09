@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import ProjectCard from '@/components/grids/ProjectCard.astro';
 import Button from '@/components/UI/Button.astro';
 
-const projects = await getCollection('projects');
+const projects = await getCollection('projects', (p) => !p.data.hidden);
 projects.sort((a, b) => {
   if (a.data.featured !== b.data.featured) return a.data.featured ? -1 : 1;
 
