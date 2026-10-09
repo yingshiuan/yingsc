@@ -140,9 +140,10 @@ Then I made it a product, split where the customers split: a free, open-source c
 
 ## What I Took From It
 
-- **A test can pass for the wrong reason.** The QR check that passed at a size no phone could read taught me to ask where a pass comes from.
+- **Deliver the ask, then pitch the fix.** They asked for a third menu, and I made it. Then I looked at what it cost: three menus to keep in step, and three QR codes for guests to choose from. I pitched a fix sized to what I could build, run and support myself: a plugin for the WordPress site they already had, not a new platform. The owner agreed and paid for it.
+- **A tool gets used when it fits the work people already do.** menuGen and MenuDash answer the same problem, and only one runs at the restaurant. menuGen took four months of building to show what handing the owner a price change in week two would have: a spreadsheet suits someone who already keeps their menu as data, and theirs lived in Canva. MenuDash started from the tool they already log into. Next time I'd watch the owner first.
 - **The handover is the product.** The 2024 system still runs without me, and that is why the client trusted me with the rest.
-- **I'd have watched the owner sooner.** menuGen took four months of building to show what handing the owner a price change in week two would have: a spreadsheet suits someone who already keeps their menu as data, and theirs lived in Canva. MenuDash started from the tool they already use.
+- **A test can pass for the wrong reason.** The QR check that passed at a size no phone could read taught me to ask where a pass comes from.
 
 The obvious next step would be one system for all of it: menu, posters and website. The one time I offered a replacement, the restaurant kept what they had, and I take that as the answer. The tools stay separate. MenuDash is the one that grew, because its question isn't specific to one restaurant.
 
