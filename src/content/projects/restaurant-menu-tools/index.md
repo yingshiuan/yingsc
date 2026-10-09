@@ -98,7 +98,7 @@ My own check fooled me once. A design decoded perfectly at a size no phone camer
 
 ## Tool 2 · Logo Rebuild and Vectoriser: Will It Hold at A2?
 
-A poster at A2 needs a logo that stays sharp at any size. I rebuilt theirs in Python: the seal from true circles and arcs, the wordmark traced and refitted. That script produced the logo set the posters use. Afterwards I generalised it into a browser vectoriser that never uploads the image anywhere, held to the original script by a parity suite that has to agree within a hundredth of a pixel.
+A poster at A2 needs a logo that stays sharp at any size. I rebuilt theirs in Python: the seal from true circles and arcs, the wordmark traced and refitted. That script produced the restaurant's logo system: the wordmark, the wordmark with its tagline, a stacked version for square spaces, the seal and an icon, each in red, cream and black. Every 2026 piece uses it. Afterwards I generalised it into a browser vectoriser that never uploads the image anywhere, held to the original script by a parity suite that has to agree within a hundredth of a pixel.
 
 ![The vectoriser on A Fatt's wordmark, half and half: the source bitmap on the left, the vector on the right. A test run after the job; the delivered logo set came from the Python script.](./vectorize-compare.webp)
 
