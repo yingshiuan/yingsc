@@ -69,7 +69,7 @@ I built the tools with Claude Code as the implementer. The questions, the specif
 
 **2024: "redo the menu".** I surveyed the restaurant's diners and tested printed drafts with them at the table, then handed over a trilingual, diet-tagged menu system in Canva that the staff maintain without a designer. That was on purpose: no retainer. Two years on they still run it, and it took a new dessert section without a redesign. The research and design process is in the [original case study](/yingsc/projects/afatt).
 
-![The 2024 menu system: type, colour, diet icons and reusable dish components the staff build pages from](./modular-system-2024.jpg)
+![Two pages of the 2024 menu: German and Chinese names, diet icons, a photo for each dish. The staff still keep it up to date in Canva.](./menu-2024.jpg)
 
 **2026: they came back.** A paying job this time: a dessert section, an exterior flyer with a QR code, two A2 posters (the recommended dishes, and every vegan and vegetarian dish), gift cards and name cards. I built the new pieces as code. Every piece is an HTML page at its real print size, and the dishes live in one TypeScript file: mark a dish as a pick and it joins the recommendations poster, tag it vegan and it joins the veggie poster. A page that overflows draws a red outline before anything reaches a printer, and a small Python script renders every page in headless Chrome to a print PDF.
 
