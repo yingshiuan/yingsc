@@ -2,6 +2,7 @@
 title: 'Modular Menu System'
 subtitle: ''
 featured: false
+hidden: true
 type: 'Professional'
 created: 2024-12-01
 domains:
