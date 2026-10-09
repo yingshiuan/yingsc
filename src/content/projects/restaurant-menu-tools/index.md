@@ -122,7 +122,7 @@ The 2026 job sent it somewhere narrower. The restaurant asked for a vegan and ve
 
 ## Tool 4 · MenuDash: Is the Website Up to Date?
 
-Guests already read the menu on their phones, as PDFs from a QR code that don't fit every screen. Instead of a third PDF for the vegan and vegetarian menu, I proposed putting the whole menu on their website and letting each guest filter it by language and diet. Their site already runs on WordPress, so the answer was a plugin for the tool the owner already logs into.
+Guests read the menu on their phones as PDFs, and the vegan and vegetarian one made three: three menus to keep in step, three QR codes to choose from, and files that don't fit every screen. I proposed putting the whole menu on their website: one QR code, and each guest filters it by language and diet. Their site already runs on WordPress, so the answer was a plugin for the tool the owner already logs into.
 
 ![A Fatt's menu on afatt.ch, on a phone: one menu, filtered by language and diet.](./afatt-menu-iphone-wide.webp)
 
