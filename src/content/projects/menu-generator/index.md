@@ -22,7 +22,7 @@ info: 'A menu editor whose live preview is the document — a restaurant keeps a
 description: 'Built the general-case answer to a menu I had already designed by hand: a spreadsheet-driven editor with no second layout to keep in sync, a render path with a ceiling on every wait, and a data model whose elegance turned out to be a prerequisite in the user.'
 role: 'Full-Stack Product Engineer'
 timeline: '4 months'
-completed: '03/2026 · One sheet, every menu 09/2026'
+completed: '03/2026 · One sheet, every menu 09/2026 · 300 ppi 10/2026'
 credit: 'Menu Generator'
 creditLink: 'https://menugen.insdash.ch'
 tools: [ 'Vue.js', 'TypeScript', 'Tailwind CSS', 'Pinia', 'PapaParse', 'SheetJS', 'Vitest', 'Node.js', 'Express', 'Puppeteer', 'Sharp', 'Docker', 'Render', 'Vercel']
@@ -98,7 +98,7 @@ Every field is editable in place, and the thing being edited is the thing that p
 Three passes, over the markup the browser sent, kept as a string: each pass splices where an HTML parser reports a tag, and no document tree is ever built on the server (why that matters is below).
 
 - **Sanitize.** Every `<input>`, `<textarea>` and `<select>` is replaced by a `<span>` holding its value. The editable menu becomes a printed one without a second stylesheet, because the text was always the text — the input was just wearing it.
-- **Inline.** Every image becomes a base64 data URI, resized through Sharp on the way, and SVG icons are rasterised to 96px PNG. Nothing in the printed page has to fetch anything.
+- **Inline.** Every image becomes a base64 data URI, resized through Sharp to the size it prints at, and SVG icons are rasterised to 96px PNG. Nothing in the printed page has to fetch anything.
 - **Hide.** Anything marked `data-ui-only` is set to `display: none` — delete buttons, drop zones, the "click to add description" placeholders that exist to invite an edit rather than to be printed.
 
 Only then is the document wrapped in a head carrying the compiled Tailwind stylesheet, read straight off disk so the print and the screen share one source of truth for spacing.
@@ -125,7 +125,7 @@ A few of them describe a dish: `No.`, `Price` and `Measure`, then a name and a d
   preload="metadata"
   aria-label="Dropping a CSV into MenuGen and seeing the menu build itself"></video>
 
-Two smaller rules do a similar amount of work. A row with a name but no number and no price is a **section heading**, not a dish — so `SOUP / SALAD` sits in the sheet exactly where it sits on the menu, and the spreadsheet stays readable as a spreadsheet. And photographs are matched to dishes by filename: drop forty images at once and each one finds its item as `Name`, `01_Name` or `1_Name`, compressed to 200px in the browser before it ever reaches application state.
+Two smaller rules do a similar amount of work. A row with a name but no number and no price is a **section heading**, not a dish — so `SOUP / SALAD` sits in the sheet exactly where it sits on the menu, and the spreadsheet stays readable as a spreadsheet. And photographs are matched to dishes by filename: drop forty images at once and each one finds its item as `Name`, `01_Name` or `1_Name`, compressed to 600px in the browser before it ever reaches application state.
 
 <video
   src="/yingsc/media/projects/menu-generator/3-iconEdit.mp4"
@@ -190,7 +190,7 @@ What comes back from a phone camera is four thousand pixels of plate for a slot 
 
 The crop runs on the client through a canvas: the frame's on-screen coordinates are mapped back through the letterboxing offsets into the source image's natural coordinates, and the region is drawn out as a data URI, so nothing round-trips to a server to find out what a photograph will look like.
 
-The cost is that the output canvas is sized to the frame *as it appeared on screen* — 240px square for a dish — so a crop downsamples to display size instead of keeping the resolution inside the selection. At the size these print, beside a dish name, that has held. It would not hold for a menu that wanted a bigger picture.
+The output canvas used to be sized to the frame *as it appeared on screen* — 240px square for a dish — so a crop downsampled to display size and threw away the rest of the selection. Beside a dish name that held; a cover printed two and a half inches wide came out at about 96 pixels per inch. A crop now keeps the source's own pixels inside the selection, up to what its slot needs to print at 300 ppi, and stops there.
 
 </div>
 
@@ -243,6 +243,12 @@ The rest of the resource work follows the same rule, which is not to pay for any
 - **Photos are sized before they travel.** A cut-out dish with a transparent background is encoded as WebP, 41 KB against 445 KB as PNG; opaque photos stay JPEG.
 - **The spreadsheet reader loads only when a spreadsheet arrives.** It is a separate chunk, so a visitor who drops a CSV never downloads it.
 - **What I haven't fixed, I've measured.** A menu whose photos arrive uncompressed still peaks near 490 MB, because that peak is set while resizing them, before any of this runs. That is the next ceiling, and I know where it is.
+
+#### Sized for the page, not the file
+
+Every photo used to leave for the PDF at 300 pixels, whatever it printed at — more than a dish under an inch wide needs, and a third of what a cover two and a half inches wide does. The size a photo needs is a fact about the page: at export the editor writes each image's printed size on it, the server resizes it to exactly that for 300 ppi, and a 12-million-pixel ceiling on the whole menu makes the largest menus print slightly softer rather than fail.
+
+Two measurements were wrong before it worked, and both passed. A test menu of one photo repeated 76 times looked comfortable, while A Fatt's 76 real photos, in a container capped like the instance, reached the 512 MB limit: Chromium decodes a repeated image once, and the budget I shipped first had to be halved. Then the sizing shipped and did nothing. The PDF is built from a copy of the menu in a `display: none` box, where every image measures zero, and the unit tests had supplied the sizes a browser never would. Exporting A Fatt's menu through the live editor caught both. On their menu the result isn't sharper — their photos were already above 300 ppi — it is the same print from about 40% fewer pixels. The visible gain is in covers and large photos.
 
 #### The sixty seconds I did not fix
 
@@ -382,7 +388,7 @@ MenuGen is live at [menugen.insdash.ch](https://menugen.insdash.ch). It opens on
 - **A preview that is right by accident is worse than one that is wrong.** The Chinese glyphs were correct on the only machine that could not report the problem. Fallbacks that matter get written down, not inherited from whatever the developer's OS happens to have.
 - **Waits need ceilings, and success paths need assertions.** A font stall, a download that never fired, and an image that decoded to nothing and left the spinner running forever — each one was the code waiting for something to be true with no plan for it not being. That last was a missing `img.onerror` beside a handled `reader.onerror`: the failure I had thought of, and the one I had not, four lines apart. It surfaced while I was writing tests for a different bug, which is most of the argument for writing them.
 - **A data model is a claim about who the user is.** Making the spreadsheet the schema was the best decision in the build and the one that decided who could use it. Elegance in the model came out as a prerequisite in the user, and I did not see it until I noticed who was still opening Canva.
-- **Coverage is not correctness.** My first test suite exercised a CSV parser nothing called, while the parser the product actually runs went untested. I deleted the dead one and moved its assertions onto the live path, including the quoted comma the naive version would have split in half.
+- **Coverage is not correctness.** My first test suite exercised a CSV parser nothing called, while the parser the product actually runs went untested. I deleted the dead one and moved its assertions onto the live path, including the quoted comma the naive version would have split in half. This year a synthetic menu and a unit test that supplied its own sizes both passed; an export of the real menu through the live editor did not.
 
 #### Where I Stopped
 
