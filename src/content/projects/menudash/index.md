@@ -47,7 +47,7 @@ I had already shown them [menuGen](https://yingshiuan.github.io/yingsc/projects/
 
 MenuDash is the WordPress plugin I designed and built to do that. It runs the [menu page on afatt.ch](https://afatt.ch/menu/): 110 dishes in three languages, filtered by diet, rebuilt whenever the owner uploads the sheet. Then, because the problem wasn't specific to one restaurant, I made it a product. The core and its theme are open source: [MenuDash on GitHub](https://github.com/yingshiuan/menudash) · [MenuDash Theme](https://github.com/yingshiuan/menudash-theme).
 
-**Where it stands:** live on one restaurant's site since September 2026. The add-ons and the theme are built, not yet installed there.
+**Where it stands:** live on one restaurant's site since September 2026, with the Specials and Statistics add-ons since October.
 
 #### Key Highlights
 
@@ -56,7 +56,7 @@ MenuDash is the WordPress plugin I designed and built to do that. It runs the [m
 - **I designed the failure path first.** A wrong file gets a red report and is refused, and the live menu stays online.
 - **I split the product where the customers split.** A free core for every café, paid add-ons for a full restaurant, and code where each add-on works on its own.
 
-![The sample menu on a desktop: all three languages at once, the diet filters, the category tabs. Placeholder photos.](./menu-desktop.webp)
+![The sample menu on a desktop: all three languages at once, the diet filters with Vegetarian turned on (“8 of 11 dishes · Vegetarian” and a Show all button), the category tabs. Placeholder photos.](./menu-desktop.webp)
 
 </div>
 
@@ -110,7 +110,7 @@ Then I had to decide how to sell it. My first plan was one package at a lower pr
 | **Restaurant** | Details entered once, opening hours, an "open now" badge, a holiday notice that takes itself down | A restaurant with a real website |
 | **Specials** | Today's specials and the lunch menu of the week | A kitchen that changes its offer |
 | **Gift Cards** | Gift card orders by e-mail, nothing paid online | A restaurant that sells gift cards |
-| **Statistics** | Which dishes guests look at, without cookies | An owner who wants to know what works |
+| **Statistics** | Which dishes guests look at, which filters and languages they use, without cookies | An owner who wants to know what works |
 
 ![Opening hours in the Restaurant add-on, with the joined days on the right as guests will see them.](./menudash-opening-hours.webp)
 
@@ -142,6 +142,21 @@ The theme follows the same rule. It stores no address, phone or hours of its own
 
 <div class="contentSection">
 
+## Counting Without Tracking
+
+The question behind the filters was whether guests would use them. Asking a restaurant to add Google Analytics for that means a cookie banner on a menu page, guest data sent to Google, and a privacy policy the owner doesn't understand. So I asked what the owner actually needs to know, and kept only that.
+
+- **What counts is attention, not page views.** A dish counts as seen when it stays on the screen for two seconds, so a guest scrolling past doesn't count. A photo counts when it's opened, a filter when it's turned on, a language when it's chosen, each once per visit.
+- **Only sums are stored.** One row per dish, or per button, and day. No cookies, nothing in the guest's browser, no IP address in the database, and nothing older than 25 months.
+- **Fake counts are slowed without identifying anyone.** The endpoint has to take messages from any visitor, so it limits how many each visitor can send. The visitor is a hash of their address with a key that changes every day, kept for ten minutes, so it can't be traced back.
+- **The owner's own visits don't count,** and neither do guests whose browser asks not to be tracked.
+
+The data is smaller than an analytics tool's, and that's the point: it answers the owner's questions (which dishes catch the eye, whether the photo helps, whether guests use the vegetarian filter, which language they read in) and nothing that would need a cookie banner. The privacy paragraph ships with the add-on.
+
+</div>
+
+<div class="contentSection">
+
 ## How I Built It
 
 I built MenuDash with Claude Code. I designed the product and the data model, wrote the specifications, reviewed every change and decided what shipped. The parser is tested against A Fatt's real spreadsheet as well as made-up ones, and the whole thing runs locally in WordPress Playground, so a site with the client's menu starts with one command.
@@ -162,7 +177,7 @@ I built MenuDash with Claude Code. I designed the product and the data model, wr
 
 ## Where It Stands
 
-The core has run A Fatt's menu page since late September 2026, now at version 2.8. The Specials add-on runs the specials on A Fatt's menu page too. The other three add-ons and the theme are built, offered through insdash, and not on A Fatt's site yet. A Fatt is the first restaurant running it; the split is built for the ones that come next.
+The core has run A Fatt's menu page since late September 2026, now at version 2.9. The Specials and Statistics add-ons run on A Fatt's site too. Restaurant, Gift Cards and the theme are built, offered through insdash, and not on A Fatt's site yet. A Fatt is the first restaurant running it; the split is built for the ones that come next.
 
 </div>
 
@@ -171,7 +186,7 @@ The core has run A Fatt's menu page since late September 2026, now at version 2.
 ## What's Still Open
 
 - **The owner's side isn't proven yet.** She's trained to upload the menu. Whether she does it month after month without me is the real result, and it's weeks old.
-- **The guest's side has no data yet.** Statistics is built to show which dishes guests look at, but it isn't installed on afatt.ch, so I can't yet say what guests do with the filters.
+- **The guest's side has no data yet.** Statistics went live on afatt.ch in October 2026, counting dishes, photos, filters and languages, but it's days old, so I can't yet say what guests do with the filters.
 - **I'd get the second customer before the third add-on.** It grew from one menu page into a core, four add-ons and a theme in two weeks, for one restaurant. The split is a bet on restaurants I haven't met yet.
 
 </div>
