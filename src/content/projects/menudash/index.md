@@ -148,10 +148,10 @@ The question behind the filters was whether guests would use them. Asking a rest
 
 - **What counts is attention, not page views.** A dish counts as seen when it stays on the screen for two seconds, so a guest scrolling past doesn't count. A photo counts when it's opened, a filter when it's turned on, a language when it's chosen, each once per visit.
 - **Only sums are stored.** One row per dish, or per button, and day. No cookies, nothing in the guest's browser, no IP address in the database, and nothing older than 25 months.
-- **Fake counts are slowed without identifying anyone.** The endpoint has to take messages from any visitor, so it limits how many each visitor can send. The visitor is a hash of their address with a key that changes every day, kept for ten minutes, so it can't be traced back.
+- **Fake counts are slowed without identifying anyone.** The endpoint has to take messages from any visitor, so it limits how many each visitor can send. The visitor is a hash of their address with a key that changes every day, kept for ten minutes and deleted within a day at the latest, so it can't be traced back.
 - **The owner's own visits don't count,** and neither do guests whose browser asks not to be tracked.
 
-The data is smaller than an analytics tool's, and that's the point: it answers the owner's questions (which dishes catch the eye, whether the photo helps, whether guests use the vegetarian filter, which language they read in) and nothing that would need a cookie banner. The privacy paragraph ships with the add-on.
+The data is smaller than an analytics tool's, and that's the point: it answers the owner's questions (which dishes catch the eye, whether the photo helps, whether guests use the vegetarian filter, which language they read in) and nothing more, without setting a single cookie. The privacy paragraph ships with the add-on.
 
 </div>
 
