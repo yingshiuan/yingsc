@@ -47,8 +47,8 @@ A Fatt is a Malaysian Chinese restaurant in Zürich. Across two jobs for them, t
 | ---- | ----------------------- | --------------- |
 | **[inscode](https://github.com/yingshiuan/inscode)** | Will a QR code with their logo in it still scan, printed? | Public. Their flyer is printed and scans |
 | **Logo rebuild + vectoriser** | Will the logo hold at A2? | The script made their logo set; the vectoriser is private |
-| **[menuGen](/yingsc/projects/menu-generator)** | Why am I redoing this layout every time a price changes? | Live, my own. A Fatt kept the system they had |
-| **[MenuDash](/yingsc/projects/menudash)** | Is the menu on their website up to date? | Paid for by the client, and running their menu page |
+| **[menuGen](/yingsc/projects/menu-generator/)** | Why am I redoing this layout every time a price changes? | Live, my own. A Fatt kept the system they had |
+| **[MenuDash](/yingsc/projects/menudash/)** | Is the menu on their website up to date? | Paid for by the client, and running their menu page |
 
 #### Key Highlights
 
@@ -66,7 +66,7 @@ I built the tools with Claude Code as the implementer. The questions, the specif
 
 ## The Job That Started It
 
-**2024: "redo the menu".** I surveyed the restaurant's diners and tested printed drafts with them at the table, then handed over a trilingual, diet-tagged menu system in Canva that the staff maintain without a designer. That was on purpose: no retainer. Two years on they still run it, and it took a new dessert section without a redesign. The research and design process is in the [original case study](/yingsc/projects/afatt).
+**2024: "redo the menu".** I surveyed the restaurant's diners and tested printed drafts with them at the table, then handed over a trilingual, diet-tagged menu system in Canva that the staff maintain without a designer. That was on purpose: no retainer. Two years on they still run it, and it took a new dessert section without a redesign. The research and design process is in the [original case study](/yingsc/projects/afatt/).
 
 ![Three pages of today's German menu, still the 2024 system: chicken and fish, with German and Chinese names, diet icons and a photo for each dish, and the dessert page added in 2026 in the same layout.](./menu-system.webp)
 
@@ -110,7 +110,7 @@ A poster at A2 needs a logo that stays sharp at any size. I rebuilt theirs in Py
 
 ## Tool 3 · menuGen: Why Am I Redoing This Layout?
 
-Designing the 2024 menu showed me the part a handover can't remove: every price change is still layout work, even in Canva. [menuGen](/yingsc/projects/menu-generator) is my own tool for that: a menu spreadsheet in, a print-ready PDF out, with the editable preview being the document that prints.
+Designing the 2024 menu showed me the part a handover can't remove: every price change is still layout work, even in Canva. [menuGen](/yingsc/projects/menu-generator/) is my own tool for that: a menu spreadsheet in, a print-ready PDF out, with the editable preview being the document that prints.
 
 The 2026 job sent it somewhere narrower. The restaurant asked for a vegan and vegetarian menu next to its English and German ones, and three menus mean one price change is three edits. menuGen's September releases print every language and diet version from one sheet, and testing them on the restaurant's real menu found two bugs the sample never had.
 
@@ -130,7 +130,7 @@ The owner uploads the menu sheet, and guests read it in German, English and Chin
 
 ![The owner's side: the MenuDash page in the WordPress dashboard after an upload, on the sample menu.](./dashboard-upload.webp)
 
-Then I made it a product, split where the customers split: a free, open-source core for a café that only needs the menu, and four paid add-ons for a full restaurant (hours and holidays, specials, gift cards, statistics). The whole story is on the [MenuDash page](/yingsc/projects/menudash).
+Then I made it a product, split where the customers split: a free, open-source core for a café that only needs the menu, and four paid add-ons for a full restaurant (hours and holidays, specials, gift cards, statistics). The whole story is on the [MenuDash page](/yingsc/projects/menudash/).
 
 **Where it stands:** the owner agreed, A Fatt paid for the core, and it runs the [menu page on afatt.ch](https://afatt.ch/menu/). The add-ons and the theme are built and not on their site yet.
 
