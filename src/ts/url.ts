@@ -12,8 +12,15 @@ export function isExternal(href: string): boolean {
  * External URLs and in-page anchors pass through untouched; everything else is
  * treated as site-relative and gets the deploy base prefixed — so content can
  * say `projects/afatt` instead of hardcoding the production domain.
+ *
+ * Page paths also get a trailing slash: GitHub Pages serves each page as
+ * `dir/index.html` and 301-redirects `dir` to `dir/`, so a slashless link
+ * costs crawlers a redirect and disagrees with the canonical URL. Paths with a
+ * file extension (the resume PDF, images) are left as they are.
  */
 export function resolveHref(href: string): string {
   if (isExternal(href) || href.startsWith('#')) return href;
-  return `${BASE_URL}${href.replace(/^\//, '')}`;
+  const [, path, suffix = ''] = href.replace(/^\//, '').match(/^([^?#]*)(.*)$/)!;
+  const isPage = path !== '' && !path.endsWith('/') && !/\.[a-z0-9]+$/i.test(path);
+  return `${BASE_URL}${isPage ? `${path}/` : path}${suffix}`;
 }

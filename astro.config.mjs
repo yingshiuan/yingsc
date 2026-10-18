@@ -23,8 +23,6 @@ function rehypeExternalLinks() {
 
   /** @param {any} node */
   const visit = (node) => {
-    if (node.type !== "element" && node.type !== "text" && node.type !== "root")
-      console.error("NODETYPE:", node.type, JSON.stringify(String(node.value ?? "").slice(0, 70)));
     if (node.tagName === "a" && typeof node.properties?.href === "string") {
       const href = node.properties.href;
       // Protocol-relative URLs are external too; mailto: and tel: hand off to

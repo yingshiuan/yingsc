@@ -43,15 +43,15 @@ interface TreeNode {
 
 const siteTree: TreeNode[] = [
   { label: 'Home', href: `${baseUrl}` },
-  { label: 'About', href: `${baseUrl}about` },
-  { label: 'Resume', href: `${baseUrl}resume` },
+  { label: 'About', href: `${baseUrl}about/` },
+  { label: 'Resume', href: `${baseUrl}resume/` },
   {
     label: 'Projects',
-    href: `${baseUrl}projects`,
+    href: `${baseUrl}projects/`,
     children: Object.entries(projectsByCategory).map(
       ([type, items]): TreeNode => ({
         label: type,
-        href: `${baseUrl}projects/${type}`, // Add href for the category itself, Currently points to a non-existent page
+        href: `${baseUrl}projects/${type}/`, // Add href for the category itself, Currently points to a non-existent page
         children: items
           .slice()
           .sort((a, b) => {
@@ -68,7 +68,7 @@ const siteTree: TreeNode[] = [
             label: project.data.title,
             // The collection id is the route segment — deriving one from the
             // title would not match the built route.
-            href: `${baseUrl}projects/${project.id}`,
+            href: `${baseUrl}projects/${project.id}/`,
             meta: [
               project.data.domains?.length
                 ? project.data.domains.join(' | ')
