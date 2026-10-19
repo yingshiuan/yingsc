@@ -21,7 +21,7 @@ info: 'One menu online that every guest filters by language and diet, behind one
 description: 'Asked for a separate vegan and vegetarian menu, I made it, then turned the restaurant''s menu into one spreadsheet and a WordPress plugin, so guests scan one QR code and filter by language and diet instead of choosing between three PDFs; designed the upload so a wrong file can''t break the live page, and then made it a product: a free, open-source core for every café and four paid add-ons for a full restaurant.'
 role: 'Product Engineer & Founder'
 timeline: '2 weeks to stable, live on the client''s site from the first week'
-completed: 'Stable 2.7.0 · Live on afatt.ch since 09/2026'
+completed: 'Live on afatt.ch since 09/2026 · now 2.10'
 credit: 'A Fatt'
 creditLink: 'https://afatt.ch/menu/'
 tools: ['PHP', 'WordPress', 'Block Editor', 'JavaScript', 'CSS', 'Python', 'WordPress Playground', 'Puppeteer', 'Claude Code']
@@ -110,7 +110,7 @@ Then I had to decide how to sell it. My first plan was one package at a lower pr
 | **Restaurant** | Details entered once, opening hours, an "open now" badge, a holiday notice that takes itself down | A restaurant with a real website |
 | **Specials** | Today's specials and the lunch menu of the week | A kitchen that changes its offer |
 | **Gift Cards** | Gift card orders by e-mail, nothing paid online | A restaurant that sells gift cards |
-| **Statistics** | Which dishes guests look at, which filters and languages they use, without cookies | An owner who wants to know what works |
+| **Statistics** | Which dishes guests look at, which filters and languages they use, where visits come from, how fast the menu opens, what guests tap next, without cookies | An owner who wants to know what works |
 
 ![Opening hours in the Restaurant add-on, with the joined days on the right as guests will see them.](./menudash-opening-hours.webp)
 
@@ -126,7 +126,7 @@ Then I had to decide how to sell it. My first plan was one package at a lower pr
 
 ## Architecture That Follows the Business
 
-A pricing split only works if the code splits cleanly too. A café on the free core can't see broken pieces of features it didn't buy, and a restaurant that adds Gift Cards next year can't have to reinstall anything.
+A pricing split only works if the code splits cleanly too. A café on the free core can't see broken pieces of features it didn't buy, and a restaurant that adds Gift Cards next year shouldn't have to reinstall anything.
 
 - **Each add-on is its own plugin** that waits for the core and plugs in through hooks. Without it, its parts show nothing, so a page built for all of them still works with the core alone.
 - **The add-ons don't need each other.** Gift Cards uses the phone and address from Restaurant when it's installed, and its own fields when it isn't.
@@ -144,14 +144,33 @@ The theme follows the same rule. It stores no address, phone or hours of its own
 
 ## Counting Without Tracking
 
-The question behind the filters was whether guests would use them. Asking a restaurant to add Google Analytics for that means a cookie banner on a menu page, guest data sent to Google, and a privacy policy the owner doesn't understand. So I asked what the owner actually needs to know, and kept only that.
+The question behind the filters was whether guests would use them. Asking a restaurant to add Google Analytics for that means a cookie banner on a menu page, guest data sent to Google, and a privacy policy the owner doesn't understand. So I asked what actually needs to be known about the menu, and kept only that.
 
-- **What counts is attention, not page views.** A dish counts as seen when it stays on the screen for two seconds, so a guest scrolling past doesn't count. A photo counts when it's opened, a filter when it's turned on, a language when it's chosen, each once per visit.
+- **What counts is attention, not page views.** A dish counts as seen when it stays on the screen for two seconds, so a guest scrolling past doesn't count. A photo counts when it's opened, a filter when it's turned on, a language when it's chosen, each once per visit. Two seconds is my judgment, not a tested number, so a second count at five seconds runs beside it: if the top ten by both are the same dishes, the exact threshold doesn't matter.
 - **Only sums are stored.** One row per dish, or per button, and day. No cookies, nothing in the guest's browser, no IP address in the database, and nothing older than 25 months.
-- **Fake counts are slowed without identifying anyone.** The endpoint has to take messages from any visitor, so it limits how many each visitor can send. The visitor is a hash of their address with a key that changes every day, kept for ten minutes and deleted within a day at the latest, so it can't be traced back.
+- **Fake counts are slowed without identifying anyone.** The endpoint has to take messages from any visitor, so it limits how many each visitor can send. The visitor is a hash of their address with a key that changes every day, kept for ten minutes and deleted within a day at the latest, so nothing stored points to a guest.
 - **The owner's own visits don't count,** and neither do guests whose browser asks not to be tracked.
 
-The data is smaller than an analytics tool's, and that's the point: it answers the owner's questions (which dishes catch the eye, whether the photo helps, whether guests use the vegetarian filter, which language they read in) and nothing more, without setting a single cookie. The privacy paragraph ships with the add-on.
+![Which dishes guests look at, with sample numbers: seen at two seconds and stayed five seconds side by side, and how many of the top ten are the same dishes.](./menudash-stats-dishes.webp)
+
+**Then I measured what I needed to know as the one who built it.**
+
+- **Whether guests use the one QR code.** Each menu visit counts under one source (QR code, direct, a search engine, another site), and the QR code the core makes carries a tag for it.
+- **Whether the menu opens fast on their phones,** with 72 of the dishes in photos. On menuGen, photos were what ran the server out of memory, so I wanted this one measured. The guest's browser sends only fast, medium or slow, by the limits Google rates pages with, never the time itself.
+- **What guests do next.** Taps on the phone number, the map, the order and booking links, and gift card orders that reach the restaurant.
+- **Whether a change helped.** The owner marks the day of a new menu or new photos, and the tab compares the same number of days before and after, up to four weeks each, and says there are too few to compare rather than show a large per cent from a handful of visits.
+
+![Where menu visits come from, on the Statistics tab with sample numbers: QR code, direct, search engines, the restaurant's own website and other websites, each with its visits and share.](./menudash-stats-sources.webp)
+
+![How fast the menu opens for guests, with sample numbers: the shares of fast, medium and slow visits, and a column per day with a marked change as a dashed line.](./menudash-stats-speed.webp)
+
+![Before and after a change, with sample numbers: fourteen days on each side of a marked day, with small counts shown as “few counts” or “too few to compare” instead of a per cent.](./menudash-stats-before-after.webp)
+
+The data is smaller than an analytics tool's, and that's the point: every number answers a question about the menu, and none of it is about a guest. Only the kind of source is counted, never the address a guest came from, and no cookie is set. The privacy paragraph ships with the add-on.
+
+**None of it is sales, so none of it is coloured like an alarm.** A dish that's looked at isn't a dish that's ordered; only the restaurant's own sales can say that. So the tab reads as an observation, not a verdict. Speed comes in shades of one blue, darkest for fast and always with a label, instead of green, yellow and red, because a few slow visits are normal. A suggestion, such as photos that could get more attention, sits in a plain grey box rather than a warning. A change in the before-and-after table shows its direction with an arrow, not in green or red, and one backed by only 10 to 29 counts stays grey and is marked as few counts.
+
+**The same numbers are how I decide what to change in MenuDash.** Whether guests turn the filters on decides whether the filter row stays where it is; how fast the menu opens on their phones decides what I work on next. Nothing is sent to me: the counts stay on the restaurant's own site, and I read the same tab the owner does, with her permission. Measuring it for me took nothing more from the guests than measuring it for the owner.
 
 </div>
 
@@ -177,7 +196,7 @@ I built MenuDash with Claude Code. I designed the product and the data model, wr
 
 ## Where It Stands
 
-The core has run A Fatt's menu page since late September 2026, now at version 2.9. The Specials and Statistics add-ons run on A Fatt's site too. Restaurant, Gift Cards and the theme are built, offered through insdash, and not on A Fatt's site yet. A Fatt is the first restaurant running it; the split is built for the ones that come next.
+The core has run A Fatt's menu page since late September 2026, now at version 2.10. The Specials and Statistics add-ons run on A Fatt's site too. Restaurant, Gift Cards and the theme are built, offered through insdash, and not on A Fatt's site yet. A Fatt is the first restaurant running it; the split is built for the ones that come next.
 
 </div>
 
@@ -186,7 +205,7 @@ The core has run A Fatt's menu page since late September 2026, now at version 2.
 ## What's Still Open
 
 - **The owner's side isn't proven yet.** She's trained to upload the menu. Whether she does it month after month without me is the real result, and it's weeks old.
-- **The guest's side has no data yet.** Statistics went live on afatt.ch in October 2026, counting dishes, photos, filters and languages, but it's days old, so I can't yet say what guests do with the filters.
+- **The guest's side has too little data yet.** Statistics went live on afatt.ch in mid-October 2026, too recently to say what guests do with the filters. The before-and-after comparison is built for exactly that question, and it fills up to four weeks on each side. The first reading decides whether the filter row changes; once there are a few weeks of numbers, I'll add here what they showed and what I changed because of them.
 - **I'd get the second customer before the third add-on.** It grew from one menu page into a core, four add-ons and a theme in two weeks, for one restaurant. The split is a bet on restaurants I haven't met yet.
 
 </div>
