@@ -1,40 +1,28 @@
 {
   "experience": [
     {
-      "title": "Research Intern (AI & Frontend Engineering)",
-      "company": "DisneyResearch|Studios",
-      "location": "Zürich, Switzerland",
-      "link": "https://studios.disneyresearch.com",
-      "linkInfo":"A lab advancing visual computing, AI, and filmmaking technologies.",
-      "tech": ["TypeScript", "Vue.js", "Python", "Node.js", "RAG Pipelines", "ChromaDB", "LLMs", "Figma"],
-      "date": "Feb 2025 – Aug 2025",
-      "role" :"Built AI-powered data platforms and interactive web applications, combining RAG pipelines over ChromaDB with graph-based data visualization to make retrieval results explorable rather than merely accurate."
-    },
-    {
-      "title": "XR Software Engineer Intern",
-      "company": "Sensoryx",
-      "location": "Zürich, Switzerland",
-      "link": "https://sensoryx.tech",
-      "linkInfo":"A Swiss startup specializing in motion tracking for VR/AR.",
-      "links": [
-            {
-              "href": "projects/sensoryx-xr-interaction-experiences",
-              "label": "XR Stylus Interaction System"
-            }
-          ],
-      "tech":["C#", "Unity", "XR"],
-      "date": "Aug 2024 – Dec 2024",
-      "role" :"Designed and implemented a VR stylus interaction system in Unity, mapping a single hardware button to painting, object manipulation, and selection workflows through gesture-based controls refined for B2B and consumer use."
-    },
-    {
       "title": "Product Engineer",
       "company": "insdash",
-      "location": "Remote, Switzerland, Taiwan",
-       "link": "https://insdash.ch",
-      "linkInfo":"End-to-end product design and development for clients across industries.",
-      "tech": ["TypeScript", "Vue.js", "React", "Tailwind CSS", "Node.js", "SQL", "Docker", "Docker Compose", "FastAPI", "HTML5", "CSS3", "JavaScript", "Figma"],
+      "location": "Hybrid, Switzerland, Taiwan",
+      "link": "https://insdash.ch",
+      "linkInfo": "End-to-end product design and development for clients across industries.",
+      "tech": [
+        "TypeScript",
+        "Vue.js",
+        "React.js",
+        "Tailwind CSS",
+        "Node.js",
+        "SQL",
+        "Docker",
+        "Docker Compose",
+        "FastAPI",
+        "HTML5",
+        "CSS3",
+        "JavaScript",
+        "Figma"
+      ],
       "date": "Mar 2021 – Present",
-      "role" :"Built and shipped production web applications end to end — Vue and React frontends, Node and FastAPI services, SQL data models, and Docker-based deployment — including a full-stack menu platform for a Zürich restaurant.",
+      "role": "Independent practice in two spans, with the Sensoryx and Disney internships between them. I find the problem behind the brief, then build what solves it — from scoping with the owner to deployment and maintenance.",
       "clients": [
         {
           "company": "Sprachschule Yang",
@@ -43,34 +31,82 @@
           "location": "Zürich, Switzerland",
           "links": [
             {
-              "href": "https://roomplan.org/login",
+              "href": "projects/room-planner",
               "label": "Scheduling System and Room Booking Platform"
             }
           ],
-          "linkInfo":"A specialized language institute in Zurich offering East Asian language courses and cultural workshops for adults and children.",
-          "tech": ["TypeScript", "Tailwind CSS", "React", "Figma"],
-          "date": "Jun 2026",
+          "linkInfo": "A specialized language institute in Zurich offering East Asian language courses and cultural workshops for adults and children.",
+          "tech": [
+            "React.js",
+            "TypeScript",
+            "TanStack Start",
+            "Supabase / PostgreSQL",
+            "Tailwind CSS"
+          ],
+          "date": "May 2026 – Present",
           "description": ""
         },
         {
           "company": "A Fatt",
-          "role": "Designer Engineer",
+          "role": "Product Engineer",
+          "link": "https://afatt.ch/",
+          "location": "Zürich, Switzerland",
+          "links": [
+            {
+              "href": "projects/menudash",
+              "label": "MenuDash WordPress Menu Plugin"
+            }
+          ],
+          "linkInfo": "A Zürich restaurant serving Malaysian, Chinese, and Taiwanese home favourites.",
+          "tech": [
+            "PHP",
+            "WordPress",
+            "JavaScript",
+            "Python"
+          ],
+          "date": "Sep 2026",
+          "description": "MenuDash — 959 visits in its first 18 days, more than the restaurant's homepage. After the third PDF menu they asked for, I proposed an online menu instead, and they paid for it: three table QR codes became one, opening a menu guests filter by language and diet. A wrong spreadsheet gets a report and a rollback, never a broken page."
+        },
+        {
+          "company": "menuGen",
+          "role": "Product Engineer",
+          "link": "https://menugen.insdash.ch/",
+          "location": "Self-initiated",
+          "links": [
+            {
+              "href": "projects/menu-generator",
+              "label": "Menu Generator"
+            }
+          ],
+          "linkInfo": "My own product: a spreadsheet in, a print-ready menu out.",
+          "tech": [
+            "Vue 3",
+            "TypeScript",
+            "Node.js",
+            "Puppeteer",
+            "Docker"
+          ],
+          "date": "Dec 2025 – Present",
+          "description": "CSV in, print-ready menu out, replacing layout work I redid by hand on every price change. Built and deployed solo in four months, 130 commits: product, design, build and deploy."
+        },
+        {
+          "company": "A Fatt",
+          "role": "Design Engineer",
           "link": "https://afatt.ch/",
           "location": "Zürich, Switzerland",
           "links": [
             {
               "href": "projects/afatt",
               "label": "Modular Menu System"
-            },
-             {
-              "href": "projects/menu-generator",
-              "label": "Restaurant Menu Management Platform"
             }
           ],
-          "linkInfo":"A Zürich restaurant serving Malaysian, Chinese, and Taiwanese home favourites.",
-          "tech": ["Figma", "Canva"],
+          "linkInfo": "A Zürich restaurant serving Malaysian, Chinese, and Taiwanese home favourites.",
+          "tech": [
+            "Figma",
+            "Canva"
+          ],
           "date": "Aug 2024",
-          "description": "Designed a modular multilingual menu system (EN/DE/zh-TW) with dietary tagging — handed over in Canva so staff own updates themselves, no designer on retainer."
+          "description": "Still in use two years on, and staff update it without a designer: a multilingual menu system (EN/DE/zh-TW) with dietary tagging, handed over in Canva. The process problem it exposed became menuGen."
         },
         {
           "company": "Thömus",
@@ -83,34 +119,92 @@
               "label": "Swissrider E-bike Animation"
             }
           ],
-          "linkInfo":"A Swiss manufacturer of customizable high-quality bikes and e-bikes.",
-          "tech": ["Blender", "Adobe Premiere Pro", "Adobe After Effects", "Figma"],
+          "linkInfo": "A Swiss manufacturer of customizable high-quality bikes and e-bikes.",
+          "tech": [
+            "Blender",
+            "Adobe Premiere Pro",
+            "Adobe After Effects",
+            "Figma"
+          ],
           "date": "Oct 2022 – Feb 2023",
-          "description": "Created 3D product animations from concept to completion, achieving 10k views (5x above average) and driving customer traffic to product pages."
+          "description": "10K+ YouTube views, ~5× the channel average, for a SwissRider e-bike promo. I proposed the storyboard to the CMO and produced the animation."
         },
         {
           "company": "yun.official",
           "role": "Frontend Developer & Designer (E-Commerce Lead)",
           "location": "Remote, Taiwan",
-          "linkInfo":"Fashion startup transitioning from handcrafted to digital e-commerce.",
-          "tech": ["Shopify", "SHOPLINE", "Figma", "UI/UX"],
+          "linkInfo": "Fashion startup transitioning from handcrafted to digital e-commerce.",
+          "tech": [
+            "Shopify",
+            "SHOPLINE",
+            "Figma",
+            "UI/UX"
+          ],
           "date": "Mar 2021 – Aug 2021",
-          "description": "Designed and launched the storefront on Shopify then SHOPLINE — taking the brand from DM-based selling to real checkout, payments, and fulfilment — driving a 35% order increase in the first season."
+          "description": "+35% orders after taking a Taipei fashion label from Instagram DMs to a live online store: product strategy, UX, and the storefront and checkout, set up on a commerce platform."
         }
       ]
     },
     {
-      "title": "Research and Teaching Assistant", 
+      "title": " Research Intern (Frontend & AI Engineering)",
+      "company": "DisneyResearch|Studios",
+      "location": "Zürich, Switzerland",
+      "link": "https://studios.disneyresearch.com",
+      "linkInfo": "A lab advancing visual computing, AI, and filmmaking technologies.",
+      "tech": [
+        "TypeScript",
+        "Vue.js",
+        "Python",
+        "Node.js",
+        "RAG Pipelines",
+        "ChromaDB",
+        "LLMs",
+        "Figma"
+      ],
+      "date": "Feb 2025 – Aug 2025",
+      "role": "Embedded in the animation team, reporting to the engineers who turn the lab's research code into production tools. I owned a script-visualisation platform end to end, which Walt Disney Studios stakeholders piloted, and built an AI pipeline prototype over ~100 confidential recordings in which every answer traces back to its timestamped source. My three-month contract was extended by another three."
+    },
+    {
+      "title": "XR Software Engineer Intern",
+      "company": "Sensoryx",
+      "location": "Zürich, Switzerland",
+      "link": "https://sensoryx.tech",
+      "linkInfo": "A Swiss startup specializing in motion tracking for VR/AR.",
+      "links": [
+        {
+          "href": "projects/sensoryx-xr-interaction-experiences",
+          "label": "XR Stylus Interaction System"
+        }
+      ],
+      "tech": [
+        "C#",
+        "Unity",
+        "XR Interaction Toolkit",
+        "Meta XR SDK"
+      ],
+      "date": "Aug 2024 – Dec 2024",
+      "role": "Self-directed at a six-person motion-tracking startup: I shipped three XR interaction prototypes in the run-up to the company's CES 2025 showing, and the CTO reviewed each one. One was the interaction layer for the Maliang Magic Pencil, where the version I worked on had a single button to carry painting, selection and manipulation. Behind it is a state manager that keeps interaction logic independent of the hardware. I also found and fixed a component-lifecycle defect in a third-party XR framework's source."
+    },
+    {
+      "title": "Research and Teaching Assistant",
       "company": "Dept. Architecture of Tamkang University - CCC Lab",
       "location": "Taiwan",
       "links": [
-            {
-              "href": "projects/vr-robotic-fabrication-of-brick-wall",
-              "label": "VIVE-Tracked Robotic Bricklaying on Site"
-            }
-          ],
-      "tech": ["Rhinoceros 3D & Grasshopper", "Unity 3D", "C#", "JavaScript", "Python", "CAD/CAM"],
-      "date": "Aug 2017 – Sep 2018"
+        {
+          "href": "projects/vr-robotic-fabrication-of-brick-wall",
+          "label": "VIVE-Tracked Robotic Bricklaying on Site"
+        }
+      ],
+      "tech": [
+        "Python",
+        "Rhinoceros 3D & Grasshopper",
+        "HTC VIVE / SteamVR",
+        "UR10",
+        "KUKA",
+        "CAD/CAM"
+      ],
+      "date": "Aug 2017 – Sep 2018",
+      "role": "CCC Lab, under Prof. Chen-Cheng Chen. I took over a VIVE tracking rig, integrated it into the lab's robotic fabrication system, and built a double-curved wall inside a building under construction: 1,430 bricks across 52 layers, every one laid by a UR10 robot arm, from 22 base positions the model chose for reach and sequencing. I also assisted on programming and parametric-modelling courses for ~60 architecture students, explaining code to people who had never written any."
     }
   ],
   "initiatives": [
@@ -186,44 +280,90 @@
       "date": "June 2021 - Aug 2021"
     }
   ],
-   "skills": [
+  "skills": [
     {
       "title": "Frontend & Data Visualization",
-      "skills": ["TypeScript", "JavaScript", "Vue.js", "React", "HTML5", "CSS3", "Tailwind CSS", "Cytoscape.js", "Interactive Data Visualization"]
+      "skills": [
+        "TypeScript",
+        "JavaScript",
+        "Vue.js",
+        "React",
+        "HTML5",
+        "CSS3",
+        "Tailwind CSS",
+        "Cytoscape.js",
+        "Interactive Data Visualization"
+      ]
     },
     {
       "title": "Backend & AI",
-      "skills": ["Python", "Node.js", "FastAPI", "SQL", "REST APIs", "Webhooks", "LLMs", "RAG Pipelines", "ChromaDB", "Workflow Automation (n8n)", "Docker", "Docker Compose", "Git"]
+      "skills": [
+        "Python",
+        "Node.js",
+        "FastAPI",
+        "SQL",
+        "REST APIs",
+        "Webhooks",
+        "LLMs",
+        "RAG Pipelines",
+        "ChromaDB",
+        "Workflow Automation (n8n)",
+        "Docker",
+        "Docker Compose",
+        "Git"
+      ]
     },
     {
       "title": "UI/UX & Prototyping",
-      "skills": ["Figma", "Miro", "Adobe Creative Suite"]
+      "skills": [
+        "Figma",
+        "Miro",
+        "Adobe Creative Suite"
+      ]
     },
     {
       "title": "XR & Spatial Computing",
-      "skills": ["Unity", "C#", "XR Interaction Toolkit", "Meta XR SDK", "Blender", "Cinema 4D", "Rhinoceros 3D & Grasshopper"]
+      "skills": [
+        "Unity",
+        "C#",
+        "XR Interaction Toolkit",
+        "Meta XR SDK",
+        "Blender",
+        "Cinema 4D",
+        "Rhinoceros 3D & Grasshopper"
+      ]
     },
     {
       "title": "Digital & Robotic Fabrication",
-      "skills": ["3D-Printing", "Laser Cutting", "CNC Milling", "Digital Cutter", "Plasma Cutting", "Vacuum Forming", "KUKA", "ABB", "UR10/UR5"]
+      "skills": [
+        "3D-Printing",
+        "Laser Cutting",
+        "CNC Milling",
+        "Digital Cutter",
+        "Plasma Cutting",
+        "Vacuum Forming",
+        "KUKA",
+        "ABB",
+        "UR10/UR5"
+      ]
     }
   ],
-   "languages": [
+  "languages": [
     {
       "title": "Taiwanese Mandarin",
-      "level":"Native"
+      "level": "Native"
     },
     {
       "title": "English",
-      "level":"Full Professional proficiency"
+      "level": "Full Professional proficiency"
     },
     {
       "title": "German",
-      "level":"Limited working proficiency"
+      "level": "Limited working proficiency"
     },
     {
       "title": "Japanese",
-      "level":"Basic"
+      "level": "Basic"
     }
   ]
 }
