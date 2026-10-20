@@ -2,7 +2,7 @@
 // src/components/ResumeSection.astro
 import Button from '@/components/UI/Button.astro';
 import BreakLine from '@/components/UI/BreakLine.astro';
-import type { ResumeItem } from '@/ts/resume';
+import type { ResumeClient, ResumeItem } from '@/ts/resume';
 import { isExternal, resolveHref } from '@/ts/url';
 
 interface Props {
@@ -21,6 +21,17 @@ const linkAttrs = (href: string) => ({
     ? { target: '_blank', rel: 'noopener noreferrer' }
     : {}),
 });
+
+// Group clients under their role, in order of first appearance, so each role
+// reads once with its projects listed beneath it.
+const groupByRole = (clients: ResumeClient[]) => {
+  const groups = new Map<string, ResumeClient[]>();
+  for (const client of clients) {
+    const role = client.role ?? '';
+    groups.set(role, [...(groups.get(role) ?? []), client]);
+  }
+  return [...groups].map(([role, clients]) => ({ role, clients }));
+};
 ---
 
 <section class="resume">
@@ -60,6 +71,19 @@ const linkAttrs = (href: string) => ({
               )}
 
               {item.location && <p class="item_caption"> | {item.location}</p>}
+
+              <!-- View role details -->
+              {item.role?.length && (
+                <details class="group my-[0.5rem]">
+                  <summary class="cursor-pointer flex">
+                    <span class="transition-transform group-open:rotate-90">▶</span>
+                    <span class="px-[1rem] item_caption">View role details</span>
+                  </summary>
+                  <div class="mt-[0.5rem] pl-4">
+                    <p class="text-(--color-text-primary)">{item.role}</p>
+                  </div>
+                </details>
+              )}
 
               {item.tech?.length && (
                 <div class="mt-[0.5rem] pl-4">
@@ -125,90 +149,89 @@ const linkAttrs = (href: string) => ({
             <!-- Client list -->
             {item.clients?.length && (
               <div class="lg:col-span-12 client_list">
-                {item.clients.map((client) => (
-                  <div class="client_item">
-                    <div class="client_head">
-                      <div>
-                        {client.role && (
-                          <span class="client_role">{client.role}</span>
-                        )}
+                {groupByRole(item.clients).map((group) => (
+                  <div class="role_group">
+                    {group.role && <p class="client_role">{group.role}</p>}
 
-                        {client.role && <span class="item_caption"> — </span>}
+                    <div class="role_clients">
+                      {group.clients.map((client) => (
+                        <div class="client_item">
+                          <div class="client_head">
+                            <div>
+                              <span class="relative group">
+                                {client.link ? (
+                                  <a
+                                    class="item_link cursor-pointer"
+                                    {...linkAttrs(client.link)}>
+                                    {client.company}
+                                  </a>
+                                ) : (
+                                  <span class="client_company cursor-default">
+                                    {client.company}
+                                  </span>
+                                )}
 
-                        <span class="relative group">
-                          {client.link ? (
-                            <a
-                              class="item_link cursor-pointer"
-                              {...linkAttrs(client.link)}>
-                              {client.company}
-                            </a>
-                          ) : (
-                            <span class="client_company cursor-default">
-                              {client.company}
-                            </span>
+                                {client.link && client.linkInfo && (
+                                  <span class="item_link_hover">
+                                    {`${client.linkInfo} - Go to ${client.company} website`}
+                                  </span>
+                                )}
+                              </span>
+
+                              {client.location && (
+                                <span class="item_caption"> | {client.location}</span>
+                              )}
+                            </div>
+
+                            {client.date && <p class="client_date">{client.date}</p>}
+                          </div>
+
+                          {!client.link && client.linkInfo && (
+                            <p class="client_info pl-4 mt-[0.5rem]">{client.linkInfo}</p>
                           )}
 
-                          {client.link && client.linkInfo && (
-                            <span class="item_link_hover">
-                              {`${client.linkInfo} - Go to ${client.company} website`}
-                            </span>
+                          {client.tech?.length && (
+                            <div class="mt-[0.5rem] pl-4">
+                              {client.tech.map((t, index) => (
+                                <span class="item_emphasis">
+                                  {t}{index < client.tech!.length - 1 ? ' · ' : ''}
+                                </span>
+                              ))}
+                            </div>
                           )}
-                        </span>
 
-                        {client.location && (
-                          <span class="item_caption"> | {client.location}</span>
-                        )}
-                      </div>
+                          {client.links && (
+                            <div class="mt-[1rem] flex flex-wrap gap-2 pl-4">
+                              {client.links.map((l) => (
+                                <Button
+                                  href={resolveHref(l.href)}
+                                  target={isExternal(l.href) ? '_blank' : undefined}
+                                  label={l.label}
+                                  color="primary"
+                                  variant="outline"
+                                  size="xs"
+                                />
+                              ))}
+                            </div>
+                          )}
 
-                      {client.date && <p class="client_date">{client.date}</p>}
+                          {/* {client.description && (
+                            <details class="group mt-[0.5rem] pl-4">
+                              <summary class="cursor-pointer flex">
+                                <span class="transition-transform group-open:rotate-90">▶</span>
+                                <span class="px-[1rem] item_caption">View details</span>
+                              </summary>
+                              <p class="client_description">{client.description}</p>
+                            </details>
+                          )} */}
+                        </div>
+                      ))}
                     </div>
-
-                    {!client.link && client.linkInfo && (
-                      <p class="client_info pl-4 mt-[0.5rem]">{client.linkInfo}</p>
-                    )}
-
-                    {client.tech?.length && (
-                      <div class="mt-[0.5rem] pl-4">
-                        {client.tech.map((t, index) => (
-                          <span class="item_emphasis">
-                            {t}{index < client.tech!.length - 1 ? ' · ' : ''}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-
-                    {client.links && (
-                      <div class="mt-[1rem] flex flex-wrap gap-2 pl-4">
-                        {client.links.map((l) => (
-                          <Button
-                            href={resolveHref(l.href)}
-                            target={isExternal(l.href) ? '_blank' : undefined}
-                            label={l.label}
-                            color="primary"
-                            variant="outline"
-                            size="xs"
-                          />
-                        ))}
-                      </div>
-                    )}
                   </div>
                 ))}
               </div>
             )}
 
-            <!-- View role details -->
-            {/* {item.role?.length && (
-              <details class="group lg:col-span-12 mt-[0.5rem]">
-                <summary class="cursor-pointer flex ">
-                  <span class="transition-transform group-open:rotate-90">▶</span>
-                  <span class="transition-transform px-[1rem] item_caption">View role details</span>
-                </summary>
-                <div class="lg:col-span-12 mt-[0.5rem]">
-                  <p class="item_caption">{item.role}</p>
-                </div>
-              </details>
-            )}
-             */}
           </li>
         ))
       }
@@ -252,7 +275,11 @@ const linkAttrs = (href: string) => ({
   }
 
   .client_list {
-    @apply mt-[1rem] ml-[2rem] pl-[1.5rem] space-y-[2.5rem] border-l border-[var(--color-rule)];
+    @apply mt-[1rem] ml-[2rem] pl-[1.5rem] space-y-[1.5rem] border-l border-[var(--color-rule)];
+  }
+
+  .role_clients {
+    @apply mt-[1rem] pl-4 space-y-[1rem];
   }
 
   .client_head {
@@ -260,7 +287,7 @@ const linkAttrs = (href: string) => ({
   }
 
   .client_role {
-    @apply font-medium text-[var(--color-text-primary)];
+    @apply mb-0 font-medium text-[var(--color-text-primary)];
   }
 
   .client_company {
@@ -269,6 +296,10 @@ const linkAttrs = (href: string) => ({
 
   .client_info {
     @apply block mb-[0.25rem] text-sm font-light text-[var(--color-text-secondary)];
+  }
+
+  .client_description {
+    @apply mt-[0.5rem] mb-0 pl-4 text-(--color-text-primary);
   }
 
   .client_date {

@@ -3,18 +3,19 @@ title: 'Homepage Intro'
 greeting: ''
 name: 'Ying-Shiuan Chen'
 role: 'Product Engineer'
-intro: 'Building AI-powered interactive systems through frontend engineering, AI, and spatial computing'
-description: 'With a background spanning design and engineering, I build interactive systems that make complex technologies more understandable, accessible, and useful.'
+intro: 'I find the problem behind the brief, then build what solves it — design, frontend, and AI, end to end.'
+description: 'Architect by training. The work has users — a scheduling system a Zürich language school runs on, an online menu guests filter on their phones, and a script-visualisation platform piloted with The Walt Disney Studios stakeholders.'
 skills:
-  - 'AI Product Engineering'
+  - 'Product Engineering'
   - 'Frontend Engineering & Data Visualization'
   - 'Interactive Systems'
   - 'XR & Spatial Computing'
 focus:
   - title: 'AI Systems'
     items:
-      - 'LLM applications'
       - 'RAG pipelines & vector search'
+      - 'Semantic chunking & knowledge graphs'
+      - 'Self-hosted models for confidential data'
       - 'Human-in-the-loop workflows'
   - title: 'Interactive Interfaces'
     items:
@@ -24,8 +25,8 @@ focus:
   - title: 'Spatial Computing'
     items:
       - 'XR interaction design'
-      - 'Unity & hardware integration'
-      - 'Human-computer interaction'
+      - 'Interaction under hardware constraints'
+      - 'Unity & C#'
 contact:
   headline: 'Interested in building intelligent interactive systems?'
   subline: "I'm open to product engineering roles in AI, frontend, and spatial computing."
