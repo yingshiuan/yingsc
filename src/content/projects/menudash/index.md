@@ -110,7 +110,7 @@ Then I had to decide how to sell it. My first plan was one package at a lower pr
 | **Restaurant** | Details entered once, opening hours, an "open now" badge, a holiday notice that takes itself down | A restaurant with a real website |
 | **Specials** | Today's specials and the lunch menu of the week | A kitchen that changes its offer |
 | **Gift Cards** | Gift card orders by e-mail, nothing paid online | A restaurant that sells gift cards |
-| **Statistics** | Which dishes guests look at, which filters and languages they use, where visits come from, how fast the menu opens, what guests tap next, without cookies | An owner who wants to know what works |
+| **Statistics** | Which dishes guests look at, which filters, languages and categories they use, where visits come from, how fast the menu opens, what guests tap next, without cookies | An owner who wants to know what works |
 
 ![Opening hours in the Restaurant add-on, with the joined days on the right as guests will see them.](./menudash-opening-hours.webp)
 
@@ -146,7 +146,7 @@ The theme follows the same rule. It stores no address, phone or hours of its own
 
 The question behind the filters was whether guests would use them. Asking a restaurant to add Google Analytics for that means a cookie banner on a menu page, guest data sent to Google, and a privacy policy the owner doesn't understand. So I asked what actually needs to be known about the menu, and kept only that.
 
-- **What counts is attention, not page views.** A dish counts as seen when it stays on the screen for two seconds, so a guest scrolling past doesn't count. A photo counts when it's opened, a filter when it's turned on, a language when it's chosen, each once per visit. Two seconds is my judgment, not a tested number, so a second count at five seconds runs beside it: if the top ten by both are the same dishes, the exact threshold doesn't matter.
+- **What counts is attention, not page views.** A dish counts as seen when it stays on the screen for two seconds, so a guest scrolling past doesn't count. A photo counts when it's opened, a filter when it's turned on, a language when it's chosen, a category button when it's tapped to jump there, each once per visit. Two seconds is my judgment, not a tested number, so a second count at five seconds runs beside it: if the top ten by both are the same dishes, the exact threshold doesn't matter.
 - **Only sums are stored.** One row per dish, or per button, and day. No cookies, nothing in the guest's browser, no IP address in the database, and nothing older than 25 months.
 - **Fake counts are slowed without identifying anyone.** The endpoint has to take messages from any visitor, so it limits how many each visitor can send. The visitor is a hash of their address with a key that changes every day, kept for ten minutes and deleted within a day at the latest, so nothing stored points to a guest.
 - **The owner's own visits don't count,** and neither do guests whose browser asks not to be tracked.
@@ -157,6 +157,7 @@ The question behind the filters was whether guests would use them. Asking a rest
 
 - **Whether guests use the one QR code.** Each menu visit counts under one source (QR code, direct, a search engine, another site), and the QR code the core makes carries a tag for it.
 - **Whether the menu opens fast on their phones,** with 72 of the dishes in photos. On menuGen, photos were what ran the server out of memory, so I wanted this one measured. The guest's browser sends only fast, medium or slow, by the limits Google rates pages with, never the time itself.
+- **How guests find their way through 18 categories.** A tap on a category button above the menu counts; scrolling there doesn't, so the number shows how many guests use the buttons, not where everyone ends up.
 - **What guests do next.** Taps on the phone number, the map, the order and booking links, and gift card orders that reach the restaurant.
 - **Whether a change helped.** The owner marks the day of a new menu or new photos, and the tab compares the same number of days before and after, up to four weeks each, and says there are too few to compare rather than show a large per cent from a handful of visits.
 
