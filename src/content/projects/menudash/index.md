@@ -202,7 +202,7 @@ I built MenuDash with Claude Code. I designed the product and the data model, wr
 
 ## Where It Stands
 
-The core has run A Fatt's menu page since late September 2026, now at version 2.10. The Specials and Statistics add-ons run on A Fatt's site too. Restaurant, Gift Cards, Shop and the theme are built, offered through insdash, and not on A Fatt's site yet. In October 2026 I handed it over, and the owner uploaded the menu spreadsheet herself. A Fatt is the first restaurant running it; the split is built for the ones that come next.
+The core has run A Fatt's menu page since late September 2026, now at version 2.10. The Specials and Statistics add-ons run on A Fatt's site too. Restaurant, Gift Cards, Shop and the theme are built, offered through insdash, and not on A Fatt's site yet. In October 2026 I handed it over: the owner uploaded the menu spreadsheet herself, and she handles it on her own now, without calling me. A Fatt is the first restaurant running it; the split is built for the ones that come next.
 
 </div>
 
@@ -210,7 +210,6 @@ The core has run A Fatt's menu page since late September 2026, now at version 2.
 
 ## What's Still Open
 
-- **The owner's side isn't proven yet.** She uploaded the menu herself at the handover. Whether she keeps doing it month after month without me is the real result, and it's days old.
 - **The guest's side has too little data yet.** Statistics went live on afatt.ch in mid-October 2026, too recently to say what guests do with the filters. The before-and-after comparison is built for exactly that question, and it fills up to four weeks on each side. The first reading decides whether the filter row changes; once there are a few weeks of numbers, I'll add here what they showed and what I changed because of them.
 - **I'd get the second customer before the next add-on.** It grew from one menu page into a core, five add-ons and a theme in a month, for one restaurant. Shop is the one add-on a client asked for; the rest of the split is still a bet on restaurants I haven't met yet.
 
