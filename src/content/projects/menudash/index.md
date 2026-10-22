@@ -18,7 +18,7 @@ image: './cover.webp'
 hoverImage: './cover-hover.webp'
 thumbnail: './thumbnail.webp'
 info: 'One menu online that every guest filters by language and diet, behind one QR code instead of three PDFs, then split into a free core and paid add-ons.'
-description: 'Asked for a separate vegan and vegetarian menu, I made it, then turned the restaurant''s menu into one spreadsheet and a WordPress plugin, so guests scan one QR code and filter by language and diet instead of choosing between three PDFs; designed the upload so a wrong file can''t break the live page, and then made it a product: a free, open-source core for every café and four paid add-ons for a full restaurant.'
+description: 'Asked for a separate vegan and vegetarian menu, I made it, then turned the restaurant''s menu into one spreadsheet and a WordPress plugin, so guests scan one QR code and filter by language and diet instead of choosing between three PDFs; designed the upload so a wrong file can''t break the live page, and then made it a product: a free, open-source core for every café and paid add-ons for a full restaurant, the latest one asked for by the client.'
 role: 'Product Engineer & Founder'
 timeline: '2 weeks to stable, live on the client''s site from the first week'
 completed: 'Live on afatt.ch since 09/2026 · now 2.10'
@@ -32,7 +32,7 @@ focus:
     'Business Model',
     'Validation',
   ]
-activities: 'A restaurant client had kept the English and German Canva menus I designed for them in 2024 up to date on their own, and came back in 2026 asking for a separate vegan and vegetarian menu. They got the third PDF, and with it three files to keep in step and three QR codes for guests to choose from. So I turned the menu into data: one spreadsheet, a column per language and a mark per diet, read by a WordPress plugin I designed so every guest filters the one menu on their phone. I designed the owner''s side around the file going wrong, with a report that refuses a broken upload and keeps the live menu online. Then I made it a product: a free open-source core and four paid add-ons, split along the line between a café and a full restaurant, with an architecture where each add-on works on its own and a business that sells the setup and the care. I built it with Claude Code: I designed the product and the data model, wrote the specifications, reviewed every change and decided what shipped.'
+activities: 'A restaurant client had kept the English and German Canva menus I designed for them in 2024 up to date on their own, and came back in 2026 asking for a separate vegan and vegetarian menu. They got the third PDF, and with it three files to keep in step and three QR codes for guests to choose from. So I turned the menu into data: one spreadsheet, a column per language and a mark per diet, read by a WordPress plugin I designed so every guest filters the one menu on their phone. I designed the owner''s side around the file going wrong, with a report that refuses a broken upload and keeps the live menu online. Then I made it a product: a free open-source core and paid add-ons, split along the line between a café and a full restaurant, with an architecture where each add-on is its own plugin and a business that sells the setup and the care. I built it with Claude Code: I designed the product and the data model, wrote the specifications, reviewed every change and decided what shipped.'
 ---
 
 <div class="contentSection">
@@ -47,14 +47,14 @@ I had already shown them [menuGen](https://yingshiuan.github.io/yingsc/projects/
 
 MenuDash is the WordPress plugin I designed and built to do that. It runs the [menu page on afatt.ch](https://afatt.ch/menu/): 110 dishes in three languages, filtered by diet, rebuilt whenever the owner uploads the sheet. Then, because the problem wasn't specific to one restaurant, I made it a product. The core and its theme are open source: [MenuDash on GitHub](https://github.com/yingshiuan/menudash) · [MenuDash Theme](https://github.com/yingshiuan/menudash-theme).
 
-**Where it stands:** live on one restaurant's site since September 2026, with the Specials and Statistics add-ons since October.
+**Where it stands:** live on one restaurant's site since September 2026, with the Specials and Statistics add-ons since October. Handed over in October: the owner uploads the menu herself.
 
 #### Key Highlights
 
 - **I turned a layout problem into a data problem.** The third PDF they asked for could disagree with the other two. Online, it became a filter on one sheet that can't disagree with itself.
 - **I designed for two users.** The guest wants their language and their diet in one tap. The owner wants to change a price without calling me.
 - **I designed the failure path first.** A wrong file gets a red report and is refused, and the live menu stays online.
-- **I split the product where the customers split.** A free core for every café, paid add-ons for a full restaurant, and code where each add-on works on its own.
+- **I split the product where the customers split.** A free core for every café, paid add-ons for a full restaurant, and code where each add-on is its own plugin.
 
 ![The sample menu on a desktop: all three languages at once, the diet filters with Vegetarian turned on (“8 of 11 dishes · Vegetarian” and a Show all button), the category tabs. Placeholder photos.](./menu-desktop.webp)
 
@@ -110,7 +110,12 @@ Then I had to decide how to sell it. My first plan was one package at a lower pr
 | **Restaurant** | Details entered once, opening hours, an "open now" badge, a holiday notice that takes itself down | A restaurant with a real website |
 | **Specials** | Today's specials and the lunch menu of the week | A kitchen that changes its offer |
 | **Gift Cards** | Gift card orders by e-mail, nothing paid online | A restaurant that sells gift cards |
+| **Shop** | Things guests take home, each with photos, a price, a quantity and a status; guests call or e-mail to buy | A restaurant that sells something besides its meals |
 | **Statistics** | Which dishes guests look at, which filters, languages and categories they use, where visits come from, how fast the menu opens, what guests tap next, without cookies | An owner who wants to know what works |
+
+**The fifth add-on came from the client.** At the handover in October 2026, A Fatt asked for a page for things guests can take home. Every add-on before it was one I proposed; this was the first one they asked for, and I built it that day as MenuDash Shop. Each item has photos, a price, a quantity and a status (available, reserved, sold), and its own page with Call and E-mail buttons. There's no cart and no online payment: guests call or write, and pick up at the restaurant. It plugs into the core like the other four, and the Statistics add-on counts its item pages and the taps on those buttons.
+
+![The Shop page with sample items: a language switch, category buttons, and cards for a jar of chili oil, a bag of cookies and a set of chairs marked Reserved, each with its price and how many are left.](./menudash-shop.webp)
 
 ![Opening hours in the Restaurant add-on, with the joined days on the right as guests will see them.](./menudash-opening-hours.webp)
 
@@ -118,7 +123,7 @@ Then I had to decide how to sell it. My first plan was one package at a lower pr
 
 **Why the core is free.** The code is GPL, like WordPress, so anyone who buys a zip may pass it on. Rather than fight that with licence keys, I asked what an owner actually pays for. Most never install a plugin themselves; they pay for someone to set it up, put their menu into the sheet, and answer when something changes. So the business sells the setup and the care: a one-time setup, and a yearly fee for the add-ons' updates and help. The free core is the shop window on GitHub, and it means a restaurant's menu never depends on me.
 
-**Why there's no shop yet.** Checkout, licence keys and automatic updates only pay off once restaurants I don't know come looking. I planned how they would work and left them unbuilt; until then, every customer is one I set up myself.
+**Why MenuDash has no online store yet.** Checkout, licence keys and automatic updates only pay off once restaurants I don't know come looking. I planned how they would work and left them unbuilt; until then, every customer is one I set up myself.
 
 </div>
 
@@ -129,7 +134,7 @@ Then I had to decide how to sell it. My first plan was one package at a lower pr
 A pricing split only works if the code splits cleanly too. A café on the free core can't see broken pieces of features it didn't buy, and a restaurant that adds Gift Cards next year shouldn't have to reinstall anything.
 
 - **Each add-on is its own plugin** that waits for the core and plugs in through hooks. Without it, its parts show nothing, so a page built for all of them still works with the core alone.
-- **The add-ons don't need each other.** Gift Cards uses the phone and address from Restaurant when it's installed, and its own fields when it isn't.
+- **The add-ons install without each other.** Gift Cards uses the phone and address from Restaurant when it's installed, and its own fields when it isn't. Shop's Call and E-mail buttons take theirs from Restaurant, so the two are sold together.
 - **A browser test runs the core alone and each add-on without the others,** so every package works, including ones nobody has bought yet.
 - **The data for search engines splits the same way.** The core marks up the menu; the Restaurant add-on marks up the restaurant and links to that menu by its id. Each package publishes only what it holds, and the two join up when both are installed.
 - **One export writes two repositories,** the public core and the private add-ons, and refuses to write the public copy if the client's name, address or photos turn up in it, or if add-on code has leaked into the core.
@@ -158,7 +163,7 @@ The question behind the filters was whether guests would use them. Asking a rest
 - **Whether guests use the one QR code.** Each menu visit counts under one source (QR code, direct, a search engine, another site), and the QR code the core makes carries a tag for it.
 - **Whether the menu opens fast on their phones,** with 72 of the dishes in photos. On menuGen, photos were what ran the server out of memory, so I wanted this one measured. The guest's browser sends only fast, medium or slow, by the limits Google rates pages with, never the time itself.
 - **How guests find their way through 18 categories.** A tap on a category button above the menu counts; scrolling there doesn't, so the number shows how many guests use the buttons, not where everyone ends up.
-- **What guests do next.** Taps on the phone number, the map, the order and booking links, and gift card orders that reach the restaurant.
+- **What guests do next.** Taps on the phone number, the map, the order and booking links, gift card orders that reach the restaurant, and, with the Shop add-on, which item pages are opened and their Call and E-mail taps.
 - **Whether a change helped.** The owner marks the day of a new menu or new photos, and the tab compares the same number of days before and after, up to four weeks each, and says there are too few to compare rather than show a large per cent from a handful of visits.
 
 ![Where menu visits come from, on the Statistics tab with sample numbers: QR code, direct, search engines, the restaurant's own website and other websites, each with its visits and share.](./menudash-stats-sources.webp)
@@ -197,7 +202,7 @@ I built MenuDash with Claude Code. I designed the product and the data model, wr
 
 ## Where It Stands
 
-The core has run A Fatt's menu page since late September 2026, now at version 2.10. The Specials and Statistics add-ons run on A Fatt's site too. Restaurant, Gift Cards and the theme are built, offered through insdash, and not on A Fatt's site yet. A Fatt is the first restaurant running it; the split is built for the ones that come next.
+The core has run A Fatt's menu page since late September 2026, now at version 2.10. The Specials and Statistics add-ons run on A Fatt's site too. Restaurant, Gift Cards, Shop and the theme are built, offered through insdash, and not on A Fatt's site yet. In October 2026 I handed it over: the owner uploads the menu spreadsheet herself, and I still maintain MenuDash and the site for them. A Fatt is the first restaurant running it; the split is built for the ones that come next.
 
 </div>
 
@@ -205,8 +210,7 @@ The core has run A Fatt's menu page since late September 2026, now at version 2.
 
 ## What's Still Open
 
-- **The owner's side isn't proven yet.** She's trained to upload the menu. Whether she does it month after month without me is the real result, and it's weeks old.
 - **The guest's side has too little data yet.** Statistics went live on afatt.ch in mid-October 2026, too recently to say what guests do with the filters. The before-and-after comparison is built for exactly that question, and it fills up to four weeks on each side. The first reading decides whether the filter row changes; once there are a few weeks of numbers, I'll add here what they showed and what I changed because of them.
-- **I'd get the second customer before the third add-on.** It grew from one menu page into a core, four add-ons and a theme in two weeks, for one restaurant. The split is a bet on restaurants I haven't met yet.
+- **I'd get the second customer before the next add-on.** It grew from one menu page into a core, five add-ons and a theme in a month, for one restaurant. Shop is the one add-on a client asked for; the rest of the split is still a bet on restaurants I haven't met yet.
 
 </div>
