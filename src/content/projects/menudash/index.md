@@ -32,7 +32,7 @@ focus:
     'Business Model',
     'Validation',
   ]
-activities: 'A restaurant client had kept the English and German Canva menus I designed for them in 2024 up to date on their own, and came back in 2026 asking for a separate vegan and vegetarian menu. They got the third PDF, and with it three files to keep in step and three QR codes for guests to choose from. So I turned the menu into data: one spreadsheet, a column per language and a mark per diet, read by a WordPress plugin I designed so every guest filters the one menu on their phone. I designed the owner''s side around the file going wrong, with a report that refuses a broken upload and keeps the live menu online. Then I made it a product: a free open-source core and paid add-ons, split along the line between a café and a full restaurant, with an architecture where each add-on works on its own and a business that sells the setup and the care. I built it with Claude Code: I designed the product and the data model, wrote the specifications, reviewed every change and decided what shipped.'
+activities: 'A restaurant client had kept the English and German Canva menus I designed for them in 2024 up to date on their own, and came back in 2026 asking for a separate vegan and vegetarian menu. They got the third PDF, and with it three files to keep in step and three QR codes for guests to choose from. So I turned the menu into data: one spreadsheet, a column per language and a mark per diet, read by a WordPress plugin I designed so every guest filters the one menu on their phone. I designed the owner''s side around the file going wrong, with a report that refuses a broken upload and keeps the live menu online. Then I made it a product: a free open-source core and paid add-ons, split along the line between a café and a full restaurant, with an architecture where each add-on is its own plugin and a business that sells the setup and the care. I built it with Claude Code: I designed the product and the data model, wrote the specifications, reviewed every change and decided what shipped.'
 ---
 
 <div class="contentSection">
@@ -54,7 +54,7 @@ MenuDash is the WordPress plugin I designed and built to do that. It runs the [m
 - **I turned a layout problem into a data problem.** The third PDF they asked for could disagree with the other two. Online, it became a filter on one sheet that can't disagree with itself.
 - **I designed for two users.** The guest wants their language and their diet in one tap. The owner wants to change a price without calling me.
 - **I designed the failure path first.** A wrong file gets a red report and is refused, and the live menu stays online.
-- **I split the product where the customers split.** A free core for every café, paid add-ons for a full restaurant, and code where each add-on works on its own.
+- **I split the product where the customers split.** A free core for every café, paid add-ons for a full restaurant, and code where each add-on is its own plugin.
 
 ![The sample menu on a desktop: all three languages at once, the diet filters with Vegetarian turned on (“8 of 11 dishes · Vegetarian” and a Show all button), the category tabs. Placeholder photos.](./menu-desktop.webp)
 
@@ -134,7 +134,7 @@ Then I had to decide how to sell it. My first plan was one package at a lower pr
 A pricing split only works if the code splits cleanly too. A café on the free core can't see broken pieces of features it didn't buy, and a restaurant that adds Gift Cards next year shouldn't have to reinstall anything.
 
 - **Each add-on is its own plugin** that waits for the core and plugs in through hooks. Without it, its parts show nothing, so a page built for all of them still works with the core alone.
-- **The add-ons don't need each other.** Gift Cards uses the phone and address from Restaurant when it's installed, and its own fields when it isn't.
+- **The add-ons install without each other.** Gift Cards uses the phone and address from Restaurant when it's installed, and its own fields when it isn't. Shop's Call and E-mail buttons take theirs from Restaurant, so the two are sold together.
 - **A browser test runs the core alone and each add-on without the others,** so every package works, including ones nobody has bought yet.
 - **The data for search engines splits the same way.** The core marks up the menu; the Restaurant add-on marks up the restaurant and links to that menu by its id. Each package publishes only what it holds, and the two join up when both are installed.
 - **One export writes two repositories,** the public core and the private add-ons, and refuses to write the public copy if the client's name, address or photos turn up in it, or if add-on code has leaked into the core.
