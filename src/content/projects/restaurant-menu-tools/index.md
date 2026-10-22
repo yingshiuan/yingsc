@@ -130,7 +130,7 @@ The owner uploads the menu sheet, and guests read it in German, English and Chin
 
 ![The owner's side: the MenuDash page in the WordPress dashboard after an upload, on the sample menu.](./dashboard-upload.webp)
 
-Then I made it a product, split where the customers split: a free, open-source core for a café that only needs the menu, and four paid add-ons for a full restaurant (hours and holidays, specials, gift cards, statistics). The whole story is on the [MenuDash page](/yingsc/projects/menudash/).
+Then I made it a product, split where the customers split: a free, open-source core for a café that only needs the menu, and paid add-ons for a full restaurant (hours and holidays, specials, gift cards, a shop, statistics). The whole story is on the [MenuDash page](/yingsc/projects/menudash/).
 
 **Where it stands:** the owner agreed, A Fatt paid for the core, and it runs the [menu page on afatt.ch](https://afatt.ch/menu/). The add-ons and the theme are built and not on their site yet.
 
