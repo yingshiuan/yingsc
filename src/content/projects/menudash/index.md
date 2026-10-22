@@ -202,7 +202,7 @@ I built MenuDash with Claude Code. I designed the product and the data model, wr
 
 ## Where It Stands
 
-The core has run A Fatt's menu page since late September 2026, now at version 2.10. The Specials and Statistics add-ons run on A Fatt's site too. Restaurant, Gift Cards, Shop and the theme are built, offered through insdash, and not on A Fatt's site yet. In October 2026 I handed it over: the owner uploaded the menu spreadsheet herself, and she handles it on her own now, without calling me. A Fatt is the first restaurant running it; the split is built for the ones that come next.
+The core has run A Fatt's menu page since late September 2026, now at version 2.10. The Specials and Statistics add-ons run on A Fatt's site too. Restaurant, Gift Cards, Shop and the theme are built, offered through insdash, and not on A Fatt's site yet. In October 2026 I handed it over: the owner uploads the menu spreadsheet herself, and I still maintain MenuDash and the site for them. A Fatt is the first restaurant running it; the split is built for the ones that come next.
 
 </div>
 
