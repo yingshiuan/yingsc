@@ -108,7 +108,7 @@ So guests can make a selection. With it switched on, each dish gets a + button, 
 - **The staff read it, so it speaks their language too.** Each dish shows its number, its name in the guest's language and the German name under it, so the guest orders by showing it rather than pronouncing it. A dish can be marked with a question for the staff.
 - **Friends or the restaurant read it, so it travels as a picture.** One tap draws the selection as a picture on the phone, with the dish photos, the restaurant's address and phone, and a QR code back to the menu. The guest saves it, or sends it with the menu's link.
 - **The picture outlives the menu, so it carries no prices.** It gets forwarded and kept, and prices change. The selection on the page has them; the picture doesn't.
-- **Nothing is ordered, and nothing is sent anywhere.** The selection stays in the guest's browser tab. It is a list, not an ordering system, so it needed no accounts and no checkout.
+- **The order still goes through the staff, on purpose.** A QR menu can turn a table into guests looking at their phones. The selection turns the phone into something the guest shows the server, and a dish marked with a question gives them something to talk about. So it is a list, not an ordering system: nothing is ordered or sent anywhere, the selection stays in the guest's browser tab, and it needed no accounts and no checkout.
 
 The restaurant switches it on from the dashboard, and the share picture separately. It is built and installed on afatt.ch, and not yet switched on there.
 
