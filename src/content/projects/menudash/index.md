@@ -100,15 +100,16 @@ The twin check proved itself on their real menu. Duck Pancakes appeared in two c
 
 ## A Selection Guests Pass On
 
-I watched orders go wrong at A Fatt, mostly when the guest and the waitress didn't share a language, in a noisy room. A guest browsing 110 dishes has to keep the ones they want in their head until the staff come, then name each one, often in a language that isn't theirs. And choosing is often not one person's decision: friends planning a dinner, one person ordering for the whole table, someone ordering takeaway for others, typing dish names into a message for the staff to work out.
+I watched orders go wrong at A Fatt, mostly when the guest and the waitress didn't share a language, in a noisy room. Most QR menus fix that by taking the waitress out: the guest orders on the phone. I wanted the opposite. **The phone helps the guest talk to the waitress; it doesn't replace her.** It keeps the person and removes the mistake.
 
 So guests can make a selection. With it switched on, each dish gets a + button, and the selection is built around who reads it next:
 
-- **The guest reads it first, so nothing is forgotten.** A dish goes on the selection while they browse, and the selection is still there when it's time to order, and again to check the order when it's read back or the dishes arrive.
-- **The staff read it, so it speaks their language too.** Each dish shows its number, its name in the guest's language and the German name under it, so the guest orders by showing it rather than pronouncing it. A dish can be marked with a question for the staff.
-- **Friends or the restaurant read it, so it travels as a picture.** One tap draws the selection as a picture on the phone, with the dish photos, the restaurant's address and phone, and a QR code back to the menu. The guest saves it, or sends it with the menu's link.
+- **The guest reads it first, so nothing has to be remembered.** A dish goes on the selection while they browse, out of 110, and it's still there when the waitress comes over.
+- **Then guest and waitress read it together.** Each dish shows its number, its name in the guest's language and the German name under it, so the guest orders by showing it rather than pronouncing it, and the order can be checked against it when it's read back. A dish marked with a question gives them something to talk about.
+- **So it is a list, not an ordering system.** A person still takes the order. Nothing is ordered or sent anywhere, the selection stays in the guest's browser tab, and it needed no accounts and no checkout.
+- **Friends read it too, so it travels as a picture.** Choosing is often a group's decision, or one person ordering takeaway for others. One tap draws the selection as a picture on the phone, with the dish photos, the restaurant's address and phone, and a QR code back to the menu, to save or to send with the menu's link.
 - **The picture outlives the menu, so it carries no prices.** It gets forwarded and kept, and prices change. The selection on the page has them; the picture doesn't.
-- **The order still goes through the staff, on purpose.** A QR menu can turn a table into guests looking at their phones. The selection turns the phone into something the guest shows the server, and a dish marked with a question gives them something to talk about. So it is a list, not an ordering system: nothing is ordered or sent anywhere, the selection stays in the guest's browser tab, and it needed no accounts and no checkout.
+- **And the owner learns intent, not only attention.** With the Statistics add-on, the owner sees which dishes guests planned to order, not only which ones they looked at.
 
 The restaurant switches it on from the dashboard, and the share picture separately. It is built and installed on afatt.ch, and not yet switched on there.
 
