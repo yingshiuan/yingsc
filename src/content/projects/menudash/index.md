@@ -98,6 +98,23 @@ The twin check proved itself on their real menu. Duck Pancakes appeared in two c
 
 <div class="contentSection">
 
+## A Selection Guests Pass On
+
+Choosing from 110 dishes is often not one person's decision: friends planning a dinner, one person ordering for the whole table, someone ordering takeaway for others. Without help, the guest types dish names into a message, and the staff work out what was meant.
+
+So guests can make a selection. With it switched on, each dish gets a + button, and the selection is built around who reads it next:
+
+- **The staff read it, so it speaks their language too.** Each dish shows its number, its name in the guest's language and the German name under it. A dish can be marked with a question for the staff.
+- **Friends or the restaurant read it, so it travels as a picture.** One tap draws the selection as a picture on the phone, with the dish photos, the restaurant's address and phone, and a QR code back to the menu. The guest saves it, or sends it with the menu's link.
+- **The picture outlives the menu, so it carries no prices.** It gets forwarded and kept, and prices change. The selection on the page has them; the picture doesn't.
+- **Nothing is ordered, and nothing is sent anywhere.** The selection stays in the guest's browser tab. It is a list, not an ordering system, so it needed no accounts and no checkout.
+
+The restaurant switches it on from the dashboard, and the share picture separately. It is built and installed on afatt.ch, and not yet switched on there.
+
+</div>
+
+<div class="contentSection">
+
 ## From a Client Job to a Product
 
 Once the menu worked, the rest of what guests check on a restaurant's site turned out to be the same problem: opening hours, a holiday closure, today's specials, gift cards. Each is something the owner changes in one place and forgets in the others. I built them on the same dashboard page, and by version 1.11 one plugin did all of it.
@@ -205,7 +222,7 @@ I built MenuDash with Claude Code. I designed the product and the data model, wr
 
 **Live on afatt.ch:** the menu since late September 2026, now 2.12, with the Specials and Statistics add-ons. The owner uploads the menu herself, and I still maintain MenuDash and the site for them.
 
-**Built, not yet live for their guests:** Restaurant, Gift Cards, Shop, the theme, and the guest's selection, which picks dishes and shares them as a picture. A Fatt is the first restaurant running MenuDash; the split is built for the ones that come next.
+**Built, not yet live for their guests:** Restaurant, Gift Cards, Shop, the theme, and the guest's selection. A Fatt is the first restaurant running MenuDash; the split is built for the ones that come next.
 
 </div>
 
