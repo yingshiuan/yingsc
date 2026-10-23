@@ -214,7 +214,7 @@ The core has run A Fatt's menu page since late September 2026, now at version 2.
 ## What's Still Open
 
 - **The guest's side has too little data yet.** Statistics went live on afatt.ch in mid-October 2026, too recently to say what guests do with the filters. The before-and-after comparison is built for exactly that question, and it fills up to four weeks on each side. The first reading decides whether the filter row changes; once there are a few weeks of numbers, I'll add here what they showed and what I changed because of them.
-- **Who the selection's picture is for is still a guess.** I built it for a group deciding together and for a takeaway order sent ahead, and the one use I've seen is my own. Before any visits come in, I've written down what share of guests I expect to make a selection, to send it, and to arrive from one. Statistics counts all three, and the owner can say how many takeaway orders arrive as a picture.
+- **Who the selection's picture is for is still a guess.** I built it for a group deciding together and for a takeaway order sent ahead, and the one use I've seen is my own. Statistics counts how many guests make a selection, how many save or send it, and how many arrive from one; the owner can say how many takeaway orders arrive as a picture.
 - **I'd get the second customer before the next add-on.** It grew from one menu page into a core, five add-ons and a theme in a month, for one restaurant. Shop is the one add-on a client asked for; the rest of the split is still a bet on restaurants I haven't met yet.
 
 </div>
