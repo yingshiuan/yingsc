@@ -111,7 +111,7 @@ So guests can make a selection. With it switched on, each dish gets a + button, 
 - **The picture outlives the menu, so it carries no prices.** It gets forwarded and kept, and prices change. The selection on the page has them; the picture doesn't.
 - **And the owner learns intent, not only attention.** With the Statistics add-on, the owner sees which dishes guests planned to order, not only which ones they looked at.
 
-![The guest's selection on a phone, with sample dishes, in three steps: 1, the menu with a + beside each dish and a “Meine Auswahl” bar at the bottom; 2, the selection in English, each dish with its number, quantity and a Question button, and the German name under the English one; 3, the selection drawn as a picture with the restaurant's address and a QR code, and Save and Share buttons.](./menudash-selection.webp)
+![The guest's selection on three iPhones, with sample dishes: 1, the menu with a + beside each dish and a “Meine Auswahl” bar at the bottom; 2, the selection in English, each dish with its number, quantity and a Question button, and the German name under the English one; 3, the selection drawn as a picture with the restaurant's address and a QR code, and Save and Share buttons.](./menudash-selection.webp)
 
 The restaurant switches it on from the dashboard, and the share picture separately. It is built and installed on afatt.ch, and not yet switched on there.
 
