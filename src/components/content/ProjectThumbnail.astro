@@ -18,13 +18,13 @@ const mainImage = project.data.thumbnail ?? project.data.image;
     alt={project.data.title}
     widths={[640, 1024, 1600]}
     sizes="(min-width: 900px) 80rem, 100vw"
-    class="w-full aspect-16/10 object-cover object-center transition-transform duration-300 ease-in-out group-hover:scale-105"
+    class="w-full aspect-[16/10] object-cover object-center transition-transform duration-300 ease-in-out group-hover:scale-105"
   />
 
   <!-- Overlay with text -->
   <div class="glassHover">
     <h3
-      class="text-(--background-color) drop-shadow-[1px_1px_2px_var(--color-caption-secondary)]"
+      class="text-[var(--background-color)] drop-shadow-[1px_1px_2px_var(--color-caption-secondary)]"
     >
       {project.data.title}
     </h3>
@@ -47,14 +47,14 @@ const mainImage = project.data.thumbnail ?? project.data.image;
 
   html.light_mode .glassHover {
     @apply absolute inset-0 flex flex-col items-center justify-center
-    bg-linear-to-t from-black/5 via-black/2 to-transparent
+    bg-gradient-to-t from-black/5 via-black/2 to-transparent
     border border-black/10 backdrop-blur-md
     rounded-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100;
   }
 
   html.dark_mode .glassHover {
     @apply absolute inset-0 flex flex-col items-center justify-center
-    bg-linear-to-t from-white/20 via-white/10 to-white/5
+    bg-gradient-to-t from-white/20 via-white/10 to-white/5
     backdrop-blur-md border border-white/25
     rounded-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100;
   }
