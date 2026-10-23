@@ -74,6 +74,8 @@ A filter button only appears when at least one dish has that mark, so a guest ne
 
 ![The diet icons on the owner's side, on the sample menu: each mark with its icon, a filter button that can be switched off, and how many dishes have it.](./menudash-diet-icons.webp)
 
+**A selection the guest can pass on.** Choosing from 110 dishes is often a group decision: friends planning a dinner, one person ordering for the table, or someone ordering takeaway. With the selection switched on, each dish gets a + button. The selection shows each dish with its number, its name in the guest's language and the German name under it, because the next person to read it is usually the staff. A dish can carry a question for them. One tap turns it into a picture drawn on the phone, with the dish photos, the restaurant's address and a QR code back to the menu, to save or to send with the menu's link. The picture carries no prices, because it gets passed on and prices change. Nothing is ordered and nothing is sent anywhere; the selection stays in the guest's browser tab.
+
 **And for both of them, it had to be a real web page.** The menu is HTML in all three languages, not a PDF or a picture, so it works without JavaScript and search engines read every dish.
 
 ![The owner's side: the MenuDash page in the WordPress dashboard after an upload, on the sample menu.](./dashboard-upload.webp)
@@ -163,6 +165,7 @@ The question behind the filters was whether guests would use them. Asking a rest
 - **Whether guests use the one QR code.** Each menu visit counts under one source (QR code, direct, a search engine, another site), and the QR code the core makes carries a tag for it.
 - **Whether the menu opens fast on their phones,** with 72 of the dishes in photos. On menuGen, photos were what ran the server out of memory, so I wanted this one measured. The guest's browser sends only fast, medium or slow, by the limits Google rates pages with, never the time itself.
 - **How guests find their way through 18 categories.** A tap on a category button above the menu counts; scrolling there doesn't, so the number shows how many guests use the buttons, not where everyone ends up.
+- **Whether a shared selection reaches anyone.** A picture counts when the guest saves or sends it, and the QR code and link on it carry their own tag, so a menu visit that arrives from a shared picture counts under its own source.
 - **What guests do next.** Taps on the phone number, the map, the order and booking links, gift card orders that reach the restaurant, and, with the Shop add-on, which item pages are opened and their Call and E-mail taps.
 - **Whether a change helped.** The owner marks the day of a new menu or new photos, and the tab compares the same number of days before and after, up to four weeks each, and says there are too few to compare rather than show a large per cent from a handful of visits.
 
@@ -202,7 +205,7 @@ I built MenuDash with Claude Code. I designed the product and the data model, wr
 
 ## Where It Stands
 
-The core has run A Fatt's menu page since late September 2026, now at version 2.10. The Specials and Statistics add-ons run on A Fatt's site too. Restaurant, Gift Cards, Shop and the theme are built, offered through insdash, and not on A Fatt's site yet. In October 2026 I handed it over: the owner uploads the menu spreadsheet herself, and I still maintain MenuDash and the site for them. A Fatt is the first restaurant running it; the split is built for the ones that come next.
+The core has run A Fatt's menu page since late September 2026, now at version 2.10. The Specials and Statistics add-ons run on A Fatt's site too. Restaurant, Gift Cards, Shop, the theme and the guest's selection (core 2.12) are built, offered through insdash, and not on A Fatt's site yet. In October 2026 I handed it over: the owner uploads the menu spreadsheet herself, and I still maintain MenuDash and the site for them. A Fatt is the first restaurant running it; the split is built for the ones that come next.
 
 </div>
 
@@ -211,6 +214,7 @@ The core has run A Fatt's menu page since late September 2026, now at version 2.
 ## What's Still Open
 
 - **The guest's side has too little data yet.** Statistics went live on afatt.ch in mid-October 2026, too recently to say what guests do with the filters. The before-and-after comparison is built for exactly that question, and it fills up to four weeks on each side. The first reading decides whether the filter row changes; once there are a few weeks of numbers, I'll add here what they showed and what I changed because of them.
+- **Who the selection's picture is for is still a guess.** I built it for a group deciding together and for a takeaway order sent ahead, and the one use I've seen is my own. Before any visits come in, I've written down what share of guests I expect to make a selection, to send it, and to arrive from one. Statistics counts all three, and the owner can say how many takeaway orders arrive as a picture.
 - **I'd get the second customer before the next add-on.** It grew from one menu page into a core, five add-ons and a theme in a month, for one restaurant. Shop is the one add-on a client asked for; the rest of the split is still a bet on restaurants I haven't met yet.
 
 </div>
