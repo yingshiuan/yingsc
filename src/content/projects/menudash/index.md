@@ -114,7 +114,7 @@ So guests can make a selection. With it switched on, each dish gets a + button, 
 
 ![The guest's selection on three iPhones, with sample dishes: 1, the menu with a + beside each dish and a “Meine Auswahl” bar at the bottom; 2, the selection in English, each dish with its number, quantity and a Question button, and the German name under the English one; 3, the selection drawn as a picture with the restaurant's address and a QR code, and Save and Share buttons.](./menudash-selection.webp)
 
-The restaurant switches it on from the dashboard, and the share picture separately. It is built and installed on afatt.ch, and not yet switched on there.
+It is off by default: it changes how guests order, so the restaurant decides, not the plugin. The owner switches it on from the dashboard, and the share picture separately. It is built and installed on afatt.ch, and not yet switched on there.
 
 </div>
 
