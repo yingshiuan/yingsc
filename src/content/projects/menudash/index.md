@@ -21,7 +21,7 @@ info: 'One menu online that every guest filters by language and diet, behind one
 description: 'Asked for a separate vegan and vegetarian menu, I made it, then turned the restaurant''s menu into one spreadsheet and a WordPress plugin, so guests scan one QR code and filter by language and diet instead of choosing between three PDFs; designed the upload so a wrong file can''t break the live page, and then made it a product: a free, open-source core for every café and paid add-ons for a full restaurant, the latest one asked for by the client.'
 role: 'Product Engineer & Founder'
 timeline: '2 weeks to stable, live on the client''s site from the first week'
-completed: 'Live on afatt.ch since 09/2026 · now 2.10'
+completed: 'Live on afatt.ch since 09/2026 · now 2.12'
 credit: 'A Fatt'
 creditLink: 'https://afatt.ch/menu/'
 tools: ['PHP', 'WordPress', 'Block Editor', 'JavaScript', 'CSS', 'Python', 'WordPress Playground', 'Puppeteer', 'Claude Code']
@@ -47,7 +47,7 @@ I had already shown them [menuGen](https://yingshiuan.github.io/yingsc/projects/
 
 MenuDash is the WordPress plugin I designed and built to do that. It runs the [menu page on afatt.ch](https://afatt.ch/menu/): 110 dishes in three languages, filtered by diet, rebuilt whenever the owner uploads the sheet. Then, because the problem wasn't specific to one restaurant, I made it a product. The core and its theme are open source: [MenuDash on GitHub](https://github.com/yingshiuan/menudash) · [MenuDash Theme](https://github.com/yingshiuan/menudash-theme).
 
-**Where it stands:** live on one restaurant's site since September 2026, with the Specials and Statistics add-ons since October. Handed over in October: the owner uploads the menu herself.
+**What changed:** the three QR codes on the tables became one, and it opens the menu page. At the handover in October 2026, the owner uploaded the menu herself, and asked for something new: a page for things guests take home, the first add-on the client asked for rather than one I proposed. Live on afatt.ch since September 2026, with the Specials and Statistics add-ons since October.
 
 #### Key Highlights
 
@@ -98,9 +98,33 @@ The twin check proved itself on their real menu. Duck Pancakes appeared in two c
 
 <div class="contentSection">
 
+## A Selection Guests Pass On
+
+I watched orders go wrong at A Fatt, mostly when the guest and the waitress didn't share a language, in a noisy room. Most QR menus fix that by taking the waitress out: the guest orders from the menu on their phone. I wanted the opposite. **The phone helps the guest talk to the waitress; it doesn't replace her.** The aim is to keep the person and take out the mistake.
+
+So guests can make a selection. With it switched on, each dish gets a + button, and the selection is built around who reads it next:
+
+- **The guest reads it first, so nothing has to be remembered.** A dish goes on the selection while they browse, out of 110, and it's still there when the waitress comes over.
+- **Then guest and waitress read it together.** Each dish shows its number, its name in the guest's language and the German name under it, so the guest orders by showing it rather than pronouncing it, and the order can be checked against it when it's read back. A dish marked with a question gives them something to talk about.
+- **So it is a list, not an ordering system.** A person still takes the order, and it needed no accounts and no checkout.
+- **And it stays on the guest's phone.** The selection is kept in that browser tab only and is gone when the tab is closed. There is no account, no name and no phone number, and the picture is drawn on the phone itself, so it goes only to whoever the guest sends it to. With the Statistics add-on, the restaurant's own site counts how often each dish was chosen, as a daily total; the selection itself is never stored, and nothing goes to me or to anyone else.
+- **Friends read it too, so it travels as a picture.** Choosing is often a group's decision, or one person ordering takeaway for others. One tap draws the selection as a picture on the phone, with the dish photos, the restaurant's address and phone number, and a QR code back to the menu, to save or to send with the menu's link.
+- **The picture outlives the menu, so it carries no prices.** It gets forwarded and kept, and prices change. The selection on the page has them; the picture doesn't.
+- **And the owner learns intent, not only attention.** With the Statistics add-on, the owner sees which dishes guests planned to order, not only which ones they looked at.
+
+![The guest's selection on three iPhones, with sample dishes: 1, the menu with a + beside each dish and a “Meine Auswahl” bar at the bottom; 2, the selection in English, each dish with its number, quantity and a Question button, and the German name under the English one; 3, the selection drawn as a picture with the restaurant's address and a QR code, and Save and Share buttons.](./menudash-selection.webp)
+
+It is off by default: it changes how guests order, so the restaurant decides, not the plugin. The owner switches it on from the dashboard, and the share picture separately. It is built and installed on afatt.ch, and not yet switched on there.
+
+</div>
+
+<div class="contentSection">
+
 ## From a Client Job to a Product
 
 Once the menu worked, the rest of what guests check on a restaurant's site turned out to be the same problem: opening hours, a holiday closure, today's specials, gift cards. Each is something the owner changes in one place and forgets in the others. I built them on the same dashboard page, and by version 1.11 one plugin did all of it.
+
+**Where it sits: between a PDF menu and an ordering system.** Full online ordering is a different business, not a bigger version of this one: fees per order or per month, a link to the till, staff retrained, and guests ordering without the waitress. For a family restaurant with table service, that changes how the restaurant works. MenuDash takes one setup and leaves the service as it is, and the takeaway picture fits the orders small restaurants already take by phone call or WhatsApp. Its real competitors are not ordering systems but cheap QR menu services and the free menu on Google, so that's the comparison it has to win: one spreadsheet for every language, an upload that can't break the page, statistics without cookies, and a selection that keeps the staff in the conversation. The limits are just as clear. It runs on WordPress only, which leaves out many small cafés, and one restaurant doesn't yet prove the middle is a market.
 
 Then I had to decide how to sell it. My first plan was one package at a lower price. But a small café only needs the menu, and a full restaurant wants all of it, so one price fits neither. At 2.0 I split it along the same line as the customers:
 
@@ -163,6 +187,7 @@ The question behind the filters was whether guests would use them. Asking a rest
 - **Whether guests use the one QR code.** Each menu visit counts under one source (QR code, direct, a search engine, another site), and the QR code the core makes carries a tag for it.
 - **Whether the menu opens fast on their phones,** with 72 of the dishes in photos. On menuGen, photos were what ran the server out of memory, so I wanted this one measured. The guest's browser sends only fast, medium or slow, by the limits Google rates pages with, never the time itself.
 - **How guests find their way through 18 categories.** A tap on a category button above the menu counts; scrolling there doesn't, so the number shows how many guests use the buttons, not where everyone ends up.
+- **Whether a guest's selection travels.** Guests can pick dishes and share them as a picture. Saving or sending it counts, and its QR code and link carry their own tag, so a menu visit that arrives from a shared picture counts under its own source.
 - **What guests do next.** Taps on the phone number, the map, the order and booking links, gift card orders that reach the restaurant, and, with the Shop add-on, which item pages are opened and their Call and E-mail taps.
 - **Whether a change helped.** The owner marks the day of a new menu or new photos, and the tab compares the same number of days before and after, up to four weeks each, and says there are too few to compare rather than show a large per cent from a handful of visits.
 
@@ -188,6 +213,8 @@ I built MenuDash with Claude Code. I designed the product and the data model, wr
 
 **I didn't wait for it to be finished.** Three days in, at version 1.1.3, I installed it on afatt.ch to test it against the real site and the real menu, and kept updating it there as each new version shipped. Twelve days later it reached a stable version, 2.7. Testing on the client's site while building is how the real menu's problems showed up early instead of after launch.
 
+**It stays small on the guest's phone.** The guest's side is one script of 14 KB compressed, with no framework and no jQuery, loaded after the page, and 10 KB of CSS; the menu works without the script at all. Dish photos come in 200, 400 and 800 pixel versions and load only as they scroll into view. The share picture's code and the QR library, another 14 KB, load only when a guest taps Share. MenuDash makes no request to any other server. How fast that is on guests' real phones is what the speed count in Statistics is for, and its first weeks are too few to quote.
+
 **The last step before a release is a security review.** A plugin that takes files from a restaurant owner and a form from any visitor is an open door if nobody checks it, and code that works isn't the same as code that's safe. So before a version ships, I run a review of how it could be abused, and what turns up is fixed before it goes out. Those reviews are where most of the hardening came from:
 
 - **A diet icon can't carry a script.** Uploaded SVGs are cleaned down to plain shapes, and a review found one more way in, a file written in a different text encoding, which is now refused too.
@@ -202,7 +229,9 @@ I built MenuDash with Claude Code. I designed the product and the data model, wr
 
 ## Where It Stands
 
-The core has run A Fatt's menu page since late September 2026, now at version 2.10. The Specials and Statistics add-ons run on A Fatt's site too. Restaurant, Gift Cards, Shop and the theme are built, offered through insdash, and not on A Fatt's site yet. In October 2026 I handed it over: the owner uploads the menu spreadsheet herself, and I still maintain MenuDash and the site for them. A Fatt is the first restaurant running it; the split is built for the ones that come next.
+**Live on afatt.ch:** the menu since late September 2026, now 2.12, with the Specials and Statistics add-ons. The owner uploads the menu herself, and I still maintain MenuDash and the site for them.
+
+**Built, not yet live for their guests:** Restaurant, Gift Cards, Shop, the theme, and the guest's selection. A Fatt is the first restaurant running MenuDash; the split is built for the ones that come next.
 
 </div>
 
@@ -211,6 +240,7 @@ The core has run A Fatt's menu page since late September 2026, now at version 2.
 ## What's Still Open
 
 - **The guest's side has too little data yet.** Statistics went live on afatt.ch in mid-October 2026, too recently to say what guests do with the filters. The before-and-after comparison is built for exactly that question, and it fills up to four weeks on each side. The first reading decides whether the filter row changes; once there are a few weeks of numbers, I'll add here what they showed and what I changed because of them.
+- **Who the selection's picture is for is still a guess.** I built it for a group deciding together and for a takeaway order sent ahead, and the one use I've seen is my own. Statistics counts how many guests make a selection, how many save or send it, and how many arrive from one; the owner can say how many takeaway orders arrive as a picture.
 - **I'd get the second customer before the next add-on.** It grew from one menu page into a core, five add-ons and a theme in a month, for one restaurant. Shop is the one add-on a client asked for; the rest of the split is still a bet on restaurants I haven't met yet.
 
 </div>
