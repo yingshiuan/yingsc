@@ -100,7 +100,7 @@ The twin check proved itself on their real menu. Duck Pancakes appeared in two c
 
 ## A Selection Guests Pass On
 
-A guest browsing 110 dishes has to keep the ones they want in their head until the staff come, then name each one, often in a language that isn't theirs. And choosing is often not one person's decision: friends planning a dinner, one person ordering for the whole table, someone ordering takeaway for others, typing dish names into a message for the staff to work out.
+I watched orders go wrong at A Fatt, mostly when the guest and the waitress didn't share a language, in a noisy room. A guest browsing 110 dishes has to keep the ones they want in their head until the staff come, then name each one, often in a language that isn't theirs. And choosing is often not one person's decision: friends planning a dinner, one person ordering for the whole table, someone ordering takeaway for others, typing dish names into a message for the staff to work out.
 
 So guests can make a selection. With it switched on, each dish gets a + button, and the selection is built around who reads it next:
 
