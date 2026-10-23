@@ -123,6 +123,8 @@ The restaurant switches it on from the dashboard, and the share picture separate
 
 Once the menu worked, the rest of what guests check on a restaurant's site turned out to be the same problem: opening hours, a holiday closure, today's specials, gift cards. Each is something the owner changes in one place and forgets in the others. I built them on the same dashboard page, and by version 1.11 one plugin did all of it.
 
+**Where it sits: between a PDF menu and an ordering system.** Full online ordering is a different business, not a bigger version of this one: fees per order or per month, a link to the till, staff retrained, and guests ordering without the waitress. For a family restaurant with table service, that changes how the restaurant works. MenuDash takes one setup and leaves the service as it is, and the takeaway picture fits the phone and WhatsApp orders small restaurants already take. Its real competitors are not ordering systems but cheap QR menu services and the free menu on Google, so that's the comparison it has to win: one spreadsheet for every language, an upload that can't break the page, statistics without cookies, and a selection that keeps the staff in the conversation. The limits are just as clear. It runs on WordPress only, which leaves out many small cafés, and one restaurant doesn't yet prove the middle is a market.
+
 Then I had to decide how to sell it. My first plan was one package at a lower price. But a small café only needs the menu, and a full restaurant wants all of it, so one price fits neither. At 2.0 I split it along the same line as the customers:
 
 | | What it does | Who needs it |
@@ -209,6 +211,8 @@ The data is smaller than an analytics tool's, and that's the point: every number
 I built MenuDash with Claude Code. I designed the product and the data model, wrote the specifications, reviewed every change and decided what shipped. The parser is tested against A Fatt's real spreadsheet as well as made-up ones, and the whole thing runs locally in WordPress Playground, so a site with the client's menu starts with one command.
 
 **I didn't wait for it to be finished.** Three days in, at version 1.1.3, I installed it on afatt.ch to test it against the real site and the real menu, and kept updating it there as each new version shipped. Twelve days later it reached a stable version, 2.7. Testing on the client's site while building is how the real menu's problems showed up early instead of after launch.
+
+**It stays small on the guest's phone.** The guest's side is one script of 14 KB compressed, with no framework and no jQuery, loaded after the page, and 10 KB of CSS; the menu works without the script at all. Dish photos come in 200, 400 and 800 pixel versions and load only as they scroll into view. The share picture's code and the QR library, another 14 KB, load only when a guest taps Share. MenuDash makes no request to any other server. How fast that is on guests' real phones is what the speed count in Statistics is for, and its first weeks are too few to quote.
 
 **The last step before a release is a security review.** A plugin that takes files from a restaurant owner and a form from any visitor is an open door if nobody checks it, and code that works isn't the same as code that's safe. So before a version ships, I run a review of how it could be abused, and what turns up is fixed before it goes out. Those reviews are where most of the hardening came from:
 
