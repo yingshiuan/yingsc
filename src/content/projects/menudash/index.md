@@ -100,7 +100,7 @@ The twin check proved itself on their real menu. Duck Pancakes appeared in two c
 
 ## A Selection Guests Pass On
 
-I watched orders go wrong at A Fatt, mostly when the guest and the waitress didn't share a language, in a noisy room. Most QR menus fix that by taking the waitress out: the guest orders on the phone. I wanted the opposite. **The phone helps the guest talk to the waitress; it doesn't replace her.** It keeps the person and removes the mistake.
+I watched orders go wrong at A Fatt, mostly when the guest and the waitress didn't share a language, in a noisy room. Most QR menus fix that by taking the waitress out: the guest orders on the phone. I wanted the opposite. **The phone helps the guest talk to the waitress; it doesn't replace her.** The aim is to keep the person and take out the mistake.
 
 So guests can make a selection. With it switched on, each dish gets a + button, and the selection is built around who reads it next:
 
