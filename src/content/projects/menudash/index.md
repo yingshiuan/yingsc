@@ -21,7 +21,7 @@ info: 'One menu online that every guest filters by language and diet, behind one
 description: 'Asked for a separate vegan and vegetarian menu, I made it, then turned the restaurant''s menu into one spreadsheet and a WordPress plugin, so guests scan one QR code and filter by language and diet instead of choosing between three PDFs; designed the upload so a wrong file can''t break the live page, and then made it a product: a free, open-source core for every café and paid add-ons for a full restaurant, the latest one asked for by the client.'
 role: 'Product Engineer & Founder'
 timeline: '2 weeks to stable, live on the client''s site from the first week'
-completed: 'Live on afatt.ch since 09/2026 · now 2.10'
+completed: 'Live on afatt.ch since 09/2026 · now 2.12'
 credit: 'A Fatt'
 creditLink: 'https://afatt.ch/menu/'
 tools: ['PHP', 'WordPress', 'Block Editor', 'JavaScript', 'CSS', 'Python', 'WordPress Playground', 'Puppeteer', 'Claude Code']
@@ -205,7 +205,7 @@ I built MenuDash with Claude Code. I designed the product and the data model, wr
 
 ## Where It Stands
 
-The core has run A Fatt's menu page since late September 2026, now at version 2.10. The Specials and Statistics add-ons run on A Fatt's site too. Restaurant, Gift Cards, Shop, the theme and the guest's selection (core 2.12) are built, offered through insdash, and not on A Fatt's site yet. In October 2026 I handed it over: the owner uploads the menu spreadsheet herself, and I still maintain MenuDash and the site for them. A Fatt is the first restaurant running it; the split is built for the ones that come next.
+The core has run A Fatt's menu page since late September 2026, now at version 2.12. The Specials and Statistics add-ons run on A Fatt's site too. Restaurant, Gift Cards, Shop, the theme and the guest's selection (core 2.12) are built, offered through insdash, and not on A Fatt's site yet. In October 2026 I handed it over: the owner uploads the menu spreadsheet herself, and I still maintain MenuDash and the site for them. A Fatt is the first restaurant running it; the split is built for the ones that come next.
 
 </div>
 
