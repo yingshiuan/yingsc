@@ -47,7 +47,7 @@ I had already shown them [menuGen](https://yingshiuan.github.io/yingsc/projects/
 
 MenuDash is the WordPress plugin I designed and built to do that. It runs the [menu page on afatt.ch](https://afatt.ch/menu/): 110 dishes in three languages, filtered by diet, rebuilt whenever the owner uploads the sheet. Then, because the problem wasn't specific to one restaurant, I made it a product. The core and its theme are open source: [MenuDash on GitHub](https://github.com/yingshiuan/menudash) · [MenuDash Theme](https://github.com/yingshiuan/menudash-theme).
 
-**Where it stands:** live on one restaurant's site since September 2026, with the Specials and Statistics add-ons since October. Handed over in October: the owner uploads the menu herself.
+**What changed:** the three QR codes on the tables became one, and it opens the menu page. At the handover in October 2026, the owner uploaded the menu herself, and asked for something new: a page for things guests take home, the first add-on the client asked for rather than one I proposed. Live on afatt.ch since September 2026, with the Specials and Statistics add-ons since October.
 
 #### Key Highlights
 
@@ -73,8 +73,6 @@ The whole product hangs on one decision: the spreadsheet is the source, and ever
 A filter button only appears when at least one dish has that mark, so a guest never taps Gluten-free and gets an empty menu. The owner decides which buttons the guest sees, and can swap in their own icons. Switching a button off hides only the button; the marks beside the dishes stay, because they're still true.
 
 ![The diet icons on the owner's side, on the sample menu: each mark with its icon, a filter button that can be switched off, and how many dishes have it.](./menudash-diet-icons.webp)
-
-**A selection the guest can pass on.** Choosing from 110 dishes is often a group decision: friends planning a dinner, one person ordering for the table, or someone ordering takeaway. With the selection switched on, each dish gets a + button. The selection shows each dish with its number, its name in the guest's language and the German name under it, because the next person to read it is usually the staff. A dish can carry a question for them. One tap turns it into a picture drawn on the phone, with the dish photos, the restaurant's address and a QR code back to the menu, to save or to send with the menu's link. The picture carries no prices, because it gets passed on and prices change. Nothing is ordered and nothing is sent anywhere; the selection stays in the guest's browser tab.
 
 **And for both of them, it had to be a real web page.** The menu is HTML in all three languages, not a PDF or a picture, so it works without JavaScript and search engines read every dish.
 
@@ -165,7 +163,7 @@ The question behind the filters was whether guests would use them. Asking a rest
 - **Whether guests use the one QR code.** Each menu visit counts under one source (QR code, direct, a search engine, another site), and the QR code the core makes carries a tag for it.
 - **Whether the menu opens fast on their phones,** with 72 of the dishes in photos. On menuGen, photos were what ran the server out of memory, so I wanted this one measured. The guest's browser sends only fast, medium or slow, by the limits Google rates pages with, never the time itself.
 - **How guests find their way through 18 categories.** A tap on a category button above the menu counts; scrolling there doesn't, so the number shows how many guests use the buttons, not where everyone ends up.
-- **Whether a shared selection reaches anyone.** A picture counts when the guest saves or sends it, and the QR code and link on it carry their own tag, so a menu visit that arrives from a shared picture counts under its own source.
+- **Whether a guest's selection travels.** Guests can pick dishes and share them as a picture. Saving or sending it counts, and its QR code and link carry their own tag, so a menu visit that arrives from a shared picture counts under its own source.
 - **What guests do next.** Taps on the phone number, the map, the order and booking links, gift card orders that reach the restaurant, and, with the Shop add-on, which item pages are opened and their Call and E-mail taps.
 - **Whether a change helped.** The owner marks the day of a new menu or new photos, and the tab compares the same number of days before and after, up to four weeks each, and says there are too few to compare rather than show a large per cent from a handful of visits.
 
@@ -205,7 +203,9 @@ I built MenuDash with Claude Code. I designed the product and the data model, wr
 
 ## Where It Stands
 
-The core has run A Fatt's menu page since late September 2026, now at version 2.12. The Specials and Statistics add-ons run on A Fatt's site too. Restaurant is installed ahead of the theme: for now it gives search engines the restaurant's address, phone and hours, linked to the menu. Gift Cards, Shop and the theme are built, offered through insdash, and not on A Fatt's site yet, and the guest's selection is installed but not yet switched on. In October 2026 I handed it over: the owner uploads the menu spreadsheet herself, and I still maintain MenuDash and the site for them. A Fatt is the first restaurant running it; the split is built for the ones that come next.
+**Live on afatt.ch:** the menu since late September 2026, now 2.12, with the Specials and Statistics add-ons. The owner uploads the menu herself, and I still maintain MenuDash and the site for them.
+
+**Built, not yet live for their guests:** Restaurant, Gift Cards, Shop, the theme, and the guest's selection, which picks dishes and shares them as a picture. A Fatt is the first restaurant running MenuDash; the split is built for the ones that come next.
 
 </div>
 
