@@ -100,11 +100,12 @@ The twin check proved itself on their real menu. Duck Pancakes appeared in two c
 
 ## A Selection Guests Pass On
 
-Choosing from 110 dishes is often not one person's decision: friends planning a dinner, one person ordering for the whole table, someone ordering takeaway for others. Without help, the guest types dish names into a message, and the staff work out what was meant.
+A guest browsing 110 dishes has to keep the ones they want in their head until the staff come, then name each one, often in a language that isn't theirs. And choosing is often not one person's decision: friends planning a dinner, one person ordering for the whole table, someone ordering takeaway for others, typing dish names into a message for the staff to work out.
 
 So guests can make a selection. With it switched on, each dish gets a + button, and the selection is built around who reads it next:
 
-- **The staff read it, so it speaks their language too.** Each dish shows its number, its name in the guest's language and the German name under it. A dish can be marked with a question for the staff.
+- **The guest reads it first, so nothing is forgotten.** A dish goes on the selection while they browse, and the selection is still there when it's time to order, and again to check the order when it's read back or the dishes arrive.
+- **The staff read it, so it speaks their language too.** Each dish shows its number, its name in the guest's language and the German name under it, so the guest orders by showing it rather than pronouncing it. A dish can be marked with a question for the staff.
 - **Friends or the restaurant read it, so it travels as a picture.** One tap draws the selection as a picture on the phone, with the dish photos, the restaurant's address and phone, and a QR code back to the menu. The guest saves it, or sends it with the menu's link.
 - **The picture outlives the menu, so it carries no prices.** It gets forwarded and kept, and prices change. The selection on the page has them; the picture doesn't.
 - **Nothing is ordered, and nothing is sent anywhere.** The selection stays in the guest's browser tab. It is a list, not an ordering system, so it needed no accounts and no checkout.
