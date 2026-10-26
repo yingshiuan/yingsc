@@ -21,7 +21,7 @@ info: 'One menu online that every guest filters by language and diet, behind one
 description: 'Asked for a separate vegan and vegetarian menu, I made it, then turned the restaurant''s menu into one spreadsheet and a WordPress plugin, so guests scan one QR code and filter by language and diet instead of choosing between three PDFs; designed the upload so a wrong file can''t break the live page, and then made it a product: a free, open-source core for every café and paid add-ons for a full restaurant, the latest one asked for by the client.'
 role: 'Product Engineer & Founder'
 timeline: '2 weeks to stable, live on the client''s site from the first week'
-completed: 'Live on afatt.ch since 09/2026 · now 2.12'
+completed: 'Live on afatt.ch since 09/2026 · now 2.13'
 credit: 'A Fatt'
 creditLink: 'https://afatt.ch/menu/'
 tools: ['PHP', 'WordPress', 'Block Editor', 'JavaScript', 'CSS', 'Python', 'WordPress Playground', 'Puppeteer', 'Claude Code']
@@ -47,7 +47,7 @@ I had already shown them [menuGen](https://yingshiuan.github.io/yingsc/projects/
 
 MenuDash is the WordPress plugin I designed and built to do that. It runs the [menu page on afatt.ch](https://afatt.ch/menu/): 110 dishes in three languages, filtered by diet, rebuilt whenever the owner uploads the sheet. Then, because the problem wasn't specific to one restaurant, I made it a product. The core and its theme are open source: [MenuDash on GitHub](https://github.com/yingshiuan/menudash) · [MenuDash Theme](https://github.com/yingshiuan/menudash-theme).
 
-**What changed:** the three QR codes on the tables became one, and it opens the menu page. At the handover in October 2026, the owner uploaded the menu herself, and asked for something new: a page for things guests take home, the first add-on the client asked for rather than one I proposed. Live on afatt.ch since September 2026, with the Specials and Statistics add-ons since October.
+**What changed:** the three QR codes on the tables became one, and it opens the menu page. At the handover in October 2026, the owner uploaded the menu herself, and asked for something new: a page for things guests take home, the first add-on the client asked for rather than one I proposed. Live on afatt.ch since September 2026, with the Specials and Statistics add-ons since October, and since 26 October 2026 its own theme, the opening hours and the guests' selection.
 
 #### Key Highlights
 
@@ -112,9 +112,9 @@ So guests can make a selection. With it switched on, each dish gets a + button, 
 - **The picture outlives the menu, so it carries no prices.** It gets forwarded and kept, and prices change. The selection on the page has them; the picture doesn't.
 - **And the owner learns intent, not only attention.** With the Statistics add-on, the owner sees which dishes guests planned to order, not only which ones they looked at.
 
-![The guest's selection on three iPhones, with sample dishes: 1, the menu with a + beside each dish and a “Meine Auswahl” bar at the bottom; 2, the selection in English, each dish with its number, quantity and a Question button, and the German name under the English one; 3, the selection drawn as a picture with the restaurant's address and a QR code, and Save and Share buttons.](./menudash-selection.webp)
+![The guest's selection on three iPhones, with sample dishes: 1, the menu with a + beside each dish, a “Meine Auswahl” bar at the bottom and a hint above it, “Ihre Auswahl finden Sie hier unten”; 2, the selection in English, each dish with its number, quantity and a Question button, and the German name under the English one; 3, the selection drawn as a picture with the restaurant's address and a QR code, Save and Share buttons, and a line saying what each one does.](./menudash-selection.webp)
 
-It is off by default: it changes how guests order, so the restaurant decides, not the plugin. The owner switches it on from the dashboard, and the share picture separately. It is built and installed on afatt.ch, and not yet switched on there.
+It is off by default: it changes how guests order, so the restaurant decides, not the plugin. The owner switches it on from the dashboard, and the share picture separately. On afatt.ch it has been switched on since 26 October 2026.
 
 </div>
 
@@ -163,7 +163,7 @@ A pricing split only works if the code splits cleanly too. A café on the free c
 - **The data for search engines splits the same way.** The core marks up the menu; the Restaurant add-on marks up the restaurant and links to that menu by its id. Each package publishes only what it holds, and the two join up when both are installed.
 - **One export writes two repositories,** the public core and the private add-ons, and refuses to write the public copy if the client's name, address or photos turn up in it, or if add-on code has leaked into the core.
 
-The theme follows the same rule. It stores no address, phone or hours of its own; it reads them from MenuDash on every page view, and fills in more as add-ons are installed. A restaurant can start with the menu and grow into a full site without a rebuild.
+The theme follows the same rule. It stores no address, phone or hours of its own; it reads them from MenuDash on every page view, and fills in more as add-ons are installed. A restaurant can start with the menu and grow into a full site without a rebuild. A Fatt's own copy of the theme has run afatt.ch since 26 October 2026.
 
 ![The menu page in the public MenuDash Theme, with sample data: the lunch menu and today's specials above the menu, and one language switch for all of it.](./menudash-theme-menu.webp)
 
@@ -229,9 +229,9 @@ I built MenuDash with Claude Code. I designed the product and the data model, wr
 
 ## Where It Stands
 
-**Live on afatt.ch:** the menu since late September 2026, now 2.12, with the Specials and Statistics add-ons. The owner uploads the menu herself, and I still maintain MenuDash and the site for them.
+**Live on afatt.ch:** the menu since late September 2026, now 2.13, with the Specials and Statistics add-ons. Since 26 October 2026, the whole site runs on A Fatt's own copy of the theme, with the opening hours and "open now" badge from the Restaurant add-on, and guests can make a selection. The Shop page is up, with nothing for sale yet. The owner uploads the menu herself, and I still maintain MenuDash and the site for them.
 
-**Built, not yet live for their guests:** Restaurant, Gift Cards, Shop, the theme, and the guest's selection. A Fatt is the first restaurant running MenuDash; the split is built for the ones that come next.
+**Built, not yet live for their guests:** Gift Cards. A Fatt is the first restaurant running MenuDash; the split is built for the ones that come next.
 
 </div>
 
@@ -240,7 +240,7 @@ I built MenuDash with Claude Code. I designed the product and the data model, wr
 ## What's Still Open
 
 - **The guest's side has too little data yet.** Statistics went live on afatt.ch in mid-October 2026, too recently to say what guests do with the filters. The before-and-after comparison is built for exactly that question, and it fills up to four weeks on each side. The first reading decides whether the filter row changes; once there are a few weeks of numbers, I'll add here what they showed and what I changed because of them.
-- **Who the selection's picture is for is still a guess.** I built it for a group deciding together and for a takeaway order sent ahead, and the one use I've seen is my own. Statistics counts how many guests make a selection, how many save or send it, and how many arrive from one; the owner can say how many takeaway orders arrive as a picture.
+- **Who the selection's picture is for is still a guess.** I built it for a group deciding together and for a takeaway order sent ahead, and the one use I've seen is my own. Since it was switched on, Statistics counts how many guests make a selection, how many save or send it, and how many arrive from one; the owner can say how many takeaway orders arrive as a picture.
 - **I'd get the second customer before the next add-on.** It grew from one menu page into a core, five add-ons and a theme in a month, for one restaurant. Shop is the one add-on a client asked for; the rest of the split is still a bet on restaurants I haven't met yet.
 
 </div>
