@@ -132,7 +132,9 @@ The owner uploads the menu sheet, and guests read it in German, English and Chin
 
 Then I made it a product, split where the customers split: a free, open-source core for a café that only needs the menu, and paid add-ons for a full restaurant (hours and holidays, specials, gift cards, a shop, statistics). The whole story is on the [MenuDash page](/yingsc/projects/menudash/).
 
-**Where it stands:** the owner agreed, and A Fatt paid for the core, the theme and the add-ons on their site. It runs the [menu page on afatt.ch](https://afatt.ch/menu/). Handed over in October 2026: the owner uploads the menu herself. Their whole site now runs on its own theme, with opening hours, today's specials, and a selection guests can show the staff. I still maintain it for them.
+**Where it stands:** the owner agreed, and A Fatt paid for the core, the theme and the add-ons on their site. It runs the [menu page on afatt.ch](https://afatt.ch/menu/). Handed over in October 2026: the owner uploads the menu herself, and she finds updating easier than before, the specials most of all, because they change most often. Their whole site now runs on its own theme, with opening hours, today's specials, and a selection guests can show the staff. I still maintain it for them.
+
+The add-ons do the same job as the core: today's specials come from their own sheet, the opening hours from one form, and the theme takes the address and phone from the same place. The owner changes the facts and the layout follows, with no design work. It is Tool 3's question, why am I redoing this layout, answered on the web.
 
 </div>
 
@@ -141,7 +143,7 @@ Then I made it a product, split where the customers split: a free, open-source c
 ## What I Took From It
 
 - **Deliver the ask, then pitch the fix.** They asked for a third menu, and I made it. Then I looked at what it cost: three menus to keep in step, and three QR codes for guests to choose from. I pitched a fix sized to what I could build, run and support myself: a plugin for the WordPress site they already had, not a new platform. The owner agreed and paid for it.
-- **A tool gets used when it fits the work people already do.** menuGen and MenuDash answer the same problem, and only one runs at the restaurant. menuGen took four months of building to show what handing the owner a price change in week two would have: a spreadsheet suits someone who already keeps their menu as data, and theirs lived in Canva. MenuDash started from the tool they already log into. Next time I'd watch the owner first, and since then I have: the holiday notice and the guest selection both came from watching the restaurant at work.
+- **A tool gets used when it fits the work people already do.** menuGen and MenuDash answer the same problem, and only one runs at the restaurant. menuGen took four months of building to show what handing the owner a price change in week two would have: a spreadsheet suits someone who already keeps their menu as data, and theirs lived in Canva. MenuDash started from the tool they already log into, and the owner now updates it herself. Next time I'd watch the owner first, and since then I have: the holiday notice and the guest selection both came from watching the restaurant at work.
 - **The handover is the product.** The 2024 system still runs without me, and that is why the client trusted me with the rest.
 - **A test can pass for the wrong reason.** The QR check that passed at a size no phone could read taught me to ask where a pass comes from.
 
