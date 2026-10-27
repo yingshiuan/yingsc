@@ -48,7 +48,7 @@ A Fatt is a Malaysian Chinese restaurant in Zürich. Across two jobs for them, t
 | **[inscode](https://github.com/yingshiuan/inscode)** | Will a QR code with their logo in it still scan, printed? | Public. Their flyer is printed and scans |
 | **Logo rebuild + vectoriser** | Will the logo hold at A2? | The script made their logo set; the vectoriser is private |
 | **[menuGen](/yingsc/projects/menu-generator/)** | Why am I redoing this layout every time a price changes? | Live, my own. A Fatt kept the system they had |
-| **[MenuDash](/yingsc/projects/menudash/)** | Is the menu on their website up to date? | Paid for by the client, and running their menu page |
+| **[MenuDash](/yingsc/projects/menudash/)** | Is the menu on their website up to date? | Paid for, handed over, and running their menu, specials and hours |
 
 #### Key Highlights
 
@@ -124,7 +124,7 @@ The 2026 job sent it somewhere narrower. The restaurant asked for a vegan and ve
 
 Guests read the menu on their phones as PDFs, and the vegan and vegetarian one made three: three menus to keep in step, three QR codes to choose from, and files that don't fit every screen. I proposed putting the whole menu on their website: one QR code, and each guest filters it by language and diet. Their site already runs on WordPress, so the answer was a plugin for the tool the owner already logs into.
 
-![A Fatt's menu on afatt.ch, on a phone: one menu, filtered by language and diet.](./afatt-menu-iphone-wide.webp)
+![A Fatt's menu on afatt.ch, on a phone: one menu, filtered by language and diet, with a + beside each dish.](./afatt-menu-iphone-wide.webp)
 
 The owner uploads the menu sheet, and guests read it in German, English and Chinese, filtered by diet. What I designed hardest was the wrong file, because the person uploading it isn't the person who designed the data: every upload gets a green, yellow or red report, a red file is refused so the old menu stays online, and the last five uploads are one click away.
 
@@ -132,7 +132,7 @@ The owner uploads the menu sheet, and guests read it in German, English and Chin
 
 Then I made it a product, split where the customers split: a free, open-source core for a café that only needs the menu, and paid add-ons for a full restaurant (hours and holidays, specials, gift cards, a shop, statistics). The whole story is on the [MenuDash page](/yingsc/projects/menudash/).
 
-**Where it stands:** the owner agreed, A Fatt paid for the core, and it runs the [menu page on afatt.ch](https://afatt.ch/menu/). The add-ons and the theme are built and not on their site yet.
+**Where it stands:** the owner agreed, and A Fatt paid for the core, the theme and the add-ons on their site. It runs the [menu page on afatt.ch](https://afatt.ch/menu/). Handed over in October 2026: the owner uploads the menu herself. Their whole site now runs on its own theme, with opening hours, today's specials, and a selection guests can show the staff. I still maintain it for them.
 
 </div>
 
@@ -141,7 +141,7 @@ Then I made it a product, split where the customers split: a free, open-source c
 ## What I Took From It
 
 - **Deliver the ask, then pitch the fix.** They asked for a third menu, and I made it. Then I looked at what it cost: three menus to keep in step, and three QR codes for guests to choose from. I pitched a fix sized to what I could build, run and support myself: a plugin for the WordPress site they already had, not a new platform. The owner agreed and paid for it.
-- **A tool gets used when it fits the work people already do.** menuGen and MenuDash answer the same problem, and only one runs at the restaurant. menuGen took four months of building to show what handing the owner a price change in week two would have: a spreadsheet suits someone who already keeps their menu as data, and theirs lived in Canva. MenuDash started from the tool they already log into. Next time I'd watch the owner first.
+- **A tool gets used when it fits the work people already do.** menuGen and MenuDash answer the same problem, and only one runs at the restaurant. menuGen took four months of building to show what handing the owner a price change in week two would have: a spreadsheet suits someone who already keeps their menu as data, and theirs lived in Canva. MenuDash started from the tool they already log into. Next time I'd watch the owner first, and since then I have: the holiday notice and the guest selection both came from watching the restaurant at work.
 - **The handover is the product.** The 2024 system still runs without me, and that is why the client trusted me with the rest.
 - **A test can pass for the wrong reason.** The QR check that passed at a size no phone could read taught me to ask where a pass comes from.
 
