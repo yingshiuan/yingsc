@@ -41,7 +41,7 @@ activities: 'A Zürich restaurant hired me in 2024 to redo their menu, and came 
 
 ## Overview
 
-A Fatt is a Malaysian Chinese restaurant in Zürich. Across two jobs for them, the same few questions kept coming back, and each time I stopped answering by hand and built the tool. This page is those four tools, and the job that started them.
+A Fatt is a Malaysian Chinese restaurant in Zürich. Across two jobs for them, the same few questions kept coming back, and each time I stopped answering by hand and built the tool. This page is those four tools, and the job that started them. The last one, MenuDash, is the one that stuck: the client paid for it, it runs their website, and the owner keeps it current herself.
 
 | Tool | The question it answers | Where it stands |
 | ---- | ----------------------- | --------------- |
@@ -55,7 +55,7 @@ A Fatt is a Malaysian Chinese restaurant in Zürich. Across two jobs for them, t
 - **Every tool started as a question from a paying job,** not as an idea looking for a user.
 - **Each one checks with a machine, not by eye.** A decoder reads back every QR file, a parity suite holds the vectoriser to the script, and a validator refuses a broken menu file.
 - **The print work is code too.** The client's A2 posters, gift cards and name cards come from one TypeScript dish list, so a price changes in one place.
-- **I didn't sell them more software than they needed.** The menu system they run is still the one I handed over in 2024.
+- **I didn't replace what already worked.** Their printed menu is still the 2024 system; menuGen could have replaced it, and I didn't push it.
 
 I built the tools with Claude Code as the implementer. The questions, the specifications and what counted as done were mine.
 
