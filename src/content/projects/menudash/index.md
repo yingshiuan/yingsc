@@ -47,7 +47,7 @@ They had already seen [menuGen](https://yingshiuan.github.io/yingsc/projects/men
 
 MenuDash is the WordPress plugin I designed and built to do that. It runs the [menu page on afatt.ch](https://afatt.ch/menu/): 110 dishes in three languages, filtered by diet, rebuilt whenever the owner uploads the sheet. Then, because the problem wasn't specific to one restaurant, I made it a product. The core and its theme are open source: [MenuDash on GitHub](https://github.com/yingshiuan/menudash) · [MenuDash Theme](https://github.com/yingshiuan/menudash-theme).
 
-**What changed:** the three QR codes on the tables became one, and it opens the menu page. At the handover in October 2026, the owner uploaded the menu herself, and asked for something new: a page for things guests take home, the first add-on the client asked for rather than one I proposed. Live on afatt.ch since September 2026, with the Specials and Statistics add-ons since October, and since 26 October 2026 its own theme, the opening hours and the guests' selection.
+**What changed:** the three QR codes on the tables became one, and it opens the menu page. At the handover in October 2026, the owner uploaded the menu herself, and she now finds updating easier than before, the specials most of all. She also asked for something new: a page for things guests take home, the first add-on the client asked for rather than one I proposed. Live on afatt.ch since September 2026, with the Specials and Statistics add-ons since October, and since 26 October 2026 its own theme, the opening hours and the guests' selection.
 
 #### Key Highlights
 
@@ -195,7 +195,7 @@ The data is smaller than an analytics tool's, and that's the point: every number
 
 **None of it is sales, so none of it is coloured like an alarm.** A dish that's looked at isn't a dish that's ordered; only the restaurant's own sales can say that. So the tab reads as an observation, not a verdict. Speed comes in shades of one blue, darkest for fast and always with a label, instead of green, yellow and red, because a few slow visits are normal. A suggestion, such as photos that could get more attention, sits in a plain grey box rather than a warning. A change in the before-and-after table shows its direction with an arrow, not in green or red, and one backed by only 10 to 29 counts stays grey and is marked as few counts.
 
-**The same numbers are how I decide what to change in MenuDash.** Whether guests turn the filters on decides whether the filter row stays where it is. The counts stay on the restaurant's own site, and I read the same tab the owner does, with her permission.
+**The same numbers are how I decide what to change in MenuDash.** The first question was whether guests turn the filters on. I wrote down what I expected before reading the counts; fewer guests filter than I predicted, and I kept the row, because it is for the guests who need a diet filter and costs the others nothing. The counts stay on the restaurant's own site, and I read the same tab the owner does, with her permission.
 
 </div>
 
@@ -220,9 +220,9 @@ I built MenuDash with Claude Code. I designed the product and the data model, wr
 
 ## Where It Stands
 
-**Live on afatt.ch:** the menu since late September 2026, now 2.13, with the Specials and Statistics add-ons. Since 26 October 2026, the whole site runs on A Fatt's own copy of the theme, with the opening hours and "open now" badge from the Restaurant add-on, and guests can make a selection. The Shop page is up, with nothing for sale yet. The owner uploads the menu herself, and I still maintain MenuDash and the site for them.
+**Live on afatt.ch:** the menu since late September 2026, now 2.13, with the Specials and Statistics add-ons. Since 26 October 2026, the whole site runs on A Fatt's own copy of the theme, with the opening hours, the "open now" badge and the holiday notice from the Restaurant add-on, and guests can make a selection. The Shop page is up, with nothing for sale yet. The owner uploads the menu herself, and I still maintain MenuDash and the site for them.
 
-**Built, not yet live for their guests:** Gift Cards. A Fatt is the first restaurant running MenuDash; the split is built for the ones that come next.
+**Built, not on their site:** Gift Cards, left off at the owner's choice, to keep the site simple. A Fatt is the first restaurant running MenuDash; the split is built for the ones that come next.
 
 </div>
 
@@ -230,8 +230,8 @@ I built MenuDash with Claude Code. I designed the product and the data model, wr
 
 ## What's Still Open
 
-- **The guest's side has too little data yet.** Statistics went live on afatt.ch in mid-October 2026, too recently to say what guests do with the filters. The before-and-after comparison is built for exactly that question, and it fills up to four weeks on each side. The first reading decides whether the filter row changes; once there are a few weeks of numbers, I'll add here what they showed and what I changed because of them.
-- **Who the selection's picture is for is still a guess.** I built it for a group deciding together and for a takeaway order sent ahead, and the one use I've seen is my own. Since it was switched on, Statistics counts how many guests make a selection, how many save or send it, and how many arrive from one; the owner can say how many takeaway orders arrive as a picture.
+- **The filters have their first reading; the rest of the guest's side doesn't yet.** Fewer guests filter than I predicted, and the row stays (see Counting Without Tracking). Dishes, photos and categories need more weeks before a dish's count means anything, and the before-and-after comparison fills up to four weeks on each side.
+- **Who the selection's picture is for is still a guess.** I built it for a group deciding together and for a takeaway order sent ahead, and the one use I've seen is my own. One regular has said ordering is easier with it; that is one guest, not a result. Since it was switched on, Statistics counts how many guests make a selection, how many save or send it, and how many arrive from one; the owner can say how many takeaway orders arrive as a picture.
 - **I'd get the second customer before the next add-on.** It grew from one menu page into a core, five add-ons and a theme in a month, for one restaurant. Shop is the one add-on a client asked for; the rest of the split is still a bet on restaurants I haven't met yet.
 
 </div>

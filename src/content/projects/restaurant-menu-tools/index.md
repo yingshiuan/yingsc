@@ -136,6 +136,8 @@ Then I made it a product, split where the customers split: a free, open-source c
 
 The add-ons do the same job as the core: today's specials come from their own sheet, the opening hours and a holiday notice from one form, the shop's Call and E-mail buttons take the restaurant's phone and e-mail from those same details, and the theme takes its address and phone from them too. The holiday notice replaced a picture the owner used to upload to the homepage and take down again by hand. The owner changes the facts and the layout follows, with no design work. It is Tool 3's question, why am I redoing this layout, answered on the web.
 
+I also measure it. Before reading the first counts I wrote down how many guests I expected to filter by diet; fewer did, and I kept the filter row, because it is for the guests who need it. A regular has said ordering is easier with the selection, which is one guest, and the counts for that come in November.
+
 </div>
 
 <div class="contentSection">
