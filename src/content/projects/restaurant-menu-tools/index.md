@@ -134,7 +134,7 @@ Then I made it a product, split where the customers split: a free, open-source c
 
 **Where it stands:** the owner agreed, and A Fatt paid for the core, the theme and the add-ons on their site. It runs the [menu page on afatt.ch](https://afatt.ch/menu/). Handed over in October 2026: the owner uploads the menu herself, and she finds updating easier than before, the specials most of all, because they change most often. Their whole site now runs on its own theme, with opening hours, today's specials, and a selection guests can show the staff. I still maintain it for them.
 
-The add-ons do the same job as the core: today's specials come from their own sheet, the opening hours and a holiday notice from one form, the shop's Call and E-mail buttons use the same phone and address, and so does the theme. The holiday notice replaced a picture the owner used to upload to the homepage and take down again by hand. The owner changes the facts and the layout follows, with no design work. It is Tool 3's question, why am I redoing this layout, answered on the web.
+The add-ons do the same job as the core: today's specials come from their own sheet, the opening hours and a holiday notice from one form, the shop's Call and E-mail buttons take the restaurant's phone and e-mail from those same details, and the theme takes its address and phone from them too. The holiday notice replaced a picture the owner used to upload to the homepage and take down again by hand. The owner changes the facts and the layout follows, with no design work. It is Tool 3's question, why am I redoing this layout, answered on the web.
 
 </div>
 
