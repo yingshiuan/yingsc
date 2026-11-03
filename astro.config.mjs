@@ -3,6 +3,7 @@ import { defineConfig } from "astro/config";
 import path from "path";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
+import { unified } from "@astrojs/markdown-remark";
 
 const SITE = "https://yingshiuan.github.io";
 const BASE = "/yingsc/";
@@ -51,7 +52,8 @@ export default defineConfig({
   // is still installed so re-adding the integration here is a two-line revert.
   integrations: [sitemap()],
   markdown: {
-    rehypePlugins: [rehypeExternalLinks],
+    // Astro 7.4 deprecated `markdown.rehypePlugins`; plugins go on the processor.
+    processor: unified({ rehypePlugins: [rehypeExternalLinks] }),
   },
   vite: {
     plugins: [tailwindcss()],
