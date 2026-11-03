@@ -5,28 +5,32 @@ on:
   # Using a different branch name? Replace `main` with your branch’s name
   push:
     branches: [ main ]
+  # Run lint, type check, tests and the build on every pull request into `main`,
+  # so problems show up before merging. Only a push to `main` deploys.
+  pull_request:
+    branches: [ main ]
   # Allows you to run this workflow manually from the Actions tab on GitHub.
   workflow_dispatch:
 
-# Allow this job to clone the repo and create a page deployment
+# Read-only by default. Only the deploy job gets Pages write access, so a pull
+# request run can never publish the site.
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
-# Only one deploy at a time. A newer push supersedes an in-flight run, but let a
-# run that already reached the deploy step finish so Pages isn't left half-updated.
+# A new push to a pull request cancels that pull request's older run.
+# Runs on `main` are never cancelled; the deploy job below also queues
+# deploys one at a time so Pages isn't left half-updated.
 concurrency:
-  group: pages
-  cancel-in-progress: false
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   quality:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout your repository using git
-        uses: actions/checkout@v6
-      - uses: actions/setup-node@v5
+        uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 24 # keep in sync with withastro/action's default
           cache: npm
@@ -45,8 +49,8 @@ jobs:
   a11y:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 24 # keep in sync with withastro/action's default
           cache: npm
@@ -69,7 +73,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout your repository using git
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
       - name: Install, build, and upload your site
         uses: withastro/action@v6
         # with:
@@ -83,7 +87,15 @@ jobs:
   deploy:
     # Gate on both: quality and build run concurrently, deploy waits for each.
     needs: [quality, build]
+    # Pull requests stop after the checks and the build; only `main` deploys.
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages
+      cancel-in-progress: false
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
