@@ -68,7 +68,11 @@ const jsonLd = {
   "image": absoluteImage,
   "inLanguage": "en",
   "keywords": seoKeywords,
-  "author": { "@id": personId }
+  // Google's ProfilePage rich result reads the person from `mainEntity` and
+  // flags `author` as an unrecognized field. Every other type keeps `author`.
+  ...(schemaType === 'ProfilePage'
+    ? { "mainEntity": { "@id": personId } }
+    : { "author": { "@id": personId } }),
 };
 ---
 
