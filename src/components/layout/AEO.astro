@@ -22,7 +22,7 @@ const siteUrl = import.meta.env.SITE || 'https://yingshiuan.github.io';
 const siteRoot = `${siteUrl}${import.meta.env.BASE_URL}`;
 
 // One @id for the whole site. Head.astro references the same value from every
-// page's `author`, so crawlers merge both into a single Person entity instead
+// page's `author` (or `mainEntity` on the ProfilePage), so crawlers merge both into a single Person entity instead
 // of treating them as two different people.
 const person = buildPerson(resumeData, {
   personId: `${siteRoot}#person`,
