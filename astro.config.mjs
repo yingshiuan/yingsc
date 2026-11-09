@@ -50,7 +50,13 @@ export default defineConfig({
   // `forward: ["dataLayer.push"]` replaced the shared dataLayer push globally —
   // which also stopped main-thread GTM from seeing its own events. The package
   // is still installed so re-adding the integration here is a two-line revert.
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      // The HTML /sitemap/ page is `noindex`; listing it in the XML sitemap
+      // would ask Google to index a page that tells it not to.
+      filter: (page) => page !== `${SITE}${BASE}sitemap/`,
+    }),
+  ],
   markdown: {
     // Astro 7.4 deprecated `markdown.rehypePlugins`; plugins go on the processor.
     processor: unified({ rehypePlugins: [rehypeExternalLinks] }),
