@@ -17,11 +17,11 @@ tags: ['Product Engineering', 'WordPress', 'Business Model', 'Open Source', 'Val
 image: './cover.webp'
 hoverImage: './cover-hover.webp'
 thumbnail: './thumbnail.webp'
-info: 'One menu online that every guest filters by language and diet, behind one QR code instead of three PDFs, then split into a free core and paid add-ons.'
+info: 'One menu online that every guest filters by language and diet, behind one QR code instead of three PDFs. Live at a paying restaurant, where the owner updates it herself.'
 description: 'A WordPress plugin that turned a restaurant''s three PDF menus into one online menu kept in one spreadsheet, then a free open-source core with paid add-ons.'
 role: 'Product Engineer (insdash)'
 timeline: '2 weeks to stable, live on the client''s site from the first week'
-completed: 'Live on afatt.ch since 09/2026 · now 2.13'
+completed: 'Live on afatt.ch since 09/2026'
 credit: 'A Fatt'
 creditLink: 'https://afatt.ch/menu/'
 tools: ['PHP', 'WordPress', 'Block Editor', 'JavaScript', 'CSS', 'Python', 'WordPress Playground', 'Puppeteer', 'Claude Code']
@@ -38,6 +38,8 @@ activities: 'A restaurant client had kept the English and German Canva menus I d
 <div class="contentSection">
 
 ## Overview
+
+MenuDash is a WordPress plugin I designed and built: a restaurant's menu kept in one spreadsheet, online in three languages and filtered by diet. It runs [the menu on afatt.ch](https://afatt.ch/menu/).
 
 **What changed:**
 
