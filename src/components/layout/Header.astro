@@ -165,7 +165,7 @@ const baseUrl = import.meta.env.BASE_URL;
 </header>
 
 <div id="scroll" class="scroll-bar">
-  <p>Currently shipping to a client's production codebase · open to <b>frontend, product & UX engineering roles</b></p>
+  <p>In production for two clients: <a href={`${baseUrl}projects/room-planner/`}>a school's room planner</a> and <a href={`${baseUrl}projects/menudash/`}>a restaurant's menu</a> · open to <b>frontend, product & design engineering roles</b></p>
 </div>
 
 <style>
@@ -194,6 +194,10 @@ const baseUrl = import.meta.env.BASE_URL;
 
   .scroll-bar p {
     @apply m-0;
+  }
+
+  .scroll-bar a {
+    @apply underline underline-offset-2;
   }
   
   .tooltip {

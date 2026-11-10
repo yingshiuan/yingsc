@@ -17,11 +17,11 @@ tags: ['Product Engineering', 'WordPress', 'Business Model', 'Open Source', 'Val
 image: './cover.webp'
 hoverImage: './cover-hover.webp'
 thumbnail: './thumbnail.webp'
-info: 'One menu online that every guest filters by language and diet, behind one QR code instead of three PDFs, then split into a free core and paid add-ons.'
+info: 'One menu online that every guest filters by language and diet, behind one QR code instead of three PDFs. Live at a paying restaurant, where the owner updates it herself.'
 description: 'A WordPress plugin that turned a restaurant''s three PDF menus into one online menu kept in one spreadsheet, then a free open-source core with paid add-ons.'
-role: 'Product Engineer & Founder'
+role: 'Product Engineer (insdash)'
 timeline: '2 weeks to stable, live on the client''s site from the first week'
-completed: 'Live on afatt.ch since 09/2026 · now 2.13'
+completed: 'Live on afatt.ch since 09/2026'
 credit: 'A Fatt'
 creditLink: 'https://afatt.ch/menu/'
 tools: ['PHP', 'WordPress', 'Block Editor', 'JavaScript', 'CSS', 'Python', 'WordPress Playground', 'Puppeteer', 'Claude Code']
@@ -39,6 +39,15 @@ activities: 'A restaurant client had kept the English and German Canva menus I d
 
 ## Overview
 
+MenuDash is a WordPress plugin I designed and built: a restaurant's menu kept in one spreadsheet, online in three languages and filtered by diet. It runs [the menu on afatt.ch](https://afatt.ch/menu/).
+
+**What changed:**
+
+- Three PDF menus and three QR codes became one menu page and one QR code on the tables.
+- Since the handover in October 2026, the owner uploads the menu herself, and finds updating easier than before, the specials most of all.
+- The client asked for the next add-on, a page for things guests take home: the first one they asked for rather than one I proposed.
+- Live on afatt.ch since September 2026: the menu, specials, opening hours and the guests' selection, on its own theme. The owner says the selection helps most when the restaurant is busy.
+
 Since 2024, A Fatt has kept the menus I designed for them up to date on their own, in Canva, without calling me: an English one and a German one, each with Chinese alongside. Guests scan a QR code at the table and open them as PDFs on their phone. In 2026 they came back with a new request: a third menu, of only their vegan and vegetarian dishes.
 
 Designing it was the easy part. Every vegan and vegetarian dish now lived in three PDFs, so every price change was three edits, and one missed edit would put the menus out of step, in front of the guests who read a menu most carefully. Guests had three QR codes to choose from. And the PDFs had a problem of their own: a PDF has one fixed page size, and it doesn't fit every phone's screen.
@@ -47,7 +56,6 @@ They had already seen [menuGen](https://yingshiuan.github.io/yingsc/projects/men
 
 MenuDash is the WordPress plugin I designed and built to do that. It runs the [menu page on afatt.ch](https://afatt.ch/menu/): 110 dishes in three languages, filtered by diet, rebuilt whenever the owner uploads the sheet. Then, because the problem wasn't specific to one restaurant, I made it a product. The core and its theme are open source: [MenuDash on GitHub](https://github.com/yingshiuan/menudash) · [MenuDash Theme](https://github.com/yingshiuan/menudash-theme).
 
-**What changed:** the three QR codes on the tables became one, and it opens the menu page. At the handover in October 2026, the owner uploaded the menu herself, and she now finds updating easier than before, the specials most of all. She also asked for something new: a page for things guests take home, the first add-on the client asked for rather than one I proposed. Live on afatt.ch since September 2026, with the Specials and Statistics add-ons since October, and since 26 October 2026 its own theme, the opening hours and the guests' selection.
 
 #### Key Highlights
 
@@ -55,6 +63,7 @@ MenuDash is the WordPress plugin I designed and built to do that. It runs the [m
 - **I designed for two users.** The guest wants their language and their diet in one tap. The owner wants to change a price without calling me.
 - **I designed the failure path first.** A wrong file gets a red report and is refused, and the live menu stays online.
 - **I split the product where the customers split.** A free core for every café, paid add-ons for a full restaurant, and code where each add-on is its own plugin.
+- **I decide what stays with a line written before the data.** A feature keeps its place on the guest's screen only if it clears a bar set in advance, and the owner tells me what the counts can't.
 
 ![The sample menu on a desktop: all three languages at once, the diet filters with Vegetarian turned on (“8 of 11 dishes · Vegetarian” and a Show all button), the category tabs. Placeholder photos.](./menu-desktop.webp)
 
@@ -108,8 +117,8 @@ So guests can make a selection. With it switched on, each dish gets a + button, 
 - **Then guest and waitress read it together.** Each dish shows its number, its name in the guest's language and the German name under it, so the guest orders by showing it rather than pronouncing it, and the order can be checked against it when it's read back. A dish marked with a question gives them something to talk about.
 - **So it is a list, not an ordering system.** A person still takes the order, and it needed no accounts and no checkout.
 - **And it stays on the guest's phone.** No account and no name; it is gone when the tab closes, and the picture is drawn on the phone and goes only where the guest sends it. With the Statistics add-on, the restaurant's own site keeps a daily total per dish, and nothing goes to me.
-- **Friends read it too, so it travels as a picture.** Choosing is often a group's decision, or one person ordering takeaway for others. One tap draws the selection as a picture on the phone, with the dish photos, the restaurant's address and phone number, and a QR code back to the menu, to save or to send with the menu's link.
-- **The picture outlives the menu, so it carries no prices.** It gets forwarded and kept, and prices change. The selection on the page has them; the picture doesn't.
+- **I bet friends would read it too, so it travels as a picture.** Choosing can be a group's decision, or one person ordering takeaway for others. One tap draws the selection as a picture on the phone, with the dish photos, the restaurant's address and phone number, and a QR code back to the menu, to save or to send with the menu's link.
+- **The picture outlives the menu, so it carries no prices.** It gets forwarded and kept, and prices change. The selection on the page has them, unless the owner switches them off; the picture doesn't.
 - **And the owner learns intent, not only attention.** With the Statistics add-on, the owner sees which dishes guests planned to order, not only which ones they looked at.
 
 ![The guest's selection on three iPhones, with sample dishes: 1, the menu with a + beside each dish, a “Meine Auswahl” bar at the bottom and a hint above it, “Ihre Auswahl finden Sie hier unten”; 2, the selection in English, each dish with its number, quantity and a Question button, and the German name under the English one; 3, the selection drawn as a picture with the restaurant's address and a QR code, Save and Share buttons, and a line saying what each one does.](./menudash-selection.webp)
@@ -147,7 +156,7 @@ Then I had to decide how to sell it. My first plan was one package at a lower pr
 
 **Why the core is free.** The code is GPL, like WordPress, so anyone who buys a zip may pass it on. Rather than fight that with licence keys, I asked what an owner actually pays for. Most never install a plugin themselves; they pay for someone to set it up, put their menu into the sheet, and answer when something changes. So the business sells the setup and the care: a one-time setup, and a yearly fee for the add-ons' updates and help. The free core is the shop window on GitHub, and it means a restaurant's menu never depends on me.
 
-**Why MenuDash has no online store yet.** Checkout, licence keys and automatic updates only pay off once restaurants I don't know come looking. I planned how they would work and left them unbuilt; until then, every customer is one I set up myself.
+**Why MenuDash has no online store yet.** Checkout, licence keys and automatic updates for the paid add-ons only pay off once restaurants I don't know come looking. I planned how they would work and left them unbuilt; until then, every customer is one I set up myself. The free core already updates itself: WordPress checks its GitHub releases and offers the update like any other plugin.
 
 </div>
 
@@ -158,8 +167,9 @@ Then I had to decide how to sell it. My first plan was one package at a lower pr
 A pricing split only works if the code splits cleanly too. A café on the free core can't see broken pieces of features it didn't buy, and a restaurant that adds Gift Cards next year shouldn't have to reinstall anything.
 
 - **Each add-on is its own plugin** that waits for the core and plugs in through hooks. Without it, its parts show nothing, so a page built for all of them still works with the core alone.
+- **The core offers places to plug in, and add-ons take them.** An add-on adds its own tab to the MenuDash dashboard page, and claims its own sheets in an uploaded workbook: one Excel upload puts the menu sheet in the core and the specials sheet in Specials. Add-ons check for a feature, not a version number: Specials adds its dishes to the data search engines read only if the core can take them, and Shop is counted only by a Statistics that can count it.
 - **The add-ons install without each other.** Gift Cards uses the phone and address from Restaurant when it's installed, and its own fields when it isn't. Shop's Call and E-mail buttons take theirs from Restaurant, so the two are sold together.
-- **A browser test runs the core alone and each add-on without the others,** so every package works, including ones nobody has bought yet.
+- **A browser test runs the core alone, and Gift Cards without Restaurant,** so a package works without the pieces it was not sold with.
 - **One export writes two repositories,** the public core and the private add-ons, and refuses to write the public copy if the client's name, address or photos turn up in it, or if add-on code has leaked into the core.
 
 The theme follows the same rule. It stores no address, phone or hours of its own; it reads them from MenuDash on every page view, and fills in more as add-ons are installed. A restaurant can start with the menu and grow into a full site without a rebuild. A Fatt's own copy of the theme has run afatt.ch since 26 October 2026.
@@ -175,14 +185,14 @@ The theme follows the same rule. It stores no address, phone or hours of its own
 The question behind the filters was whether guests would use them. Asking a restaurant to add Google Analytics for that means a cookie banner on a menu page, guest data sent to Google, and a privacy policy the owner doesn't understand. So I asked what actually needs to be known about the menu, and kept only that.
 
 - **What counts is attention, not page views.** A dish counts as seen when it stays on the screen for two seconds, so a guest scrolling past doesn't count. Filters, languages and photos count once per visit. Two seconds is my judgment, not a tested number, so a second count at five seconds runs beside it: if the top ten by both are the same dishes, the exact threshold doesn't matter.
-- **Only sums are stored.** One row per dish, or per button, and day. No cookies, nothing in the guest's browser, no IP address in the database, and nothing older than 25 months.
+- **Only sums are stored.** One row per dish, or per button, and day. No cookies, nothing in the guest's browser, no IP address stored (a daily-salted hash is kept for ten minutes, to stop fake counts), and nothing older than 25 months.
 - **The owner's own visits don't count,** and neither do guests whose browser asks not to be tracked.
 
 ![Which dishes guests look at, with sample numbers: seen at two seconds and stayed five seconds side by side, and how many of the top ten are the same dishes.](./menudash-stats-dishes.webp)
 
 **Then I measured what I needed to know as the one who built it.**
 
-- **Whether guests use the one QR code.** Each menu visit counts under one source (QR code, direct, a search engine, another site), and the QR code the core makes carries a tag for it.
+- **Whether guests use the one QR code.** Each menu visit counts under one source (QR code, direct, a search engine, another site), and the QR code the core makes carries a tag for it. A Fatt's first cards were printed before the tag, so on their site table scans still count as direct.
 - **Whether the menu opens fast on their phones,** with 72 of the dishes in photos. On menuGen, photos were what ran the server out of memory, so I wanted this one measured. The guest's browser sends only fast, medium or slow, by the limits Google rates pages with, never the time itself.
 - **What guests do next.** Taps on the phone number and the map, and whether a shared selection picture brings anyone back to the menu: its QR code and link carry their own tag.
 - **Whether a change helped.** The owner marks the day of a new menu or new photos, and the tab compares the same number of days before and after, up to four weeks each, and says there are too few to compare rather than show a large per cent from a handful of visits.
@@ -195,7 +205,19 @@ The data is smaller than an analytics tool's, and that's the point: every number
 
 **None of it is sales, so none of it is coloured like an alarm.** A dish that's looked at isn't a dish that's ordered; only the restaurant's own sales can say that. So the tab reads as an observation, not a verdict. Speed comes in shades of one blue, darkest for fast and always with a label, instead of green, yellow and red, because a few slow visits are normal. A suggestion, such as photos that could get more attention, sits in a plain grey box rather than a warning. A change in the before-and-after table shows its direction with an arrow, not in green or red, and one backed by only 10 to 29 counts stays grey and is marked as few counts.
 
-**The same numbers are how I decide what to change in MenuDash.** The first question was whether guests turn the filters on. I wrote down what I expected before reading the counts; fewer guests filter than I predicted, and I kept the row, because it is for the guests who need a diet filter and costs the others nothing. The counts stay on the restaurant's own site, and I read the same tab the owner does, with her permission.
+</div>
+
+<div class="contentSection">
+
+## Deciding What Stays
+
+Building got cheaper; keeping didn't. Every feature on the guest's screen costs space, attention and upkeep through every theme change. So a new feature gets a line before its counts come in: the result that keeps it, and the result that takes it out.
+
+- **The diet filters stayed.** Fewer guests filter than I predicted. I kept the row, because it is for the guests who need a diet filter and costs the others nothing.
+- **The share picture fell short.** Sharing is rarer than filtering, so I gave it one more run, with a new line written first, and no second one.
+- **The owner sees what the counts can't.** Statistics shows that guests open the selection. Only the owner could tell me when it matters: on busy evenings, when guests have chosen before anyone reaches the table.
+
+The counts stay on the restaurant's own site, and I read the same tab the owner does, with her permission.
 
 </div>
 
@@ -203,11 +225,15 @@ The data is smaller than an analytics tool's, and that's the point: every number
 
 ## How I Built It
 
-I built MenuDash with Claude Code. I designed the product and the data model, wrote the specifications, reviewed every change and decided what shipped. The parser is tested against A Fatt's real spreadsheet as well as made-up ones, and the whole thing runs locally in WordPress Playground, so a site with the client's menu starts with one command.
+I built MenuDash with Claude Code. I designed the product and the data model, wrote the specifications, reviewed every change and decided what shipped. The whole thing runs locally in WordPress Playground, so a site with the client's menu starts with one command.
+
+**The tests run on every push.** PHP tests for the parser, the Excel reader, the SVG cleaning and the origin list run in GitHub Actions on the public repository, on PHP 7.4, the oldest it supports, and 8.3. The paid add-ons' tests run the same way in their private repository, against the published core: Statistics and Shop each in a throwaway WordPress with a real database. Locally they also run against A Fatt's real spreadsheet and photos, which never go into a repository, along with 22 browser tests of what guests and the owner see.
+
+**The sheet stays the source, in the code too.** The usual WordPress way would be a post per dish, editable in the dashboard. But then the dashboard and the sheet could disagree, which is the three-PDF problem again. So the uploaded file is what's kept, the newest five of them, and the parsed menu is only a cache. It is stored where WordPress doesn't load it on every page of the site, only where the menu is shown. Deleting and reinstalling the plugin re-reads the newest file, so even deleting the plugin doesn't lose the menu.
 
 **I didn't wait for it to be finished.** Three days in, at version 1.1.3, I installed it on afatt.ch to test it against the real site and the real menu, and kept updating it there as each new version shipped. Twelve days later it reached a stable version, 2.7. Testing on the client's site while building is how the real menu's problems showed up early instead of after launch.
 
-**It stays small on the guest's phone.** The guest's side is one script of 14 KB compressed, with no framework and no jQuery, loaded after the page, and 10 KB of CSS; the menu works without the script at all. Photos load only as they scroll into view, the share picture's code only when a guest taps Share, and MenuDash makes no request to any other server. How fast that is on guests' real phones is what the speed count in Statistics is for, and its first weeks are too few to quote.
+**It stays small on the guest's phone.** The guest's side is one script of 15 KB compressed, with no framework and no jQuery, loaded after the page, and 10 KB of CSS; the menu works without the script at all. Photos load only as they scroll into view, the share picture's code only when a guest taps Share, and the guest's page makes no request to any other server. How fast that is on guests' real phones is what the speed count in Statistics is for, and its first weeks are too few to quote.
 
 **The last step before a release is a security review.** A plugin that takes files from an owner and forms from any visitor is an open door if nobody checks it. So before a version ships, I review how it could be abused and fix what turns up. Two examples:
 
@@ -220,9 +246,7 @@ I built MenuDash with Claude Code. I designed the product and the data model, wr
 
 ## Where It Stands
 
-**Live on afatt.ch:** the menu since late September 2026, now 2.13, with the Specials and Statistics add-ons. Since 26 October 2026, the whole site runs on A Fatt's own copy of the theme, with the opening hours, the "open now" badge and the holiday notice from the Restaurant add-on, and guests can make a selection. The Shop page is up, with nothing for sale yet. The owner uploads the menu herself, and I still maintain MenuDash and the site for them.
-
-**Built, not on their site:** Gift Cards, left off at the owner's choice, to keep the site simple. A Fatt is the first restaurant running MenuDash; the split is built for the ones that come next.
+**On afatt.ch, version 2.13 since 26 October 2026.** The Shop page is up, with nothing for sale yet, and I still maintain MenuDash and the site for them. **Built, not on their site:** Gift Cards, left off at the owner's choice, to keep the site simple. A Fatt is the first restaurant running MenuDash; the split is built for the ones that come next.
 
 </div>
 
@@ -230,8 +254,8 @@ I built MenuDash with Claude Code. I designed the product and the data model, wr
 
 ## What's Still Open
 
-- **The filters have their first reading; the rest of the guest's side doesn't yet.** Fewer guests filter than I predicted, and the row stays (see Counting Without Tracking). Dishes, photos and categories need more weeks before a dish's count means anything, and the before-and-after comparison fills up to four weeks on each side.
-- **Who the selection's picture is for is still a guess.** I built it for a group deciding together and for a takeaway order sent ahead, and the one use I've seen is my own. One regular has said ordering is easier with it; that is one guest, not a result. Since it was switched on, Statistics counts how many guests make a selection, how many save or send it, and how many arrive from one; the owner can say how many takeaway orders arrive as a picture.
-- **I'd get the second customer before the next add-on.** It grew from one menu page into a core, five add-ons and a theme in a month, for one restaurant. Shop is the one add-on a client asked for; the rest of the split is still a bet on restaurants I haven't met yet.
+- **The filters have their first reading; the rest of the guest's side doesn't yet.** Fewer guests filter than I predicted, and the row stays (see Deciding What Stays). Dishes, photos and categories need more weeks before a dish's count means anything, and the before-and-after comparison fills up to four weeks on each side.
+- **The selection's picture is on its second run.** I built it for a group deciding together and for a takeaway order sent ahead. Guests use the selection itself: they show it to the waitress, and the owner says it helps most when the restaurant is busy. Fewer save or send the picture than the line I set, so it runs four more weeks, to early December, against a new line. If it misses again, it comes off.
+- **I'd get the second customer before the next add-on.** It grew from one menu page into a core, five add-ons and a theme in a month, for one restaurant, and most of the split is still a bet on restaurants I haven't met yet.
 
 </div>
