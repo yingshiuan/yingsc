@@ -188,7 +188,7 @@ The question behind the filters was whether guests would use them. Asking a rest
 - **Only sums are stored.** One row per dish, or per button, and day. No cookies, nothing in the guest's browser, no IP address stored (a daily-salted hash is kept for ten minutes, to stop fake counts), and nothing older than 25 months.
 - **The owner's own visits don't count,** and neither do guests whose browser asks not to be tracked.
 
-![Which dishes guests look at, with sample numbers: seen at two seconds and stayed five seconds side by side, and how many of the top ten are the same dishes.](./menudash-stats-dishes.webp)
+![Which dishes guests look at, in Statistics 1.13, with a sample menu and made-up numbers: the dishes in the menu's own order, a bar each, a line under every category such as “First dish seen in 73 % of visits, last dish in 19 %”, and one bar showing which category gets guests' attention.](./menudash-stats-dishes.webp)
 
 **Then I measured what I needed to know as the one who built it.**
 
@@ -197,9 +197,9 @@ The question behind the filters was whether guests would use them. Asking a rest
 - **What guests do next.** Taps on the phone number and the map, and whether a shared selection picture brings anyone back to the menu: its QR code and link carry their own tag.
 - **Whether a change helped.** The owner marks the day of a new menu or new photos, and the tab compares the same number of days before and after, up to four weeks each, and says there are too few to compare rather than show a large per cent from a handful of visits.
 
-![Where menu visits come from, on the Statistics tab with sample numbers: QR code, direct, search engines, the restaurant's own website and other websites, each with its visits and share.](./menudash-stats-sources.webp)
+![Where menu visits come from, in Statistics 1.13 with made-up numbers: one bar that adds up to all visits (QR code, direct, search engines, the restaurant's own website), a sentence naming the biggest, and the table of visits and shares below it.](./menudash-stats-sources.webp)
 
-![Before and after a change, with sample numbers: fourteen days on each side of a marked day, with small counts shown as “few counts” or “too few to compare” instead of a per cent.](./menudash-stats-before-after.webp)
+![Visits per day with a marked change, in Statistics 1.13 with made-up numbers: the days before and after the marked day are shaded, and each side's average is drawn across it, 33 per day before and 38 after.](./menudash-stats-before-after.webp)
 
 The data is smaller than an analytics tool's, and that's the point: every number answers a question about the menu, and none of it is about a guest.
 
