@@ -190,6 +190,8 @@ The question behind the filters was whether guests would use them. Asking a rest
 
 ![Which dishes guests look at, in Statistics 1.13, with a sample menu and made-up numbers: the dishes in the menu's own order, a bar each, a line under every category such as “First dish seen in 73 % of visits, last dish in 19 %”, and one bar showing which category gets guests' attention.](./menudash-stats-dishes.webp)
 
+**The dishes are shown in the menu's own order, not ranked.** A ranking says which dish wins; the menu's order shows where guests stop reading. Under each category, one line says it: on the sample menu, *first dish seen in 73 % of visits, last dish in 19 %*. What the owner can change is the menu, so that's the shape the numbers take.
+
 **Then I measured what I needed to know as the one who built it.**
 
 - **Whether guests use the one QR code.** Each menu visit counts under one source (QR code, direct, a search engine, another site), and the QR code the core makes carries a tag for it. A Fatt's first cards were printed before the tag, so on their site table scans still count as direct.
@@ -203,7 +205,7 @@ The question behind the filters was whether guests would use them. Asking a rest
 
 The data is smaller than an analytics tool's, and that's the point: every number answers a question about the menu, and none of it is about a guest.
 
-**None of it is sales, so none of it is coloured like an alarm.** A dish that's looked at isn't a dish that's ordered; only the restaurant's own sales can say that. So the tab reads as an observation, not a verdict. Speed comes in shades of one blue, darkest for fast and always with a label, instead of green, yellow and red, because a few slow visits are normal. A suggestion, such as photos that could get more attention, sits in a plain grey box rather than a warning. A change in the before-and-after table shows its direction with an arrow, not in green or red, and one backed by only 10 to 29 counts stays grey and is marked as few counts.
+**None of it is sales, so none of it is coloured like an alarm.** A dish that's looked at isn't a dish that's ordered; only the restaurant's own sales can say that. So the tab reads as an observation, not a verdict. Speed comes in shades of one blue, darkest for fast and always with a label, instead of green, yellow and red, because a few slow visits are normal. A suggestion, such as photos that could get more attention, sits in a plain grey box rather than a warning. A change in the before-and-after table shows its direction with an arrow, not in green or red, and one backed by only 10 to 29 counts stays grey and is marked as few counts. **And a percentage always says what it's a share of.** A guest can turn on several filters, so their shares add up to more than 100 % and can't be the parts of one bar. Splitting that bar by taps would have put two different percentages next to *Vegetarian* on one card. So it counts visits, and every percentage on the card has the same base.
 
 </div>
 
