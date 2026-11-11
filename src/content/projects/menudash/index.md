@@ -46,13 +46,13 @@ MenuDash is a WordPress plugin I designed and built: a restaurant's menu kept in
 - Three PDF menus and three QR codes became one menu page and one QR code on the tables.
 - Since the handover in October 2026, the owner uploads the menu herself, and finds updating easier than before, the specials most of all.
 - The client asked for the next add-on, a page for things guests take home: the first one they asked for rather than one I proposed.
-- Live on afatt.ch since September 2026: the menu, specials, opening hours and the guests' selection, on its own theme. The owner says the selection helps most when the restaurant is busy.
+- Live on afatt.ch since September 2026: the menu, specials, opening hours, the guests' selection and Statistics, on its own theme. The owner says the selection helps most when the restaurant is busy.
 
 Since 2024, A Fatt has kept the menus I designed for them up to date on their own, in Canva, without calling me: an English one and a German one, each with Chinese alongside. Guests scan a QR code at the table and open them as PDFs on their phone. In 2026 they came back with a new request: a third menu, of only their vegan and vegetarian dishes.
 
 Designing it was the easy part. Every vegan and vegetarian dish now lived in three PDFs, so every price change was three edits, and one missed edit would put the menus out of step, in front of the guests who read a menu most carefully. Guests had three QR codes to choose from. And the PDFs had a problem of their own: a PDF has one fixed page size, and it doesn't fit every phone's screen.
 
-They had already seen [menuGen](https://yingshiuan.github.io/yingsc/projects/menu-generator/), my tool that prints every version from one spreadsheet, and kept their Canva menus, because a restaurant judges a menu by what its guests see. So I asked a different question: why not put all of it on the website they already had, as a page instead of a file? One Excel sheet, with a column per language and a mark per diet, means one edit and nothing to fall out of step. The page fits whatever screen opens it. And the vegan and vegetarian menu becomes a filter each guest turns on on their own phone.
+They had already seen [menuGen](https://yingshiuan.github.io/yingsc/projects/menu-generator/), my tool that prints every version from one spreadsheet, and kept their Canva menus, because a restaurant judges a menu by what its guests see. So I asked a different question: why not put all of it on the website they already had, as a page instead of a file? One Excel sheet, with a column per language and a mark per diet, means one edit and nothing to fall out of step. The page fits whatever screen opens it. And the vegan and vegetarian menu becomes a filter each guest switches on, on their own phone.
 
 MenuDash is the WordPress plugin I designed and built to do that. It runs the [menu page on afatt.ch](https://afatt.ch/menu/): 110 dishes in three languages, filtered by diet, rebuilt whenever the owner uploads the sheet. Then, because the problem wasn't specific to one restaurant, I made it a product. The core and its theme are open source: [MenuDash on GitHub](https://github.com/yingshiuan/menudash) · [MenuDash Theme](https://github.com/yingshiuan/menudash-theme).
 
@@ -188,7 +188,9 @@ The question behind the filters was whether guests would use them. Asking a rest
 - **Only sums are stored.** One row per dish, or per button, and day. No cookies, nothing in the guest's browser, no IP address stored (a daily-salted hash is kept for ten minutes, to stop fake counts), and nothing older than 25 months.
 - **The owner's own visits don't count,** and neither do guests whose browser asks not to be tracked.
 
-![Which dishes guests look at, with sample numbers: seen at two seconds and stayed five seconds side by side, and how many of the top ten are the same dishes.](./menudash-stats-dishes.webp)
+![Which dishes guests look at, in Statistics 1.13, with a sample menu and made-up numbers: the dishes in the menu's own order, a bar each, a line under every category such as “First dish seen in 73 % of visits, last dish in 19 %”, and one bar showing which category gets guests' attention.](./menudash-stats-dishes.webp)
+
+**The dishes are shown in the menu's own order, not ranked.** A ranking says which dish wins; the menu's order shows where guests stop reading. Under each category, one line says it: on the sample menu, *first dish seen in 73 % of visits, last dish in 19 %*. What the owner can change is the menu, so that's the shape the numbers take.
 
 **Then I measured what I needed to know as the one who built it.**
 
@@ -197,13 +199,15 @@ The question behind the filters was whether guests would use them. Asking a rest
 - **What guests do next.** Taps on the phone number and the map, and whether a shared selection picture brings anyone back to the menu: its QR code and link carry their own tag.
 - **Whether a change helped.** The owner marks the day of a new menu or new photos, and the tab compares the same number of days before and after, up to four weeks each, and says there are too few to compare rather than show a large per cent from a handful of visits.
 
-![Where menu visits come from, on the Statistics tab with sample numbers: QR code, direct, search engines, the restaurant's own website and other websites, each with its visits and share.](./menudash-stats-sources.webp)
+![Where menu visits come from, in Statistics 1.13 with made-up numbers: one bar that adds up to all visits (QR code, direct, search engines, the restaurant's own website), a sentence naming the biggest, and the table of visits and shares below it.](./menudash-stats-sources.webp)
 
-![Before and after a change, with sample numbers: fourteen days on each side of a marked day, with small counts shown as “few counts” or “too few to compare” instead of a per cent.](./menudash-stats-before-after.webp)
+![Visits per day with a marked change, in Statistics 1.13 with made-up numbers: the days before and after the marked day are shaded, and each side's average is drawn across it, 33 per day before and 38 after.](./menudash-stats-before-after.webp)
 
 The data is smaller than an analytics tool's, and that's the point: every number answers a question about the menu, and none of it is about a guest.
 
-**None of it is sales, so none of it is coloured like an alarm.** A dish that's looked at isn't a dish that's ordered; only the restaurant's own sales can say that. So the tab reads as an observation, not a verdict. Speed comes in shades of one blue, darkest for fast and always with a label, instead of green, yellow and red, because a few slow visits are normal. A suggestion, such as photos that could get more attention, sits in a plain grey box rather than a warning. A change in the before-and-after table shows its direction with an arrow, not in green or red, and one backed by only 10 to 29 counts stays grey and is marked as few counts.
+**None of it is sales, so none of it is coloured like an alarm.** A dish that's looked at isn't a dish that's ordered; only the restaurant's own sales can say that. So the tab reads as an observation, not a verdict: speed in shades of one blue, suggestions in a grey box, changes with an arrow.
+
+**A percentage always says what it's a share of.** A guest can turn on several filters, so their shares add up to more than 100 % and can't be the parts of one bar. Splitting that bar by taps would have put two different percentages next to *Vegetarian* on one card. So it counts visits, and every percentage on the card has the same base.
 
 </div>
 
@@ -246,7 +250,7 @@ I built MenuDash with Claude Code. I designed the product and the data model, wr
 
 ## Where It Stands
 
-**On afatt.ch, version 2.13 since 26 October 2026.** The Shop page is up, with nothing for sale yet, and I still maintain MenuDash and the site for them. **Built, not on their site:** Gift Cards, left off at the owner's choice, to keep the site simple. A Fatt is the first restaurant running MenuDash; the split is built for the ones that come next.
+**On afatt.ch: MenuDash 2.13 since 26 October 2026, and Statistics since 16 October.** The Shop page is up, with nothing for sale yet, and I still maintain MenuDash and the site for them. **Built, not on their site:** Gift Cards, left off at the owner's choice, to keep the site simple. A Fatt is the first restaurant running MenuDash; the split is built for the ones that come next.
 
 </div>
 
