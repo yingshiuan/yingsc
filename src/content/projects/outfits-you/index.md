@@ -324,7 +324,7 @@ Two rounds of user testing shaped the design.
 
 ## High Fidelity Prototype
 
-Here is the multi-multi prototype on Figma.
+Here is the outfits-you prototype on Figma.
 
 ![medium-fidelity-prototype](./prototype.webp)
 

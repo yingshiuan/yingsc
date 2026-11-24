@@ -2,6 +2,7 @@
 title: 'Multi-Multi Language Application'
 subtitle: ''
 featured: false
+hidden: true
 type: 'Self-initiated'
 created: 2024-12-01
 domains:
