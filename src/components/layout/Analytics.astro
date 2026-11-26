@@ -59,7 +59,7 @@ const gtagInit = `
       const store = {
         // "accepted", "rejected", or null when there is no live choice.
         read() {
-          let raw = null;
+          let raw;
           try {
             raw = localStorage.getItem(KEY);
           } catch {
@@ -226,6 +226,9 @@ const gtagInit = `
       };
 
       const hide = () => {
+        // Release focus ourselves: newer browsers move it off a display:none
+        // subtree only at the next rendering step, not straight away.
+        if (banner.contains(document.activeElement)) document.activeElement.blur();
         banner.classList.add("hidden");
         banner.classList.remove("opacity-100");
         document.body.style.paddingBottom = "";
